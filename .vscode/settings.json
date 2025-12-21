@@ -1,0 +1,80 @@
+{
+	// General editor
+	"editor.acceptSuggestionOnEnter": "on",
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.renderWhitespace": "boundary",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"editor.rulers": [80],
+	"editor.wordWrap": "off",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": false,
+	"workbench.colorCustomizations":
+	{
+		"editorRuler.foreground": "#2b2929"
+	},
+
+	// File Associations
+	"files.associations":
+	{
+		"*.h": "c",
+		"*.inc": "c",
+		"minishell.h": "c",
+		"Makefile": "makefile",
+		"__locale": "c",
+		"locale": "c",
+		"__bit_reference": "c",
+		"__node_handle": "c",
+		"bitset": "c",
+		"chrono": "c",
+		"__memory": "c",
+		"limits": "c",
+		"optional": "c",
+		"ratio": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"vector": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"deque": "c",
+		"unordered_map": "c",
+		"initializer_list": "c",
+		"random": "c",
+		"istream": "c",
+		"ostream": "c",
+		"functional": "c",
+		"utility": "c",
+		"typeinfo": "c",
+		"ranges": "c",
+		"compare": "c",
+		"atomic": "c",
+		"cstddef": "c",
+		"cmath": "c"
+	},
+
+	// Configuration C/C++
+	"C_Cpp.default.cStandard": "c99",
+	"C_Cpp.default.compilerPath": "/usr/bin/clang",
+	"C_Cpp.errorSquiggles": "enabled",
+	"C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+	"C_Cpp.inlayHints.parameterNames.enabled": false,
+	"C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+	"C_Cpp.suggestSnippets": true,
+	"cmake.ignoreCMakeListsMissing": true,
+	"C_Cpp.enhancedColorization": "enabled",
+
+	// Configuration Debug Visualizer for C
+	"debugVisualizer.debugAdapterConfigurations":
+	{
+		"cppdbg":
+		{
+			"expressionTemplate": "${expr}",
+			"context": "watch"
+		}
+	},
+	"debugVisualizer.useChromeKioskMode": true,
+}
