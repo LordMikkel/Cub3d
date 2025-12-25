@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 18:56:52 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 19:13:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
-int	main(int ac, char **av)
+void check_args(int ac, char **av)
 {
-	t_data	data;
-
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	if (ac > 2)
+		exit_error(NULL, ERR_ARGS, EXIT_USE);
+	if (ac == 2)
+	{
+		if (ft_strcmp(ft_strrchr(av[1], '.'), ".cub") != EQUAL)
+			exit_error(NULL, ERR_FILE_EXT, EXIT_USE);
+	}
 }

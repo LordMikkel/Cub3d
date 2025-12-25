@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 19:02:59 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 19:14:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
-int	main(int ac, char **av)
+void	parse_map(char *map, t_data *data)
 {
-	t_data	data;
-
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	(void)map;
+	(void)data;
 }

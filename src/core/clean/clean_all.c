@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 00:57:59 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 04:09:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-int	main(int ac, char **av)
+void	clean_all(t_data *data)
 {
-	t_data	data;
-
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	clean_mlx(data);
 }

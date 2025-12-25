@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/21 01:57:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/25 19:12:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /* ************************************************************************** */
 # define WIN_WIDTH					HD_WIDTH
 # define WIN_HEIGHT					HD_HEIGHT
-# define WIN_TITLE					"cub3D"
+# define WIN_TITLE					"Cub3D"
 # define TILE_SIZE					64
 
 /* ************************************************************************** */
@@ -93,12 +93,21 @@
 # define FALSE						0
 # define SUCCESS					1
 # define FAILURE					0
+# define YES						1
+# define NO							0
+
+/* ************************************************************************** */
+/*                              Return Values                                 */
+/* ************************************************************************** */
+# define EQUAL						0
+# define ERROR						-1
 
 /* ************************************************************************** */
 /*                               Exit Codes                                   */
 /* ************************************************************************** */
 # define EXIT_SUCCESS				0
 # define EXIT_FAILURE				1
+# define EXIT_USE					2
 
 /* ************************************************************************** */
 /*                             Error Messages                                 */
@@ -107,7 +116,7 @@
 
 // General Errors
 # define ERR_MALLOC			"Memory allocation failed\n"
-# define ERR_ARGS			"Invalid number of arguments -> ./cub3D <map.cub>\n"
+# define ERR_ARGS			"Invalid number of arguments\n"
 # define ERR_FILE_EXT		"Invalid file extension. Expected .cub\n"
 # define ERR_FILE_OPEN		"Could not open file: %s\n"
 

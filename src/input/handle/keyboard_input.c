@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keyboard_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 18:24:10 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 18:50:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-int	main(int ac, char **av)
+void	handle_keyboard_input(mlx_key_data_t keydata, void *param)
 {
-	t_data	data;
+	t_data	*data;
 
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	data = (t_data *)param;
+	if (close_esc(keydata))
+		exit_success(data, MSG_EXIT, EXIT_SUCCESS);
 }

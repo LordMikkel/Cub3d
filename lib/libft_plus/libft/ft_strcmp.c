@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:32:31 by migarrid          #+#    #+#             */
-/*   Updated: 2025/09/04 14:48:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/25 19:26:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	if (!s1 || !s2)
+		return (-1);
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	return (0);
 }
 /*#include <stdio.h>
 

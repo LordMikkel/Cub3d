@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strfilter_c.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 17:05:03 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/21 00:27:32 by king             ###   ########.fr       */
+/*   Updated: 2025/12/25 04:08:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strfilter_c(const char *old_str, int c)
 		if (old_str[i] != (char)c)
 			new_str[j++] = old_str[i];
 		i++;
-	}		
+	}
 	new_str[j] = '\0';
 	return (new_str);
 }

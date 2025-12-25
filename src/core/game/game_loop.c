@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game.loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/24 20:32:01 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 18:49:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-int	main(int ac, char **av)
+void	game_loop(t_data *data)
 {
-	t_data	data;
-
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	mlx_key_hook(data->mlx, &handle_keyboard_input, data);
+	mlx_cursor_hook(data->mlx, &handle_cursor_input, data);
+	mlx_mouse_hook(data->mlx, &handle_click_input, data);
+	mlx_close_hook(data->mlx, &close_x, data);
+	mlx_loop(data->mlx);
 }

@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   click_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2025/12/25 19:06:14 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 18:34:13 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 18:51:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-int	main(int ac, char **av)
+void	handle_click_input(mouse_key_t button,
+	action_t action, modifier_key_t mods, void *param)
 {
-	t_data	data;
+	t_data	*data;
 
-	check_args(ac, av);
-	parse_map(av[1], &data);
-	init_data(&data);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	(void)mods;
+	(void)data;
+	data = (t_data *)param;
+	if (action == MLX_PRESS)
+	{
+		if (button == MLX_MOUSE_BUTTON_LEFT)
+		{
+		}
+		if (button == MLX_MOUSE_BUTTON_MIDDLE)
+		{
+		}
+		if (button == MLX_MOUSE_BUTTON_RIGHT)
+		{
+		}
+	}
 }
