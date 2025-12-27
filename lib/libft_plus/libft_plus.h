@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/21 01:13:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/27 02:25:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ int		ft_is_special(double f, char **result);
 void	ft_add_zeros(char *result, int *pos, int count);
 
 // GET_NEXT_LINE
+
+# define RESET	-1
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024

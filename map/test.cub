@@ -1,7 +1,7 @@
-NO txt/wall_textures/wall.png
-EA txt/wall_textures/wall4.png
-SO txt/wall_textures/wall2.png
-WE txt/wall_textures/wall3.png
+NO tex/wall1.png
+EA tex/wall1.png
+SO tex/wall1.png
+WE tex/wall1.png
 
 F 135,109,70
 C 181,171,107

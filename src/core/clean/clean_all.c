@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:57:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 04:09:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2025/12/27 02:43:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	clean_all(t_data *data)
 {
 	clean_mlx(data);
+	clean_map(data, &data->map);
 }
