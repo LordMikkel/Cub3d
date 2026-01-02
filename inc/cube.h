@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/27 02:42:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:58:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		init_mlx(t_data *data);
 /* ************************************************************************** */
 void	check_args(int ac, char **av);
 void	parse_map(t_data *data, char *map_path);
-void	read_map_file(t_data *data, t_map *map, char *map_path);
+void	get_map_file(t_data *data, t_map *map, char *map_path);
 
 /* ************************************************************************** */
 /*                                 Engine                                     */
@@ -75,7 +75,6 @@ int		exit_error(t_data *data, const char *error, int exit_code, ...);
 /* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
-int 	safe_open(t_data *data, t_map *map, char *map_path);
 
 /* ************************************************************************** */
 /*                                extras                                      */

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/27 02:43:28 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/02 04:45:33 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ SRCS =				core/main.c \
 					core/game/game_loop.c \
 					parse/check_args.c \
 					parse/parse_map.c \
-					parse/read_map.c \
+					parse/get_map_file.c \
 					parse/parse_utils.c \
 					input/handle/keyboard_input.c \
 					input/handle/cursor_input.c \

@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   click_input.c                                      :+:      :+:    :+:   */
+/*   ft_print_int_matrix.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:34:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 03:01:59 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/02 03:51:21 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/02 04:06:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../libft_plus.h"
 
-void	handle_click_input(mouse_key_t button,
-	action_t action, modifier_key_t mods, void *param)
+void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd)
 {
-	t_data	*data;
+	size_t	i;
+	size_t	j;
 
-	(void)data;
-	(void)mods;
-	data = (t_data *)param;
-	if (action == MLX_PRESS)
+	if (!matrix || rows == 0 || cols == 0)
+		return ;
+	i = 0;
+	while (i < rows)
 	{
-		if (button == MLX_MOUSE_BUTTON_LEFT)
+		j = 0;
+		while(j < cols)
 		{
+			ft_putnbr_fd(matrix[i][j], fd);
+			if (j < cols - 1)
+				ft_putchar_fd(' ', fd);
+			j++;
 		}
-		if (button == MLX_MOUSE_BUTTON_MIDDLE)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_RIGHT)
-		{
-		}
+		ft_putchar_fd('\n', fd);
+		i++;
 	}
 }

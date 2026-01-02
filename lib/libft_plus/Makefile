@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: king <king@student.42.fr>                  +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2025/12/21 00:37:18 by king             ###   ########.fr        #
+#    Updated: 2026/01/02 04:07:28 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,8 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_putstr_fd.c \
 		libft/ft_putendl_fd.c \
 		libft/ft_putnbr_fd.c \
+		libft/ft_print_str_array.c \
+		libft/ft_print_int_matrix.c \
 		libft/ft_capitalize.c \
 		libft/ft_free.c \
 		libft/ft_free_str_array.c \

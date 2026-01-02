@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   click_input.c                                      :+:      :+:    :+:   */
+/*   ft_print_str_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:34:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 03:01:59 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/02 03:47:52 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/02 03:55:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../libft_plus.h"
 
-void	handle_click_input(mouse_key_t button,
-	action_t action, modifier_key_t mods, void *param)
+void	ft_print_str_array(char **array, int fd)
 {
-	t_data	*data;
+	size_t	i;
 
-	(void)data;
-	(void)mods;
-	data = (t_data *)param;
-	if (action == MLX_PRESS)
+	if (!array || !*array)
+		return ;
+	i = 0;
+	while (array[i])
 	{
-		if (button == MLX_MOUSE_BUTTON_LEFT)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_MIDDLE)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_RIGHT)
-		{
-		}
+		ft_putstr_fd(array[i], fd);
+		ft_putchar_fd('\n', fd);
+		i++;
 	}
 }

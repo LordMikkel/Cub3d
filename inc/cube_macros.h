@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/27 02:29:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:25:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 # define FLOOR						'0'
 # define WALL						'1'
 # define SPACE						' '
-
 
 /* ************************************************************************** */
 /*                                  Limits                                    */
@@ -114,46 +113,59 @@
 /* ************************************************************************** */
 # define EXIT_SUCCESS				0
 # define EXIT_FAILURE				1
+# define EXIT_FAIL					1
 # define EXIT_USE					2
+
+/* ************************************************************************** */
+/*                               Colors                                       */
+/* ************************************************************************** */
+# define RED				"\033[1;31m"
+# define GREEN				"\033[1;32m"
+# define CLEAR				"\033[0m"
+
+/* ************************************************************************** */
+/*                               Formats                                      */
+/* ************************************************************************** */
+# define OK					GREEN "[OK] " CLEAR
+# define KO					RED "[KO] " CLEAR
 
 /* ************************************************************************** */
 /*                             Error Messages                                 */
 /* ************************************************************************** */
-# define ERR_PREFIX			"\033[1;31mError\033[0m\n"
-
 // General Errors
-# define ERR_MALLOC			"Memory allocation failed\n"
-# define ERR_ARGS			"Invalid number of arguments\n"
-# define ERR_FILE_EXT		"Invalid file extension. Expected .cub\n"
-# define ERR_FILE_OPEN		"Could not open file: %s\n"
+# define ERR_MALLOC			KO "Memory allocation failed\n"
+# define ERR_ARGS			KO "Invalid number of arguments\n"
+# define ERR_FILE_EXT		KO "Invalid file extension. Expected .cub\n"
+# define ERR_FILE_OPEN		KO "Could not open file: %s\n"
 
 // Map Parsing Errors
-# define ERR_MAP_EMPTY		"Map file is empty\n"
-# define ERR_MAP_INVALID	"Map contains invalid characters\n"
-# define ERR_MAP_WALLS		"Map is not enclosed by walls\n"
-# define ERR_MAP_PLAYER		"Map must have exactly one player start position\n"
-# define ERR_MAP_MISSING	"Map description is missing or incomplete\n"
+# define ERR_MAP_EMPTY		KO "Map file is empty\n"
+# define ERR_MAP_INVALID 	KO "Map contains invalid characters\n"
+# define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
+# define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
+# define ERR_MAP_MISSING 	KO "Map description is missing or incomplete\n"
 
 // Texture/Color Errors
-# define ERR_TEX_MISSING	"Missing texture path\n"
-# define ERR_TEX_INVALID	"Invalid texture file or path\n"
-# define ERR_TEX_XPM		"Texture must be an XPM file\n"
-# define ERR_COLOR_FMT		"Invalid color format. Expected R,G,B (0-255)\n"
-# define ERR_COLOR_RANGE	"Color values must be between 0 and 255\n"
-# define ERR_DUPLICATE		"Duplicate identifier found in map file\n"
+# define ERR_TEX_MISSING 	KO "Missing texture path\n"
+# define ERR_TEX_INVALID 	KO "Invalid texture file or path\n"
+# define ERR_TEX_XPM		KO "Texture must be an XPM file\n"
+# define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
+# define ERR_COLOR_RANGE 	KO "Color values must be between 0 and 255\n"
+# define ERR_DUPLICATE		KO "Duplicate identifier found in map file\n"
 
 // MLX Errors
-# define ERR_MLX_INIT		"MiniLibX initialization failed\n"
-# define ERR_MLX_WIN		"MiniLibX window creation failed\n"
-# define ERR_MLX_IMG		"MiniLibX image creation failed\n"
+# define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"
+# define ERR_MLX_WIN		KO "MiniLibX window creation failed\n"
+# define ERR_MLX_IMG		KO "MiniLibX image creation failed\n"
 
 /* ************************************************************************** */
 /*                             Debug Messages                                 */
 /* ************************************************************************** */
-# define MSG_INIT			"Initializing cub3D\n"
-# define MSG_PARSING		"Parsing map file\n"
-# define MSG_TEXTURES		"Loading textures\n"
-# define MSG_READY			"Raycaster ready\n"
-# define MSG_EXIT			"Closing cub3D\n"
+# define MSG_VALID			OK "Args validated\n"
+# define MSG_INIT			OK "Initialized cub3D\n"
+# define MSG_PARSING		OK "Map file parsed\n"
+# define MSG_TEXTURES		OK "Textures loaded\n"
+# define MSG_READY			OK "Raycaster prepared\n"
+# define MSG_EXIT			OK "cub3D closed\n"
 
 #endif

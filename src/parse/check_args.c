@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:56:52 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 19:13:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:13:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void check_args(int ac, char **av)
 		if (ft_strcmp(ft_strrchr(av[1], '.'), ".cub") != EQUAL)
 			exit_error(NULL, ERR_FILE_EXT, EXIT_USE);
 	}
+	ft_printf_fd(STDOUT, MSG_VALID);
 }

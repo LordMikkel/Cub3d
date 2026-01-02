@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/27 02:25:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:09:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_print_str_array(char **array, int fd);
+void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_realloc(void *old_ptr, size_t old_size, size_t new_size);
@@ -68,7 +70,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	ft_free(void **ptr);
 void	ft_free_str_array(char ***array);
-void	ft_free_int_matrix(int ***matrix, int rows);
+void	ft_free_int_matrix(int ***matrix, size_t rows);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
@@ -85,7 +87,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	*ft_capitalize(char *str);
-void	ft_free_multi(int counter, ...);
+void	ft_free_multi(size_t counter, ...);
 
 // ------------ Bonus (Listas enlazadas) ------------
 typedef struct s_list

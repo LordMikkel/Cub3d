@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/27 02:20:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:39:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef enum e_type
 typedef struct s_map
 {
 	int		fd;
-	char	**map;
+	char	**map_file;
 }	t_map;
 
 typedef struct s_data

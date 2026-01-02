@@ -6,15 +6,15 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:25:13 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/04 16:47:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:08:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_free_multi(int counter, ...)
+void	ft_free_multi(size_t counter, ...)
 {
-	int		i;
+	size_t	i;
 	va_list	args;
 	void	**pointer_address;
 
