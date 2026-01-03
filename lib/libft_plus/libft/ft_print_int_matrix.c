@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 03:51:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 04:06:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/03 00:13:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd)
 	while (i < rows)
 	{
 		j = 0;
-		while(j < cols)
+		while (j < cols)
 		{
 			ft_putnbr_fd(matrix[i][j], fd);
 			if (j < cols - 1)

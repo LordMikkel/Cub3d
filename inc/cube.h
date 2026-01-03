@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 04:58:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/03 00:22:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		init_mlx(t_data *data);
 /*                                  Parse                                     */
 /* ************************************************************************** */
 void	check_args(int ac, char **av);
+void	normalize_map_data(t_map *map);
+void	parse_info(t_data *data, t_map *map);
 void	parse_map(t_data *data, char *map_path);
 void	get_map_file(t_data *data, t_map *map, char *map_path);
 
@@ -53,9 +55,9 @@ void	get_map_file(t_data *data, t_map *map, char *map_path);
 /* ************************************************************************** */
 /*                                 Events                                     */
 /* ************************************************************************** */
-void	handle_keyboard_input(mlx_key_data_t keydata, void *param);
-void	handle_cursor_input(double xpos, double ypos, void *param);
-void	handle_click_input(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void	handle_click_inpt(mouse_key_t b, action_t a, modifier_key_t m, void *p);
+void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param);
+void	handle_cursor_inpt(double xpos, double ypos, void *param);
 int		close_esc(mlx_key_data_t keydata);
 void	close_x(void *param);
 

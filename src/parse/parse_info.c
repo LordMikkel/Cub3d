@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   click_input.c                                      :+:      :+:    :+:   */
+/*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:34:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:19:47 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/02 23:56:27 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/03 00:21:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../inc/cube.h"
 
-void	handle_click_inpt(mouse_key_t button,
-	action_t action, modifier_key_t mods, void *param)
+void	parse_info(t_data *data, t_map *map)
 {
-	t_data	*data;
-
 	(void)data;
-	(void)mods;
-	data = (t_data *)param;
-	if (action == MLX_PRESS)
-	{
-		if (button == MLX_MOUSE_BUTTON_LEFT)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_MIDDLE)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_RIGHT)
-		{
-		}
-	}
+	(void)map;
 }

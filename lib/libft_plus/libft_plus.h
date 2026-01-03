@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 04:09:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 23:29:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	*ft_strndup(const char *s, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strcut(char *str, int c);
+char	*ft_strchr_swap(char *str, int old_c, int new_c);
+char	*ft_normalize_spaces(char *str, int space);
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strjoin_multi(int count, ...);

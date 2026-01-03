@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/02 04:45:33 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/03 01:05:25 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ PRINT				= printf
 MAKE				= make
 MKDIR				= mkdir -p
 NORM				= norminette
+WATCH				= watch
 CMAKE				= cmake
 MV					= mv
 CD					= cd
@@ -105,6 +106,8 @@ SRCS =				core/main.c \
 					parse/check_args.c \
 					parse/parse_map.c \
 					parse/get_map_file.c \
+					parse/normalize_map.c \
+					parse/parse_info.c \
 					parse/parse_utils.c \
 					input/handle/keyboard_input.c \
 					input/handle/cursor_input.c \
@@ -158,7 +161,6 @@ $(MLX_A):
 	@$(PRINT) "Compiling $(BLUE)mlx library$(DEFAULT)...\n"
 	@$(CD) $(MLX_DIR) && $(CMAKE) -B build > /dev/null 2>&1 && $(CMAKE) --build build -j4 > /dev/null  2>&1
 
-
 # **************************************************************************** #
 #                            Object Compilation                                #
 # **************************************************************************** #
@@ -195,6 +197,10 @@ norm:
 	-@$(NORM) $(INC_DIR)
 	-@$(NORM) $(SRC_DIR)
 
+# Correct the norminette in my .c files
+check:
+	-@$(WATCH) -n 0.5 --color "make norm | grep -v 'OK!' | grep -v 'Error: PREPROC_CONSTANT'"
+
 # Clean object files
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
@@ -215,5 +221,5 @@ re: fclean all
 FORCE:
 
 # Phony targets
-.PHONY: all clean fclean re test leaks norm
+.PHONY: all clean fclean re test leaks norm check
 .DEFAULT_GOAL := all

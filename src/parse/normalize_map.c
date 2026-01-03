@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   click_input.c                                      :+:      :+:    :+:   */
+/*   normalize_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:34:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:19:47 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/02 23:03:37 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/02 23:58:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../inc/cube.h"
 
-void	handle_click_inpt(mouse_key_t button,
-	action_t action, modifier_key_t mods, void *param)
+void	normalize_map_data(t_map *map)
 {
-	t_data	*data;
+	int	i;
 
-	(void)data;
-	(void)mods;
-	data = (t_data *)param;
-	if (action == MLX_PRESS)
+	i = 0;
+	while (map->map_file[i])
 	{
-		if (button == MLX_MOUSE_BUTTON_LEFT)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_MIDDLE)
-		{
-		}
-		if (button == MLX_MOUSE_BUTTON_RIGHT)
-		{
-		}
+		ft_strcut(map->map_file[i], '\n');
+		ft_normalize_spaces(map->map_file[i], ' ');
+		i++;
 	}
 }

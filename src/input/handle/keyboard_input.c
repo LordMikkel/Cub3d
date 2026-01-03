@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:24:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 18:50:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/03 00:19:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	handle_keyboard_input(mlx_key_data_t keydata, void *param)
+void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 

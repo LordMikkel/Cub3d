@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 04:25:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/02 23:43:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,11 @@
 
 // Map Parsing Errors
 # define ERR_MAP_EMPTY		KO "Map file is empty\n"
+# define ERR_MAP_BIG		KO "Map file is too big\n"
 # define ERR_MAP_INVALID 	KO "Map contains invalid characters\n"
 # define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
 # define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
-# define ERR_MAP_MISSING 	KO "Map description is missing or incomplete\n"
+# define ERR_MAP_MISSING 	KO "Map information is missing or incomplete\n"
 
 // Texture/Color Errors
 # define ERR_TEX_MISSING 	KO "Missing texture path\n"
