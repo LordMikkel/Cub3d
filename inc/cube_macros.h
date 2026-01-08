@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 23:43:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/08 02:12:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@
 /* ************************************************************************** */
 /*                               Map Elements                                 */
 /* ************************************************************************** */
-# define FLOOR						'0'
+# define SPACE						'0'
 # define WALL						'1'
-# define SPACE						' '
+# define EMPTY						' '
 
 /* ************************************************************************** */
 /*                                  Limits                                    */
@@ -152,7 +152,7 @@
 # define ERR_TEX_XPM		KO "Texture must be an XPM file\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
 # define ERR_COLOR_RANGE 	KO "Color values must be between 0 and 255\n"
-# define ERR_DUPLICATE		KO "Duplicate identifier found in map file\n"
+# define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
 
 // MLX Errors
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"

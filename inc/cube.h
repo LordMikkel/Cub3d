@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:22:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/08 02:07:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ int		init_mlx(t_data *data);
 /*                                  Parse                                     */
 /* ************************************************************************** */
 void	check_args(int ac, char **av);
-void	normalize_map_data(t_map *map);
+void	normalize_info(t_map *map);
 void	parse_info(t_data *data, t_map *map);
-void	parse_map(t_data *data, char *map_path);
-void	get_map_file(t_data *data, t_map *map, char *map_path);
+void	parse_file(t_data *data, char *map_path);
+void	get_file_info(t_data *data, t_map *map, char *map_path);
+void	parse_texture(t_data *data, t_map *map, char *line);
+void	parse_map(t_data *data, t_map *map, char *line);
 
 /* ************************************************************************** */
 /*                                 Engine                                     */
@@ -67,6 +69,7 @@ void	close_x(void *param);
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
 void	clean_map(t_data *data, t_map *map);
+void	clean_textures(t_data *data, t_map *map);
 
 /* ************************************************************************** */
 /*                                 Exits                                      */

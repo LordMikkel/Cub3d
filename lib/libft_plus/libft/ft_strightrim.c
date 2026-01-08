@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_normalize_spaces.c                              :+:      :+:    :+:   */
+/*   ft_strightrim.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/02 23:23:57 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:11:15 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/08 01:31:10 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/08 01:34:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-char	*ft_normalize_spaces(char *str, int space)
+char	*ft_strightrim(const char *str, const char *set)
 {
-	size_t	i;
+	char	*trimmed;
+	size_t	len;
 
-	if (!str || !*str)
+	if (!str || !set)
 		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		if (ft_isspace(str[i]))
-			str[i] = (unsigned char)space;
-		i++;
-	}
-	return (str);
+	len = ft_strlen(str);
+	while (len > 0 && ft_strchr(set, str[len - 1]))
+		len--;
+	trimmed = ft_strndup(str, len);
+	if (!trimmed)
+		return (NULL);
+	return (trimmed);
 }

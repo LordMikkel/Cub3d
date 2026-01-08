@@ -5,6 +5,7 @@
 *.DS_Store
 *.mp4
 cub3d
+example
 
 # Exceptions
 

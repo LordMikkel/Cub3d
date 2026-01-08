@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/03 01:05:25 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/08 02:08:48 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,10 +104,12 @@ SRCS =				core/main.c \
 					core/init/init_mlx.c \
 					core/game/game_loop.c \
 					parse/check_args.c \
-					parse/parse_map.c \
-					parse/get_map_file.c \
-					parse/normalize_map.c \
+					parse/parse_file.c \
+					parse/get_file_info.c \
+					parse/normalize_info.c \
 					parse/parse_info.c \
+					parse/parse_texture.c \
+					parse/parse_map.c \
 					parse/parse_utils.c \
 					input/handle/keyboard_input.c \
 					input/handle/cursor_input.c \
@@ -116,6 +118,7 @@ SRCS =				core/main.c \
 					core/clean/clean_all.c \
 					core/clean/clean_mlx.c \
 					core/clean/clean_map.c \
+					core/clean/clean_textures.c \
 					core/exit/exit_succes.c \
 					core/exit/exit_error.c \
 

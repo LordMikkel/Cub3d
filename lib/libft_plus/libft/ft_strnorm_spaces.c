@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_normalize_spaces.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2026/01/08 02:03:57 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/02 23:23:57 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/08 02:43:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../libft_plus.h"
 
-int	main(int ac, char **av)
+char	*ft_strnorm_spaces(char *str, int space)
 {
-	t_data	data;
+	size_t	i;
 
-	check_args(ac, av);
-	init_data(&data);
-	parse_file(&data, av[1]);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	if (!str || !*str)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]))
+			str[i] = (unsigned char)space;
+		i++;
+	}
+	return (str);
 }

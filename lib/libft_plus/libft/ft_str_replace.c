@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize_map.c                                    :+:      :+:    :+:   */
+/*   ft_str_replace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/02 23:03:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 23:58:36 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/08 03:07:33 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/08 03:12:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../libft_plus.h"
 
-void	normalize_map_data(t_map *map)
+void	ft_str_replace(char **old_str, char *new_str)
 {
-	int	i;
-
-	i = 0;
-	while (map->map_file[i])
-	{
-		ft_strcut(map->map_file[i], '\n');
-		ft_normalize_spaces(map->map_file[i], ' ');
-		i++;
-	}
+	if (!old_str)
+		return ;
+	ft_free((void **)old_str);
+	*old_str = new_str;
 }

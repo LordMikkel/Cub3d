@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2026/01/08 02:03:57 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/08 01:20:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-int	main(int ac, char **av)
+void clean_textures(t_data *data, t_map *map)
 {
-	t_data	data;
+	int	i;
 
-	check_args(ac, av);
-	init_data(&data);
-	parse_file(&data, av[1]);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (i < TOTAL_TEXTURE)
+	{
+		if (map->textures[i].path)
+			ft_free((void **)&map->textures[i].path);
+		if (map->textures[i].txtr)
+			mlx_delete_texture(map->textures[i].txtr);
+		if (map->textures[i].img)
+			mlx_delete_image(data->mlx, map->textures[i].img);
+		i++;
+	}
 }

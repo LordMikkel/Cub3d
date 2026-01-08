@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:10:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:18:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/08 02:08:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**get_lines(t_data *data, t_map *map)
 	{
 		if (is_not_an_empty_line(line))
 		{
-			map->map_file[i] = ft_strdup(line);
+			map->map_file[i] = ft_strtrim(line, " \t\n\r\v\f");
 			if (!map->map_file[i])
 			{
 				ft_free((void **)&line);
@@ -83,7 +83,7 @@ static int	count_map_size(t_data *data, t_map *map)
 	return (size);
 }
 
-void	get_map_file(t_data *data, t_map *map, char *map_path)
+void	get_file_info(t_data *data, t_map *map, char *map_path)
 {
 	int	size;
 

@@ -1,9 +1,9 @@
-NO tex/wall1.png
+	 NO tex/wall1.png
 EA tex/wall1.png
 SO		 tex/wall1.png
 WE tex/wall1.png
 
-F 135,109,70
+F 135,109,	 70
 C 181,171,107
 
 111111111111111

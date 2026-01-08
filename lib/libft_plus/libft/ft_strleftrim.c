@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strleftrim.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 00:51:35 by king              #+#    #+#             */
-/*   Updated: 2026/01/08 02:03:57 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/07 23:50:56 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/08 01:34:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../libft_plus.h"
 
-int	main(int ac, char **av)
+char	*ft_strleftrim(const char *str, const char *set)
 {
-	t_data	data;
+	char	*trimmed;
+	size_t	i;
 
-	check_args(ac, av);
-	init_data(&data);
-	parse_file(&data, av[1]);
-	game_loop(&data);
-	return (EXIT_SUCCESS);
+	if (!str || !set)
+		return (NULL);
+	i = 0;
+	while (str[i] && ft_strchr(set, str[i]))
+		i++;
+	trimmed = ft_strdup(&str[i]);
+	if (!trimmed)
+		return (NULL);
+	return (trimmed);
 }
