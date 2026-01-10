@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:11:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/07/01 03:56:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/08 18:34:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	static char	*stash[1024];
 	char		*line;
 
-	if (fd == -1)
+	if (fd == RESET)
 	{
 		cleanup_all_stash(stash);
 		return (NULL);

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/08 02:08:48 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/09 06:04:27 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 SRCS =				core/main.c \
 					core/init/init_data.c \
 					core/init/init_mlx.c \
+					core/init/allocator.c \
 					core/game/game_loop.c \
 					parse/check_args.c \
 					parse/parse_file.c \
@@ -110,11 +111,13 @@ SRCS =				core/main.c \
 					parse/parse_info.c \
 					parse/parse_texture.c \
 					parse/parse_map.c \
+					parse/validate_map.c \
 					parse/parse_utils.c \
 					input/handle/keyboard_input.c \
 					input/handle/cursor_input.c \
 					input/handle/click_input.c \
 					input/events/close_events.c \
+					debug/dbg_print_textures.c \
 					core/clean/clean_all.c \
 					core/clean/clean_mlx.c \
 					core/clean/clean_map.c \

@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_textures.c                                   :+:      :+:    :+:   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/10 01:00:33 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/09 06:09:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../inc/cube.h"
 
-void	clean_textures(t_data *data, t_map *map)
+void	validate_map(t_data *data, t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (i < TOTAL_TEXTURE)
-	{
-		if (map->textures[i].path)
-			ft_free((void **)&map->textures[i].path);
-		if (map->textures[i].txtr)
-			mlx_delete_texture(map->textures[i].txtr);
-		if (map->textures[i].img)
-			mlx_delete_image(data->mlx, map->textures[i].img);
-		i++;
-	}
+	if (map->player_count != 1)
+		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
 }

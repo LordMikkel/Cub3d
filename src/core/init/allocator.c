@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_textures.c                                   :+:      :+:    :+:   */
+/*   allocator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/10 01:00:33 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/08 18:22:21 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/10 01:00:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	clean_textures(t_data *data, t_map *map)
+void	*allocator(t_data *data, size_t nmemb, size_t size)
 {
-	int	i;
+	void	*ptr;
 
-	i = 0;
-	while (i < TOTAL_TEXTURE)
-	{
-		if (map->textures[i].path)
-			ft_free((void **)&map->textures[i].path);
-		if (map->textures[i].txtr)
-			mlx_delete_texture(map->textures[i].txtr);
-		if (map->textures[i].img)
-			mlx_delete_image(data->mlx, map->textures[i].img);
-		i++;
-	}
+	ptr = ft_calloc(nmemb, size);
+	if (!ptr)
+		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+	return (ptr);
 }

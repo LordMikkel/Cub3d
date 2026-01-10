@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 03:13:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/08 18:40:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*ft_capitalize(char *str);
 void	ft_str_replace(char **old_str, char *new_str);
 void	ft_free_multi(size_t counter, ...);
 
-// ------------ Bonus (Listas enlazadas) ------------
+// ------------ Bonus (Linked List) ------------
 typedef struct s_list
 {
 	void			*content;
@@ -114,17 +114,17 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void **));
 
 // PRINTF
 
-// ------------ Bonus (estructura flags) ------------
+// ------------ Bonus (Stuct Flags) ------------
 typedef struct s_format
 {
-	int		width;			// Flags '0' y '-' Ancho mínimo (ej: %-10s)
-	int		precision;		// Flag '.' Precisión (ej: %.5d)
+	int		width;			// Flags '0' y '-' min width (ej: %-10s)
+	int		precision;		// Flag '.' Presicion (ej: %.5d)
 	int		zero_pad;		// Flag '0' (ej: %05d)
 	int		left_align;		// Flag '-' (ej: %-10s)
 	int		hash;			// Flag '#' (ej: %#x)
 	int		space;			// Flag ' ' (ej: % d)
 	int		plus;			// Flag '+' (ej: %+d)
-	char	specifier;		// Carácter de conversión (c, s, d, etc.)
+	char	specifier;		// Chat of convertion (c, s, d, etc.)
 }	t_format;
 
 // ------------- Funtion (Principal) ----------------
@@ -161,7 +161,7 @@ void	ft_add_zeros(char *result, int *pos, int count);
 
 // GET_NEXT_LINE
 
-# define RESET	-1
+# define RESET	-999
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 02:06:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/09 05:58:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ typedef struct s_txtr
 typedef struct s_map
 {
 	int				fd;
+	int				file_size;
 	char			**map_file;
+	int				map_size;
 	char			**map_grid;
+	int				player_count;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 

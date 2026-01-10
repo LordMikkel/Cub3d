@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 02:23:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/10 01:00:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	parse_rgb_value(t_data *data, char *str)
 	int		i;
 
 	i = 0;
-	while(ft_isspace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
 	if (!ft_isdigit(str[i]))
 		exit_error(data, ERR_COLOR_FMT, EXIT_USE);
@@ -51,7 +51,6 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 
 static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 {
-	
 	if (texture->path != NULL)
 		exit_error(data, ERR_DUPLICATE, EXIT_FAILURE);
 	texture->type = type;
