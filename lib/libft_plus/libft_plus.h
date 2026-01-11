@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 18:40:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 19:46:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <malloc.h>
 # include <limits.h>
 
 // LIBFT
@@ -63,11 +64,13 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_print_str_array(char **array, int fd);
 void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd);
 void	*ft_memset(void *s, int c, size_t n);
+void	*ft_alloc(size_t nmemb, size_t size);
 void	*ft_calloc(size_t nmemb, size_t size);
-void	*ft_realloc(void *old_ptr, size_t old_size, size_t new_size);
+void	*ft_realloc(void *old_ptr, size_t new_size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
+void	ft_memnuke(void *ptr, size_t size);
 void	ft_free(void **ptr);
 void	ft_free_str_array(char ***array);
 void	ft_free_int_matrix(int ***matrix, size_t rows);
@@ -90,7 +93,7 @@ char	*ft_strtrim(const char *s1, const char *s2);
 char	*ft_strfilter_c(const char *old_str, int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
+char	*ft_strmapi(const char *s, char (*f)(size_t, char));
 char	*ft_capitalize(char *str);
 void	ft_str_replace(char **old_str, char *new_str);
 void	ft_free_multi(size_t counter, ...);

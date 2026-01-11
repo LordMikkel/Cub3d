@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 01:56:11 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:22:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:32:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t cat_size)
 	dst[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
-/*#include <stdio.h>
-#include <stdlib.h>
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t cpy_size);
-
-int	main(int ac, char **av)
-{
-	size_t	dst_size;
-
-	if (ac != 5)
-		return (1);
-	dst_size = (size_t)atoi(av[2]);
-	char	dst[dst_size];
-	ft_strlcpy(dst, av[1], dst_size);
-	printf("Initial destination %s\n", av[1]);
-	printf("Size destination: %s\n", av[2]);
-	printf("Source: %s\n", av[3]);
-	printf("Size of the buffer: %s\n", av[4]);
-	printf("leng of the concatenation: %ld\n",
-		ft_strlcat(dst, av[3], (size_t)atoi(av[4])));
-	printf("Concatenation: %s\n", dst);
-	return (0);
-}*/

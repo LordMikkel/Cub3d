@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:31:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 02:51:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 18:50:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_strnorm_multi(const char *str, const char *set, int c)
 	if (!str || !set)
 		return (NULL);
 	len = get_new_len(str, set);
-	new_str = ft_calloc(len + 1, sizeof(char));
+	new_str = ft_alloc(len + 1, sizeof(char));
 	if (!new_str)
 		return (NULL);
 	fill_str(new_str, str, set, c);

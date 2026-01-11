@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 23:31:08 by migarrid          #+#    #+#             */
-/*   Updated: 2025/04/03 20:02:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:50:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*ft_itoa_base(long n, char *base)
 	}
 	digit_count = calculate_digit_count(n, base_length, 0);
 	total_length = digit_count + sign;
-	str = malloc(total_length + 1);
+	str = ft_alloc(total_length + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	str[total_length] = '\0';

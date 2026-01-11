@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:32:31 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 19:26:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:31:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (0);
 }
-/*#include <stdio.h>
-
-int main(void)
-{
-	printf("Compare 'abc' y 'abc': %d\n", ft_strcmp("abc", "abc")); // 0
-	printf("Comparando 'abc' y 'abd': %d\n", ft_strcmp("abc", "abd")); //-
-	printf("Comparando 'abd' y 'abc': %d\n", ft_strcmp("abd", "abc")); //+
-}*/

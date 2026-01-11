@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:30:00 by migarrid          #+#    #+#             */
-/*   Updated: 2025/06/28 17:57:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:57:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,29 @@ static void	ft_copy_string_parts(char *result, char *int_part, char *frac_part,
 
 static char	*ft_build_float_str(double f, int precision, int is_neg)
 {
-	char	*result;
-	char	*int_part;
-	char	*frac_part;
-	long	multiplier;
-	long	temp_val;
+	char		*result;
+	char		*int_str;
+	char		*frac_str;
+	long		multiplier;
+	long long	tmp;
 
 	multiplier = ft_power_10(precision);
 	f = f * multiplier + 0.5;
-	temp_val = (long)f;
-	int_part = ft_itoa(temp_val / multiplier);
-	if (!int_part)
+	tmp = (long long)f;
+	int_str = ft_itoa(tmp / multiplier);
+	if (!int_str)
 		return (NULL);
-	frac_part = ft_itoa(temp_val % multiplier);
-	if (!frac_part)
-		return (free(int_part), NULL);
-	result = malloc
-		(ft_strlen(int_part) + is_neg + (precision > 0) * (1 + precision) + 1);
+	frac_str = ft_itoa(tmp % multiplier);
+	if (!frac_str)
+		return (ft_free((void **)&int_str), NULL);
+	tmp = ft_strlen(int_str) + is_neg + (precision > 0) * (1 + precision) + 1;
+	result = ft_alloc(tmp, sizeof(char));
 	if (!result)
-		return (free(int_part), free(frac_part), NULL);
+		return (ft_free((void **)&int_str), ft_free((void **)&frac_str), NULL);
 	if (is_neg)
 		result[0] = '-';
-	ft_copy_string_parts(result + is_neg, int_part, frac_part, precision);
-	return (free(int_part), free(frac_part), result);
+	ft_copy_string_parts(result + is_neg, int_str, frac_str, precision);
+	return (ft_free((void **)&int_str), ft_free((void **)&frac_str), result);
 }
 
 static char	*ft_float_to_str(double f, int precision)
@@ -89,6 +89,6 @@ int	ft_print_float_fd(double f, t_format *fmt, int fd)
 	ft_apply_flags(&str, fmt);
 	len = ft_strlen(str);
 	write(fd, str, len);
-	free(str);
+	ft_free((void **)&str);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 23:30:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/06/28 16:43:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:57:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_print_num_fd(int n, t_format *fmt, int fd)
 	if (!str)
 		return (-1);
 	len = write(fd, str, ft_strlen(str));
-	free(str);
+	ft_free((void **)&str);
 	return (len);
 }

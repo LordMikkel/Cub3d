@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:06:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/05/30 15:23:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:28:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,3 @@ bool	ft_atoi_range(const char *nptr)
 	}
 	return (true);
 }
-/*#include <stdio.h>
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		printf("Number: %d\n", ft_atoi_range(av[1]));
-		return (0);
-	}
-	return (0);
-}*/

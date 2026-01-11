@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 23:34:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 23:11:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:32:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(size_t, char))
 {
 	char	*result;
 	size_t	len;
@@ -21,7 +21,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
-	result = (char *)malloc(len + 1);
+	result = ft_alloc(len + 1, sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -33,26 +33,3 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	result[i] = '\0';
 	return (result);
 }
-/*#include <stdio.h>
-
-static char to_upper_if_even(unsigned int index, char c)
-{
-	if(index % 2 == 0 && c>= 'a' && c <= 'z')
-		return c -'a' + 'A';
-	return c;
-}
-
-int	main(int ac, char **av)
-{
-	char	*str;
-
-	if (ac == 2)
-	{
-		str = ft_strmapi(av[1], to_upper_if_even);
-		printf("Original string: %s\n", av[1]);
-		printf("Modified string: %s\n", str);
-		free(str);
-		return (0);
-	}
-	return (1);
-}*/

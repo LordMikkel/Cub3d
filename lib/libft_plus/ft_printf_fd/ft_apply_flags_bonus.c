@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 00:04:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:26:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:55:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*precision_str(char *str, t_format *fmt)
 	if (ft_strncmp(str, "(null)", 6) == 0
 		&& fmt->precision < 6 && fmt->precision >= 0)
 	{
-		free(str);
+		ft_free((void **)&str);
 		return (ft_strdup(""));
 	}
 	else if (fmt->specifier == 's' && fmt->precision >= 0)
@@ -27,7 +27,7 @@ static char	*precision_str(char *str, t_format *fmt)
 		new_str = ft_substr(str, 0, fmt->precision);
 		if (!new_str)
 			return (NULL);
-		free(str);
+		ft_free((void **)&str);
 		return (new_str);
 	}
 	return (str);
@@ -69,19 +69,19 @@ void	ft_apply_flags(char **str, t_format *fmt)
 		*str = precision_str(*str, fmt);
 		if (!*str)
 		{
-			free(original);
+			ft_free((void **)&original);
 			return ;
 		}
 		ft_apply_min_width(str, fmt);
 		if (!*str)
 		{
-			free(original);
+			ft_free((void **)&original);
 			return ;
 		}
 	}
 	else if (!apply_flags(str, fmt))
 	{
-		free(original);
+		ft_free((void **)&original);
 		return ;
 	}
 }

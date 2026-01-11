@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 22:20:38 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/08 18:27:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:29:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,16 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb == 0 || size == 0)
 	{
 		ptr = malloc(0);
+		if (!ptr)
+			return (NULL);
 		return (ptr);
 	}
-	if (size != 0 && nmemb > __SIZE_MAX__ / size)
+	if (size != 0 && nmemb > SIZE_MAX / size)
 		return (NULL);
 	total_size = (nmemb * size);
 	ptr = malloc(total_size);
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, total_size);
 	return (ptr);
 }
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	int		*array;
-	size_t	nmemb;
-	size_t	size;
-	size_t	i;
-
-	if (ac == 3)
-	{
-		nmemb = (size_t)atoi(av[1]);
-		size = (size_t)atoi(av[2]);
-		array = (int *)ft_calloc(nmemb, size);
-		printf("Array asignado con ft_calloc:\n");
-		i = 0;
-		while (i < nmemb)
-		{
-			printf("array[%zu] = %d\n", i, array[i]);
-			i++;
-		}
-		free(array);
-		return (0);
-	}
-	return (0);
-}*/

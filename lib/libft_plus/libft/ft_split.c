@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 23:26:17 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/29 17:41:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:31:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static size_t	count_substrings(const char *s, char c)
 
 static int	substring(char **array, size_t *i, const char *start, size_t len)
 {
-	array[*i] = (char *)malloc(len + 1);
+	array[*i] = ft_alloc(len + 1, sizeof(char));
 	if (!array[*i])
 	{
 		while (*i > 0)
-			free(array[--(*i)]);
+			ft_free((void **)&array[--(*i)]);
 		return (0);
 	}
 	ft_memcpy(array[*i], start, len);
@@ -80,42 +80,13 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	counter = count_substrings(s, c);
-	array = (char **)malloc((counter + 1) * sizeof(char *));
+	array = ft_alloc((counter + 1), sizeof(char *));
 	if (!array)
 		return (NULL);
 	if (!fill_array(array, s, c))
 	{
-		free(array);
+		ft_free((void **)&array);
 		return (NULL);
 	}
 	return (array);
 }
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	char	**result;
-	int		i;
-
-	if (ac == 3)
-	{
-		printf("Matrix String: %s\n", av[1]);
-		printf("Split Carcater: %s\n", av[2]);
-		result = ft_split(av[1], av[2][0]);
-		if (!result)
-		{
-			printf("Error: couldn't divede the string.\n");
-			return (1);
-		}
-		i = 0;
-		while (result[i])
-		{
-			printf("Substrings %d: %s\n", i, result[i]);
-			free(result[i]);
-			i++;
-		}
-		free(result);
-		return (0);
-	}
-	return (1);
-}*/

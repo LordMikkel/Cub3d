@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:15:40 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:23:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:36:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	if (len > s_len - start)
 		len = s_len - start;
-	substr = (char *)malloc(len + 1);
+	substr = ft_alloc(len + 1, sizeof(char));
 	if (!substr)
 		return (NULL);
 	i = 0;
@@ -37,18 +37,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 4)
-	{
-		printf("String: %s\n", av[1]);
-		printf("index: %s\n", av[2]);
-		printf("len: %s\n", av[3]);
-		printf("substrig: %s\n", ft_substr(av[1],
-			(unsigned int)atoi(av[2]), (size_t) atoi(av[3])));
-		return (0);
-	}
-	return (1);
-}*/

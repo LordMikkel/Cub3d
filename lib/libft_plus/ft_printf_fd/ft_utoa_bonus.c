@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:43:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:28:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:38:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_utoa_base(unsigned long n)
 	base = "0123456789abcdef";
 	base_length = ft_strlen(base);
 	digit_count = calculate_udigit_count(n, base_length, 0);
-	str = malloc(digit_count + 1);
+	str = ft_alloc(digit_count + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	str[digit_count] = '\0';

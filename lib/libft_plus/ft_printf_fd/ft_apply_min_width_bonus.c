@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:14:26 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:26:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 23:00:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ void	ft_apply_min_width(char **str, t_format *fmt)
 	padding = ' ';
 	if (fmt->zero_pad && !fmt->left_align && fmt->precision == -1)
 		padding = '0';
-	new_str = (char *)malloc(fmt->width + 1);
+	new_str = ft_alloc(fmt->width + 1, sizeof(char));
 	if (!new_str)
 	{
-		free(*str);
-		*str = NULL;
+		ft_free((void **)str);
 		return ;
 	}
 	ft_memset(new_str, padding, fmt->width);
@@ -37,6 +36,6 @@ void	ft_apply_min_width(char **str, t_format *fmt)
 		ft_memcpy(new_str, *str, len);
 	else
 		ft_memcpy(new_str + (fmt->width - len), *str, len);
-	free(*str);
+	ft_free((void **)str);
 	*str = new_str;
 }

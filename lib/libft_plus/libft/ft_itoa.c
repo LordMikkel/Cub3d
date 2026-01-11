@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 19:35:10 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:20:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:29:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 	int		sign;
 
 	len = num_len(n);
-	str = (char *)malloc(len + 1);
+	str = ft_alloc(len + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	sign = 1;
@@ -55,15 +55,3 @@ char	*ft_itoa(int n)
 	str[len] = '\0';
 	return (str);
 }
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		printf("Integer number: %s\n", av[1]);
-		printf("Character number: %s\n", ft_itoa(atoi(av[1])));
-		return (0);
-	}
-	return (1);
-}*/

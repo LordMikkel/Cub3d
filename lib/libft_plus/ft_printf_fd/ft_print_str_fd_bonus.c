@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 23:30:46 by migarrid          #+#    #+#             */
-/*   Updated: 2025/06/28 16:49:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:57:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_print_str_fd(char *str, t_format *fmt, int fd)
 		if (!new_str)
 			return (-1);
 		len = write(fd, new_str, ft_strlen(new_str));
-		free(new_str);
+		ft_free((void **)&new_str);
 		return (len);
 	}
 	new_str = ft_strdup(str);
@@ -36,6 +36,6 @@ int	ft_print_str_fd(char *str, t_format *fmt, int fd)
 	if (!new_str)
 		return (-1);
 	len = write(fd, new_str, ft_strlen(new_str));
-	free(new_str);
+	ft_free((void **)&new_str);
 	return (len);
 }

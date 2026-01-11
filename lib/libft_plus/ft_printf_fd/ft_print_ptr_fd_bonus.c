@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 23:30:53 by migarrid          #+#    #+#             */
-/*   Updated: 2025/06/28 16:49:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:57:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ptr_nill_fd(t_format *fmt, int fd)
 	if (!str)
 		return (-1);
 	len = write(fd, str, ft_strlen(str));
-	free(str);
+	ft_free((void **)&str);
 	return (len);
 }
 
@@ -40,13 +40,13 @@ int	ft_print_ptr_fd(void *ptr, t_format *fmt, int fd)
 	if (!tmp)
 		return (-1);
 	str = ft_strjoin("0x", tmp);
-	free(tmp);
+	ft_free((void **)&tmp);
 	if (!str)
 		return (-1);
 	ft_apply_flags(&str, fmt);
 	if (!str)
 		return (-1);
 	len = write(fd, str, ft_strlen(str));
-	free(str);
+	ft_free((void **)&str);
 	return (len);
 }

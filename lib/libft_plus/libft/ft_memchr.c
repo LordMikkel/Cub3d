@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:18:04 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:20:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:30:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int ac, char **av)
-{
-	void	*result;
-
-	if (ac == 4)
-	{
-		result = ft_memchr(av[1], av[2][0], (size_t)atoi(av[3]));
-		printf("String: %s\nCaracter: %c\nBuffer: %d\n",
-			av[1], av[2][0], atoi(av[3]));
-		printf("Pointer: %p\nCaracter: %c\n", result, *(char *)result);
-		return (0);
-	}
-	return (1);
-}*/

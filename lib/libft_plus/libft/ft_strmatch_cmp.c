@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 19:54:17 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/11/17 16:39:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 19:05:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strmatch_cmp(const char *s1, const char *s2)
 	size_t	i;
 
 	if (!s1 || !s2)
-		return (0);
+		return (-1);
 	i = 0;
 	while (s1[i] != '\0' && s2[i] != '\0'
 		&& ft_tolower(s1[i]) == ft_tolower(s2[i]))

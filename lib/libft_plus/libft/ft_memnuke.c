@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memnuke.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:13:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 22:31:31 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/11 16:53:39 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/11 17:09:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_memnuke(void *ptr, size_t size)
 {
-	if (!s)
+	volatile unsigned char	*ptr_volatile;
+
+	if (!ptr)
 		return ;
-	while (*s)
+	ptr_volatile = (volatile unsigned char *)ptr;
+	while(size > 0)
 	{
-		write(fd, s, 1);
-		s++;
+		*ptr_volatile = 0;
+		ptr_volatile++;
+		size--;
 	}
 }

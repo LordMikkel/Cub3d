@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:51:44 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/17 01:19:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:32:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 4)
-	{
-		printf("Haystack: %s\n", av[1]);
-		printf("Needle: %s\n", av[2]);
-		printf("Found: %s\n", ft_strnstr(av[1], av[2], (size_t)atoi(av[3])));
-		return (0);
-	}
-	return (1);
-}*/

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:11:06 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:13:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:29:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ void	ft_free_str_array(char ***array_ptr)
 	i = 0;
 	while (array[i])
 	{
-		free(array[i]);
-		array[i] = NULL;
+		ft_free((void **)&array[i]);
 		i++;
 	}
-	free(array);
-	*array_ptr = NULL;
+	ft_free((void **)array_ptr);
 }

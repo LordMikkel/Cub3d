@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/08 18:39:39 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/11 18:45:21 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strmatch_cmp.c \
 		libft/ft_memchr.c \
 		libft/ft_memcmp.c \
+		libft/ft_memnuke.c \
 		libft/ft_strnstr.c \
 		libft/ft_atoi.c \
 		libft/ft_atol.c \
@@ -64,6 +65,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strtof.c \
 		libft/ft_square.c \
 		libft/ft_max.c \
+		libft/ft_alloc.c \
 		libft/ft_calloc.c \
 		libft/ft_realloc.c \
 		libft/ft_strdup.c \

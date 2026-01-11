@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:38:05 by migarrid          #+#    #+#             */
-/*   Updated: 2025/10/30 18:02:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:32:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,9 @@ char	*ft_strdup(const char *s)
 	if (s == NULL)
 		return (NULL);
 	len = ft_strlen(s);
-	new_str = (char *)malloc(len + 1);
+	new_str = ft_alloc(len + 1, sizeof(char));
 	if (!new_str)
 		return (NULL);
 	ft_memcpy(new_str, s, len + 1);
 	return (new_str);
 }
-/*#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		printf("Original: %s\n", av[1]);
-		printf("Copied: %s\n", ft_strdup(av[1]));
-		return (0);
-	}
-	return (1);
-}*/

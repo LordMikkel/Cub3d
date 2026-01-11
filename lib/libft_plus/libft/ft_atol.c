@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 18:37:41 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/29 18:39:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:29:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,3 @@ long	ft_atol(const char *nptr)
 		result = (result * 10) + (nptr[i++] - '0');
 	return (result * sign);
 }
-
-/*#include <stdio.h>
-int	main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		printf("Number: %d\n", ft_atol(av[1]));
-		return (0);
-	}
-	return (0);
-}*/

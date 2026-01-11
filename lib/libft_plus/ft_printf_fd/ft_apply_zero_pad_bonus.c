@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:38:31 by migarrid          #+#    #+#             */
-/*   Updated: 2025/03/18 15:26:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 23:00:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*create_padding(int width, int len)
 {
 	char	*padding;
 
-	padding = ft_calloc(width - len + 1, sizeof(char));
+	padding = ft_alloc(width - len + 1, sizeof(char));
 	if (!padding)
 		return (NULL);
 	ft_memset(padding, '0', width - len);
@@ -37,7 +37,7 @@ static char	*apply_padding(char *str, char *padding, int sign_offset)
 	char	*sign;
 
 	tmp = ft_strjoin(padding, str + sign_offset);
-	free(padding);
+	ft_free((void **)&padding);
 	if (!tmp)
 		return (NULL);
 	if (sign_offset)
@@ -45,12 +45,12 @@ static char	*apply_padding(char *str, char *padding, int sign_offset)
 		sign = ft_substr(str, 0, 1);
 		if (!sign)
 		{
-			free(tmp);
+			ft_free((void **)&tmp);
 			return (NULL);
 		}
 		result = ft_strjoin(sign, tmp);
-		free(sign);
-		free(tmp);
+		ft_free((void **)&sign);
+		ft_free((void **)&tmp);
 		return (result);
 	}
 	return (tmp);
@@ -64,18 +64,16 @@ static void	handle_zero_padding(char **str, int len, int sign_offset, int width)
 	padding = create_padding(width, len);
 	if (!padding)
 	{
-		free(*str);
-		*str = NULL;
+		ft_free((void **)str);
 		return ;
 	}
 	new_str = apply_padding(*str, padding, sign_offset);
 	if (!new_str)
 	{
-		free(*str);
-		*str = NULL;
+		ft_free((void **)str);
 		return ;
 	}
-	free(*str);
+	ft_free((void **)str);
 	*str = new_str;
 }
 

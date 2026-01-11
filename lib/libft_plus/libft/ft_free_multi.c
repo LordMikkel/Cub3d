@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 21:25:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/02 04:08:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 19:43:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	ft_free_multi(size_t counter, ...)
 	while (i < counter)
 	{
 		pointer_address = va_arg(args, void **);
-		if (pointer_address != NULL && *pointer_address != NULL)
-		{
-			free(*pointer_address);
-			*pointer_address = NULL;
-		}
+		if (pointer_address != NULL)
+			ft_free(pointer_address);
 		i++;
 	}
 	va_end(args);

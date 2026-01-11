@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 23:37:59 by migarrid          #+#    #+#             */
-/*   Updated: 2025/11/15 22:43:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/11 22:30:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void **))
 	if (!lst || !del)
 		return ;
 	del(&lst->content);
-	free(lst);
+	ft_free((void **)&lst);
 }
-/*#include <stdio.h>
-#include <stdlib.h>
-
-void	del_content(void *content)
-{
-	free(content);
-}
-
-t_list	*ft_lstnew(void *content);
-
-int	main(void)
-{
-	t_list	*node;
-	node = malloc(sizeof(t_list));
-	node->content = malloc(10);
-	node->next = NULL;
-	ft_lstdelone(node, del_content);
-	return (0);
-}*/
