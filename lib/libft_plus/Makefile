@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/11 18:45:21 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/17 00:47:20 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_alloc.c \
 		libft/ft_calloc.c \
 		libft/ft_realloc.c \
+		libft/ft_priv_alloc.c \
+		libft/ft_privatize.c \
 		libft/ft_strdup.c \
 		libft/ft_strndup.c \
 		libft/ft_substr.c \

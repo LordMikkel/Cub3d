@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 19:46:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/17 00:46:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <stdbool.h>
 # include <malloc.h>
 # include <limits.h>
+# include <sys/mman.h>
+
+#define MLOCK_FLAG		0x8000000000000000
+#define MAX_ALLOC_SIZE	0x7FFFFFFFFFFFFFFF
 
 // LIBFT
 
@@ -66,6 +70,8 @@ void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_alloc(size_t nmemb, size_t size);
 void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_priv_alloc(size_t nmemb, size_t size);
+void	*ft_privatize(void *dirty_ptr, size_t size);
 void	*ft_realloc(void *old_ptr, size_t new_size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

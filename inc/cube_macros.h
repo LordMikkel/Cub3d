@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 02:12:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/17 00:10:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 /*                                  Limits                                    */
 /* ************************************************************************** */
 # define MAX_MAP_SIZE				500
+# define MAX_ENEMIES				100
+# define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
 
 /* ************************************************************************** */
@@ -144,14 +146,12 @@
 # define ERR_MAP_INVALID 	KO "Map contains invalid characters\n"
 # define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
 # define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
+# define ERR_MAP_ENEMY		KO "Map is limit to 100 enemies at start position\n"
 # define ERR_MAP_MISSING 	KO "Map information is missing or incomplete\n"
 
 // Texture/Color Errors
-# define ERR_TEX_MISSING 	KO "Missing texture path\n"
 # define ERR_TEX_INVALID 	KO "Invalid texture file or path\n"
-# define ERR_TEX_XPM		KO "Texture must be an XPM file\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
-# define ERR_COLOR_RANGE 	KO "Color values must be between 0 and 255\n"
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
 
 // MLX Errors

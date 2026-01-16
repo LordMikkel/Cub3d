@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 17:23:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:44:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ typedef struct s_map
 	char			**map_grid;
 	int				map_size;
 	int				map_max_len;
-	int				*map_limit[AXIS];
-	int				player_count;
+	int				map_limit[AXIS];
+	int				n_player;
+	int				n_enemy;
 	t_plyr			player;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memnuke.c                                       :+:      :+:    :+:   */
+/*   ft_privatize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 16:53:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/17 00:06:25 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/17 00:11:38 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/17 00:28:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_plus.h"
 
-void	ft_memnuke(void *ptr, size_t size)
+void	*ft_privatize(void *dirty_ptr, size_t size)
 {
-	volatile unsigned char	*ptr_volatile;
+	void	*secure_copy;
 
-	if (!ptr)
-		return ;
-	ptr_volatile = (volatile unsigned char *)ptr;
-	while (size > 0)
-	{
-		*ptr_volatile = 0;
-		ptr_volatile++;
-		size--;
-	}
+	if (!dirty_ptr)
+		return (NULL);
+	secure_copy = ft_priv_alloc(1, size);
+	if (!secure_copy)
+		return (NULL);
+	ft_memcpy(secure_copy, dirty_ptr, size);
+	ft_free((void **)&dirty_ptr);
+	return (secure_copy);
 }

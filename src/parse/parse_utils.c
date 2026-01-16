@@ -6,20 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:35:25 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 01:30:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/17 00:07:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
-bool is_duplicated_or_initialized_texture(t_txtr *texture)
+bool	is_duplicated_or_initialized_texture(t_txtr *texture)
 {
 	if (texture->type != 0)
 		return (TRUE);
 	return (FALSE);
 }
 
-bool is_map_line(char *line)
+bool	is_map_line(char *line)
 {
 	if (ft_strncmp(line, "1", 1) == EQUAL)
 		return (TRUE);
