@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/09 05:51:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 01:30:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ int		exit_error(t_data *data, const char *error, int exit_code, ...);
 /*                                 utils                                      */
 /* ************************************************************************** */
 void	*allocator(t_data *data, size_t nmemb, size_t size);
+bool	is_duplicated_or_initialized_texture(t_txtr *texture);
+int		safe_open(t_data *data, t_map *map, char *map_path);
 void	dbg_print_texture(t_map *map, int fd);
+bool	is_not_an_empty_line(char *line);
+bool	is_map_line(char *line);
 
 /* ************************************************************************** */
 /*                                extras                                      */

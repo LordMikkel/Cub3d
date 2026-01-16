@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 17:29:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 18:41:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:57:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_alloc(size_t nmemb, size_t size)
 {
-	size_t	*user_ptr;
+	void	*user_ptr;
 	size_t	*header_ptr;
 	size_t	total_user_size;
 

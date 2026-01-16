@@ -6,11 +6,24 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:07:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/10 00:59:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 01:41:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
+
+static void	put_spaces_in_line_void(t_map *map, char *line)
+{
+	int	i;
+
+	i = 0;
+	while(i < map->map_max_len)
+	{
+		if (line[i] == '\0' || line[i] == 0)
+			line[i] = ' ';
+		i++;
+	}
+}
 
 static bool	is_valid_grid_chars(char *str, int *player_count)
 {
@@ -43,9 +56,10 @@ void	parse_map(t_data *data, t_map *map, char *line)
 	{
 		if (!is_valid_grid_chars(line, &map->player_count))
 			exit_error(data, ERR_MAP_INVALID, EXIT_USE);
-		map->map_grid[i] = ft_strdup(line);
+		map->map_grid[i] = ft_strndup(line, map->map_max_len);
 		if (!map->map_grid[i])
 			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+		put_spaces_in_line_void(map, map->map_grid[i]);
 		i++;
 	}
 }

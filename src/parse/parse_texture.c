@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/10 01:00:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 00:20:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 {
 	char	**rgb_split;
 
-	if (texture->type != 0)
+	if (is_duplicated_or_initialized_texture(texture))
 		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
 	texture->path = ft_strleftrim(line + 1, " \t\n\r\v\f");
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	rgb_split = ft_split(texture->path, ',');
-	if (!rgb_split)
+	if (!rgb_split || ft_arraylen(rgb_split) != 3)
 		exit_error(data, ERR_COLOR_FMT, EXIT_FAILURE);
 	texture->color[R] = parse_rgb_value(data, rgb_split[0]);
 	texture->color[G] = parse_rgb_value(data, rgb_split[1]);
@@ -51,8 +51,8 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 
 static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 {
-	if (texture->path != NULL)
-		exit_error(data, ERR_DUPLICATE, EXIT_FAILURE);
+	if (is_duplicated_or_initialized_texture(texture))
+		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
 	texture->path = ft_strleftrim(line + 2, " \t\n\r\v\f");
 	if (!texture->path)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_str_in_arr.c                              :+:      :+:    :+:   */
+/*   ft_arraylen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: king <king@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 10:35:02 by davdiaz-          #+#    #+#             */
-/*   Updated: 2025/12/21 00:07:54 by king             ###   ########.fr       */
+/*   Updated: 2026/01/16 00:20:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_arraylen(char **str_array)
 	size_t	count;
 
 	if (!str_array)
-		return (0);
+		return (-1);
 	count = 0;
 	while (str_array[count] != NULL)
 		count++;

@@ -6,28 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:10:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 17:14:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/16 01:40:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
-static bool	is_not_an_empty_line(char *line)
+void	get_largest_line_map_len(t_data *data, t_map *map, char *line)
 {
-	if (ft_strlen(line) > 1)
-		return (TRUE);
-	return (FALSE);
-}
+	int	len;
 
-static int	safe_open(t_data *data, t_map *map, char *map_path)
-{
-	int	fd;
-
-	fd = open(map_path, O_RDONLY);
-	if (fd == ERROR)
-		exit_error(data, ERR_FILE_OPEN, EXIT_FAILURE, map_path);
-	map->fd = fd;
-	return (fd);
+	len = ft_strlen(line);
+	if (len > map->map_max_len)
+		map->map_max_len = len;
+	if (map->map_max_len >= MAX_MAP_SIZE)
+		exit_error(data, ERR_MAP_BIG, EXIT_USE);
 }
 
 static char	**get_lines(t_data *data, t_map *map)
@@ -47,6 +40,8 @@ static char	**get_lines(t_data *data, t_map *map)
 				ft_free((void **)&line);
 				return (exit_error(data, ERR_MALLOC, EXIT_FAILURE), NULL);
 			}
+			if (is_map_line(map->map_file[i]))
+				get_largest_line_map_len(data, map, map->map_file[i]);
 			i++;
 		}
 		ft_free((void **)&line);
