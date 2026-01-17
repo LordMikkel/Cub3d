@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 16:53:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/17 00:06:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/17 01:08:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void	ft_memnuke(void *ptr, size_t size)
 {
-	volatile unsigned char	*ptr_volatile;
+	volatile unsigned char	*p_byte;
+	volatile size_t			*p_chunk;
 
 	if (!ptr)
 		return ;
-	ptr_volatile = (volatile unsigned char *)ptr;
+	p_chunk = (volatile size_t *)ptr;
+	while (size >= sizeof(size_t))
+	{
+		*p_chunk = 0;
+		p_chunk++;
+		size -= sizeof(size_t);
+	}
+	p_byte = (volatile unsigned char *)p_chunk;
 	while (size > 0)
 	{
-		*ptr_volatile = 0;
-		ptr_volatile++;
+		*p_byte = 0;
+		p_byte++;
 		size--;
 	}
 }
