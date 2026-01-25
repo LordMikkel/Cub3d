@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_info.c                                       :+:      :+:    :+:   */
+/*   is_valid_element.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/02 23:56:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 05:08:32 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/24 23:54:46 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/25 06:52:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-void	parse_info(t_data *data, t_map *map)
+bool	is_valid_element(char c)
 {
-	int	i;
-
-	i = 0;
-	while (map->map_file[i])
-	{
-		parse_texture(data, map, map->map_file[i]);
-		parse_map(data, map, map->map_file[i]);
-		i++;
-	}
+	if (c != '1' && c != '0'
+		&& c != 'N' && c != 'S'
+		&& c != 'E' && c != 'W'
+		&& c != ' ' && c != 'X'
+		&& c != 'Y' && c != 'Z'
+		&& c != 'D')
+		return (FALSE);
+	return (TRUE);
 }

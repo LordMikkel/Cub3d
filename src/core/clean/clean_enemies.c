@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_info.c                                       :+:      :+:    :+:   */
+/*   clean_enemies.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/02 23:56:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 05:08:32 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/25 06:02:56 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/25 06:12:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-void	parse_info(t_data *data, t_map *map)
+void	clean_enemies(t_data *data, t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (map->map_file[i])
-	{
-		parse_texture(data, map, map->map_file[i]);
-		parse_map(data, map, map->map_file[i]);
-		i++;
-	}
+	if (!data || !map)
+		return ;
+	if (map->enemies)
+		ft_free((void **)&map->enemies);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 17:44:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:02:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ typedef enum e_type
 	TOTAL_TEXTURE,
 }	t_type;
 
+typedef enum e_kind
+{
+	ZERO_ENEMY,
+	ENEMY_ONE,
+	ENEMY_TWO,
+	ENEMY_THREE,
+	TOTAL_ENEMIES,
+}	t_kind;
+
 typedef enum e_rgb
 {
 	ZERO_RGB,
@@ -69,12 +78,20 @@ typedef enum e_dir
 
 typedef struct s_enemy
 {
+	t_kind		type;
+	int			damage;
+	int			health;
+	bool		is_dead;
 	int			pos[AXIS];
 }	t_enemy;
 
 typedef struct s_plyr
 {
 	t_dir		direction;
+	int			healt;
+	int			damage;
+	bool		is_dead;
+	bool		has_won;
 	int			pos[AXIS];
 }	t_plyr;
 
@@ -100,6 +117,7 @@ typedef struct s_map
 	int				n_player;
 	int				n_enemy;
 	t_plyr			player;
+	t_enemy			*enemies;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 

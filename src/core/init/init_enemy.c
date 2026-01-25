@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_textures.c                                   :+:      :+:    :+:   */
+/*   init_enemy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 06:06:17 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/25 04:56:47 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/25 06:52:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	clean_textures(t_data *data, t_map *map)
+void	init_enemy(t_data *data, int x, int y, char type)
 {
-	int	i;
+	static int	i = 0;
 
-	i = 0;
-	if (!data || !map)
-		return ;
-	while (i < TOTAL_TEXTURE)
-	{
-		if (map->textures[i].path)
-			ft_free((void **)&map->textures[i].path);
-		if (map->textures[i].txtr)
-			mlx_delete_texture(map->textures[i].txtr);
-		if (map->textures[i].img)
-			mlx_delete_image(data->mlx, map->textures[i].img);
-		i++;
-	}
+	if (!data->map.enemies)
+		data->map.enemies = allocator(data, data->map.n_enemy, sizeof(t_enemy));
+	data->map.enemies[i].pos[X] = x;
+	data->map.enemies[i].pos[Y] = y;
+	if (type == 'X')
+		data->map.enemies[i].type = ENEMY_ONE;
+	else if (type == 'Y')
+		data->map.enemies[i].type = ENEMY_TWO;
+	else if (type == 'Z')
+		data->map.enemies[i].type = ENEMY_THREE;
+	i++;
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/17 00:46:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:51:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <limits.h>
 # include <sys/mman.h>
 
-#define MLOCK_FLAG		0x8000000000000000
-#define MAX_ALLOC_SIZE	0x7FFFFFFFFFFFFFFF
+# define MLOCK_FLAG		9223372036854775808UL
+# define MAX_ALLOC_SIZE	9223372036854775807UL
 
 // LIBFT
 

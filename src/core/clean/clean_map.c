@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:41:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/08 21:04:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:06:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	clean_map(t_data *data, t_map *map)
 {
 	(void)data;
-	if (!map)
+	if (!data || !map)
 		return ;
 	if (map->map_file)
 		ft_free_str_array(&map->map_file);

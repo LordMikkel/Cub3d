@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_textures.c                                   :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 06:06:17 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/25 04:58:37 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/25 05:53:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	clean_textures(t_data *data, t_map *map)
+void	init_player(t_map *map, int x, int y, char dir)
 {
-	int	i;
-
-	i = 0;
-	if (!data || !map)
-		return ;
-	while (i < TOTAL_TEXTURE)
-	{
-		if (map->textures[i].path)
-			ft_free((void **)&map->textures[i].path);
-		if (map->textures[i].txtr)
-			mlx_delete_texture(map->textures[i].txtr);
-		if (map->textures[i].img)
-			mlx_delete_image(data->mlx, map->textures[i].img);
-		i++;
-	}
+	if (dir == 'N')
+		map->player.direction = N;
+	else if (dir == 'E')
+		map->player.direction = E;
+	else if (dir == 'W')
+		map->player.direction = W;
+	else if (dir == 'S')
+		map->player.direction = S;
+	map->player.healt = INIT_PLAYER_HEALTH;
+	map->player.damage = INIT_PLAYER_DAMAGE;
+	map->player.pos[X] = x;
+	map->player.pos[Y] = y;
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/17 00:47:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:55:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,30 @@ static void	get_limits_map(t_map *map)
 	map->map_limit[Y] = (int)ft_arraylen(map->map_grid) - 1;
 }
 
-static void	get_player_pos(t_map *map)
+static void	get_elements(t_data *data, t_map *map)
 {
-	(void)map;
-}
+	int	x;
+	int	y;
 
-static void	get_enemy_pos(t_map *map)
-{
-	(void)map;
+	y = 0;
+	while (map->map_grid[y])
+	{
+		x = 0;
+		while (map->map_grid[y][x])
+		{
+			if (is_player(map->map_grid[y][x]))
+				init_player(map, x, y, map->map_grid[y][x]);
+			else if (is_enemy(map->map_grid[y][x]))
+				init_enemy(data, x, y, map->map_grid[y][x]);
+			else if (is_door(map->map_grid[y][x]))
+			{
+				if (!is_valid_door(map, x, y))
+					exit_error(data, ERR_MAP_DOOR, EXIT_USE);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 static void	close_bounds_flood_fill(char **map, t_pos A, t_pos B, int *n_enemy)
@@ -43,7 +59,6 @@ void	validate_map(t_data *data, t_map *map)
 	if (map->n_enemy > MAX_ENEMIES)
 		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
 	get_limits_map(map);
-	get_player_pos(map);
-	get_enemy_pos(map);
+	get_elements(data, map);
 	close_bounds_flood_fill(map->map_grid, 1, 1, &map->n_enemy);
 }

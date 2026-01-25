@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:07:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/17 00:06:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:34:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	put_spaces_in_line_void(t_map *map, char *line)
 			line[i] = ' ';
 		i++;
 	}
+	line[map->map_max_len] = '\0';
 }
 
 static bool	is_valid_grid_chars(char *str, int *player_count, int *enemy_count)
@@ -34,16 +35,11 @@ static bool	is_valid_grid_chars(char *str, int *player_count, int *enemy_count)
 		return (FALSE);
 	while (str[i])
 	{
-		if ((str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W'))
+		if (is_player(str[i]))
 			(*player_count)++;
-		else if (str[i] == 'X' || str[i] == 'Y' || str[i] == 'Z')
+		else if (is_enemy(str[i]))
 			(*enemy_count)++;
-		else if (str[i] != '1' && str[i] != '0'
-			&& str[i] != 'N' && str[i] != 'S'
-			&& str[i] != 'E' && str[i] != 'W'
-			&& str[i] != ' ' && str[i] != 'X'
-			&& str[i] != 'Y' && str[i] != 'Z'
-			&& str[i] != 'D')
+		else if (!is_valid_element(str[i]))
 			return (FALSE);
 		i++;
 	}

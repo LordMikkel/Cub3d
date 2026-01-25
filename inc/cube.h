@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 01:30:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 06:46:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	game_loop(t_data *data);
 /* ************************************************************************** */
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
+void	init_player(t_map *map, int x, int y, char dir);
+void	init_enemy(t_data *data, int x, int y, char type);
 
 /* ************************************************************************** */
 /*                                  Parse                                     */
@@ -54,6 +56,7 @@ void	validate_map(t_data *data, t_map *map);
 /* ************************************************************************** */
 /*                                 Engine                                     */
 /* ************************************************************************** */
+void	game_render(void *param);
 
 /* ************************************************************************** */
 /*                                 Events                                     */
@@ -70,6 +73,7 @@ void	close_x(void *param);
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
 void	clean_map(t_data *data, t_map *map);
+void	clean_enemies(t_data *data, t_map *map);
 void	clean_textures(t_data *data, t_map *map);
 
 /* ************************************************************************** */
@@ -87,6 +91,11 @@ int		safe_open(t_data *data, t_map *map, char *map_path);
 void	dbg_print_texture(t_map *map, int fd);
 bool	is_not_an_empty_line(char *line);
 bool	is_map_line(char *line);
+bool	is_player(char c);
+bool	is_enemy(char c);
+bool	is_door(char c);
+bool	is_valid_element(char c);
+bool	is_valid_door(t_map *map, int x, int y);
 
 /* ************************************************************************** */
 /*                                extras                                      */
