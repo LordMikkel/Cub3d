@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/25 06:10:14 by migarrid         ###   ########.fr        #
+#    Updated: 2026/01/26 18:54:52 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ NAME				= cub3d
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= gcc
-WFLAGS				= -Wall -Wextra -Werror
-DFLAGS				= -g
-DMAIN				= -D MAIN
+WFLAGS				= -Wall -Wextra -Werror -Wpedantic
+DMODE				= -D MAIN
 #VFLAGS				= -Ofast -march=native -flto
 #OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
 DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -ldl -lglfw -pthread -lm
+DFLAGS				= -g -O0
 SFLAGS				=
 
 # **************************************************************************** #
@@ -164,7 +164,7 @@ all: $(MLX_A) $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
-	@$(CC) $(WFLAGS) $(DMAIN) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) $(LDLIBS) -o $(NAME)
+	@$(CC) $(DMODE) $(WFLAGS)  $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) $(LDLIBS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -185,7 +185,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(MKDIR) $(dir $@)
-	@$(CC) $(WFLAGS) $(DMAIN) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
+	@$(CC) $(DMODE) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
 
 # Include .deps files
 -include $(DEPS_FILES)

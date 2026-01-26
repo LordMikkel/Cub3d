@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 06:51:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:32:39 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	ft_free_int_matrix(int ***matrix, size_t rows);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
+char	**ft_arraydup(char **str_array);
 char	*ft_strndup(const char *s, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 00:20:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/26 19:20:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	texture->txtr = mlx_load_png(texture->path);
 	if (!texture->txtr)
 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
+	texture->img = mlx_texture_to_image(data->mlx, texture->txtr);
+	if (!texture->img)
+		exit_error(data, ERR_MLX_TXT_IMG, EXIT_FAILURE);
+	texture->extracted = TRUE;
 }
 
 void	parse_texture(t_data *data, t_map *map, char *line)

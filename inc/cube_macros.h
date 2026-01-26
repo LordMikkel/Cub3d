@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 05:04:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/26 19:08:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 /* ************************************************************************** */
 /*                                  Limits                                    */
 /* ************************************************************************** */
-# define MAX_MAP_SIZE				500
-# define MAX_ENEMIES				100
+# define MAX_MAP_SIZE				2000
+# define MAX_ENEMIES				500
 # define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
 
@@ -154,6 +154,7 @@
 # define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
 # define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
 # define ERR_MAP_ENEMY		KO "Map is limit to 100 enemies at start position\n"
+# define ERR_MAP_RECHABLE	KO "Map contains unreachable enemies\n"
 # define ERR_MAP_MISSING 	KO "Map information is missing or incomplete\n"
 # define ERR_MAP_DOOR		KO "Map has an invalid door placement\n"
 
@@ -166,6 +167,7 @@
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"
 # define ERR_MLX_WIN		KO "MiniLibX window creation failed\n"
 # define ERR_MLX_IMG		KO "MiniLibX image creation failed\n"
+# define ERR_MLX_TXT_IMG	KO "MiniLibX texture to image failed\n"
 
 /* ************************************************************************** */
 /*                             Debug Messages                                 */

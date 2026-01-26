@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 06:02:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:50:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef enum e_type
 	SOUTH,
 	WEST,
 	EAST,
+	DOOR,
 	FLOOR,
 	CEALING,
-	DOOR,
 	SPRITE,
 	TOTAL_TEXTURE,
 }	t_type;
@@ -76,6 +76,12 @@ typedef enum e_dir
 	E,
 }	t_dir;
 
+typedef struct s_p2d
+{
+	int x;
+	int y;
+}	t_p2d;
+
 typedef struct s_enemy
 {
 	t_kind		type;
@@ -111,6 +117,7 @@ typedef struct s_map
 	int				file_size;
 	char			**map_file;
 	char			**map_grid;
+	char			**map_copy;
 	int				map_size;
 	int				map_max_len;
 	int				map_limit[AXIS];

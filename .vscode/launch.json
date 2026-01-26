@@ -9,8 +9,8 @@
 			"name": "Debug Cub3D",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/xxx",
-			"args": [],
+			"program": "${workspaceFolder}/cub3d",
+			"args": ["map/test.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
@@ -29,4 +29,5 @@
 				"engineLogging": false
 			}
 		},
+	]
 }

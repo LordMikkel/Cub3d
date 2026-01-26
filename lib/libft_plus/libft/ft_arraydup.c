@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
+/*   ft_arraydup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 20:32:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 19:13:42 by migarrid         ###   ########.fr       */
+/*   Created: 2026/01/25 17:19:01 by migarrid          #+#    #+#             */
+/*   Updated: 2026/01/25 21:17:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../libft_plus.h"
 
-void	game_loop(t_data *data)
+char	**ft_arraydup(char **str_array)
 {
-	mlx_key_hook(data->mlx, &handle_keyboard_inpt, data);
-	mlx_cursor_hook(data->mlx, &handle_cursor_inpt, data);
-	mlx_mouse_hook(data->mlx, &handle_click_inpt, data);
-	mlx_close_hook(data->mlx, &close_x, data);
-	mlx_loop_hook(data->mlx, game_render, data);
-	mlx_loop(data->mlx);
+	size_t	i;
+	size_t	len;
+	char	**dup;
+
+	if (!str_array)
+		return (NULL);
+	len = ft_arraylen(str_array);
+	dup = ft_alloc(len + 1, sizeof(char *));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = ft_strdup(str_array[i]);
+		if(!dup[i])
+			return (ft_free_str_array(&dup), NULL);
+		i++;
+	}
+	dup[i] = NULL;
+	return (dup);
 }
