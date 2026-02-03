@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 17:07:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 22:55:32 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	get_elements(t_data *data, t_map *map)
 
 static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
 {
+
 	if (pos.x < 0 || pos.y < 0 || pos.x > max.x || pos.y > max.y)
 		exit_error(data, ERR_MAP_WALLS, EXIT_USE);
 	if (map[pos.y][pos.x] == ' ')
@@ -80,6 +81,7 @@ void	validate_map(t_data *data, t_map *map)
 	start = (t_p2d){map->player.pos[X], map->player.pos[Y]};
 	limits = (t_p2d){map->map_limit[X], map->map_limit[Y]};
 	close_bounds(data, map->map_copy, limits, start, &reachable_enemies);
+	ft_print_str_array(map->map_copy, 1);
 	if (reachable_enemies != map->n_enemy)
 		exit_error(data, ERR_MAP_RECHABLE, EXIT_USE);
 }

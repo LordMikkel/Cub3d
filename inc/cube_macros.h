@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 17:04:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 20:04:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define PRECISE_CENTER_CELL		0.5
 # define MAX_NUMBER					1e30
 # define NUM_THREADS 				4
+# define FOV_FACTOR					0.66
 
 /* ************************************************************************** */
 /*                                   Game                                     */

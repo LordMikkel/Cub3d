@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 07:04:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 20:08:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	game_loop(t_data *data);
 /* ************************************************************************** */
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
-void	init_player(t_map *map, int x, int y, char dir);
+void	init_player(t_map *map, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
 void	init_ray(t_data *data, t_plyr player, t_ray *ray, int x);
 
