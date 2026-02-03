@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 00:57:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 17:07:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	validate_map(t_data *data, t_map *map)
 	get_elements(data, map);
 	reachable_enemies = 0;
 	map->map_copy = ft_arraydup(map->map_grid);
-	if(!map->map_copy)
+	if (!map->map_copy)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	start = (t_p2d){map->player.pos[X], map->player.pos[Y]};
 	limits = (t_p2d){map->map_limit[X], map->map_limit[Y]};

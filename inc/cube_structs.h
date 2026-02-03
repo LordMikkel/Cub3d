@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 18:50:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 17:04:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "cube.h"
 
+typedef struct s_ray		t_ray;
+typedef struct s_enemy		t_enemy;
 typedef struct s_plyr		t_plyr;
 typedef struct s_txtr		t_txtr;
 typedef struct s_map		t_map;
@@ -22,14 +24,12 @@ typedef struct s_data		t_data;
 
 typedef enum e_mode
 {
-	ZERO_MODE,
 	MENU,
 	GAME,
 }	t_mode;
 
 typedef enum e_type
 {
-	ZERO_TXTR,
 	NORTH,
 	SOUTH,
 	WEST,
@@ -43,7 +43,6 @@ typedef enum e_type
 
 typedef enum e_kind
 {
-	ZERO_ENEMY,
 	ENEMY_ONE,
 	ENEMY_TWO,
 	ENEMY_THREE,
@@ -52,7 +51,6 @@ typedef enum e_kind
 
 typedef enum e_rgb
 {
-	ZERO_RGB,
 	R,
 	G,
 	B,
@@ -61,7 +59,6 @@ typedef enum e_rgb
 
 typedef enum e_pos
 {
-	ZERO_POS,
 	X,
 	Y,
 	AXIS,
@@ -69,7 +66,6 @@ typedef enum e_pos
 
 typedef enum e_dir
 {
-	ZERO_DIR,
 	N,
 	S,
 	W,
@@ -78,27 +74,53 @@ typedef enum e_dir
 
 typedef struct s_p2d
 {
-	int x;
-	int y;
+	int				x;
+	int				y;
 }	t_p2d;
+
+typedef struct s_ray
+{
+	double			dir[AXIS];
+	int				pos[AXIS];
+	int				step[AXIS];
+	double			delta_dist[AXIS];
+	double			side_dist[AXIS];
+	double			dist;
+	double			perp_dist;
+	t_type			wall_side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+}	t_ray;
+
+typedef struct s_light
+{
+	double			pos[AXIS];
+	double			intensity;
+	double			radius;
+	int				color[RGB];
+	t_txtr			*sprite;
+}	t_ligt;
 
 typedef struct s_enemy
 {
-	t_kind		type;
-	int			damage;
-	int			health;
-	bool		is_dead;
-	int			pos[AXIS];
+	t_kind			type;
+	int				damage;
+	int				health;
+	bool			is_dead;
+	double			pos[AXIS];
 }	t_enemy;
 
 typedef struct s_plyr
 {
-	t_dir		direction;
-	int			healt;
-	int			damage;
-	bool		is_dead;
-	bool		has_won;
-	int			pos[AXIS];
+	t_dir			spawn_dir;
+	int				health;
+	int				damage;
+	bool			is_dead;
+	bool			has_won;
+	double			pos[AXIS];
+	double			dir[AXIS];
+	double			fov[AXIS];
 }	t_plyr;
 
 typedef struct s_txtr
@@ -125,6 +147,7 @@ typedef struct s_map
 	int				n_enemy;
 	t_plyr			player;
 	t_enemy			*enemies;
+	t_ligt			*lights;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 

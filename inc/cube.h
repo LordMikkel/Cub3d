@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 18:56:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/03 07:04:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_player(t_map *map, int x, int y, char dir);
 void	init_enemy(t_data *data, int x, int y, char type);
+void	init_ray(t_data *data, t_plyr player, t_ray *ray, int x);
 
 /* ************************************************************************** */
 /*                                  Parse                                     */
@@ -57,6 +58,7 @@ void	validate_map(t_data *data, t_map *map);
 /*                                 Engine                                     */
 /* ************************************************************************** */
 void	game_render(void *param);
+void	raycast_render(t_data *data);
 
 /* ************************************************************************** */
 /*                                 Events                                     */

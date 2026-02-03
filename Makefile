@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/26 18:54:52 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/03 05:37:13 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,8 +105,10 @@ SRCS =				core/main.c \
 					core/init/allocator.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
+					core/init/init_ray.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
+					core/game/render/raycast_render.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
@@ -198,7 +200,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 test:
 	@clear
 	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=address,undefined -O0" all
-	@LSAN_OPTIONS=suppressions=$(SAN_SUPP) ./$(NAME) $(MAP)
+	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SAN_SUPP) ./$(NAME) $(MAP)
 
 # Test leaks in cub3d
 leaks:
