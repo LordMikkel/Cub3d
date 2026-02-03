@@ -8,6 +8,7 @@ cub3d
 example
 
 # Exceptions
+!CMakeLists.txt
 
 # Prerequisites
 *.d
