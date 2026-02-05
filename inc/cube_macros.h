@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:04:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 20:55:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 # define MIN_MAP_SIZE				10
 # define PRECISE_CENTER_CELL		0.5
 # define MAX_NUMBER					1e30
-# define NUM_THREADS 				4
+# define MAX_THREADS 				32
 # define FOV_FACTOR					0.66
 
 /* ************************************************************************** */
@@ -150,6 +150,7 @@
 # define ERR_ARGS			KO "Invalid number of arguments\n"
 # define ERR_FILE_EXT		KO "Invalid file extension. Expected .cub\n"
 # define ERR_FILE_OPEN		KO "Could not open file: %s\n"
+# define ERR_CORES			KO "could not determine the number of cores"
 
 // Map Parsing Errors
 # define ERR_MAP_EMPTY		KO "Map file is empty\n"

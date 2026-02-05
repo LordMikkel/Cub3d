@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:34:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:36:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define CUBE_STRUCTS_H
 
 # include "cube.h"
+# include "cube_macros.h"
 
+typedef struct s_thread		t_thread;
 typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
 typedef struct s_plyr		t_plyr;
@@ -57,6 +59,13 @@ typedef enum e_rgb
 	RGB,
 }	t_rgb;
 
+typedef enum e_range
+{
+	START,
+	END,
+	RANGE,
+}	t_range;
+
 typedef enum e_pos
 {
 	X,
@@ -77,6 +86,13 @@ typedef struct s_p2d
 	int				x;
 	int				y;
 }	t_p2d;
+
+typedef struct s_thread
+{
+	t_data		*data;
+	pthread_t	thread;
+	int			x[RANGE];
+}	t_thread;
 
 typedef struct s_ray
 {
@@ -162,6 +178,7 @@ typedef struct s_data
 	t_map			map;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
+	int				n_cores;
 	int				status;
 }	t_data;
 
