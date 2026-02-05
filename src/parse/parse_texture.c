@@ -6,11 +6,28 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 01:56:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:44:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
+
+/**
+ * Packs separate RGB components into a single 32-bit integer.
+ * Uses bitwise operations to shift each channel to its correct byte position:
+ * - Red:   Bits 24-31 (Shifted left by 24)
+ * - Green: Bits 16-23 (Shifted left by 16)
+ * - Blue:  Bits 8-15  (Shifted left by 8)
+ * - Alpha: Bits 0-7   (Set to 0xFF for full opacity)
+ * The bitwise OR (|) combines these shifted values into the final color code.
+ *
+ * @param color  Array containing [R, G, B] integer values.
+ * @return       The packed uint32_t color value (0xRRGGBBAA).
+ */
+uint32_t rgb_to_uint32(int *color)
+{
+	return ((color[R] << 24) | (color[B] << 16) | (color[G] << 8) | 0xFF);
+}
 
 /**
  * Validates a single color channel.
@@ -65,6 +82,7 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 	texture->color[R] = parse_rgb_value(data, rgb_split[0]);
 	texture->color[G] = parse_rgb_value(data, rgb_split[1]);
 	texture->color[B] = parse_rgb_value(data, rgb_split[2]);
+	texture->hex_color = rgb_to_uint32(texture->color);
 	ft_free_str_array(&rgb_split);
 }
 

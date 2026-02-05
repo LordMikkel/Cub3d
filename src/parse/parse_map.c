@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:07:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:10:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:29:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static void	put_spaces_in_line_void(t_map *map, char *line)
 
 /**
  * Validates map characters and counts entities.
- * It ensures only valid characters exist and counts players/enemies/lights.
- * This count is needed later to enforce game rules
+ * It ensures only valid characters exist and counts
+ * players/enemies/lights/doors.This count is needed
+ * later to enforce game rules
  *
  * @param str  The map line to check.
  * @param map  Map struct contains the counters for players/enemies/lights
@@ -59,6 +60,8 @@ static bool	is_valid_grid_chrs(char *s, t_map *map)
 			map->n_enemies++;
 		else if (is_light(s[i]))
 			map->n_lights++;
+		else if (is_door(s[i]))
+			map->n_doors++;
 		else if (!is_valid_element(s[i]))
 			return (FALSE);
 		i++;

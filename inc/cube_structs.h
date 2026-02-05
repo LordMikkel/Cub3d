@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:08:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:34:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_txtr
 	t_type			type;
 	char			*path;
 	int				color[RGB];
+	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
 	mlx_image_t		*img;
 	bool			extracted;
@@ -147,6 +148,7 @@ typedef struct s_map
 	int				map_limit[AXIS];
 	int				n_players;
 	int				n_enemies;
+	int				n_doors;
 	int				n_lights;
 	t_plyr			player;
 	t_enemy			*enemies;

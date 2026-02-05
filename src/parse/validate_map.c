@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:11:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:20:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	get_elements(t_data *data, t_map *map)
 			{
 				if (!is_valid_door(map, x, y))
 					exit_error(data, ERR_MAP_DOOR, EXIT_USE);
+				// init_door(data, x, y, map->map_grid[y][x]);
 			}
 			x++;
 		}

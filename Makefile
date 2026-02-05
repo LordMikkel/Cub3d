@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/05 02:20:20 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/05 03:21:11 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,8 @@ SRCS =				core/main.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
 					core/init/init_ray.c \
+					core/init/init_door.c \
+					core/init/init_light.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/raycast_render.c \
