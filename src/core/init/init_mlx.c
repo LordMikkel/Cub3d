@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:05:37 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 04:51:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 02:22:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Initializes the graphics library (MLX 42).
+ * It creates the window and the main image where we will draw the game.
+ * We check for errors at each step to ensure the window opens correctly
+ * before we start.
+ *
+ * @param data  The main struct to store the MLX instance and image.
+ */
 int	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, WIN_TITLE, TRUE);

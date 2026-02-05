@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 23:59:42 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 06:41:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 02:18:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Verifies coordinates are within the grid bounds.
+ * Prevents segmentation faults by ensuring X and Y are valid indices.
+ *
+ * @param map  The map struct with dimensions.
+ * @param x    X coordinate.
+ * @param y    Y coordinate.
+ */
 static bool	is_inside_limits(t_map *map, int x, int y)
 {
 	if (x < map->map_limit[X] && y < map->map_limit[Y])
@@ -19,6 +27,16 @@ static bool	is_inside_limits(t_map *map, int x, int y)
 	return (FALSE);
 }
 
+/**
+ * Enforces structural rules for door placement.
+ * A door requires a "corridor" setup to be functional:
+ * It must have walls on one axis (frame) and open space on the other (path).
+ *
+ * @param map_grid  The 2D map array.
+ * @param x         X coordinate of the door.
+ * @param y         Y coordinate of the door.
+ * @return          TRUE if the geometry is valid.
+ */
 static bool	is_between_walls_and_can_open_door(char **map_grid, int x, int y)
 {
 	bool	walls_x;
@@ -37,6 +55,15 @@ static bool	is_between_walls_and_can_open_door(char **map_grid, int x, int y)
 	return (FALSE);
 }
 
+/**
+ * Validates a door entity.
+ * Checks both boundary limits and the corridor geometry requirement.
+ *
+ * @param map  The map struct.
+ * @param x    X coordinate.
+ * @param y    Y coordinate.
+ * @return     TRUE if the door is valid.
+ */
 bool	is_valid_door(t_map *map, int x, int y)
 {
 	if (!is_inside_limits(map, x, y))

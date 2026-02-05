@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 20:04:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:04:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@
 # define ZOOM_IN					4
 # define ZOOM_OUT					5
 # define CLICK						1
-# define MOUSE_RELESE				5
+# define MOUSE_RELEASE				5
 # define MOUSE_MOVE					6
 # define RESIZE						12
 # define CLOSE_EVENT				17
@@ -93,7 +93,7 @@
 /* ************************************************************************** */
 # define NO_MASK					0
 # define MASK_KEY_PRESS				1		// 1<<0
-# define MASK_KEY_RELE				2		// 1<<1
+# define MASK_KEY_RELEASE			2		// 1<<1
 # define MASK_MOUSE_R				8		// 1 << 3
 # define MASK_MOUSE_M				64		// 1 << 6
 # define MASK_RESIZE				32768	// 1 << 15
@@ -158,7 +158,7 @@
 # define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
 # define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
 # define ERR_MAP_ENEMY		KO "Map is limit to 100 enemies at start position\n"
-# define ERR_MAP_RECHABLE	KO "Map contains unreachable enemies\n"
+# define ERR_MAP_REACHABLE	KO "Map contains unreachable enemies\n"
 # define ERR_MAP_MISSING 	KO "Map information is missing or incomplete\n"
 # define ERR_MAP_DOOR		KO "Map has an invalid door placement\n"
 

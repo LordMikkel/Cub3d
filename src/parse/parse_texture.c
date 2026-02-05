@@ -6,12 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 19:20:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 01:56:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
+/**
+ * Validates a single color channel.
+ * Converts the string to an integer and checks strictly for the 0-255 range.
+ * We use long for the conversion to safely detect overflows before cast to int.
+ *
+ * @param data  The main struct for error handling.
+ * @param str   The string containing the number.
+ * @return      The validated integer value (0-255).
+ */
 static int	parse_rgb_value(t_data *data, char *str)
 {
 	long	value;
@@ -30,6 +39,16 @@ static int	parse_rgb_value(t_data *data, char *str)
 	return (value);
 }
 
+/**
+ * Extracts Floor (F) or Ceiling (C) colors.
+ * It splits the line by commas and validates that we have 3 values (R,G,B).
+ * We also check for duplicates to prevent overwriting previous configs.
+ *
+ * @param data     The main struct.
+ * @param texture  The texture struct to store the RGB array.
+ * @param line     The raw line from the file.
+ * @param type     The identifier (FLOOR or CEILING).
+ */
 static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 {
 	char	**rgb_split;
@@ -49,6 +68,17 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 	ft_free_str_array(&rgb_split);
 }
 
+/**
+ * Loads a wall texture.
+ * We process textures by immediately attempting to load the PNG via MLX
+ * The approach ensures the asset path is valid and readable right now
+ * rather than crashing later during the game.
+ *
+ * @param data     The main struct containing the MLX instance.
+ * @param texture  The target struct to store the loaded image.
+ * @param line     The raw line containing the path.
+ * @param type     The orientation (NO, SO, WE, EA).
+ */
 static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 {
 	if (is_duplicated_or_initialized_texture(texture))
@@ -66,6 +96,15 @@ static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	texture->extracted = TRUE;
 }
 
+/**
+ * Configuration dispatcher.
+ * Identifies the type of configuration line (texture or color) and
+ * routes it to the specific parsing function.
+ *
+ * @param data  The main struct.
+ * @param map   The map struct to populate.
+ * @param line  The current line to analyze.
+ */
 void	parse_texture(t_data *data, t_map *map, char *line)
 {
 	if (ft_strncmp(line, "NO", 2) == EQUAL)
@@ -79,5 +118,5 @@ void	parse_texture(t_data *data, t_map *map, char *line)
 	else if (ft_strncmp(line, "F", 1) == EQUAL)
 		get_color(data, &map->textures[FLOOR], line, FLOOR);
 	else if (ft_strncmp(line, "C", 1) == EQUAL)
-		get_color(data, &map->textures[CEALING], line, CEALING);
+		get_color(data, &map->textures[CEILING], line, CEILING);
 }

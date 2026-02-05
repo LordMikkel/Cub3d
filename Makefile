@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/03 05:37:13 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/05 02:20:20 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ DFLAGS				= -g -O0
 SFLAGS				=
 
 # **************************************************************************** #
-#                               Shell Comands                                  #
+#                               Shell Commands                                  #
 # **************************************************************************** #
 RM					= rm -rf
 PRINT				= printf
@@ -118,6 +118,7 @@ SRCS =				core/main.c \
 					parse/parse_map.c \
 					parse/validate_map.c \
 					parse/utils/is_door.c \
+					parse/utils/is_light.c \
 					parse/utils/is_enemy.c \
 					parse/utils/is_player.c \
 					parse/utils/is_file_info.c \
@@ -133,7 +134,7 @@ SRCS =				core/main.c \
 					core/clean/clean_map.c \
 					core/clean/clean_enemies.c \
 					core/clean/clean_textures.c \
-					core/exit/exit_succes.c \
+					core/exit/exit_success.c \
 					core/exit/exit_error.c \
 
 # **************************************************************************** #

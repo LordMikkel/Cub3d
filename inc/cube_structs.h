@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 17:04:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:08:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef enum e_type
 	EAST,
 	DOOR,
 	FLOOR,
-	CEALING,
+	CEILING,
 	SPRITE,
 	TOTAL_TEXTURE,
 }	t_type;
@@ -100,7 +100,7 @@ typedef struct s_light
 	double			radius;
 	int				color[RGB];
 	t_txtr			*sprite;
-}	t_ligt;
+}	t_light;
 
 typedef struct s_enemy
 {
@@ -109,6 +109,7 @@ typedef struct s_enemy
 	int				health;
 	bool			is_dead;
 	double			pos[AXIS];
+	t_txtr			*sprite;
 }	t_enemy;
 
 typedef struct s_plyr
@@ -121,6 +122,7 @@ typedef struct s_plyr
 	double			pos[AXIS];
 	double			dir[AXIS];
 	double			fov[AXIS];
+	t_txtr			*sprite;
 }	t_plyr;
 
 typedef struct s_txtr
@@ -143,11 +145,12 @@ typedef struct s_map
 	int				map_size;
 	int				map_max_len;
 	int				map_limit[AXIS];
-	int				n_player;
-	int				n_enemy;
+	int				n_players;
+	int				n_enemies;
+	int				n_lights;
 	t_plyr			player;
 	t_enemy			*enemies;
-	t_ligt			*lights;
+	t_light			*lights;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 

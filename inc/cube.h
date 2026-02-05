@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/03 20:08:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 03:04:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ bool	is_map_line(char *line);
 bool	is_player(char c);
 bool	is_enemy(char c);
 bool	is_door(char c);
+bool	is_light(char c);
 bool	is_valid_element(char c);
 bool	is_valid_door(t_map *map, int x, int y);
 

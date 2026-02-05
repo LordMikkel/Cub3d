@@ -6,13 +6,23 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:10:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/16 01:40:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:27:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
-void	get_largest_line_map_len(t_data *data, t_map *map, char *line)
+/**
+ * Updates the maximum line length found so far.
+ * We track this to know the map dimensions for rendering. We also check
+ * against a hard limit (MAX_MAP_SIZE) here to stop the program if a
+ * map is unreasonably wide, preventing memory issues.
+ *
+ * @param data  The main struct for error handling.
+ * @param map   The map struct to update.
+ * @param line  The current line being processed.
+ */
+static void	get_largest_line_map_len(t_data *data, t_map *map, char *line)
 {
 	int	len;
 
@@ -23,6 +33,16 @@ void	get_largest_line_map_len(t_data *data, t_map *map, char *line)
 		exit_error(data, ERR_MAP_BIG, EXIT_USE);
 }
 
+/**
+ * Reads and stores the file content.
+ * We trim whitespace immediately to make parsing easier later.
+ * Crucially, this function handles the file closure and resets GNL
+ * to ensure we don't leave any file descriptors open.
+ *
+ * @param data  The main struct.
+ * @param map   The map struct containing the FD and array to fill.
+ * @return      The filled array of strings from the file or NULL on error.
+ */
 static char	**get_lines(t_data *data, t_map *map)
 {
 	char	*line;
@@ -53,6 +73,16 @@ static char	**get_lines(t_data *data, t_map *map)
 	return (map->map_file);
 }
 
+/**
+ * Counts valid lines in the file.
+ * We need this count to allocate the exact amount of memory for the
+ * map array later. We also enforce minimum and maximum size limits
+ * here to reject invalid or empty maps early.
+ *
+ * @param data  The main struct.
+ * @param map   The map struct containing the FD.
+ * @return      The total number of valid lines found.
+ */
 static int	count_file_size(t_data *data, t_map *map)
 {
 	char	*line;
@@ -76,6 +106,16 @@ static int	count_file_size(t_data *data, t_map *map)
 	return (map->file_size);
 }
 
+/**
+ * Orchestrates the file reading process.
+ * 1. Open and count lines to allocate the exact memory needed.
+ * 2. Re-open and actually read the content into the arrays.
+ * This approach avoids complex memory resizing during reading.
+ *
+ * @param data      The main struct.
+ * @param map       The map struct to populate.
+ * @param map_path  Path to the .cub file.
+ */
 void	get_file_info(t_data *data, t_map *map, char *map_path)
 {
 	int	size;

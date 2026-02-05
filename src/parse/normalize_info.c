@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 23:03:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 19:05:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:29:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
+/**
+ * Standardizes the raw file content.
+ * We convert variable whitespace (like tabs or multiple spaces) into
+ * single spaces. This normalization step simplifies the next parsing stages,
+ * ensuring the configuration lines (NO, SO, F, C...) follow a uniform format.
+ *
+ * @param map  The struct containing the raw file lines strings to be cleaned.
+ */
 void	normalize_info(t_map *map)
 {
 	int		i;

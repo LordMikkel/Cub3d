@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_succes.c                                      :+:      :+:    :+:   */
+/*   is_light.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 00:28:57 by migarrid          #+#    #+#             */
-/*   Updated: 2025/12/25 04:12:24 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/05 02:10:50 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/05 02:11:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-int	exit_success(t_data *data, const char *msg, int exit_code)
+/**
+ * Checks if the character represents a light.
+ *
+ * @param c  The character to check.
+ * @return   TRUE if it is a light ('L').
+ */
+bool	is_light(char c)
 {
-	if (msg)
-		ft_printf_fd(STDOUT, msg);
-	if (data)
-		clean_all(data);
-	exit(exit_code);
-	return (EXIT_SUCCESS);
+	if (c == 'D')
+		return (TRUE);
+	return (FALSE);
 }

@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 20:32:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 19:13:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/05 02:38:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Registers inputs and starts the game engine.
+ * We hook our custom functions to the MLX event system so the game responds
+ * to keyboard presses, mouse movements, and clicks. Finally mlx_loop
+ * takes over control to run the infinite rendering game cycle.
+ *
+ * @param data  The main struct.
+ */
 void	game_loop(t_data *data)
 {
 	mlx_key_hook(data->mlx, &handle_keyboard_inpt, data);

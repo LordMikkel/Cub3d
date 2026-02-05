@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_error.c                                       :+:      :+:    :+:   */
+/*   exit_success.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 01:10:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 02:22:32 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 00:28:57 by migarrid          #+#    #+#             */
+/*   Updated: 2025/12/25 04:12:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
 /**
- * Centralizes program termination to ensure a clean shutdown.
- * By routing all exits here, we guarantee memory is freed (clean_all)
- * and errors are logged to STDERR before the process ends.
+ * Handles a clean, successful program termination.
+ * It frees all resources (clean_all) before exiting ensuring zero memory leaks.
+ * Also it prints an optional goodbye message to improve the user experience.
  * Supports printf-style formatting for flexible error messages.
  *
  * @param data       The main struct to clean up.
- * @param error      The error message format string.
+ * @param error      The success message format string.
  * @param exit_code  The status code to return to the shell.
  * @param ...        Arguments for the format string.
  */
-int	exit_error(t_data *data, const char *error, int exit_code, ...)
+int	exit_success(t_data *data, const char *msg, int exit_code)
 {
-	va_list	args;
-
-	if (error)
-	{
-		va_start(args, exit_code);
-		ft_var_printf_fd(STDERR, error, args);
-		va_end(args);
-	}
-	if (errno && exit_code == EXIT_FAILURE)
-		perror("Error");
+	if (msg)
+		ft_printf_fd(STDOUT, msg);
 	if (data)
 		clean_all(data);
 	exit(exit_code);
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

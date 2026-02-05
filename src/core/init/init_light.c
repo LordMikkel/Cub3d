@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_mlx.c                                        :+:      :+:    :+:   */
+/*   init_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 02:16:29 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/04 21:59:32 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/05 02:42:16 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/05 03:08:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-/**
- * Releases the graphics library resources.
- * It follows the necessary cleanup order: deleting the image buffer first,
- * and then terminating the main MLX instance to close the window.
- *
- * @param data  The main struct containing MLX pointers.
- */
-void	clean_mlx(t_data *data)
+void	init_lights(t_data *data, int x, int y, char type)
 {
-	if (!data)
-		return ;
-	if (data->img && data->mlx)
-		mlx_delete_image(data->mlx, data->img);
-	if (data->mlx)
-		mlx_terminate(data->mlx);
+	static int	i = 0;
+
+	if (!data->map.lights)
+		data->map.lights = allocator(data, data->map.n_enemis, sizeof(t_enemy));
+	data->map.lights[i].pos[X] = (double)x + PRECISE_CENTER_CELL;
+	data->map.lights[i].pos[Y] = (double)y + PRECISE_CENTER_CELL;
+	i++;
 }
