@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:10:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/04 22:27:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:27:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ void	get_file_info(t_data *data, t_map *map, char *map_path)
 
 	map->fd = safe_open(data, map, map_path);
 	size = count_file_size(data, map);
-	map->map_file = allocator(data, size + 1, sizeof(char *));
-	map->map_grid = allocator(data, size - 5 + 1, sizeof(char *));
+	map->map_file = alloc(data, size + 1, sizeof(char *));
+	map->map_grid = alloc(data, size - 5 + 1, sizeof(char *));
 	map->fd = safe_open(data, map, map_path);
 	map->map_file = get_lines(data, map);
 }

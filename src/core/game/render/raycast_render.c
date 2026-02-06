@@ -6,33 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 22:04:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:29:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-// static void	perform_dda(t_map *map, t_ray *ray)
-// {
-// 	bool	hit;
-
-// 	hit = FALSE;
-// 	while(!hit)
-// 	{
-
-// 	}
-// }
-
 static void	cast_single_ray(t_data *data, int x)
 {
 	t_ray	ray;
 
-	(void)x;
-	(void)data;
 	init_ray(data, data->map.player, &ray, x);
-	// perform_dda(data->map, &ray);
-	// calculate_perpendicular_distance(data->map.player, &ray);
-	// calculate_line_height(data, &ray);
+	perform_dda(&data->map, &ray);
+	calculate_perp_distance(&data->map.player, &ray);
+	calculate_line_height(data, &ray);
 	// render_lights();
 	// draw_vertical_line(data, &ray);
 }
@@ -44,7 +31,7 @@ static void	*render_section(void	*arg)
 
 	thread = (t_thread *)arg;
 	x = thread->x[START];
-	while( x < thread->x[END])
+	while (x < thread->x[END])
 	{
 		cast_single_ray(thread->data, x);
 		x++;
@@ -73,7 +60,7 @@ void	raycast_render(t_data *data)
 		i++;
 	}
 	i = 0;
-	while(i < data->n_cores)
+	while (i < data->n_cores)
 	{
 		pthread_join(threads[i].thread, NULL);
 		i++;

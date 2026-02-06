@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/05 22:04:44 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/06 02:18:01 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,9 @@ SRCS =				core/main.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/raycast_render.c \
+					core/game/render/perform_dda.c \
+					core/game/render/calculate/calculate_distance.c \
+					core/game/render/calculate/calculate_height.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \

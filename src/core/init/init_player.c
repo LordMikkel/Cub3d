@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 04:58:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:18:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:25:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param player  The player struct to configure.
  * @param dir     The char identifier ('E' or 'W').
  */
-static void set_dir_east_and_west(t_plyr *player, char dir)
+static void	set_dir_east_and_west(t_plyr *player, char dir)
 {
 	if (dir == 'E')
 	{

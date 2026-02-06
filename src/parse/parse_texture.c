@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:44:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:24:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
  * @param color  Array containing [R, G, B] integer values.
  * @return       The packed uint32_t color value (0xRRGGBBAA).
  */
-uint32_t rgb_to_uint32(int *color)
+uint32_t	rgb_to_uint32(int *color)
 {
-	return ((color[R] << 24) | (color[B] << 16) | (color[G] << 8) | 0xFF);
+	return (((uint32_t)color[R] << 24)
+		| ((uint32_t)color[B] << 16)
+		| ((uint32_t)color[G] << 8)
+		| 0xFF);
 }
 
 /**

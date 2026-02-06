@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 22:03:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:27:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	validate_map(t_data *data, t_map *map);
 /* ************************************************************************** */
 void	game_render(void *param);
 void	raycast_render(t_data *data);
+void	perform_dda(t_map *map, t_ray *ray);
+void	calculate_perp_distance(t_plyr *player, t_ray *ray);
+void	calculate_line_height(t_data *data, t_ray *ray);
 
 /* ************************************************************************** */
 /*                                 Events                                     */
@@ -89,7 +92,7 @@ int		exit_error(t_data *data, const char *error, int exit_code, ...);
 /* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
-void	*allocator(t_data *data, size_t nmemb, size_t size);
+void	*alloc(t_data *data, size_t nmemb, size_t size);
 bool	is_duplicated_or_initialized_texture(t_txtr *texture);
 int		safe_open(t_data *data, t_map *map, char *map_path);
 void	dbg_print_texture(t_map *map, int fd);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 20:55:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:06:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define MAX_ENEMIES				500
 # define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
+# define MIN_DISTANCE				0.001
 # define PRECISE_CENTER_CELL		0.5
 # define MAX_NUMBER					1e30
 # define MAX_THREADS 				32

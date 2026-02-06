@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 18:22:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 00:30:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:27:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param size   Size of each element.
  * @return       A valid pointer to the allocated memory.
  */
-void	*allocator(t_data *data, size_t nmemb, size_t size)
+void	*alloc(t_data *data, size_t nmemb, size_t size)
 {
 	void	*ptr;
 

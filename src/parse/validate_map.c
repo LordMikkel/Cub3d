@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:20:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:24:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static void	get_elements(t_data *data, t_map *map)
  */
 static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
 {
-
 	if (pos.x < 0 || pos.y < 0 || pos.x > max.x || pos.y > max.y)
 		exit_error(data, ERR_MAP_WALLS, EXIT_USE);
 	if (map[pos.y][pos.x] == ' ')

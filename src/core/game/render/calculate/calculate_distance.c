@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_light.c                                       :+:      :+:    :+:   */
+/*   calculate_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/05 02:42:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:27:11 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/06 01:27:47 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/06 02:30:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
-void	init_lights(t_data *data, int x, int y, char type)
+//Study this math concepts behind
+void	calculate_perp_distance(t_plyr *player, t_ray *ray)
 {
-	static int	i = 0;
-
-	(void)type;
-	if (!data->map.lights)
-		data->map.lights = alloc(data, data->map.n_enemies, sizeof(t_enemy));
-	data->map.lights[i].pos[X] = (double)x + PRECISE_CENTER_CELL;
-	data->map.lights[i].pos[Y] = (double)y + PRECISE_CENTER_CELL;
-	i++;
+	if (ray->wall_side == WEST || ray->wall_side == EAST)
+	{
+		ray->perp_dist = (ray->pos[X] - player->pos[X] + (1 - ray->step[X]) / 2)
+			/ ray->dir[X];
+	}
+	else
+	{
+		ray->perp_dist = (ray->pos[Y] - player->pos[Y] + (1 - ray->step[Y]) / 2)
+			/ ray->dir[Y];
+	}
 }

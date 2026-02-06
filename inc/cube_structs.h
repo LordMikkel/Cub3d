@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 21:36:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 01:41:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct s_ray
 	int				step[AXIS];
 	double			delta_dist[AXIS];
 	double			side_dist[AXIS];
-	double			dist;
 	double			perp_dist;
 	t_type			wall_side;
 	int				line_height;

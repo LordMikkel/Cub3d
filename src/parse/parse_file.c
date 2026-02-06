@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 19:02:59 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/04 22:13:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 02:23:32 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	parse_file(t_data *data, char *map_path)
 	normalize_info(&data->map);
 	parse_info(data, &data->map);
 	validate_map(data, &data->map);
-	//dbg
 	dbg_print_texture(&data->map, STDOUT);
-	ft_print_str_array(data->map.map_grid, STDOUT);
-	//bdg
+	dbg_print_map_grid(data->map.map_grid, STDOUT);
 	ft_printf_fd(STDOUT, MSG_PARSING);
 }
