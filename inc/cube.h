@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:27:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:47:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	game_loop(t_data *data);
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_cores(t_data *data);
-void	init_player(t_map *map, int x, int y, char spawn_dir);
+void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
 void	init_ray(t_data *data, t_plyr player, t_ray *ray, int x);
 void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
@@ -64,10 +64,12 @@ void	raycast_render(t_data *data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_perp_distance(t_plyr *player, t_ray *ray);
 void	calculate_line_height(t_data *data, t_ray *ray);
+void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 
 /* ************************************************************************** */
 /*                                 Events                                     */
 /* ************************************************************************** */
+void	input_player_movement(t_data *data);
 void	handle_click_inpt(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param);
 void	handle_cursor_inpt(double xpos, double ypos, void *param);
@@ -95,7 +97,6 @@ int		exit_error(t_data *data, const char *error, int exit_code, ...);
 void	*alloc(t_data *data, size_t nmemb, size_t size);
 bool	is_duplicated_or_initialized_texture(t_txtr *texture);
 int		safe_open(t_data *data, t_map *map, char *map_path);
-void	dbg_print_texture(t_map *map, int fd);
 bool	is_not_an_empty_line(char *line);
 bool	is_map_line(char *line);
 bool	is_player(char c);
@@ -106,7 +107,9 @@ bool	is_valid_element(char c);
 bool	is_valid_door(t_map *map, int x, int y);
 
 /* ************************************************************************** */
-/*                                extras                                      */
+/*                                  Debug                                     */
 /* ************************************************************************** */
+void	dbg_print_texture(t_map *map, int fd);
+void	dbg_print_map_grid(t_map *map, int fd);
 
 #endif

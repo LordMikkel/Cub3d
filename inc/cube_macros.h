@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:06:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 03:26:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # define MAX_NUMBER					1e30
 # define MAX_THREADS 				32
 # define FOV_FACTOR					0.66
+# define RUN_SPEED_PLAYER			0.02
+# define WALK_SPEED_PLAYER			0.01
 
 /* ************************************************************************** */
 /*                                   Game                                     */
@@ -182,7 +184,7 @@
 # define MSG_INIT			OK "Initialized cub3D\n"
 # define MSG_PARSING		OK "Map file parsed\n"
 # define MSG_TEXTURES		OK "Textures loaded\n"
-# define MSG_READY			OK "Raycaster prepared\n"
-# define MSG_EXIT			OK "cub3D closed\n"
+# define MSG_GAME_RUN		OK "Cub3D game is running\n"
+# define MSG_EXIT			OK "Cub3D closed\n"
 
 #endif

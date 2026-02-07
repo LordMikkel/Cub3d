@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:24:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:33:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	get_elements(t_data *data, t_map *map)
 		while (map->map_grid[y][x])
 		{
 			if (is_player(map->map_grid[y][x]))
-				init_player(map, x, y, map->map_grid[y][x]);
+				init_player(data, x, y, map->map_grid[y][x]);
 			else if (is_enemy(map->map_grid[y][x]))
 				init_enemy(data, x, y, map->map_grid[y][x]);
 			// else if (is_light(map->map_grid[y][x]))
@@ -121,10 +121,10 @@ void	validate_map(t_data *data, t_map *map)
 	map->map_copy = ft_arraydup(map->map_grid);
 	if (!map->map_copy)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
-	start = (t_p2d){map->player.pos[X], map->player.pos[Y]};
+	start = (t_p2d){data->player.pos[X], data->player.pos[Y]};
 	limits = (t_p2d){map->map_limit[X], map->map_limit[Y]};
 	close_bounds(data, map->map_copy, limits, start, &reachable_enemies);
-	ft_print_str_array(map->map_copy, 1);
+	// dbg_print_map_grid(map->map_copy, STDOUT);
 	if (reachable_enemies != map->n_enemies)
 		exit_error(data, ERR_MAP_REACHABLE, EXIT_USE);
 }

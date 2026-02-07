@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:29:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:33:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	cast_single_ray(t_data *data, int x)
 {
 	t_ray	ray;
 
-	init_ray(data, data->map.player, &ray, x);
+	init_ray(data, data->player, &ray, x);
 	perform_dda(&data->map, &ray);
-	calculate_perp_distance(&data->map.player, &ray);
+	calculate_perp_distance(&data->player, &ray);
 	calculate_line_height(data, &ray);
 	// render_lights();
-	// draw_vertical_line(data, &ray);
+	draw_vertical_line(data, &ray, x);
 }
 
 static void	*render_section(void	*arg)

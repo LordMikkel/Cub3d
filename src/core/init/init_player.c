@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 04:58:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:25:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:31:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static void	init_dir_and_fov_player(t_plyr *player, char dir)
 		set_dir_east_and_west(player, dir);
 }
 
-void	init_player(t_map *map, int x, int y, char spawn_dir)
+void	init_player(t_data *data, int x, int y, char spawn_dir)
 {
-	init_dir_and_fov_player(&map->player, spawn_dir);
-	map->player.health = INIT_PLAYER_HEALTH;
-	map->player.damage = INIT_PLAYER_DAMAGE;
-	map->player.pos[X] = (double)x + PRECISE_CENTER_CELL;
-	map->player.pos[Y] = (double)y + PRECISE_CENTER_CELL;
+	init_dir_and_fov_player(&data->player, spawn_dir);
+	data->player.health = INIT_PLAYER_HEALTH;
+	data->player.damage = INIT_PLAYER_DAMAGE;
+	data->player.pos[X] = (double)x + PRECISE_CENTER_CELL;
+	data->player.pos[Y] = (double)y + PRECISE_CENTER_CELL;
 }

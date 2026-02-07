@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 01:41:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:37:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 # include "cube.h"
 # include "cube_macros.h"
 
+typedef struct s_txtr		t_txtr;
 typedef struct s_thread		t_thread;
 typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
 typedef struct s_plyr		t_plyr;
-typedef struct s_txtr		t_txtr;
 typedef struct s_map		t_map;
 typedef struct s_data		t_data;
 
 typedef enum e_mode
 {
+	LOAD,
 	MENU,
 	GAME,
 }	t_mode;
@@ -81,41 +82,20 @@ typedef enum e_dir
 	E,
 }	t_dir;
 
+typedef enum e_mov
+{
+	FRONT,
+	BACK,
+	RIGHT,
+	LEFT,
+}	t_mov;
+
+
 typedef struct s_p2d
 {
 	int				x;
 	int				y;
 }	t_p2d;
-
-typedef struct s_thread
-{
-	t_data		*data;
-	pthread_t	thread;
-	int			x[RANGE];
-}	t_thread;
-
-typedef struct s_ray
-{
-	double			dir[AXIS];
-	int				pos[AXIS];
-	int				step[AXIS];
-	double			delta_dist[AXIS];
-	double			side_dist[AXIS];
-	double			perp_dist;
-	t_type			wall_side;
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-}	t_ray;
-
-typedef struct s_light
-{
-	double			pos[AXIS];
-	double			intensity;
-	double			radius;
-	int				color[RGB];
-	t_txtr			*sprite;
-}	t_light;
 
 typedef struct s_enemy
 {
@@ -151,6 +131,38 @@ typedef struct s_txtr
 	bool			extracted;
 }	t_txtr;
 
+typedef struct s_light
+{
+	double			pos[AXIS];
+	double			intensity;
+	double			radius;
+	int				color[RGB];
+	t_txtr			sprite;
+}	t_light;
+
+typedef struct s_thread
+{
+	t_data		*data;
+	pthread_t	thread;
+	int			x[RANGE];
+}	t_thread;
+
+typedef struct s_ray
+{
+	double			dir[AXIS];
+	int				pos[AXIS];
+	int				step[AXIS];
+	double			delta_dist[AXIS];
+	double			side_dist[AXIS];
+	double			perp_dist;
+	t_type			wall_side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				color;
+	t_txtr			texture;
+}	t_ray;
+
 typedef struct s_map
 {
 	int				fd;
@@ -165,8 +177,6 @@ typedef struct s_map
 	int				n_enemies;
 	int				n_doors;
 	int				n_lights;
-	t_plyr			player;
-	t_enemy			*enemies;
 	t_light			*lights;
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
@@ -175,6 +185,8 @@ typedef struct s_data
 {
 	t_mode			mode;
 	t_map			map;
+	t_plyr			player;
+	t_enemy			*enemies;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	int				n_cores;

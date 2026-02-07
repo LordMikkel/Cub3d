@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:01:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 20:51:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/06 22:35:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 void	init_data(t_data *data)
 {
 	*data = (t_data){0};
+	data->mode = LOAD;
 	init_cores(data);
 	init_mlx(data);
 	ft_printf_fd(STDOUT, MSG_INIT);

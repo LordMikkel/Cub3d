@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/06 02:18:01 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/07 03:22:47 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,7 @@ SRCS =				core/main.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_distance.c \
 					core/game/render/calculate/calculate_height.c \
+					core/game/draw/draw_vertical_line.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
@@ -131,11 +132,13 @@ SRCS =				core/main.c \
 					parse/utils/is_file_info.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
+					input/player_movements.c \
 					input/handle/keyboard_input.c \
 					input/handle/cursor_input.c \
 					input/handle/click_input.c \
 					input/events/close_events.c \
 					debug/dbg_print_textures.c \
+					debug/dbg_print_map_grid.c \
 					core/clean/clean_all.c \
 					core/clean/clean_mlx.c \
 					core/clean/clean_map.c \
