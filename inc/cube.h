@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/07 02:47:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/09 03:27:32 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,14 @@ void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_perp_distance(t_plyr *player, t_ray *ray);
 void	calculate_line_height(t_data *data, t_ray *ray);
 void	draw_vertical_line(t_data *data, t_ray *ray, int x);
+void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
+void 	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
 
 /* ************************************************************************** */
 /*                                 Events                                     */
 /* ************************************************************************** */
 void	input_player_movement(t_data *data);
+void	input_player_rotation(t_data *data);
 void	handle_click_inpt(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param);
 void	handle_cursor_inpt(double xpos, double ypos, void *param);

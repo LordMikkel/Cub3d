@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_render.c                                      :+:      :+:    :+:   */
+/*   draw_floor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 05:48:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/09 03:37:16 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/09 00:44:26 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/09 00:50:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../inc/cube.h"
 
-void	game_render(void *param)
+void draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-	t_data	*data;
+	int		y;
 
-	data = param;
-	data->mode = GAME;
-	raycast_render(data);
-	input_player_movement(data);
-	input_player_rotation(data);
-	// input_player_click(data);
+	y = ray->draw_end;
+	while (y < (int)data->img->height)
+	{
+		mlx_put_pixel(data->img, x, y, texture[FLOOR].hex_color);
+		y++;
+	}
 }

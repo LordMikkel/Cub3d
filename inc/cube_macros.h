@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/07 03:26:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/09 04:43:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@
 # define MAX_NUMBER					1e30
 # define MAX_THREADS 				32
 # define FOV_FACTOR					0.66
-# define RUN_SPEED_PLAYER			0.02
-# define WALK_SPEED_PLAYER			0.01
+# define RUN_SPEED_PLAYER			0.04
+# define WALK_SPEED_PLAYER			0.02
+# define PITCH_LIMIT				400
+# define PITCH_SENSITIVITY			1.0
+# define MOUSE_SENSITIVITY			0.004
+# define MOUSE_DEADZONE				100
 
 /* ************************************************************************** */
 /*                                   Game                                     */

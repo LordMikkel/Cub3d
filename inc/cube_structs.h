@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/07 02:37:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/09 01:30:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_plyr
 	double			pos[AXIS];
 	double			dir[AXIS];
 	double			fov[AXIS];
+	int				pitch;
 	t_txtr			*sprite;
 }	t_plyr;
 
