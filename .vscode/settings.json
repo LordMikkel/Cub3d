@@ -55,6 +55,10 @@
 		"cstddef": "c",
 		"cmath": "c"
 	},
+	"[c]":
+	{
+		"editor.defaultFormatter": "keyhr.42-c-format"
+	},
 
 	// Configuration C/C++
 	"C_Cpp.default.cStandard": "c99",
@@ -77,4 +81,7 @@
 		}
 	},
 	"debugVisualizer.useChromeKioskMode": true,
+	"cSpell.words": [
+		"Inicialización"
+	],
 }

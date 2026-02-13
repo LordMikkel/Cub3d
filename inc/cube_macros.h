@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/09 04:43:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/13 05:32:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* ************************************************************************** */
 /*                              Windows Settings                              */
 /* ************************************************************************** */
-# define WIN_WIDTH					HD_WIDTH
-# define WIN_HEIGHT					HD_HEIGHT
+# define WIN_WIDTH					FULL_HD_WIDTH
+# define WIN_HEIGHT					FULL_HD_HEIGHT
 # define WIN_TITLE					"Cub3D"
 # define TILE_SIZE					64
 
@@ -54,7 +54,7 @@
 # define MAX_NUMBER					1e30
 # define MAX_THREADS 				32
 # define FOV_FACTOR					0.66
-# define RUN_SPEED_PLAYER			0.04
+# define RUN_SPEED_PLAYER			0.045
 # define WALK_SPEED_PLAYER			0.02
 # define PITCH_LIMIT				400
 # define PITCH_SENSITIVITY			1.0

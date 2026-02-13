@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/09 01:24:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/13 05:31:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	cast_single_ray(t_data *data, int x)
 	draw_vertical_line(data, &ray, x);
 }
 
-static void	*render_section(void	*arg)
+static void	*render_section(void *arg)
 {
 	t_thread	*thread;
 	int			x;
