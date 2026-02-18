@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/13 05:31:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:35:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ static bool	is_inside_map(t_map *map, int x, int y)
 	return (TRUE);
 }
 
+static void	apply_head_bounce(t_plyr *player)
+{
+	if (player->moving)
+	{
+		player->head[STEP] += HEAD_BOUNCE_SPEED;
+		player->head[BOUNCE] = (int)(sin(player->head[STEP]) * HEAD_BOUNCE_AMPLIRUDE);
+	}
+	else
+	{
+		player->head[STEP] = 0;
+		if (player->head[BOUNCE] > 0)
+			player->head[BOUNCE]--;
+		else if (player->head[BOUNCE] < 0)
+			player->head[BOUNCE]++;
+	}
+}
+
 static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
 {
 	int	new_x;
@@ -38,12 +55,14 @@ static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
 	new_y = (int)(player->pos[Y] + mov_y);
 	if (is_inside_map(map, new_x, new_y))
 		player->pos[Y] += mov_y;
+	player->moving = TRUE;
 }
 
 void	input_player_movement(t_data *data)
 {
 	double	pace;
 
+	data->player.moving = FALSE;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
 		pace = RUN_SPEED_PLAYER;
 	else
@@ -60,4 +79,5 @@ void	input_player_movement(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		move_player(&data->map, &data->player, data->player.dir[Y] * pace,
 			-data->player.dir[X] * pace);
+	apply_head_bounce(&data->player);
 }

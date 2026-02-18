@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_height.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:30:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:48:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ static void	protect_zero_distance(t_ray *ray)
 
 static void	define_start_and_end_pixel_wall(t_data *data, t_ray *ray)
 {
-	int	img_center;
-	int	half_line_height;
+	int		img_center;
+	int		half_line_height;
+	double	player_head_pos;
 
-	img_center = data->img->height / 2;
+	player_head_pos = data->player.head[TILT] + data->player.head[BOUNCE];
+	img_center = (data->img->height / 2) + (int)player_head_pos;
 	half_line_height = ray->line_height / 2;
 	ray->draw_start = img_center - half_line_height;
 	ray->draw_end = img_center + half_line_height;

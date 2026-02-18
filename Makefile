@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/09 03:28:40 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/18 21:23:45 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,8 +140,10 @@ SRCS =				core/main.c \
 					input/handle/cursor_input.c \
 					input/handle/click_input.c \
 					input/events/close_events.c \
+					input/utils/limits_player_rotation.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
+					debug/dbg_print_player_info.c \
 					core/clean/clean_all.c \
 					core/clean/clean_mlx.c \
 					core/clean/clean_map.c \

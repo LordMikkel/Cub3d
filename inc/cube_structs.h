@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_structs.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/09 01:30:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:47:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ typedef enum e_dir
 	E,
 }	t_dir;
 
+typedef enum e_head
+{
+	TILT,
+	STEP,
+	BOUNCE,
+	ATRIBUTES,
+}	t_head;
+
 typedef enum e_mov
 {
 	FRONT,
@@ -89,7 +97,6 @@ typedef enum e_mov
 	RIGHT,
 	LEFT,
 }	t_mov;
-
 
 typedef struct s_p2d
 {
@@ -117,7 +124,8 @@ typedef struct s_plyr
 	double			pos[AXIS];
 	double			dir[AXIS];
 	double			fov[AXIS];
-	int				pitch;
+	double			head[ATRIBUTES];
+	bool			moving;
 	t_txtr			*sprite;
 }	t_plyr;
 

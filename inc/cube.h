@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/09 03:27:32 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/18 21:24:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,13 @@ bool	is_door(char c);
 bool	is_light(char c);
 bool	is_valid_element(char c);
 bool	is_valid_door(t_map *map, int x, int y);
+void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 
 /* ************************************************************************** */
 /*                                  Debug                                     */
 /* ************************************************************************** */
 void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
+void	dbg_print_player_info(t_plyr *player, int *mouse, int fd);
 
 #endif

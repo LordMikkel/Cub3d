@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_macros.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/13 05:32:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:49:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@
 # define PRECISE_CENTER_CELL		0.5
 # define MAX_NUMBER					1e30
 # define MAX_THREADS 				32
-# define FOV_FACTOR					0.66
+# define FOV_FACTOR					0.8
 # define RUN_SPEED_PLAYER			0.045
 # define WALK_SPEED_PLAYER			0.02
-# define PITCH_LIMIT				400
-# define PITCH_SENSITIVITY			1.0
+# define TILT_LIMIT					400
+# define TILT_SENSITIVITY			1.0
 # define MOUSE_SENSITIVITY			0.004
 # define MOUSE_DEADZONE				100
+# define ROTATION_ANGLE_KEYBOARD	0.03
+# define HEAD_BOUNCE_SPEED			0.15
+# define HEAD_BOUNCE_AMPLIRUDE		5
 
 /* ************************************************************************** */
 /*                                   Game                                     */
