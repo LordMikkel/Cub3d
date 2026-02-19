@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/19 20:34:56 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/19 21:14:55 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ NAME				= cub3d
 CC					= gcc
 WFLAGS				= -Wall -Wextra -Werror -Wpedantic
 DMODE				= -D MAIN
-#VFLAGS				= -Ofast -march=native -flto
-#OFLAGS				= -Os -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
+VFLAGS				= -Ofast -march=native -flto
+OFLAGS				= -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
 DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -ldl -lglfw -pthread -lm
 DFLAGS				= -g -O0
@@ -221,7 +221,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 # test sanitize in cub3d
 test:
 	@clear
-	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=address,undefined -O0" all
+	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=address,undefined -O0" VFLAGS="" OFLAGS="" all
 	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SAN_SUPP) ./$(NAME) $(MAP)
 
 # Test leaks in cub3d

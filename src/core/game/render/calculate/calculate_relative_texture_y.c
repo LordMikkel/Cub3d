@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:12:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 20:47:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:09:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	calculate_relative_texture_y(t_data *data, t_ray *ray, t_txtr *texture)
 	double	head_offset;
 
 	if (ray->texture->format != TEXTURE)
-		return;
+		return ;
 	head_offset = data->player.head[TILT] + data->player.head[BOUNCE];
 	ray->tex_step = (double)texture->img->height / ray->line_height;
 	screen_center_y = ((double)data->img->height / 2.0) + head_offset;

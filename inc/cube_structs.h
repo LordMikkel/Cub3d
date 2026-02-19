@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 20:48:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:11:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef enum e_type
 	DOOR,
 	FLOOR,
 	CEILING,
+	LIGHT,
 	SPRITE,
 	TOTAL_TEXTURE,
 }	t_type;
-
 
 typedef enum e_form
 {
