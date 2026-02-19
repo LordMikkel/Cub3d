@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:24:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:06:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 uint32_t	rgb_to_uint32(int *color)
 {
 	return (((uint32_t)color[R] << 24)
-		| ((uint32_t)color[B] << 16)
-		| ((uint32_t)color[G] << 8)
+		| ((uint32_t)color[G] << 16)
+		| ((uint32_t)color[B] << 8)
 		| 0xFF);
 }
 
@@ -60,7 +60,7 @@ static int	parse_rgb_value(t_data *data, char *str)
 }
 
 /**
- * Extracts Floor (F) or Ceiling (C) colors.
+ * Extracts a color (R,G,B) for any identifier (NO, SO, WE, EA, F, C, D).
  * It splits the line by commas and validates that we have 3 values (R,G,B).
  * We also check for duplicates to prevent overwriting previous configs.
  *
@@ -69,14 +69,16 @@ static int	parse_rgb_value(t_data *data, char *str)
  * @param line     The raw line from the file.
  * @param type     The identifier (FLOOR or CEILING).
  */
-static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
+void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 {
+	int		offset;
 	char	**rgb_split;
 
 	if (is_duplicated_or_initialized_texture(texture))
 		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
-	texture->path = ft_strleftrim(line + 1, " \t\n\r\v\f");
+	offset = manage_one_or_two_letters(type);
+	texture->path = ft_strleftrim(line + offset, " \t\n\r\v\f");
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	rgb_split = ft_split(texture->path, ',');
@@ -87,10 +89,11 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 	texture->color[B] = parse_rgb_value(data, rgb_split[2]);
 	texture->hex_color = rgb_to_uint32(texture->color);
 	ft_free_str_array(&rgb_split);
+	texture->format = COLOR;
 }
 
 /**
- * Loads a wall texture.
+ * Loads a PNG texture for any identifier (NO, SO, WE, EA, F, C, D).
  * We process textures by immediately attempting to load the PNG via MLX
  * The approach ensures the asset path is valid and readable right now
  * rather than crashing later during the game.
@@ -100,12 +103,15 @@ static void	get_color(t_data *data, t_txtr *texture, char *line, int type)
  * @param line     The raw line containing the path.
  * @param type     The orientation (NO, SO, WE, EA).
  */
-static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
+void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 {
+	int		offset;
+
 	if (is_duplicated_or_initialized_texture(texture))
 		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
-	texture->path = ft_strleftrim(line + 2, " \t\n\r\v\f");
+	offset = manage_one_or_two_letters(type);
+	texture->path = ft_strleftrim(line + offset, " \t\n\r\v\f");
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	texture->txtr = mlx_load_png(texture->path);
@@ -115,12 +121,14 @@ static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	if (!texture->img)
 		exit_error(data, ERR_MLX_TXT_IMG, EXIT_FAILURE);
 	texture->extracted = TRUE;
+	texture->format = TEXTURE;
 }
 
 /**
  * Configuration dispatcher.
- * Identifies the type of configuration line (texture or color) and
- * routes it to the specific parsing function.
+ * Identifies the identifier (NO, SO, WE, EA, F, C) and routes the line
+ * to manage_color_or_texture, which decides whether to parse a color
+ * or load a PNG based on the presence of commas in the line.
  *
  * @param data  The main struct.
  * @param map   The map struct to populate.
@@ -129,15 +137,15 @@ static void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 void	parse_texture(t_data *data, t_map *map, char *line)
 {
 	if (ft_strncmp(line, "NO", 2) == EQUAL)
-		get_texture(data, &map->textures[NORTH], line, NORTH);
+		manage_color_or_texture(data, map, line, NORTH);
 	else if (ft_strncmp(line, "EA", 2) == EQUAL)
-		get_texture(data, &map->textures[EAST], line, EAST);
+		manage_color_or_texture(data, map, line, EAST);
 	else if (ft_strncmp(line, "SO", 2) == EQUAL)
-		get_texture(data, &map->textures[SOUTH], line, SOUTH);
+		manage_color_or_texture(data, map, line, SOUTH);
 	else if (ft_strncmp(line, "WE", 2) == EQUAL)
-		get_texture(data, &map->textures[WEST], line, WEST);
+		manage_color_or_texture(data, map, line, WEST);
 	else if (ft_strncmp(line, "F", 1) == EQUAL)
-		get_color(data, &map->textures[FLOOR], line, FLOOR);
+		manage_color_or_texture(data, map, line, FLOOR);
 	else if (ft_strncmp(line, "C", 1) == EQUAL)
-		get_color(data, &map->textures[CEILING], line, CEILING);
+		manage_color_or_texture(data, map, line, CEILING);
 }

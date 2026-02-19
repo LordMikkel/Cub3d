@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 17:23:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 20:48:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef enum e_type
 	SPRITE,
 	TOTAL_TEXTURE,
 }	t_type;
+
+
+typedef enum e_form
+{
+	COLOR,
+	TEXTURE,
+}	t_form;
 
 typedef enum e_kind
 {
@@ -138,13 +145,12 @@ typedef struct s_plyr
 typedef struct s_txtr
 {
 	t_type			type;
+	t_form			format;
 	char			*path;
 	int				color[RGB];
 	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
 	mlx_image_t		*img;
-	double			step;
-	double			coord[AXIS];
 	bool			extracted;
 }	t_txtr;
 
@@ -174,12 +180,14 @@ typedef struct s_ray
 	double			total_dist;
 	double			perp_dist;
 	t_type			wall_side;
-	double			wall_x;
+	double			wall[AXIS];
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
 	int				color;
 	t_txtr			*texture;
+	double			tex_step;
+	double			tex[AXIS];
 }	t_ray;
 
 typedef struct s_map

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 01:28:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 02:33:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:02:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static void	mouse_rotation(t_data *data, int *mouse, int *prev)
 {
 	double	angle;
 
-	if (mouse[X] == prev[X] && mouse[Y] == prev[Y])
+	if ((mouse[X] == prev[X] && mouse[Y] == prev[Y])
+		|| (mouse[X] == 0 && mouse[Y] == 0))
 		return ;
 	if (mouse[X] != prev[X])
 	{

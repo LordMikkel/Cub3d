@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/19 17:52:04 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/19 20:34:56 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,6 +138,8 @@ SRCS =				core/main.c \
 					parse/utils/is_file_info.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
+					parse/utils/manage_color_or_texture.c \
+					parse/utils/manage_one_or_two_letters.c \
 					input/player_movements.c \
 					input/player_rotations.c \
 					input/handle/keyboard_input.c \

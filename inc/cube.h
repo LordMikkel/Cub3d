@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 17:50:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 20:35:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	get_file_info(t_data *data, t_map *map, char *map_path);
 void	parse_texture(t_data *data, t_map *map, char *line);
 void	parse_map(t_data *data, t_map *map, char *line);
 void	validate_map(t_data *data, t_map *map);
+void	get_texture(t_data *data, t_txtr *texture, char *line, int type);
+void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 
 /* ************************************************************************** */
 /*                                 Engine                                     */
@@ -112,6 +114,8 @@ bool	is_door(char c);
 bool	is_light(char c);
 bool	is_valid_element(char c);
 bool	is_valid_door(t_map *map, int x, int y);
+int		manage_one_or_two_letters(int type);
+void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 
 /* ************************************************************************** */

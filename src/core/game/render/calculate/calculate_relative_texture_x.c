@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:59:52 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 17:52:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:08:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static t_txtr *get_texture_for_ray(t_data *data, t_ray *ray)
 
 void	calculate_relative_texture_x(t_data *data, t_ray *ray)
 {
-	t_txtr *ray_text;
+	t_txtr	*tex;
 
-	ray_text = get_texture_for_ray(data, ray);
-	ray->texture = ray_text;
-	ray_text->coord[X] = (int)(ray->wall_x * (double)ray_text->img->width);
+	tex = get_texture_for_ray(data, ray);
+	ray->texture = tex;
+	if (ray->texture->format != TEXTURE)
+		return;
+	ray->tex[X] = (int)(ray->wall[X] * (double)tex->img->width);
 	if (should_invert_texture(ray))
-		ray_text->coord[X] = ray_text->img->width - ray_text->coord[X] - 1;
+		ray->tex[X] = tex->img->width - ray->tex[X] - 1;
 }
