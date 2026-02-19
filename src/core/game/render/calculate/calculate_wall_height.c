@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_height.c                                 :+:      :+:    :+:   */
+/*   calculate_wall_height.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 23:48:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:14:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	protect_image_limits(t_data *data, t_ray *ray)
 		ray->draw_end = data->img->height - 1;
 }
 
-void	calculate_line_height(t_data *data, t_ray *ray)
+void	calculate_wall_height(t_data *data, t_ray *ray)
 {
 	protect_zero_distance(ray);
 	ray->line_height = (int)(data->img->height / ray->perp_dist);

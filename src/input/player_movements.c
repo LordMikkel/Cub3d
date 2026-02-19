@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 23:35:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:38:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
+/**
+ * Checks if the given coordinates are a valid walkable cell.
+ * Validates that the position is within the map bounds and that
+ * the cell is not a wall ('1') or an empty space (' ').
+ *
+ * @param map  The map struct containing the grid and its limits.
+ * @param x    The X coordinate to check.
+ * @param y    The Y coordinate to check.
+ * @return     TRUE if the cell is walkable, FALSE otherwise.
+ */
 static bool	is_inside_map(t_map *map, int x, int y)
 {
 	if (x < 0 || y < 0)
@@ -25,12 +35,20 @@ static bool	is_inside_map(t_map *map, int x, int y)
 	return (TRUE);
 }
 
+/**
+ * Applies a sinusoidal head bobbing effect while the player is moving.
+ * Simulates the natural up-and-down motion of a walking person by
+ * updating the bounce offset using a sine function. When the player
+ * stops, the bounce gradually returns to zero.
+ *
+ * @param player  The player struct containing the head bounce state.
+ */
 static void	apply_head_bounce(t_plyr *player)
 {
 	if (player->moving)
 	{
 		player->head[STEP] += HEAD_BOUNCE_SPEED;
-		player->head[BOUNCE] = (int)(sin(player->head[STEP]) * HEAD_BOUNCE_AMPLIRUDE);
+		player->head[BOUNCE] = (int)(sin(player->head[STEP]) * HEAD_MOV_AMPLIT);
 	}
 	else
 	{
@@ -42,6 +60,17 @@ static void	apply_head_bounce(t_plyr *player)
 	}
 }
 
+/**
+ * Moves the player along the X and Y axes independently.
+ * Each axis is checked separately to allow sliding along walls.
+ * If the destination cell is walkable, the position is updated.
+ * Sets the player moving flag to TRUE after each call.
+ *
+ * @param map    The map struct used for collision checking.
+ * @param player The player struct whose position will be updated.
+ * @param mov_x  The movement delta on the X axis.
+ * @param mov_y  The movement delta on the Y axis.
+ */
 static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
 {
 	int	new_x;
@@ -58,6 +87,14 @@ static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
 	player->moving = TRUE;
 }
 
+/**
+ * Processes keyboard input to move the player in the world.
+ * Reads WASD keys to determine the movement direction relative
+ * to where the player is facing. Holding Left Shift increases
+ * the movement speed to a run. Also triggers the head bob effect.
+ *
+ * @param data  The main data struct containing the player and map.
+ */
 void	input_player_movement(t_data *data)
 {
 	double	pace;

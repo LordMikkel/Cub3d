@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/18 21:23:45 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/19 17:52:04 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,9 +114,13 @@ SRCS =				core/main.c \
 					core/game/game_render.c \
 					core/game/render/raycast_render.c \
 					core/game/render/perform_dda.c \
-					core/game/render/calculate/calculate_distance.c \
-					core/game/render/calculate/calculate_height.c \
+					core/game/render/calculate/calculate_total_perp_distance.c \
+					core/game/render/calculate/calculate_wall_height.c \
+					core/game/render/calculate/calculate_impact_in_wall_x.c \
+					core/game/render/calculate/calculate_relative_texture_x.c \
+					core/game/render/calculate/calculate_relative_texture_y.c \
 					core/game/draw/draw_vertical_line.c \
+					core/game/draw/draw_wall.c \
 					core/game/draw/draw_ceiling.c \
 					core/game/draw/draw_floor.c \
 					parse/check_args.c \

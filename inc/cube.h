@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 21:24:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:50:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,15 @@ void	validate_map(t_data *data, t_map *map);
 void	game_render(void *param);
 void	raycast_render(t_data *data);
 void	perform_dda(t_map *map, t_ray *ray);
-void	calculate_perp_distance(t_plyr *player, t_ray *ray);
-void	calculate_line_height(t_data *data, t_ray *ray);
+void	calculate_wall_height(t_data *data, t_ray *ray);
+void	calculate_total_perp_distance(t_plyr *player, t_ray *ray);
+void	calculate_relative_texture_y(t_data *data, t_ray *ray, t_txtr *texture);
+void	calculate_relative_texture_x(t_data *data, t_ray *ray);
+void	calculate_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	draw_vertical_line(t_data *data, t_ray *ray, int x);
+void	draw_wall(t_data *data, t_ray *ray, t_txtr *textures, int x);
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
-void 	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
+void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
 
 /* ************************************************************************** */
 /*                                 Events                                     */

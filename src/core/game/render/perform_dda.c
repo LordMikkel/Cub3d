@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:27:18 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:30:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 04:47:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	move_y_side(t_ray *ray)
 {
 	ray->pos[Y] += ray->step[Y];
 	ray->side_dist[Y] += ray->delta_dist[Y];
-	if (ray->step[X] < 1)
+	if (ray->step[Y] > 0)
 		ray->wall_side = SOUTH;
 	else
 		ray->wall_side = NORTH;
@@ -37,7 +37,7 @@ static void	move_x_side(t_ray *ray)
 {
 	ray->pos[X] += ray->step[X];
 	ray->side_dist[X] += ray->delta_dist[X];
-	if (ray->step[X] < 1)
+	if (ray->step[X] > 0)
 		ray->wall_side = EAST;
 	else
 		ray->wall_side = WEST;

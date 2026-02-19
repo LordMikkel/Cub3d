@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_distance.c                               :+:      :+:    :+:   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 01:27:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:30:26 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/19 05:08:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../inc/cube.h"
 
-//Study this math concepts behind
-void	calculate_perp_distance(t_plyr *player, t_ray *ray)
+void	draw_wall(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-	if (ray->wall_side == WEST || ray->wall_side == EAST)
+	int	y;
+
+	(void)texture;
+	y = ray->draw_start;
+	while (y < (int)data->img->height)
 	{
-		ray->perp_dist = (ray->pos[X] - player->pos[X] + (1 - ray->step[X]) / 2)
-			/ ray->dir[X];
-	}
-	else
-	{
-		ray->perp_dist = (ray->pos[Y] - player->pos[Y] + (1 - ray->step[Y]) / 2)
-			/ ray->dir[Y];
+		mlx_put_pixel(data->img, x, y, 0xFFFFFFFF);
+		y++;
 	}
 }

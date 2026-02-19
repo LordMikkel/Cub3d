@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_macros.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 23:49:07 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:38:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@
 # define MOUSE_DEADZONE				100
 # define ROTATION_ANGLE_KEYBOARD	0.03
 # define HEAD_BOUNCE_SPEED			0.15
-# define HEAD_BOUNCE_AMPLIRUDE		5
+# define HEAD_MOV_AMPLIT			5
+# define SIDES						2
 
 /* ************************************************************************** */
 /*                                   Game                                     */

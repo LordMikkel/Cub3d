@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_structs.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 23:47:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:23:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,17 @@ typedef enum e_dir
 	E,
 }	t_dir;
 
+typedef enum e_plane
+{
+	HORIZONTAL,
+	VERTICAL,
+}	t_plane;
+
 typedef enum e_head
 {
 	TILT,
-	STEP,
 	BOUNCE,
+	STEP,
 	ATRIBUTES,
 }	t_head;
 
@@ -137,6 +143,8 @@ typedef struct s_txtr
 	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
 	mlx_image_t		*img;
+	double			step;
+	double			coord[AXIS];
 	bool			extracted;
 }	t_txtr;
 
@@ -163,13 +171,15 @@ typedef struct s_ray
 	int				step[AXIS];
 	double			delta_dist[AXIS];
 	double			side_dist[AXIS];
+	double			total_dist;
 	double			perp_dist;
 	t_type			wall_side;
+	double			wall_x;
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
 	int				color;
-	t_txtr			texture;
+	t_txtr			*texture;
 }	t_ray;
 
 typedef struct s_map

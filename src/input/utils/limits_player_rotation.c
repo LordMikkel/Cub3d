@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   limits_player_rotation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:57:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/18 21:25:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 02:45:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	is_near_left_edge(int mouse_x)
  * @param data  The main data struct containing the mlx instance.
  * @param prev  The previous mouse reference position to restore.
  */
-static void	avoid_inifinte_player_rotation(t_data *data, int *prev)
+static void	avoid_infinite_player_rotation(t_data *data, int *prev)
 {
 	mlx_set_mouse_pos(data->mlx, prev[X], prev[Y]);
 }
@@ -71,7 +71,7 @@ static void	update_center(t_data *data, int *prev, int *mouse, int offset)
 {
 	prev[X] = mouse[X] + offset;
 	prev[Y] = mouse[Y];
-	avoid_inifinte_player_rotation(data, prev);
+	avoid_infinite_player_rotation(data, prev);
 }
 
 /**
