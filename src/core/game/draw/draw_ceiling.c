@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ceiling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 00:40:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:21:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/20 21:59:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,25 @@ void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x)
 //         *tex_y += tex->img->height;
 // }
 
-// void	draw_floor(t_data *data, t_ray *ray, t_txtr *textures, int x)
+// void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x)
 // {
-//     t_txtr	*tex;
 //     int		tex_x;
 //     int		tex_y;
 //     int		y;
 
-//     tex = &textures[FLOOR];
-//     if (!tex->img)
+//     if (texture->format == COLOR)
 //     {
 //         y = ray->draw_end + 1;
 //         while (y < (int)data->img->height)
-//             mlx_put_pixel(data->img, x, y++, tex->hex_color);
+//             mlx_put_pixel(data->img, x, y++, texture->hex_color);
 //         return ;
 //     }
 //     y = ray->draw_end + 1;
 //     while (y < (int)data->img->height)
 //     {
-//         get_flat_tex_coords(data, ray, y, &tex_x, &tex_y, tex);
+//         get_flat_tex_coords(data, ray, y, &tex_x, &tex_y, texture);
 //         mlx_put_pixel(data->img, x, y,
-//             get_pixel_color(tex->img->pixels, tex_x, tex_y, tex->img->width));
+//             get_pixel_color(texture->img->pixels, tex_x, tex_y, texture->img->width));
 //         y++;
 //     }
 // }

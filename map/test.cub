@@ -1,16 +1,19 @@
-	 NO tex/wall1.png
-EA tex/wall1.png
- SO		 tex/wall1.png
-WE   			tex/wall1.png
+	 NO tex/matrix.png
+EA tex/matrix.png
+ SO		 tex/matrix.png
+WE   			tex/matrix.png
 
-D tex/wall1.png
+D tex/matrix.png
 
-C 2,20,	 2
-F 25,40,	 25
+#C 2,20,	 2
+#F 25,40,	 25
+
+C tex/matrix.png
+F tex/matrix.png
 
 11111   111111111111111111
 10001111100Z01000001 10D01
-100000100100Z10000111101D1
+100000100100Z10000111101D1111
 10X0000000000D01010D0D0101
 10N000000010Y1010101110101
 10011110001111010001 10111
