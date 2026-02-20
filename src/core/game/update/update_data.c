@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_render.c                                      :+:      :+:    :+:   */
+/*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 05:48:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:33:15 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/20 00:32:56 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/20 00:34:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../inc/cube.h"
 
-void	game_render(void *param)
+static void	update_player(t_plyr *player)
 {
-	t_data	*data;
+	player->head[POS] = player->head[TILT] + player->head[BOUNCE];
+}
 
-	data = param;
-	data->mode = GAME;
-	raycast_render(data);
-	input_player_movement(data);
-	input_player_rotation(data);
-	// input_player_click(data);
-	update_data(data);
+void	update_data(t_data *data)
+{
+	update_player(&data->player);
 }

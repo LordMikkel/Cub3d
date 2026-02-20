@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 20:35:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/20 00:35:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 void	draw_wall(t_data *data, t_ray *ray, t_txtr *textures, int x);
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
 void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
+void	update_data(t_data *data);
 
 /* ************************************************************************** */
 /*                                 Events                                     */

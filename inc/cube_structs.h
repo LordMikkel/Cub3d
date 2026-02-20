@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 21:11:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/20 00:05:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef enum e_type
 
 typedef enum e_form
 {
+	ZERO_FORMAT,
 	COLOR,
 	TEXTURE,
 }	t_form;
@@ -100,6 +101,7 @@ typedef enum e_head
 	TILT,
 	BOUNCE,
 	STEP,
+	POS,
 	ATRIBUTES,
 }	t_head;
 
@@ -177,7 +179,6 @@ typedef struct s_ray
 	int				step[AXIS];
 	double			delta_dist[AXIS];
 	double			side_dist[AXIS];
-	double			total_dist;
 	double			perp_dist;
 	t_type			wall_side;
 	double			wall[AXIS];

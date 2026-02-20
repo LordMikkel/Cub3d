@@ -1,7 +1,7 @@
 	 NO tex/wall1.png
 EA tex/wall1.png
  SO		 tex/wall1.png
-WE   			125, 		125, 125
+WE   			tex/wall1.png
 
 D tex/wall1.png
 

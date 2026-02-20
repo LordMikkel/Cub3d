@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/25 17:32:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 22:30:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,20 +128,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void **));
 typedef struct s_format
 {
 	int		width;			// Flags '0' y '-' min width (ej: %-10s)
-	int		precision;		// Flag '.' Presicion (ej: %.5d)
+	int		precision;		// Flag '.' precision (ej: %.5d)
 	int		zero_pad;		// Flag '0' (ej: %05d)
 	int		left_align;		// Flag '-' (ej: %-10s)
 	int		hash;			// Flag '#' (ej: %#x)
 	int		space;			// Flag ' ' (ej: % d)
 	int		plus;			// Flag '+' (ej: %+d)
-	char	specifier;		// Chat of convertion (c, s, d, etc.)
+	char	specifier;		// Char of conversion (c, s, d, etc.)
 }	t_format;
 
-// ------------- Funtion (Principal) ----------------
+// ------------- function (Principal) ----------------
 int		ft_printf_fd(int fd, char const *str, ...);
 int		ft_var_printf_fd(int fd, char const *str, va_list args);
 
-// ----------- Aux. Funtion (flags bonus) ------------
+// ----------- Aux. function (flags bonus) ------------
 void	ft_apply_flags(char **str, t_format *fmt);
 void	ft_apply_hash(char **str, t_format *fmt);
 void	ft_apply_left_align(char **str, t_format *fmt);
@@ -151,7 +151,7 @@ void	ft_apply_space(char **str, t_format *fmt);
 void	ft_apply_zero_pad(char **str, t_format *fmt);
 void	ft_apply_min_width(char **str, t_format *fmt);
 
-// ------------ Print Funtion (Utils) ----------------
+// ------------ Print function (Utils) ----------------
 int		ft_print_char_fd(char c, t_format *fmt, int fd);
 int		ft_print_str_fd(char *str, t_format *fmt, int fd);
 int		ft_print_ptr_fd(void *ptr, t_format *fmt, int fd);
@@ -160,11 +160,11 @@ int		ft_print_unsigned_fd(unsigned int n, t_format *fmt, int fd);
 int		ft_print_hex_fd(unsigned int n, t_format *fmt, int uppercase, int fd);
 int		ft_print_float_fd(double f, t_format *fmt, int fd);
 
-// ------------ Aux. Funtion (Utils) --------------
+// ------------ Aux. function (Utils) --------------
 char	*ft_itoa_base(long n, char *base);
 char	*ft_utoa_base(unsigned long n);
 
-// ------------ Aux. Funtion float (Utils) --------------
+// ------------ Aux. function float (Utils) --------------
 long	ft_power_10(int exp);
 int		ft_is_special(double f, char **result);
 void	ft_add_zeros(char *result, int *pos, int count);
@@ -177,7 +177,7 @@ void	ft_add_zeros(char *result, int *pos, int count);
 #  define BUFFER_SIZE 1024
 # endif
 
-// ------------- Funtion (Principal) --------------
+// ------------- function (Principal) --------------
 char	*get_next_line(int fd);
 
 #endif

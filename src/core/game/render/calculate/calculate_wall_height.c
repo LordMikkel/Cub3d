@@ -6,31 +6,63 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 17:14:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/20 00:36:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+/**
+ * Prevents division by zero and extreme integer overflows.
+ *
+ * If the player gets too close to a wall, the perpendicular distance
+ * approaches zero. Dividing by exactly zero crashes the program, and
+ * dividing by a microscopic fraction creates a wall height so massive
+ * that it overflows memory limits. Clamping it ensures engine stability.
+ *
+ * @param ray  The ray whose distance needs to be validated.
+ */
 static void	protect_zero_distance(t_ray *ray)
 {
 	if (ray->perp_dist < MIN_DISTANCE)
 		ray->perp_dist = MIN_DISTANCE;
 }
 
-static void	define_start_and_end_pixel_wall(t_data *data, t_ray *ray)
+/**
+ * Calculates the top and bottom screen coordinates to draw the wall.
+ *
+ * A wall is drawn symmetrically from the center of the screen. By
+ * adding the player's head tilt and walking bounce, the visual center
+ * physically shifts up or down. Subtracting half the wall height from
+ * this dynamic center gives the ceiling pixel, and adding it gives the
+ * floor pixel, perfectly centering the wall in the player's vision.
+ *
+ * @param d       Main data structure containing screen dimensions.
+ * @param player  Player structure containing head movement offsets.
+ * @param ray     The ray structure to store the drawing boundaries.
+ */
+static void	get_start_and_end_pixel_wall(t_data *d, t_plyr *player, t_ray *ray)
 {
 	int		img_center;
 	int		half_line_height;
-	double	player_head_pos;
 
-	player_head_pos = data->player.head[TILT] + data->player.head[BOUNCE];
-	img_center = (data->img->height / 2) + (int)player_head_pos;
+	img_center = (d->img->height / 2) + (int)player->head[POS];
 	half_line_height = ray->line_height / 2;
 	ray->draw_start = img_center - half_line_height;
 	ray->draw_end = img_center + half_line_height;
 }
 
+/**
+ * Clamps the drawing boundaries to the physical screen dimensions.
+ *
+ * When a player is very close to a wall, its calculated top and bottom
+ * pixels will extend far beyond the monitor's edges. Attempting to draw
+ * outside the image buffer array causes a fatal segmentation fault. This
+ * safely caps the coordinates strictly within the visible window limits.
+ *
+ * @param data  Main structure containing the image buffer height.
+ * @param ray   The ray whose drawing boundaries will be clamped.
+ */
 static void	protect_image_limits(t_data *data, t_ray *ray)
 {
 	if (ray->draw_start < 0)
@@ -39,10 +71,21 @@ static void	protect_image_limits(t_data *data, t_ray *ray)
 		ray->draw_end = data->img->height - 1;
 }
 
+/**
+ * Main orchestrator for vertical wall rendering height calculations.
+ *
+ * Converts the mathematical perpendicular distance into a physical
+ * screen pixel height using inverse proportion. It securely guards
+ * against extreme close-up math errors, calculates the exact Y screen
+ * coordinates using camera offsets, and clamps them to prevent crashes.
+ *
+ * @param data  Main program data structure.
+ * @param ray   The current ray being processed.
+ */
 void	calculate_wall_height(t_data *data, t_ray *ray)
 {
 	protect_zero_distance(ray);
 	ray->line_height = (int)(data->img->height / ray->perp_dist);
-	define_start_and_end_pixel_wall(data, ray);
+	get_start_and_end_pixel_wall(data, &data->player, ray);
 	protect_image_limits(data, ray);
 }

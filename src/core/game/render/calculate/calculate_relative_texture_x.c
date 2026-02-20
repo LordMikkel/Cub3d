@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:59:52 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 21:09:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/19 22:47:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static bool	should_invert_texture(t_ray *ray)
 {
-	if ((ray->wall_side == WEST || ray->wall_side == EAST) && ray->dir[X] > 0)
+	if ((ray->wall_side == WEST || ray->wall_side == EAST) && ray->dir[X] < 0)
 		return (TRUE);
-	if ((ray->wall_side == NORTH || ray->wall_side == SOUTH) && ray->dir[Y] < 0)
+	if ((ray->wall_side == NORTH || ray->wall_side == SOUTH) && ray->dir[Y] > 0)
 		return (TRUE);
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/19 21:14:55 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/20 00:57:21 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ LIBFT_H				= $(LIBFT_DIR)/libft_plus.h
 LIBFT_MAKEFILE		= $(LIBFT_DIR)/Makefile
 MLX_A				= $(MLX_DIR)/build/libmlx42.a
 MLX_H				= $(MLX_DIR)/include/include/MLX42/MLX42.h
-SAN_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
+SANL_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
+SANT_SUPP			= $(EXT_DIR)/sanitize_threads.supp
 VAL_SUPP			= $(EXT_DIR)/valgrind_leaks.supp
 MAP					= $(MAP_DIR)/test.cub
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
@@ -123,6 +124,7 @@ SRCS =				core/main.c \
 					core/game/draw/draw_wall.c \
 					core/game/draw/draw_ceiling.c \
 					core/game/draw/draw_floor.c \
+					core/game/update/update_data.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
@@ -218,17 +220,17 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                            Secondary Targets                                 #
 # **************************************************************************** #
 
-# test sanitize in cub3d
+# test sanitize leaks in cub3d
 test:
 	@clear
 	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=address,undefined -O0" VFLAGS="" OFLAGS="" all
-	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SAN_SUPP) ./$(NAME) $(MAP)
+	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SANL_SUPP) ./$(NAME) $(MAP)
 
-# Test leaks in cub3d
-leaks:
+# test sanitize threads in cub3d
+test-races:
 	@clear
-	@$(MAKE) --no-print-directory SFLAGS="" all
-	@valgrind --suppressions=$(VAL_SUPP) --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
+	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=thread,undefined -O0" VFLAGS="" OFLAGS="" re
+	@LD_PRELOAD="" TSAN_OPTIONS="suppressions=$(SANT_SUPP) ignore_noninstrumented_modules=1" ./$(NAME) $(MAP)
 
 # Test the norminette in my .c files
 norm:
