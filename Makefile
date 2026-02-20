@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/20 00:57:21 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/20 22:23:07 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ MLX_H				= $(MLX_DIR)/include/include/MLX42/MLX42.h
 SANL_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
 SANT_SUPP			= $(EXT_DIR)/sanitize_threads.supp
 VAL_SUPP			= $(EXT_DIR)/valgrind_leaks.supp
-MAP					= $(MAP_DIR)/test.cub
+MAP					= $(MAP_DIR)/matrix.cub
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
