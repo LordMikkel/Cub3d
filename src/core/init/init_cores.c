@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 20:51:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:36:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:01:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
  *
  * @param data  Main structure where the core count will be saved.
  */
-void	init_cores(t_data *data)
+void	init_cores(t_data *data, t_opt *vars)
 {
-	data->n_cores = sysconf(_SC_NPROCESSORS_ONLN);
-	if (data->n_cores < 1)
+	vars->n_cores = sysconf(_SC_NPROCESSORS_ONLN);
+	if (vars->n_cores < 1)
 		exit_error(data, ERR_CORES, EXIT_FAILURE);
-	if (data->n_cores > MAX_THREADS)
-		data->n_cores = MAX_THREADS;
+	if (vars->n_cores > MAX_THREADS)
+		vars->n_cores = MAX_THREADS;
 }

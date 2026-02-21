@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:05:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:37:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
 typedef struct s_plyr		t_plyr;
 typedef struct s_map		t_map;
+typedef struct s_opt		t_opt;
 typedef struct s_data		t_data;
 
 typedef enum e_mode
@@ -180,15 +181,18 @@ typedef struct s_ray
 	double			delta_dist[AXIS];
 	double			side_dist[AXIS];
 	double			perp_dist;
-	t_type			wall_side;
+	double			screen_center[AXIS];
+	int				img_center[AXIS];
 	double			wall[AXIS];
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-	int				color;
+	double			ceiling[AXIS];
+	double			floor[AXIS];
+	t_type			wall_side;
+	int				wall_height;
+	int				wall_start;
+	int				wall_end;
 	t_txtr			*texture;
-	double			tex_step;
 	double			tex[AXIS];
+	double			tex_step;
 }	t_ray;
 
 typedef struct s_map
@@ -209,6 +213,13 @@ typedef struct s_map
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 
+typedef struct s_opt
+{
+	int				half_img_height;
+	int				half_img_width;
+	int				n_cores;
+}	t_opt;
+
 typedef struct s_data
 {
 	t_mode			mode;
@@ -217,7 +228,7 @@ typedef struct s_data
 	t_enemy			*enemies;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	int				n_cores;
+	t_opt			vars;
 	int				status;
 }	t_data;
 

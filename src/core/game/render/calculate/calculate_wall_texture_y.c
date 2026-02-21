@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_relative_texture_y.c                     :+:      :+:    :+:   */
+/*   calculate_wall_texture_y.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:12:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:09:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:26:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,15 @@
  * @param ray      The ray containing line height and drawing boundaries.
  * @param texture  The texture structure to get the true image height.
  */
-void	calculate_relative_texture_y(t_data *data, t_ray *ray, t_txtr *texture)
+void	calculate_wall_texture_y(t_ray *ray, t_txtr *texture)
 {
-	double	screen_center_y;
 	double	theoretical_wall_top_y;
 	double	clipped_screen_pixels;
 
 	if (ray->texture->format != TEXTURE)
 		return ;
-	ray->tex_step = (double)texture->img->height / ray->line_height;
-	screen_center_y = (double)data->img->height / 2.0 + data->player.head[POS];
-	theoretical_wall_top_y = screen_center_y - (ray->line_height / 2.0);
-	clipped_screen_pixels = ray->draw_start - theoretical_wall_top_y;
+	ray->tex_step = (double)texture->img->height / ray->wall_height;
+	theoretical_wall_top_y = ray->screen_center[Y] - (ray->wall_height / 2.0);
+	clipped_screen_pixels = ray->wall_start - theoretical_wall_top_y;
 	ray->tex[Y] = clipped_screen_pixels * ray->tex_step;
 }

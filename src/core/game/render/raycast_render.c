@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:21:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 19:43:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	cast_single_ray(t_data *data, int x)
 	perform_dda(&data->map, &ray);
 	calculate_total_perp_distance(&data->player, &ray);
 	calculate_impact_in_wall_x(&data->player, &ray);
-	calculate_relative_texture_x(data, &ray);
+	calculate_wall_texture_x(data, &ray);
 	calculate_wall_height(data, &ray);
-	calculate_relative_texture_y(data, &ray, ray.texture);
+	calculate_wall_texture_y(&ray, ray.texture);
 	// render_lights();
 	draw_vertical_line(data, &ray, x);
 }
@@ -70,7 +70,7 @@ static void	render_threads(t_data *data, t_thread *threads, int i)
 {
 	int	cols_per_thread;
 
-	cols_per_thread = data->img->width / data->n_cores;
+	cols_per_thread = data->img->width / data->vars.n_cores;
 	init_thread(data, threads, i, cols_per_thread);
 	pthread_create(&threads[i].thread, NULL, render_section, &threads[i]);
 }
@@ -93,13 +93,13 @@ void	raycast_render(t_data *data)
 	int			i;
 
 	i = 0;
-	while (i < data->n_cores)
+	while (i < data->vars.n_cores)
 	{
 		render_threads(data, threads, i);
 		i++;
 	}
 	i = 0;
-	while (i < data->n_cores)
+	while (i < data->vars.n_cores)
 	{
 		pthread_join(threads[i].thread, NULL);
 		i++;

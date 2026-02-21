@@ -6,11 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:03:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:29:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
+
+uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
 
 /**
  * Draws a vertical line of a single solid color on the screen.
@@ -22,39 +24,16 @@
  * @param texture  The struct containing the parsed hex color.
  * @param x        The current vertical strip of the screen (pixel column).
  */
-static void draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
+static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-	int y;
+	int	y;
 
-	y = ray->draw_start;
-	while (y <= ray->draw_end)
+	y = ray->wall_start;
+	while (y <= ray->wall_end)
 	{
 		mlx_put_pixel(data->img, x, y, texture->hex_color);
 		y++;
 	}
-}
-
-/**
- * Extracts and packs the RGBA color of a specific pixel from texture memory.
- * 1. Flattens the 2D coordinates (X, Y) into a 1D memory index.
- * 2. Multiplies by 4 because MLX42 stores 4 bytes per pixel (R, G, B, A).
- * 3. Uses bitwise shifts to move each byte into its correct position
- * and fuses them with bitwise OR (|) into a single 32-bit integer.
- *
- * @param pixels  Pointer to the raw 1D array of texture pixels.
- * @param tex     Array containing the current X and Y texture coordinates.
- * @param width   The true width of the texture image.
- * @return        A single uint32_t representing the packed color.
- */
-static uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width)
-{
-	uint8_t	*p;
-
-	p = pixels + (tex[Y] * width + tex[X]) * 4;
-	return ((uint32_t)p[0] << 24
-	| (uint32_t)p[1] << 16
-	| (uint32_t)p[2] << 8
-	| (uint32_t)p[3]);
 }
 
 /**
@@ -69,19 +48,19 @@ static uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width)
  * @param texture  The texture struct containing the loaded image data.
  * @param x        The current vertical strip of the screen (pixel column).
  */
-static void draw_txtr_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
+static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 {
-	int			tex[AXIS];
+	int			mapped_tex[AXIS];
 	uint32_t	color;
 
-	tex[X] = (int)ray->tex[X] % texture->img->width;
-	while (ray->draw_start <= ray->draw_end)
+	mapped_tex[X] = (int)ray->tex[X] % tex->img->width;
+	while (ray->wall_start <= ray->wall_end)
 	{
-		tex[Y] = (int)ray->tex[Y] % texture->img->height;
-		color = get_pixel_color(texture->img->pixels, tex, texture->img->width);
-		mlx_put_pixel(data->img, x, ray->draw_start, color);
+		mapped_tex[Y] = (int)ray->tex[Y] % tex->img->height;
+		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
+		mlx_put_pixel(data->img, x, ray->wall_start, color);
 		ray->tex[Y] += ray->tex_step;
-		ray->draw_start++;
+		ray->wall_start++;
 	}
 }
 
@@ -97,7 +76,7 @@ static void draw_txtr_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
  */
 void	draw_wall(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-	if(texture->format == COLOR)
+	if (texture->format == COLOR)
 		draw_solid_column(data, ray, texture, x);
 	else if (texture->format == TEXTURE)
 		draw_txtr_column(data, ray, texture, x);
