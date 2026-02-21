@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/20 22:23:07 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/21 23:13:38 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ SRCS =				core/main.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
 					core/init/init_ray.c \
+					core/init/init_opt.c \
 					core/init/init_cores.c \
 					core/init/init_thread.c \
 					core/init/init_door.c \
@@ -116,14 +117,15 @@ SRCS =				core/main.c \
 					core/game/render/raycast_render.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_total_perp_distance.c \
-					core/game/render/calculate/calculate_wall_height.c \
 					core/game/render/calculate/calculate_impact_in_wall_x.c \
-					core/game/render/calculate/calculate_relative_texture_x.c \
-					core/game/render/calculate/calculate_relative_texture_y.c \
+					core/game/render/calculate/calculate_wall_height.c \
+					core/game/render/calculate/calculate_wall_texture_x.c \
+					core/game/render/calculate/calculate_wall_texture_y.c \
 					core/game/draw/draw_vertical_line.c \
 					core/game/draw/draw_wall.c \
 					core/game/draw/draw_ceiling.c \
 					core/game/draw/draw_floor.c \
+					core/game/draw/get_pixel_color.c \
 					core/game/update/update_data.c \
 					parse/check_args.c \
 					parse/parse_file.c \
@@ -151,7 +153,7 @@ SRCS =				core/main.c \
 					input/utils/limits_player_rotation.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
-					debug/dbg_print_player_info.c \
+					debug/dbg_print_player_pos.c \
 					core/clean/clean_all.c \
 					core/clean/clean_mlx.c \
 					core/clean/clean_map.c \

@@ -6,78 +6,67 @@
 /*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 00:40:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 22:56:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 23:12:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-// void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x)
-// {
-// 	int	y;
+uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
 
-// 	y = 0;
-// 	while (y < ray->draw_start)
-// 	{
-// 		mlx_put_pixel(data->img, x, y, texture->hex_color);
-// 		y++;
-// 	}
-// }
-
-static uint32_t	get_pixel_color(uint8_t *pixels, int tex_x, int tex_y, int width)
+static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-    uint8_t	*p;
+	int	y;
 
-    p = pixels + (tex_y * width + tex_x) * 4;
-    return ((uint32_t)p[0] << 24 | (uint32_t)p[1] << 16
-        | (uint32_t)p[2] << 8 | (uint32_t)p[3]);
+	y = 0;
+	while (y < ray->wall_start)
+	{
+		mlx_put_pixel(data->img, x, y, texture->hex_color);
+		y++;
+	}
+	return ;
 }
 
-static void	get_flat_tex_coords(t_data *data, t_ray *ray,
-                int y, int *tex_x, int *tex_y, t_txtr *tex)
+static void	get_ceiling_tex_coord(t_data *data, t_ray *ray, int y)
 {
-    double	row_dist;
-    double	floor_x;
-    double	floor_y;
-    double	step_x;
-    double	step_y;
-    int		half_h;
+	double	row_dist;
 
-    half_h = data->img->height / 2;
-    row_dist = (double)half_h / (double)(y - half_h);
-    step_x = row_dist * (data->player.fov[X] * 2.0) / data->img->width;
-    step_y = row_dist * (data->player.fov[Y] * 2.0) / data->img->width;
-    floor_x = data->player.pos[X] + row_dist * ray->dir[X]
-        - step_x * (data->img->width / 2.0);
-    floor_y = data->player.pos[Y] + row_dist * ray->dir[Y]
-        - step_y * (data->img->width / 2.0);
-    *tex_x = (int)(floor_x * tex->img->width) % (int)tex->img->width;
-    *tex_y = (int)(floor_y * tex->img->height) % (int)tex->img->height;
-    if (*tex_x < 0)
-        *tex_x += tex->img->width;
-    if (*tex_y < 0)
-        *tex_y += tex->img->height;
+	row_dist = data->vars.half_img_height / (ray->screen_center[Y] - y);
+	ray->ceiling[X] = data->player.pos[X] + row_dist * ray->dir[X];
+	ray->ceiling[Y] = data->player.pos[Y] + row_dist * ray->dir[Y];
 }
 
-void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x)
+static void	get_mapped_tex_coord(t_ray *ray, int *mapped_tex, mlx_image_t *txtr)
 {
-    int		tex_x;
-    int		tex_y;
-    int		y;
+	mapped_tex[X] = (int)(ray->ceiling[X] * txtr->width) % (int)txtr->width;
+	mapped_tex[Y] = (int)(ray->ceiling[Y] * txtr->height) % (int)txtr->height;
+	if (mapped_tex[X] < 0)
+		mapped_tex[X] += txtr->width;
+	if (mapped_tex[Y] < 0)
+		mapped_tex[Y] += txtr->height;
+}
 
-    if (texture->format == COLOR)
-    {
-        y = ray->draw_end + 1;
-        while (y < (int)data->img->height)
-            mlx_put_pixel(data->img, x, y++, texture->hex_color);
-        return ;
-    }
-    y = ray->draw_end + 1;
-    while (y < (int)data->img->height)
-    {
-        get_flat_tex_coords(data, ray, y, &tex_x, &tex_y, texture);
-        mlx_put_pixel(data->img, x, y,
-            get_pixel_color(texture->img->pixels, tex_x, tex_y, texture->img->width));
-        y++;
-    }
+static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
+{
+	int			y;
+	uint32_t	color;
+	int			mapped_tex[AXIS];
+
+	y = 0;
+	while (y < ray->wall_start)
+	{
+		get_ceiling_tex_coord(data, ray, y);
+		get_mapped_tex_coord(ray, mapped_tex, tex->img);
+		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
+		mlx_put_pixel(data->img, x, y, color);
+		y++;
+	}
+}
+
+void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x)
+{
+	if (texture->format == COLOR)
+		draw_solid_column(data, ray, texture, x);
+	else if (texture->format == TEXTURE)
+		draw_txtr_column(data, ray, texture, x);
 }

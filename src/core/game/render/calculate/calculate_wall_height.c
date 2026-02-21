@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:36:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:26:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ static void	protect_zero_distance(t_ray *ray)
  * @param player  Player structure containing head movement offsets.
  * @param ray     The ray structure to store the drawing boundaries.
  */
-static void	get_start_and_end_pixel_wall(t_data *d, t_plyr *player, t_ray *ray)
+static void	get_start_end_pixel_wall(t_data *data, t_ray *ray)
 {
-	int		img_center;
 	int		half_line_height;
 
-	img_center = (d->img->height / 2) + (int)player->head[POS];
-	half_line_height = ray->line_height / 2;
-	ray->draw_start = img_center - half_line_height;
-	ray->draw_end = img_center + half_line_height;
+	ray->screen_center[Y] = (double)data->img->height / 2.0;
+	ray->screen_center[Y] = ray->screen_center[Y] + data->player.head[POS];
+	half_line_height = ray->wall_height / 2;
+	ray->wall_start = (int)ray->screen_center[Y] - half_line_height;
+	ray->wall_end = (int)ray->screen_center[Y] + half_line_height;
 }
 
 /**
@@ -65,10 +65,10 @@ static void	get_start_and_end_pixel_wall(t_data *d, t_plyr *player, t_ray *ray)
  */
 static void	protect_image_limits(t_data *data, t_ray *ray)
 {
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	if (ray->draw_end >= (int)data->img->height)
-		ray->draw_end = data->img->height - 1;
+	if (ray->wall_start < 0)
+		ray->wall_start = 0;
+	if (ray->wall_end >= (int)data->img->height)
+		ray->wall_end = data->img->height - 1;
 }
 
 /**
@@ -85,7 +85,7 @@ static void	protect_image_limits(t_data *data, t_ray *ray)
 void	calculate_wall_height(t_data *data, t_ray *ray)
 {
 	protect_zero_distance(ray);
-	ray->line_height = (int)(data->img->height / ray->perp_dist);
-	get_start_and_end_pixel_wall(data, &data->player, ray);
+	ray->wall_height = (int)(data->img->height / ray->perp_dist);
+	get_start_end_pixel_wall(data, ray);
 	protect_image_limits(data, ray);
 }

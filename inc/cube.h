@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:35:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	game_loop(t_data *data);
 /* ************************************************************************** */
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
-void	init_cores(t_data *data);
+void	init_opt(t_data *data);
+void	init_cores(t_data *data, t_opt *vars);
 void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
 void	init_ray(t_data *data, t_plyr player, t_ray *ray, int x);
@@ -66,8 +67,8 @@ void	raycast_render(t_data *data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_wall_height(t_data *data, t_ray *ray);
 void	calculate_total_perp_distance(t_plyr *player, t_ray *ray);
-void	calculate_relative_texture_y(t_data *data, t_ray *ray, t_txtr *texture);
-void	calculate_relative_texture_x(t_data *data, t_ray *ray);
+void	calculate_wall_texture_y(t_ray *ray, t_txtr *texture);
+void	calculate_wall_texture_x(t_data *data, t_ray *ray);
 void	calculate_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 void	draw_wall(t_data *data, t_ray *ray, t_txtr *textures, int x);
@@ -124,6 +125,6 @@ void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 /* ************************************************************************** */
 void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
-void	dbg_print_player_info(t_plyr *player, int *mouse, int fd);
+void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);
 
 #endif

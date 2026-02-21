@@ -5,9 +5,11 @@ WE   			tex/matrix.png
 
 D tex/matrix.png
 
-C 2,20,	 2
-F 25,40,	 25
+#C 2,20,	 2
+#F 25,40,	 25
 
+C tex/matrix.png
+F tex/matrix.png
 
 11111   111111111111111111
 10001111100Z01000001 10D01

@@ -11,3 +11,4 @@ leak:libgobject
 leak:libX11
 leak:libdl
 leak:_dl_open
+leak:???

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 17:38:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:00:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@
 # define ERR_ARGS			KO "Invalid number of arguments\n"
 # define ERR_FILE_EXT		KO "Invalid file extension. Expected .cub\n"
 # define ERR_FILE_OPEN		KO "Could not open file: %s\n"
-# define ERR_CORES			KO "could not determine the number of cores"
+# define ERR_CORES			KO "could not determine the number of cores\n"
 
 // Map Parsing Errors
 # define ERR_MAP_EMPTY		KO "Map file is empty\n"

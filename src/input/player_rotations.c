@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 01:28:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 21:02:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ void	input_player_rotation(t_data *data)
 
 	keyboard_rotation(data);
 	mlx_get_mouse_pos(data->mlx, &mouse[X], &mouse[Y]);
-	dbg_print_player_info(&data->player, mouse, STDOUT);
+	dbg_print_player_pos(&data->player, mouse, STDOUT);
 	mouse_rotation(data, mouse, center);
 }

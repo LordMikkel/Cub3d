@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 21:45:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:36:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/21 19:43:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_thread(t_data *data, t_thread *threads, int i, int cols_per_thread)
 {
 	threads[i].data = data;
 	threads[i].x[START] = i * cols_per_thread;
-	if (i == data->n_cores - 1)
+	if (i == data->vars.n_cores - 1)
 		threads[i].x[END] = data->img->width;
 	else
 		threads[i].x[END] = (i + 1) * cols_per_thread;
