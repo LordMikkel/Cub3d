@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 20:37:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:04:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ typedef enum e_head
 	ATRIBUTES,
 }	t_head;
 
+typedef enum e_limits
+{
+	MIN_X,
+	MAX_X,
+	MIN_Y,
+	MAX_Y,
+	LIMITS,
+}	t_limits;
+
 typedef enum e_mov
 {
 	FRONT,
@@ -163,8 +172,18 @@ typedef struct s_light
 	double			intensity;
 	double			radius;
 	int				color[RGB];
+	int				bounds[LIMITS];
+	uint32_t		hex_color;
 	t_txtr			sprite;
 }	t_light;
+
+typedef struct s_door
+{
+	double	pos[AXIS];
+	bool	is_open;
+	double	open_percent;
+	t_txtr	*sprites;
+}	t_door;
 
 typedef struct s_thread
 {
@@ -199,6 +218,7 @@ typedef struct s_map
 {
 	int				fd;
 	int				file_size;
+	int				grid_size;
 	char			**map_file;
 	char			**map_grid;
 	char			**map_copy;
@@ -209,7 +229,10 @@ typedef struct s_map
 	int				n_enemies;
 	int				n_doors;
 	int				n_lights;
+	int				n_features;
 	t_light			*lights;
+	double			**lightmap;
+	int				lightmap_limit[AXIS];
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 

@@ -6,13 +6,66 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 20:29:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:01:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
+uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
+uint32_t		apply_light(t_data *data, uint32_t color, double brightness);
+
+/**
+ * Calculates the exact decimal coordinate to sample the light from.
+ * Slides along the wall using the hit fraction and takes a micro-step
+ * backwards (0.05) using the ray's step direction to read the light
+ * "in the air". Also normalizes the grid coordinate for negative steps.
+ *
+ * @param ray        The current ray containing hit data.
+ * @param exact_wall Array to store the resulting precise [X, Y] coordinates.
+ */
+static void	set_exact_light_coord(t_ray *ray, double *exact_wall)
+{
+	double	fraction;
+
+	fraction = ray->wall[X];
+	exact_wall[X] = ray->pos[X];
+	exact_wall[Y] = ray->pos[Y];
+	if (ray->wall_side == NORTH || ray->wall_side == SOUTH)
+	{
+		exact_wall[X] += fraction;
+		exact_wall[Y] -= (ray->step[Y] * 0.05);
+		if (ray->step[Y] < 0)
+			exact_wall[Y] += 1.0;
+	}
+	else
+	{
+		exact_wall[Y] += fraction;
+		exact_wall[X] -= (ray->step[X] * 0.05);
+		if (ray->step[X] < 0)
+			exact_wall[X] += 1.0;
+	}
+}
+
+/**
+ * Retrieves the precise brightness level for a specific vertical strip
+ * of a wall. It delegates the spatial calculation, scales the result
+ * to match the high-resolution lightmap, and fetches the data.
+ *
+ * @param data  Main program structure.
+ * @param ray   The current ray being cast.
+ * @return      The brightness multiplier (e.g., 0.0 to 1.0).
+ */
+static double	get_wall_brightness(t_data *data, t_ray *ray)
+{
+	double	exact_wall[AXIS];
+	int		light[AXIS];
+
+	set_exact_light_coord(ray, exact_wall);
+	light[X] = (int)(exact_wall[X] * LIGHT_RESOLUTION);
+	light[Y] = (int)(exact_wall[Y] * LIGHT_RESOLUTION);
+	return (get_brightness(&data->map, light[X], light[Y]));
+}
 
 /**
  * Draws a vertical line of a single solid color on the screen.
@@ -26,12 +79,16 @@ uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
  */
 static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
-	int	y;
+	int			y;
+	double		brightness;
+	uint32_t	color;
 
 	y = ray->wall_start;
+	brightness = get_wall_brightness(data, ray);
+	color = apply_light(data, texture->hex_color, brightness);
 	while (y <= ray->wall_end)
 	{
-		mlx_put_pixel(data->img, x, y, texture->hex_color);
+		mlx_put_pixel(data->img, x, y, color);
 		y++;
 	}
 }
@@ -51,13 +108,16 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 {
 	int			mapped_tex[AXIS];
+	double		brightness;
 	uint32_t	color;
 
-	mapped_tex[X] = (int)ray->tex[X] % tex->img->width;
+	mapped_tex[X] = (int)ray->tex[X] & TEXTURE_MODULE;
+	brightness = get_wall_brightness(data, ray);
 	while (ray->wall_start <= ray->wall_end)
 	{
-		mapped_tex[Y] = (int)ray->tex[Y] % tex->img->height;
+		mapped_tex[Y] = (int)ray->tex[Y] & TEXTURE_MODULE;
 		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
+		color = apply_light(data, color, brightness);
 		mlx_put_pixel(data->img, x, ray->wall_start, color);
 		ray->tex[Y] += ray->tex_step;
 		ray->wall_start++;

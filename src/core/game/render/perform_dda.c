@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:27:18 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:15:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:21:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param ray  The current ray containing the (X, Y) grid position.
  * @return     TRUE if a collision happened, FALSE if the path is clear.
  */
-static bool	is_hit_wall(t_map *map, t_ray *ray)
+bool	is_hit_wall(t_map *map, t_ray *ray)
 {
 	if (ray->pos[Y] < 0 || ray->pos[Y] >= map->map_limit[Y])
 		return (TRUE);
@@ -34,7 +34,7 @@ static bool	is_hit_wall(t_map *map, t_ray *ray)
 }
 
 /**
- * Takes a "jump" with the ray to the next grid cell on the horizontal axis (X).
+ * Takes a "jump" with the ray to the next grid cell on the vertical axis (Y).
  *
  * 1. Position: Moves the ray to the next map column (+1 right or -1 left).
  * 2. Next Target: Updates `side_dist` by adding `delta_dist`
@@ -46,7 +46,7 @@ static bool	is_hit_wall(t_map *map, t_ray *ray)
  *
  * @param ray  The current ray being cast.
  */
-static void	move_y_side(t_ray *ray)
+void	move_y_side(t_ray *ray)
 {
 	ray->pos[Y] += ray->step[Y];
 	ray->side_dist[Y] += ray->delta_dist[Y];
@@ -69,7 +69,7 @@ static void	move_y_side(t_ray *ray)
  *
  * @param ray  The current ray being cast.
  */
-static void	move_x_side(t_ray *ray)
+void	move_x_side(t_ray *ray)
 {
 	ray->pos[X] += ray->step[X];
 	ray->side_dist[X] += ray->delta_dist[X];

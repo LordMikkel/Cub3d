@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 02:10:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 02:11:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/22 23:26:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 bool	is_light(char c)
 {
-	if (c == 'D')
+	if (c == 'L')
 		return (TRUE);
 	return (FALSE);
 }

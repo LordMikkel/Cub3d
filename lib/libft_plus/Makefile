@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/01/26 00:01:11 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/22 23:13:28 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libft_plus.a
 
 # Compilador y opciones
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -lm
 
 # Colores
 DEFAULT = \033[0;39m
@@ -65,6 +65,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strtof.c \
 		libft/ft_square.c \
 		libft/ft_max.c \
+		libft/ft_distance.c \
 		libft/ft_alloc.c \
 		libft/ft_calloc.c \
 		libft/ft_realloc.c \
@@ -101,6 +102,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_free.c \
 		libft/ft_free_str_array.c \
 		libft/ft_free_int_matrix.c \
+		libft/ft_free_double_matrix.c \
 		libft/ft_free_multi.c \
 		libft/ft_lstnew_bonus.c \
 		libft/ft_lstadd_front_bonus.c \

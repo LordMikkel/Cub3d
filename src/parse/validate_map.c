@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 02:43:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:53:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	get_elements(t_data *data, t_map *map)
 				init_player(data, x, y, map->map_grid[y][x]);
 			else if (is_enemy(map->map_grid[y][x]))
 				init_enemy(data, x, y, map->map_grid[y][x]);
-			// else if (is_light(map->map_grid[y][x]))
-			// 	init_light(data, x, y, map->map_grid[y][x]);
+			else if (is_light(map->map_grid[y][x]))
+				init_light(data, x, y, map->map_grid[y][x]);
 			else if (is_door(map->map_grid[y][x]))
 			{
 				if (!is_valid_door(map, x, y))

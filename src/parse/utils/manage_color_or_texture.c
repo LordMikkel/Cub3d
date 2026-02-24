@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 20:13:43 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 21:06:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:54:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
  * @param line  The raw config line.
  * @param type  The identifier type.
  */
-void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
-{
-	if (ft_strchr(line, ','))
-		get_color(data, &map->textures[type], line, type);
-	else
-		get_texture(data, &map->textures[type], line, type);
-}
+// void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
+// {
+// 	if (ft_strchr(line, ','))
+// 		get_color(data, &map->textures[type], line, type);
+// 	else
+// 		get_texture(data, &map->textures[type], line, type);
+// 	map->n_features++;
+// }

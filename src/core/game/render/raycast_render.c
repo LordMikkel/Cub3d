@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 19:43:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 04:26:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	cast_single_ray(t_data *data, int x)
 {
 	t_ray	ray;
 
-	init_ray(data, data->player, &ray, x);
+	init_player_ray(data, data->player, &ray, x);
 	perform_dda(&data->map, &ray);
 	calculate_total_perp_distance(&data->player, &ray);
 	calculate_impact_in_wall_x(&data->player, &ray);

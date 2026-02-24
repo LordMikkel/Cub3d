@@ -6,8 +6,12 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 03:20:45 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/06 02:27:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:51:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
+
+// void	init_door(t_data *data, int x, int y, char type)
+// {
+// }

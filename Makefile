@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/21 23:13:38 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/23 19:16:59 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,15 +106,18 @@ SRCS =				core/main.c \
 					core/init/allocator.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
-					core/init/init_ray.c \
+					core/init/init_light_ray.c \
+					core/init/init_player_ray.c \
 					core/init/init_opt.c \
 					core/init/init_cores.c \
 					core/init/init_thread.c \
 					core/init/init_door.c \
 					core/init/init_light.c \
+					core/init/init_map_grid.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/raycast_render.c \
+					core/game/render/render_lightmap.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_total_perp_distance.c \
 					core/game/render/calculate/calculate_impact_in_wall_x.c \
@@ -125,7 +128,9 @@ SRCS =				core/main.c \
 					core/game/draw/draw_wall.c \
 					core/game/draw/draw_ceiling.c \
 					core/game/draw/draw_floor.c \
-					core/game/draw/get_pixel_color.c \
+					core/game/draw/color/get_pixel_color.c \
+					core/game/draw/color/get_brightness.c \
+					core/game/draw/color/apply_light.c \
 					core/game/update/update_data.c \
 					parse/check_args.c \
 					parse/parse_file.c \
@@ -136,14 +141,16 @@ SRCS =				core/main.c \
 					parse/parse_map.c \
 					parse/validate_map.c \
 					parse/utils/is_door.c \
+					parse/utils/is_wall.c \
 					parse/utils/is_light.c \
 					parse/utils/is_enemy.c \
 					parse/utils/is_player.c \
 					parse/utils/is_file_info.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
+					parse/utils/is_valid_texture.c \
+					parse/utils/is_one_or_two_letters.c \
 					parse/utils/manage_color_or_texture.c \
-					parse/utils/manage_one_or_two_letters.c \
 					input/player_movements.c \
 					input/player_rotations.c \
 					input/handle/keyboard_input.c \
@@ -154,11 +161,12 @@ SRCS =				core/main.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
 					debug/dbg_print_player_pos.c \
-					core/clean/clean_all.c \
-					core/clean/clean_mlx.c \
-					core/clean/clean_map.c \
-					core/clean/clean_enemies.c \
-					core/clean/clean_textures.c \
+					core/exit/clean/clean_all.c \
+					core/exit/clean/clean_mlx.c \
+					core/exit/clean/clean_map.c \
+					core/exit/clean/clean_enemies.c \
+					core/exit/clean/clean_textures.c \
+					core/exit/clean/clean_lights.c \
 					core/exit/exit_success.c \
 					core/exit/exit_error.c \
 
@@ -233,6 +241,13 @@ test-races:
 	@clear
 	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=thread,undefined -O0" VFLAGS="" OFLAGS="" re
 	@LD_PRELOAD="" TSAN_OPTIONS="suppressions=$(SANT_SUPP) ignore_noninstrumented_modules=1" ./$(NAME) $(MAP)
+
+
+# test sanitize threads in cub3d
+debug:
+	@clear
+	@$(MAKE) --no-print-directory VFLAGS="" OFLAGS="" re
+	@LD_PRELOAD="" ./$(NAME) $(MAP)
 
 # Test the norminette in my .c files
 norm:

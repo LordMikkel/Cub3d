@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 21:00:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:24:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,39 @@
 /* ************************************************************************** */
 /*                                  Limits                                    */
 /* ************************************************************************** */
+// Maths & System
+# define MAX_NUMBER					1e30
+# define FOV_FACTOR					0.8
+# define MAX_THREADS 				32
+
+// Map
 # define MAX_MAP_SIZE				2000
 # define MAX_ENEMIES				500
 # define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
 # define MIN_DISTANCE				0.001
 # define PRECISE_CENTER_CELL		0.5
-# define MAX_NUMBER					1e30
-# define MAX_THREADS 				32
-# define FOV_FACTOR					0.8
+# define MIN_MAP_FEATURES			5
+# define TXTR_MAX_SIZE				128
+# define TEXTURE_MODULE				127
+
+// Player
 # define RUN_SPEED_PLAYER			0.045
 # define WALK_SPEED_PLAYER			0.02
 # define TILT_LIMIT					400
 # define TILT_SENSITIVITY			1.0
+# define HEAD_BOUNCE_SPEED			0.15
+# define HEAD_MOV_AMPLIT			5
 # define MOUSE_SENSITIVITY			0.004
 # define MOUSE_DEADZONE				100
 # define ROTATION_ANGLE_KEYBOARD	0.03
-# define HEAD_BOUNCE_SPEED			0.15
-# define HEAD_MOV_AMPLIT			5
-# define SIDES						2
+
+// Lights
+# define LIGHT_INTENSITY			0.8
+# define LIGHT_RADIUS				6.0
+# define AMBIENT_LIGHT				0.1
+# define LIGHT_RESOLUTION			8
+# define L_RES						8
 
 /* ************************************************************************** */
 /*                                   Game                                     */
@@ -145,6 +159,7 @@
 /* ************************************************************************** */
 # define RED				"\033[1;31m"
 # define GREEN				"\033[1;32m"
+# define YELLOW				"\033[0;33m"
 # define CLEAR				"\033[0m"
 
 /* ************************************************************************** */
@@ -152,6 +167,7 @@
 /* ************************************************************************** */
 # define OK					GREEN "[OK] " CLEAR
 # define KO					RED "[KO] " CLEAR
+# define WARN				YELLOW "[WARNING]" CLEAR
 
 /* ************************************************************************** */
 /*                             Error Messages                                 */
@@ -178,6 +194,8 @@
 # define ERR_TEX_INVALID 	KO "Invalid texture file or path\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
+# define WARN_TXTR_SIZE		WARN "Texture is not %d x %d pixels\n"
+# define WARN_TXTR_FORM		WARN "Texture is not square\n"
 
 // MLX Errors
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"
@@ -192,6 +210,7 @@
 # define MSG_INIT			OK "Initialized cub3D\n"
 # define MSG_PARSING		OK "Map file parsed\n"
 # define MSG_TEXTURES		OK "Textures loaded\n"
+# define MSG_LIGHTMAP		OK "Lightmap rendered\n"
 # define MSG_GAME_RUN		OK "Cub3D game is running\n"
 # define MSG_EXIT			OK "Cub3D closed\n"
 

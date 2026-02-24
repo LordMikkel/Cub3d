@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 22:30:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:37:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdbool.h>
 # include <malloc.h>
 # include <limits.h>
+# include <math.h>
 # include <sys/mman.h>
 
 # define MLOCK_FLAG		9223372036854775808UL
@@ -50,6 +51,7 @@ long	ft_strtol(const char *nptr, int base);
 float	ft_strtof(const char *nptr);
 float	ft_square(float x);
 int		ft_max(int a, int b);
+double	ft_distance(double x1, double y1, double x2, double y2);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strmatch_cmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -80,6 +82,7 @@ void	ft_memnuke(void *ptr, size_t size);
 void	ft_free(void **ptr);
 void	ft_free_str_array(char ***array);
 void	ft_free_int_matrix(int ***matrix, size_t rows);
+void	ft_free_double_matrix(double ***matrix_ptr, size_t rows);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);

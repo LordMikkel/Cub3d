@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 21:11:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:07:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 	if (is_duplicated_or_initialized_texture(texture))
 		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
-	offset = manage_one_or_two_letters(type);
+	offset = is_one_or_two_letters(type);
 	texture->path = ft_strleftrim(line + offset, " \t\n\r\v\f");
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
@@ -110,7 +110,7 @@ void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	if (is_duplicated_or_initialized_texture(texture))
 		exit_error(data, ERR_DUPLICATE, EXIT_USE);
 	texture->type = type;
-	offset = manage_one_or_two_letters(type);
+	offset = is_one_or_two_letters(type);
 	texture->path = ft_strleftrim(line + offset, " \t\n\r\v\f");
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
@@ -120,8 +120,30 @@ void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	texture->img = mlx_texture_to_image(data->mlx, texture->txtr);
 	if (!texture->img)
 		exit_error(data, ERR_MLX_TXT_IMG, EXIT_FAILURE);
+	is_valid_texture(texture);
 	texture->extracted = TRUE;
 	texture->format = TEXTURE;
+}
+
+/**
+ * Dispatches to get_color or get_texture based on line content.
+ * If the line contains a comma, it is treated as an RGB color definition.
+ * Otherwise, it is treated as a PNG texture path.
+ * This allows any identifier (walls, floor, ceiling, door) to accept
+ * either format interchangeably.
+ *
+ * @param data  The main struct.
+ * @param map   The map struct to populate.
+ * @param line  The raw config line.
+ * @param type  The identifier type.
+ */
+void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
+{
+	if (ft_strchr(line, ','))
+		get_color(data, &map->textures[type], line, type);
+	else
+		get_texture(data, &map->textures[type], line, type);
+	map->n_features++;
 }
 
 /**

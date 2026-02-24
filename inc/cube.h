@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 20:55:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:17:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_opt(t_data *data);
 void	init_cores(t_data *data, t_opt *vars);
+void	init_lightmap(t_data *data, t_map *map);
 void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
-void	init_ray(t_data *data, t_plyr player, t_ray *ray, int x);
+void	init_light_ray(t_ray *ray, t_light *light, double *target);
+void	init_player_ray(t_data *data, t_plyr player, t_ray *ray, int x);
 void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
+void	init_light(t_data *data, int x, int y, char type);
+void	init_map_grid(t_data *data, t_map *map);
 
 /* ************************************************************************** */
 /*                                  Parse                                     */
@@ -64,6 +68,7 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 /* ************************************************************************** */
 void	game_render(void *param);
 void	raycast_render(t_data *data);
+void	render_lightmap(t_data	*data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_wall_height(t_data *data, t_ray *ray);
 void	calculate_total_perp_distance(t_plyr *player, t_ray *ray);
@@ -92,6 +97,7 @@ void	close_x(void *param);
 /* ************************************************************************** */
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
+void	clean_lights(t_map *map);
 void	clean_map(t_data *data, t_map *map);
 void	clean_enemies(t_data *data, t_map *map);
 void	clean_textures(t_data *data, t_map *map);
@@ -109,14 +115,20 @@ void	*alloc(t_data *data, size_t nmemb, size_t size);
 bool	is_duplicated_or_initialized_texture(t_txtr *texture);
 int		safe_open(t_data *data, t_map *map, char *map_path);
 bool	is_not_an_empty_line(char *line);
+bool	is_valid_element(char c);
 bool	is_map_line(char *line);
 bool	is_player(char c);
 bool	is_enemy(char c);
 bool	is_door(char c);
+bool	is_wall(char c);
 bool	is_light(char c);
-bool	is_valid_element(char c);
+void	move_x_side(t_ray *ray);
+void	move_y_side(t_ray *ray);
+int		is_one_or_two_letters(int type);
+void	is_valid_texture(t_txtr *texture);
+bool	is_hit_wall(t_map *map, t_ray *ray);
 bool	is_valid_door(t_map *map, int x, int y);
-int		manage_one_or_two_letters(int type);
+double	get_brightness(t_map *map, int x, int y);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 
