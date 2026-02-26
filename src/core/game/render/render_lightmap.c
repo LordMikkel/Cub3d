@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_lightmap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:41:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 19:21:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:18:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

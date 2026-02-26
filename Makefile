@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/23 19:16:59 by migarrid         ###   ########.fr        #
+#    Updated: 2026/02/26 21:32:35 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,8 @@ SRCS =				core/main.c \
 					core/init/init_map_grid.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
-					core/game/render/raycast_render.c \
+					core/game/render/render_raycast.c \
+					core/game/render/render_minimap.c \
 					core/game/render/render_lightmap.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_total_perp_distance.c \

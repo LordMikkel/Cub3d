@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_macros.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 19:24:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:58:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* ************************************************************************** */
 /*                              Windows Settings                              */
 /* ************************************************************************** */
-# define WIN_WIDTH					FULL_HD_WIDTH
-# define WIN_HEIGHT					FULL_HD_HEIGHT
+# define WIN_WIDTH					ULTRA_HD_WIDTH
+# define WIN_HEIGHT					ULTRA_HD_HEIGHT
 # define WIN_TITLE					"Cub3D"
 # define TILE_SIZE					64
 
@@ -28,6 +28,8 @@
 # define HD_HEIGHT					720
 # define FULL_HD_WIDTH				1920
 # define FULL_HD_HEIGHT				1080
+# define ULTRA_HD_WIDTH				3840
+# define ULTRA_HD_HEIGHT			2160
 
 /* ************************************************************************** */
 /*                               Math Constants                               */

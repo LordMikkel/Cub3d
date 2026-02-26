@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_render.c                                   :+:      :+:    :+:   */
+/*   render_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 04:26:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:36:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	cast_single_ray(t_data *data, int x)
 	calculate_wall_height(data, &ray);
 	calculate_wall_texture_y(&ray, ray.texture);
 	// render_lights();
+	// render_minimap();
 	draw_vertical_line(data, &ray, x);
 }
 
@@ -87,7 +88,7 @@ static void	render_threads(t_data *data, t_thread *threads, int i)
  *
  * @param data  Main program structure.
  */
-void	raycast_render(t_data *data)
+void	render_raycast(t_data *data)
 {
 	t_thread	threads[MAX_THREADS];
 	int			i;

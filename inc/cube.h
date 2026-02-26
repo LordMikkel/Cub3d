@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 19:17:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:28:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 /*                                 Engine                                     */
 /* ************************************************************************** */
 void	game_render(void *param);
-void	raycast_render(t_data *data);
+void	render_raycast(t_data *data);
+void	render_minimap(t_data *data);
 void	render_lightmap(t_data	*data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_wall_height(t_data *data, t_ray *ray);

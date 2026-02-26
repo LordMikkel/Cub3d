@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_render.c                                      :+:      :+:    :+:   */
+/*   render_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 05:48:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/26 21:29:16 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/26 21:24:52 by migarrid          #+#    #+#             */
+/*   Updated: 2026/02/26 21:31:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
-
-void	game_render(void *param)
-{
-	t_data	*data;
-
-	data = param;
-	data->mode = GAME;
-	render_raycast(data);
-	input_player_movement(data);
-	input_player_rotation(data);
-	// input_player_click(data);
-	update_data(data);
-}
+#include "../../../../inc/cube.h"
