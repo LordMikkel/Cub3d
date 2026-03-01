@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:00:59 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:16:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:11:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 /**
  * Orchestrates the complete rendering of a single vertical screen column.

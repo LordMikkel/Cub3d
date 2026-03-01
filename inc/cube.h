@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/26 21:28:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:55:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <pthread.h>
 # include <string.h>
 # include <errno.h>
+# include <time.h>
 # include <math.h>
 
 /* ************************************************************************** */
@@ -39,10 +40,12 @@ void	game_loop(t_data *data);
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_opt(t_data *data);
+void	init_minimap(t_mm *minimap);
 void	init_cores(t_data *data, t_opt *vars);
 void	init_lightmap(t_data *data, t_map *map);
 void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
+void	init_bresenham(int *delta, int *step, int *origin, int *end);
 void	init_light_ray(t_ray *ray, t_light *light, double *target);
 void	init_player_ray(t_data *data, t_plyr player, t_ray *ray, int x);
 void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
@@ -68,7 +71,6 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 /* ************************************************************************** */
 void	game_render(void *param);
 void	render_raycast(t_data *data);
-void	render_minimap(t_data *data);
 void	render_lightmap(t_data	*data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calculate_wall_height(t_data *data, t_ray *ray);
@@ -80,6 +82,11 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 void	draw_wall(t_data *data, t_ray *ray, t_txtr *textures, int x);
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
 void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
+void	draw_minimap(t_data *data, t_mm *minimap);
+void	draw_minimap_circle_background(t_data *data, t_mm *minimap);
+void	draw_minimap_cells(t_data *data, t_plyr *player, t_mm *minimap);
+void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
+void	draw_minimap_player(t_data *data, t_mm *minimap);
 void	update_data(t_data *data);
 
 /* ************************************************************************** */
@@ -126,16 +133,20 @@ bool	is_light(char c);
 void	move_x_side(t_ray *ray);
 void	move_y_side(t_ray *ray);
 int		is_one_or_two_letters(int type);
-void	is_valid_texture(t_txtr *texture);
 bool	is_hit_wall(t_map *map, t_ray *ray);
-bool	is_valid_door(t_map *map, int x, int y);
 double	get_brightness(t_map *map, int x, int y);
+bool	is_valid_door(t_map *map, int x, int y);
+bool	is_inside_map_cells(t_map *map, int *cell);
+void	is_valid_texture(t_data *data, t_txtr *texture);
+bool 	is_inside_circle(t_mm *minimap, int point_x, int point_y);
+void	draw_square(t_data *data, int *screen, int size, uint32_t color);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 
 /* ************************************************************************** */
 /*                                  Debug                                     */
 /* ************************************************************************** */
+void	dbg_print_fps(int fd);
 void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
 void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);

@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 20:11:03 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:41:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:12:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 /**
  * Extracts and packs the RGBA color of a specific pixel from texture memory.

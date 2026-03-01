@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_brightness.c                                   :+:      :+:    :+:   */
+/*   is_inside_circle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/22 23:47:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:41:43 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/01 22:06:50 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/01 22:43:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-double	get_brightness(t_map *map, int x, int y)
+bool is_inside_circle(t_mm *minimap, int point_x, int point_y)
 {
-	int	max_light_x;
-	int	max_light_y;
+	int dx;
+	int dy;
+	int squared_distance;
 
-	max_light_x = map->map_limit[X] * LIGHT_RESOLUTION;
-	max_light_y = map->map_limit[Y] * LIGHT_RESOLUTION;
-	if (x < 0 || y < 0 || x >= max_light_x || y >= max_light_y)
-		return (AMBIENT_LIGHT);
-	return (map->lightmap[y][x]);
+	dx = point_x - minimap->center[X];
+	dy = point_y - minimap->center[Y];
+	squared_distance = (dx * dx) + (dy * dy);
+	if (squared_distance <= minimap->radius_sq_px)
+		return (TRUE);
+	return (FALSE);
 }

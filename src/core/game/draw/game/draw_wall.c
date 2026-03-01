@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 19:01:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 23:00:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
 uint32_t		apply_light(t_data *data, uint32_t color, double brightness);

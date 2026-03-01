@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_int_matrix.c                               :+:      :+:    :+:   */
+/*   get_brightness.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 00:22:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:04:52 by migarrid         ###   ########.fr       */
+/*   Created: 2026/02/22 23:47:37 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/01 19:12:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_plus.h"
+#include "../../../../../../inc/cube.h"
 
-void	ft_free_int_matrix(int ***matrix_ptr, size_t rows)
+double	get_brightness(t_map *map, int x, int y)
 {
-	size_t	i;
-	int		**matrix;
+	int	max_light_x;
+	int	max_light_y;
 
-	if (!matrix_ptr)
-		return ;
-	matrix = *matrix_ptr;
-	if (!matrix || rows <= 0)
-	{
-		ft_free((void **)matrix_ptr);
-		return ;
-	}
-	i = 0;
-	while (i < rows)
-	{
-		if (matrix[i])
-			ft_free((void **)&matrix[i]);
-		i++;
-	}
-	ft_free((void **)matrix_ptr);
+	max_light_x = map->map_limit[X] * LIGHT_RESOLUTION;
+	max_light_y = map->map_limit[Y] * LIGHT_RESOLUTION;
+	if (x < 0 || y < 0 || x >= max_light_x || y >= max_light_y)
+		return (AMBIENT_LIGHT);
+	return (map->lightmap[y][x]);
 }

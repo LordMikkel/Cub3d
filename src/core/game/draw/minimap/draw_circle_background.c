@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_int_matrix.c                               :+:      :+:    :+:   */
+/*   draw_circle_background.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 00:22:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:04:52 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/01 19:15:38 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/01 23:52:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_plus.h"
+#include "../../../../../inc/cube.h"
 
-void	ft_free_int_matrix(int ***matrix_ptr, size_t rows)
+void	draw_minimap_circle_background(t_data *data, t_mm *minimap)
 {
-	size_t	i;
-	int		**matrix;
+	int	x;
+	int	y;
 
-	if (!matrix_ptr)
-		return ;
-	matrix = *matrix_ptr;
-	if (!matrix || rows <= 0)
+	y = minimap->offset[Y];
+	while (y < minimap->offset[Y] + minimap->size[Y])
 	{
-		ft_free((void **)matrix_ptr);
-		return ;
+		x = minimap->offset[X];
+		while (x < minimap->offset[X] + minimap->size[X])
+		{
+			if (is_inside_circle(minimap, x, y))
+				mlx_put_pixel(data->img, x, y, MINIMAP_BG_COLOR);
+			x++;
+		}
+		y++;
 	}
-	i = 0;
-	while (i < rows)
-	{
-		if (matrix[i])
-			ft_free((void **)&matrix[i]);
-		i++;
-	}
-	ft_free((void **)matrix_ptr);
 }

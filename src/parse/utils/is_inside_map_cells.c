@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_texture.c                                 :+:      :+:    :+:   */
+/*   is_inside_map_cells.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 19:04:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:32:11 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/01 19:56:34 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/01 21:45:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	is_valid_texture(t_data *data, t_txtr *texture)
+bool	is_inside_map_cells(t_map *map, int *cell)
 {
-	if (texture->img->width > TXTR_MAX_SIZE)
-		exit_error(data, ERR_TXTR_SIZE, EXIT_USE, TXTR_MAX_SIZE, TXTR_MAX_SIZE);
-	if (texture->img->height > TXTR_MAX_SIZE)
-		exit_error(data, ERR_TXTR_SIZE, EXIT_USE, TXTR_MAX_SIZE, TXTR_MAX_SIZE);
-	if (texture->img->height != texture->img->height)
-		exit_error(data, WARN_TXTR_FORM, EXIT_USE);
+	if (cell[X] >= 0 && cell[X] < map->map_limit[X] + 1
+		&& cell[Y] >= 0 && cell[Y] < map->map_limit[Y] + 1)
+		return (TRUE);
+	return (FALSE);
 }

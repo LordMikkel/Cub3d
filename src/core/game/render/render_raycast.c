@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/26 21:36:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:58:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
+
+static void	save_ray_hit(t_mm *minimap, t_plyr *player, t_ray *ray, int col)
+{
+	minimap->ray_hits[col][X] = player->pos[X] + (ray->dir[X] * ray->perp_dist);
+	minimap->ray_hits[col][Y] = player->pos[Y] + (ray->dir[Y] * ray->perp_dist);
+}
 
 static void	cast_single_ray(t_data *data, int x)
 {
@@ -24,8 +30,8 @@ static void	cast_single_ray(t_data *data, int x)
 	calculate_wall_height(data, &ray);
 	calculate_wall_texture_y(&ray, ray.texture);
 	// render_lights();
-	// render_minimap();
 	draw_vertical_line(data, &ray, x);
+	save_ray_hit(&data->minimap, &data->player, &ray, x);
 }
 
 /**
@@ -105,4 +111,5 @@ void	render_raycast(t_data *data)
 		pthread_join(threads[i].thread, NULL);
 		i++;
 	}
+	draw_minimap(data, &data->minimap);
 }

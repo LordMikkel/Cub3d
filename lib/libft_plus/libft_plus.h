@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:37:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:11:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 // LIBFT
 
-// ----------- Obligatorios (Prototipos) ------------
+// ----------- Functions (Main Library) ------------
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -140,7 +140,7 @@ typedef struct s_format
 	char	specifier;		// Char of conversion (c, s, d, etc.)
 }	t_format;
 
-// ------------- function (Principal) ----------------
+// ------------- Function (Principal) ----------------
 int		ft_printf_fd(int fd, char const *str, ...);
 int		ft_var_printf_fd(int fd, char const *str, va_list args);
 
@@ -180,7 +180,7 @@ void	ft_add_zeros(char *result, int *pos, int count);
 #  define BUFFER_SIZE 1024
 # endif
 
-// ------------- function (Principal) --------------
+// ------------- Function (Principal) --------------
 char	*get_next_line(int fd);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+         #
+#    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/26 21:32:35 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/01 22:56:21 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,11 +113,12 @@ SRCS =				core/main.c \
 					core/init/init_thread.c \
 					core/init/init_door.c \
 					core/init/init_light.c \
+					core/init/init_minimap.c \
+					core/init/init_bresenham.c \
 					core/init/init_map_grid.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/render_raycast.c \
-					core/game/render/render_minimap.c \
 					core/game/render/render_lightmap.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_total_perp_distance.c \
@@ -125,13 +126,19 @@ SRCS =				core/main.c \
 					core/game/render/calculate/calculate_wall_height.c \
 					core/game/render/calculate/calculate_wall_texture_x.c \
 					core/game/render/calculate/calculate_wall_texture_y.c \
-					core/game/draw/draw_vertical_line.c \
-					core/game/draw/draw_wall.c \
-					core/game/draw/draw_ceiling.c \
-					core/game/draw/draw_floor.c \
-					core/game/draw/color/get_pixel_color.c \
-					core/game/draw/color/get_brightness.c \
-					core/game/draw/color/apply_light.c \
+					core/game/draw/game/draw_vertical_line.c \
+					core/game/draw/game/draw_wall.c \
+					core/game/draw/game/draw_ceiling.c \
+					core/game/draw/game/draw_floor.c \
+					core/game/draw/game/color/get_pixel_color.c \
+					core/game/draw/game/color/get_brightness.c \
+					core/game/draw/game/color/apply_light.c \
+					core/game/draw/minimap/draw_minimap.c \
+					core/game/draw/minimap/draw_cells.c \
+					core/game/draw/minimap/draw_fov.c \
+					core/game/draw/minimap/draw_player.c \
+					core/game/draw/minimap/draw_circle_background.c \
+					core/game/draw/minimap/draw_square_background.c \
 					core/game/update/update_data.c \
 					parse/check_args.c \
 					parse/parse_file.c \
@@ -150,6 +157,8 @@ SRCS =				core/main.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
 					parse/utils/is_valid_texture.c \
+					parse/utils/is_inside_map_cells.c \
+					parse/utils/is_inside_circle.c \
 					parse/utils/is_one_or_two_letters.c \
 					parse/utils/manage_color_or_texture.c \
 					input/player_movements.c \
@@ -159,6 +168,7 @@ SRCS =				core/main.c \
 					input/handle/click_input.c \
 					input/events/close_events.c \
 					input/utils/limits_player_rotation.c \
+					debug/dbg_print_fps.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
 					debug/dbg_print_player_pos.c \

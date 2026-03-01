@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_macros.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/26 18:58:46 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:44:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* ************************************************************************** */
 /*                              Windows Settings                              */
 /* ************************************************************************** */
-# define WIN_WIDTH					ULTRA_HD_WIDTH
-# define WIN_HEIGHT					ULTRA_HD_HEIGHT
+# define WIN_WIDTH					FULL_HD_WIDTH
+# define WIN_HEIGHT					FULL_HD_HEIGHT
 # define WIN_TITLE					"Cub3D"
 # define TILE_SIZE					64
 
@@ -62,6 +62,20 @@
 # define MIN_MAP_FEATURES			5
 # define TXTR_MAX_SIZE				128
 # define TEXTURE_MODULE				127
+
+// Minimap
+# define MINIMAP_CELL_SIZE			28
+# define MINIMAP_RADIUS				3
+# define MINIMAP_PADDING			40
+# define MINIMAP_PLAYER_SIZE		5
+# define MINIMAP_BORDER				2
+# define MINIMAP_RAY_STRIDE			6
+# define MINIMAP_WALL_COLOR			0x404040FF
+# define MINIMAP_FLOOR_COLOR		0x1A1A1AFF
+# define MINIMAP_PLAYER_COLOR		0x00FF00FF
+# define MINIMAP_RAY_COLOR			0xFFDD0070
+# define MINIMAP_BORDER_COLOR		0x888888FF
+# define MINIMAP_BG_COLOR			0x404040FF
 
 // Player
 # define RUN_SPEED_PLAYER			0.045
@@ -196,8 +210,8 @@
 # define ERR_TEX_INVALID 	KO "Invalid texture file or path\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
-# define WARN_TXTR_SIZE		WARN "Texture is not %d x %d pixels\n"
-# define WARN_TXTR_FORM		WARN "Texture is not square\n"
+# define ERR_TXTR_SIZE		KO "Texture is not %d x %d pixels\n"
+# define WARN_TXTR_FORM		KO "Texture is not square\n"
 
 // MLX Errors
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"

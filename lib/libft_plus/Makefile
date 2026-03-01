@@ -6,29 +6,31 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/02/22 23:13:28 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/02 00:14:38 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Nombre de la biblioteca
+# Library name
 NAME = libft_plus.a
 
-# Compilador y opciones
+# Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -lm
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -g -lm -Ofast -march=native -flto
+OFLAGS = -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
+VFLAGS = -Ofast -march=native -flto
 
-# Colores
+# Colors
 DEFAULT = \033[0;39m
 GREEN = \033[0;92m
 BLUE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 
-# Comandos
+# Commands
 PRINTF = printf
 RM = rm -f
 
-# Archivos fuente obligatorios
+# Source files
 SRCS =	libft/ft_isalpha.c \
 		libft/ft_isdigit.c \
 		libft/ft_isalnum.c \
@@ -135,11 +137,11 @@ SRCS =	libft/ft_isalpha.c \
 		ft_printf_fd/ft_utoa_bonus.c \
 		get_next_line/get_next_line_bonus.c \
 
-# Objetos obligatorios
+# Mandatory objects
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 
-# Variables de progreso
+# Progress variables
 SRC_COUNT_TOT := $(shell echo -n $(SRCS) | wc -w)
 ifeq ($(shell test $(SRC_COUNT_TOT) -le 0; echo $$?),0)
 	SRC_COUNT_TOT := $(shell echo -n $(SRCS) | wc -w)
@@ -147,32 +149,32 @@ endif
 SRC_COUNT := 0
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
-# Regla principal: compilar la biblioteca
+# Main rule: compile the library
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 
-# Regla para compilar archivos .c a .o con barra de progreso
+# Rule to compile .c to .o files with progress bar
 %.o: %.c libft_plus.h Makefile
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) -I. -MMD -MP -c -o $@ $<
+	@$(CC) $(CFLAGS) $(VFLAGS) $(OFLAGS) -I. -MMD -MP -c -o $@ $<
 
-# Incluir archivos de dependencia
+# Include dependency files
 -include $(DEPS)
 
-# Limpiar objetos
+# Clean objects
 clean:
 	@$(RM) $(OBJS) $(DEPS)
 
-# Limpiar todo (objetos + biblioteca)
+# Clean everything (objects + library)
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) ../$(NAME)
 
-# Recompilar todo desde cero sin bonus
+# Recompile everything from scratch
 re: fclean all
 
-# Asegurar que las reglas se ejecuten como comandos del make
-.PHONY: all clean fclean re bonus rebonus
+# Ensure rules are executed as make commands
+.PHONY: all clean fclean re bonus

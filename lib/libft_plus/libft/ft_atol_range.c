@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:06:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/26 00:00:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:03:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	ft_atol_range(const char *nptr)
 {
 	int			i;
 	int			sign;
-	__int128	result;
+	long long	result;
 
 	if (!nptr)
 		return (0);

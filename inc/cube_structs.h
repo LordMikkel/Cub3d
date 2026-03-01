@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:04:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:41:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_thread		t_thread;
 typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
 typedef struct s_plyr		t_plyr;
+typedef struct s_mm			t_mm;
 typedef struct s_map		t_map;
 typedef struct s_opt		t_opt;
 typedef struct s_data		t_data;
@@ -214,6 +215,18 @@ typedef struct s_ray
 	double			tex_step;
 }	t_ray;
 
+typedef struct s_mm
+{
+	int				size[AXIS];
+	int				offset[AXIS];
+	int				center[AXIS];
+	int				cell_size;
+	int				player_center;
+	int				radius;
+	int				radius_sq_px;
+	double			ray_hits[WIN_WIDTH][AXIS];
+}	t_mm;
+
 typedef struct s_map
 {
 	int				fd;
@@ -247,6 +260,7 @@ typedef struct s_data
 {
 	t_mode			mode;
 	t_map			map;
+	t_mm			minimap;
 	t_plyr			player;
 	t_enemy			*enemies;
 	mlx_t			*mlx;
