@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 21:48:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 21:48:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:19:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ void	draw_minimap_background(t_data *data, t_mm *minimap)
 	end[Y] = minimap->offset[Y] + minimap->size[Y];
 	fill_rect(data, start, end, MINIMAP_BG_COLOR);
 }
-

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:55:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:18:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ double	get_brightness(t_map *map, int x, int y);
 bool	is_valid_door(t_map *map, int x, int y);
 bool	is_inside_map_cells(t_map *map, int *cell);
 void	is_valid_texture(t_data *data, t_txtr *texture);
-bool 	is_inside_circle(t_mm *minimap, int point_x, int point_y);
+bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);

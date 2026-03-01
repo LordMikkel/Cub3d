@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 19:55:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:19:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:20:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
-static void	update_bresenham_pos(int *current, int *delta, int *step, int *error)
+static void	update_pos(int *current, int *delta, int *step, int *error)
 {
 	int	error_double;
 
@@ -43,7 +43,7 @@ static void	draw_bresenham_ray(t_data *data, t_mm *mm, int *current, int *end)
 			mlx_put_pixel(data->img, current[X], current[Y], MINIMAP_RAY_COLOR);
 		if (current[X] == end[X] && current[Y] == end[Y])
 			break ;
-		update_bresenham_pos(current, delta, step, &error);
+		update_pos(current, delta, step, &error);
 	}
 }
 

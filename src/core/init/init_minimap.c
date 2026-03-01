@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:58:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:41:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 00:19:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_minimap(t_mm *minimap)
 {
-	int diameter;
-	int radius_px;
+	int	diameter;
+	int	radius_px;
 
 	minimap->cell_size = MINIMAP_CELL_SIZE;
 	minimap->radius = MINIMAP_RADIUS;
