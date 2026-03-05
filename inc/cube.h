@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:18:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:07:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_opt(t_data *data);
 void	init_minimap(t_mm *minimap);
 void	init_cores(t_data *data, t_opt *vars);
 void	init_lightmap(t_data *data, t_map *map);
+void	init_door(t_data *data, int x, int y, char type);
 void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
 void	init_bresenham(int *delta, int *step, int *origin, int *end);
@@ -94,9 +95,11 @@ void	update_data(t_data *data);
 /* ************************************************************************** */
 void	input_player_movement(t_data *data);
 void	input_player_rotation(t_data *data);
-void	handle_click_inpt(mouse_key_t b, action_t a, modifier_key_t m, void *p);
-void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param);
-void	handle_cursor_inpt(double xpos, double ypos, void *param);
+void	input_player_interact(t_data *data);
+void	handle_click_menu(mouse_key_t b, action_t a, modifier_key_t m, void *p);
+void	handle_keyboard_menu(mlx_key_data_t keydata, void *param);
+void	handle_cursor_menu(double xpos, double ypos, void *param);
+void	open_close_door(t_data *data, t_map *map, bool *key_held);
 int		close_esc(mlx_key_data_t keydata);
 void	close_x(void *param);
 
@@ -106,6 +109,7 @@ void	close_x(void *param);
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
 void	clean_lights(t_map *map);
+void	clean_doors(t_data *data, t_map *map);
 void	clean_map(t_data *data, t_map *map);
 void	clean_enemies(t_data *data, t_map *map);
 void	clean_textures(t_data *data, t_map *map);
@@ -137,6 +141,7 @@ bool	is_hit_wall(t_map *map, t_ray *ray);
 double	get_brightness(t_map *map, int x, int y);
 bool	is_valid_door(t_map *map, int x, int y);
 bool	is_inside_map_cells(t_map *map, int *cell);
+bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
 void	is_valid_texture(t_data *data, t_txtr *texture);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);

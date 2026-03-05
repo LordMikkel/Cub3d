@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 20:32:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/22 20:31:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:30:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	game_loop(t_data *data)
 	data->mode = MENU;
 	ft_printf_fd(STDOUT, MSG_GAME_RUN);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
-	mlx_key_hook(data->mlx, &handle_keyboard_inpt, data);
-	mlx_cursor_hook(data->mlx, &handle_cursor_inpt, data);
-	mlx_mouse_hook(data->mlx, &handle_click_inpt, data);
+	mlx_key_hook(data->mlx, &handle_keyboard_menu, data);
+	mlx_cursor_hook(data->mlx, &handle_cursor_menu, data);
+	mlx_mouse_hook(data->mlx, &handle_click_menu, data);
 	mlx_close_hook(data->mlx, &close_x, data);
 	mlx_loop_hook(data->mlx, game_render, data);
 	mlx_loop(data->mlx);

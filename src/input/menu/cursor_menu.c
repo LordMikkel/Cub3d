@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_input.c                                   :+:      :+:    :+:   */
+/*   cursor_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:24:10 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:19:49 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 18:34:07 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/05 19:30:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	handle_keyboard_inpt(mlx_key_data_t keydata, void *param)
+void	handle_cursor_menu(double xpos, double ypos, void *param)
 {
 	t_data	*data;
 
+	(void)xpos;
+	(void)ypos;
 	data = (t_data *)param;
-	if (close_esc(keydata))
-		exit_success(data, MSG_EXIT, EXIT_SUCCESS);
+	if (data->mode != MENU)
+		return ;
 }

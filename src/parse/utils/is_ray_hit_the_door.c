@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cursor_input.c                                     :+:      :+:    :+:   */
+/*   is_ray_hit_the_door.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:34:07 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/03 00:19:43 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/05 21:29:35 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/05 21:37:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	handle_cursor_inpt(double xpos, double ypos, void *param)
+bool	is_ray_hit_the_door(t_door *door, t_ray *ray)
 {
-	t_data	*data;
-
-	(void)xpos;
-	(void)ypos;
-	data = (t_data *)param;
-	if (data->mode == MENU)
-	{
-	}
-	if (data->mode == GAME)
-	{
-	}
+	if ((int)door->pos[X] == ray->pos[X] && (int)door->pos[Y] == ray->pos[Y])
+		return (TRUE);
+	return (FALSE);
 }

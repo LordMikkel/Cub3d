@@ -3,8 +3,6 @@ EA tex/hell.png
  SO		 tex/hell.png
 WE   			tex/hell.png
 
-D tex/hell.png
-
 C 	20, 20,	 20
 F 30, 30,	 30
 

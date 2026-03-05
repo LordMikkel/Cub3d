@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/01 22:56:21 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/05 23:09:01 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,15 +157,18 @@ SRCS =				core/main.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
 					parse/utils/is_valid_texture.c \
+					parse/utils/is_ray_hit_the_door.c \
 					parse/utils/is_inside_map_cells.c \
 					parse/utils/is_inside_circle.c \
 					parse/utils/is_one_or_two_letters.c \
 					parse/utils/manage_color_or_texture.c \
 					input/player_movements.c \
 					input/player_rotations.c \
-					input/handle/keyboard_input.c \
-					input/handle/cursor_input.c \
-					input/handle/click_input.c \
+					input/player_interact.c \
+					input/interact/open_close_door.c \
+					input/menu/keyboard_menu.c \
+					input/menu/cursor_menu.c \
+					input/menu/click_menu.c \
 					input/events/close_events.c \
 					input/utils/limits_player_rotation.c \
 					debug/dbg_print_fps.c \
@@ -175,6 +178,7 @@ SRCS =				core/main.c \
 					core/exit/clean/clean_all.c \
 					core/exit/clean/clean_mlx.c \
 					core/exit/clean/clean_map.c \
+					core/exit/clean/clean_doors.c \
 					core/exit/clean/clean_enemies.c \
 					core/exit/clean/clean_textures.c \
 					core/exit/clean/clean_lights.c \

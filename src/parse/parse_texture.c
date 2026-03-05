@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:29:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/02 18:34:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,6 @@ void	parse_texture(t_data *data, t_map *map, char *line)
 		manage_color_or_texture(data, map, line, FLOOR);
 	else if (ft_strncmp(line, "C", 1) == EQUAL)
 		manage_color_or_texture(data, map, line, CEILING);
-	else if (ft_strncmp(line, "D", 1) == EQUAL)
-		manage_color_or_texture(data, map, line, DOOR);
 	else if (ft_strncmp(line, "L", 1) == EQUAL)
 		manage_color_or_texture(data, map, line, LIGHT);
 }

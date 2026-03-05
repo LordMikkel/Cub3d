@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:44:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:05:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@
 # define AMBIENT_LIGHT				0.1
 # define LIGHT_RESOLUTION			8
 # define L_RES						8
+
+// Doors
+# define DOOR_INTERACT_DIST 		1.5
+# define DOOR_ANIM_SPEED			0.05
+# define DOOR_ANIMATIONS			3
+# define DOOR_TEX_0					"tex/matrix/door/door_0.png"
+# define DOOR_TEX_1					"tex/matrix/door/door_1.png"
+# define DOOR_TEX_2					"tex/matrix/door/door_2.png"
+# define DOOR_TEX_3					"tex/matrix/door/door_3.png"
 
 /* ************************************************************************** */
 /*                                   Game                                     */

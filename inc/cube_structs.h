@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:41:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:04:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ typedef struct s_door
 	double	pos[AXIS];
 	bool	is_open;
 	double	open_percent;
-	t_txtr	*sprites;
+	t_txtr	sprites[DOOR_ANIMATIONS];
 }	t_door;
 
 typedef struct s_thread
@@ -243,6 +243,7 @@ typedef struct s_map
 	int				n_doors;
 	int				n_lights;
 	int				n_features;
+	t_door			*doors;
 	t_light			*lights;
 	double			**lightmap;
 	int				lightmap_limit[AXIS];

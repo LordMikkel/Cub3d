@@ -1,12 +1,10 @@
-NO tex/space_wall.png
-EA tex/space_wall.png
-SO tex/space_wall.png
-WE tex/space_wall.png
+NO tex/space/wall/wall.png
+EA tex/space/wall/wall.png
+SO tex/space/wall/wall.png
+WE tex/space/wall/wall.png
 
-D tex/space_wall.png
-
-C tex/space_ceiling.png
-F tex/space_floor.png
+C tex/space/ceiling/ceiling.png
+F tex/space/floor/floor.png
 
 1111111111111111111111111
 1000000000000000000000001
