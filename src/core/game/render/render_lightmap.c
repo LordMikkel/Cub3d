@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   render_lightmap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarrid <migarrid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:41:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/26 19:18:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:09:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-bool	is_blocked_by_wall(t_map *map, t_ray *ray)
+bool	is_blocked_by_wall_or_door(t_map *map, t_ray *ray)
 {
-	if (is_hit_wall(map, ray))
+	if (ray->pos[Y] < 0 || ray->pos[Y] >= map->map_limit[Y])
+		return (TRUE);
+	if (ray->pos[X] < 0 || ray->pos[X] >= map->map_limit[X])
+		return (TRUE);
+	if (is_wall(map->map_grid[ray->pos[Y]][ray->pos[X]]))
+		return (TRUE);
+	if (is_door_close(map->map_grid[ray->pos[Y]][ray->pos[X]]))
 		return (TRUE);
 	return (FALSE);
 }
@@ -39,7 +45,7 @@ static bool	is_light_path_blocked(t_map *map, t_light *light, double *target)
 			move_x_side(&ray);
 		else
 			move_y_side(&ray);
-		if (is_blocked_by_wall(map, &ray))
+		if (is_blocked_by_wall_or_door(map, &ray))
 			return (TRUE);
 	}
 }

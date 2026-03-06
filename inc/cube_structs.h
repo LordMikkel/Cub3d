@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:04:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 00:17:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,14 @@ typedef struct s_thread
 	int			x[RANGE];
 }	t_thread;
 
+typedef struct s_hit
+{
+	int		pos[AXIS];
+	t_type	wall_side;
+	double	perp_dist;
+	double	wall[AXIS];
+}	t_hit;
+
 typedef struct s_ray
 {
 	double			dir[AXIS];
@@ -213,6 +221,8 @@ typedef struct s_ray
 	t_txtr			*texture;
 	double			tex[AXIS];
 	double			tex_step;
+	int				n_transparent_hits;
+	t_hit			transparent_hits[MAX_TRANSPARENT_HITS];
 }	t_ray;
 
 typedef struct s_mm
@@ -252,6 +262,7 @@ typedef struct s_map
 
 typedef struct s_opt
 {
+	double			initial_min_dist_sq;
 	int				half_img_height;
 	int				half_img_width;
 	int				n_cores;

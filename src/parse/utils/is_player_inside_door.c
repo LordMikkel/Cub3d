@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_opt.c                                         :+:      :+:    :+:   */
+/*   is_player_inside_door.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 19:40:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:37:52 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/05 23:40:28 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/06 19:00:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	init_opt(t_data *data)
+bool	is_player_inside_door(t_plyr *player, t_door *door)
 {
-	init_cores(data, &data->vars);
-	data->vars.half_img_height = data->img->height / 2;
-	data->vars.half_img_width = data->img->width / 2;
-	data->vars.initial_min_dist_sq = DOOR_INTERACT_DIST * DOOR_INTERACT_DIST;
+	if ((int)player->pos[X] == (int)door->pos[X]
+		&& (int)player->pos[Y] == (int)door->pos[Y])
+		return (TRUE);
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 05:48:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 18:58:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:18:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	game_render(void *param)
 	render_raycast(data);
 	input_player_movement(data);
 	input_player_rotation(data);
-	// input_player_interact(data);
+	input_player_interact(data);
 	// input_player_gun(data);
 	update_data(data);
 }

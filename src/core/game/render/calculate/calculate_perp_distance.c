@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:27:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 23:52:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:35:33 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static double	calculate_real_coord_wall(t_ray *ray, t_pos axis)
  * @param ray     The ray structure to update with distance data.
  * @param axis    The axis (X or Y) of the confirmed wall hit.
  */
-static void	calculate_distances(t_plyr *player, t_ray *ray, t_pos axis)
+static void	calculate_distance(t_plyr *player, t_ray *ray, t_pos axis)
 {
 	double	axis_dist;
 	double	wall_pos;
@@ -66,10 +66,10 @@ static void	calculate_distances(t_plyr *player, t_ray *ray, t_pos axis)
  * @param player  The player's struct.
  * @param ray     The ray that just completed the DDA loop.
  */
-void	calculate_total_perp_distance(t_plyr *player, t_ray *ray)
+void	calculate_perp_distance(t_plyr *player, t_ray *ray)
 {
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
-		calculate_distances(player, ray, X);
+		calculate_distance(player, ray, X);
 	else
-		calculate_distances(player, ray, Y);
+		calculate_distance(player, ray, Y);
 }

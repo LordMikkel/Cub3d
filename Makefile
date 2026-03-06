@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/05 23:09:01 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/06 18:55:09 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,33 @@ NAME				= cub3d
 CC					= gcc
 WFLAGS				= -Wall -Wextra -Werror -Wpedantic
 DMODE				= -D MAIN
-VFLAGS				= -Ofast -march=native -flto
-OFLAGS				= -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
 DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -ldl -lglfw -pthread -lm
+VFLAGS				= -Ofast -march=native -flto -funroll-loops -fno-strict-aliasing
+OFLAGS				= -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
 DFLAGS				= -g -O0
-SFLAGS				=
+SFLAGS				= $(DFLAGS) -fsanitize=address,undefined
+TFLAGS				= $(DFLAGS) -fsanitize=thread,undefined
 
 # **************************************************************************** #
-#                               Shell Commands                                  #
+#                               Build Modes                                    #
+# **************************************************************************** #
+MODE				?= release
+
+ifeq ($(MODE), release)
+	CFLAGS = $(VFLAGS)
+else ifeq ($(MODE), debug)
+	CFLAGS = $(DFLAGS)
+else ifeq ($(MODE), asan)
+	CFLAGS = $(SFLAGS)
+else ifeq ($(MODE), tsan)
+	CFLAGS = $(TFLAGS)
+else
+	$(error "Unknown build mode: $(MODE)")
+endif
+
+# **************************************************************************** #
+#                               Shell Commands                                 #
 # **************************************************************************** #
 RM					= rm -rf
 PRINT				= printf
@@ -46,7 +64,7 @@ CD					= cd
 # **************************************************************************** #
 INC_DIR				= inc
 LIB_DIR				= lib
-OBJ_DIR				= obj
+OBJ_DIR				= obj/$(MODE)
 SRC_DIR				= src
 MAP_DIR				= map
 EXT_DIR				= ext
@@ -68,7 +86,7 @@ MLX_H				= $(MLX_DIR)/include/include/MLX42/MLX42.h
 SANL_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
 SANT_SUPP			= $(EXT_DIR)/sanitize_threads.supp
 VAL_SUPP			= $(EXT_DIR)/valgrind_leaks.supp
-MAP					= $(MAP_DIR)/matrix.cub
+MAP					= $(MAP_DIR)/hospital.cub
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
@@ -88,16 +106,6 @@ BOLD 				= \033[1m
 CLEAR 				= \r\033[K
 
 # **************************************************************************** #
-#                              Progress Bars                                   #
-# **************************************************************************** #
-SRC_COUNT_TOT := $(shell echo -n $(SRCS) | wc -w)
-ifeq ($(shell test $(SRC_COUNT_TOT) -le 0; echo $$?),0)
-	SRC_COUNT_TOT := $(shell echo -n $(SRCS) | wc -w)
-endif
-SRC_COUNT := 0
-SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
-
-# **************************************************************************** #
 #                               Source File                                    #
 # **************************************************************************** #
 SRCS =				core/main.c \
@@ -108,6 +116,7 @@ SRCS =				core/main.c \
 					core/init/init_enemy.c \
 					core/init/init_light_ray.c \
 					core/init/init_player_ray.c \
+					core/init/init_transparent_hit.c \
 					core/init/init_opt.c \
 					core/init/init_cores.c \
 					core/init/init_thread.c \
@@ -120,8 +129,9 @@ SRCS =				core/main.c \
 					core/game/game_render.c \
 					core/game/render/render_raycast.c \
 					core/game/render/render_lightmap.c \
+					core/game/render/render_transparent_hits.c \
 					core/game/render/perform_dda.c \
-					core/game/render/calculate/calculate_total_perp_distance.c \
+					core/game/render/calculate/calculate_perp_distance.c \
 					core/game/render/calculate/calculate_impact_in_wall_x.c \
 					core/game/render/calculate/calculate_wall_height.c \
 					core/game/render/calculate/calculate_wall_texture_x.c \
@@ -154,11 +164,16 @@ SRCS =				core/main.c \
 					parse/utils/is_enemy.c \
 					parse/utils/is_player.c \
 					parse/utils/is_file_info.c \
+					parse/utils/is_ray_door.c \
+					parse/utils/is_door_close.c \
+					parse/utils/is_visible_pixel.c \
+					parse/utils/is_transparent_door.c \
 					parse/utils/is_valid_door.c \
 					parse/utils/is_valid_element.c \
 					parse/utils/is_valid_texture.c \
 					parse/utils/is_ray_hit_the_door.c \
 					parse/utils/is_inside_map_cells.c \
+					parse/utils/is_player_inside_door.c \
 					parse/utils/is_inside_circle.c \
 					parse/utils/is_one_or_two_letters.c \
 					parse/utils/manage_color_or_texture.c \
@@ -215,7 +230,7 @@ all: $(MLX_A) $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
-	@$(CC) $(DMODE) $(WFLAGS)  $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) $(LDLIBS) -o $(NAME)
+	@$(CC) $(DMODE) $(WFLAGS) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -225,7 +240,7 @@ $(LIBFT_A): FORCE $(LIBFT_MAKEFILE) $(LIBFT_H)
 # Compile MLX library
 $(MLX_A):
 	@$(PRINT) "Compiling $(BLUE)mlx library$(DEFAULT)...\n"
-	@$(CD) $(MLX_DIR) && $(CMAKE) -B build > /dev/null 2>&1 && $(CMAKE) --build build -j4 > /dev/null  2>&1
+	@$(CD) $(MLX_DIR) && $(CMAKE) -B build > /dev/null 2>&1 && $(CMAKE) --build build -j4 > /dev/null 2>&1
 
 # **************************************************************************** #
 #                            Object Compilation                                #
@@ -236,7 +251,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(MKDIR) $(dir $@)
-	@$(CC) $(DMODE) $(WFLAGS) $(DFLAGS) $(SFLAGS) $(VFLAGS) $(OFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
+	@$(CC) $(DMODE) $(WFLAGS) $(CFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
 
 # Include .deps files
 -include $(DEPS_FILES)
@@ -245,23 +260,28 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
 #                            Secondary Targets                                 #
 # **************************************************************************** #
 
-# test sanitize leaks in cub3d
-test:
+# Compilation for maximum performance
+fast:
 	@clear
-	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=address,undefined -O0" VFLAGS="" OFLAGS="" all
+	@$(MAKE) --no-print-directory MODE=release all
+	@LD_PRELOAD="" ./$(NAME) $(MAP)
+
+# test sanitize leaks in cub3d
+test-leaks:
+	@clear
+	@$(MAKE) --no-print-directory MODE=asan all
 	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SANL_SUPP) ./$(NAME) $(MAP)
 
 # test sanitize threads in cub3d
 test-races:
 	@clear
-	@$(MAKE) --no-print-directory SFLAGS="-fsanitize=thread,undefined -O0" VFLAGS="" OFLAGS="" re
+	@$(MAKE) --no-print-directory MODE=tsan all
 	@LD_PRELOAD="" TSAN_OPTIONS="suppressions=$(SANT_SUPP) ignore_noninstrumented_modules=1" ./$(NAME) $(MAP)
 
-
-# test sanitize threads in cub3d
+# Compilation for debugging
 debug:
 	@clear
-	@$(MAKE) --no-print-directory VFLAGS="" OFLAGS="" re
+	@$(MAKE) --no-print-directory MODE=debug all
 	@LD_PRELOAD="" ./$(NAME) $(MAP)
 
 # Test the norminette in my .c files
@@ -278,7 +298,7 @@ check:
 clean:
 	@$(MAKE) clean -s -C $(LIBFT_DIR)
 	@$(RM) $(MLX_DIR)/build
-	@$(RM) $(OBJ_DIR)
+	@$(RM) obj
 	@$(PRINT) "${CLEAR}${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Objects were cleaned ${GREEN}successfully${RESET}.\n${RESET}"
 
 # Full clean
@@ -294,5 +314,5 @@ re: fclean all
 FORCE:
 
 # Phony targets
-.PHONY: all clean fclean re test leaks norm check
+.PHONY: all clean fclean re test-leaks test-races debug fast norm check
 .DEFAULT_GOAL := all

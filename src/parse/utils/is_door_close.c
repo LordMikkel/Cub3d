@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_opt.c                                         :+:      :+:    :+:   */
+/*   is_door_close.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 19:40:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:37:52 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/06 15:48:35 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/06 15:49:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-void	init_opt(t_data *data)
+/**
+ * Checks if the character represents a close door.
+ *
+ * @param c  The character to check.
+ * @return   TRUE if it is a close door ('D').
+ */
+bool	is_door_close(char c)
 {
-	init_cores(data, &data->vars);
-	data->vars.half_img_height = data->img->height / 2;
-	data->vars.half_img_width = data->img->width / 2;
-	data->vars.initial_min_dist_sq = DOOR_INTERACT_DIST * DOOR_INTERACT_DIST;
+	if (c == 'D')
+		return (TRUE);
+	return (FALSE);
 }

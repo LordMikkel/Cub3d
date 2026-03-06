@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 23:00:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:15:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,11 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 	{
 		mapped_tex[Y] = (int)ray->tex[Y] & TEXTURE_MODULE;
 		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
-		color = apply_light(data, color, brightness);
-		mlx_put_pixel(data->img, x, ray->wall_start, color);
+		if (is_visible_pixel(color))
+		{
+			color = apply_light(data, color, brightness);
+			mlx_put_pixel(data->img, x, ray->wall_start, color);
+		}
 		ray->tex[Y] += ray->tex_step;
 		ray->wall_start++;
 	}

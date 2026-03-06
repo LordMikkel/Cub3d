@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:05:22 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:15:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,15 @@
 # define L_RES						8
 
 // Doors
-# define DOOR_INTERACT_DIST 		1.5
+# define MAX_TRANSPARENT_HITS		3
+# define DOOR_INTERACT_DIST 		2.5
 # define DOOR_ANIM_SPEED			0.05
-# define DOOR_ANIMATIONS			3
-# define DOOR_TEX_0					"tex/matrix/door/door_0.png"
-# define DOOR_TEX_1					"tex/matrix/door/door_1.png"
-# define DOOR_TEX_2					"tex/matrix/door/door_2.png"
-# define DOOR_TEX_3					"tex/matrix/door/door_3.png"
+# define DOOR_ANIMATIONS			5
+# define DOOR_TEX_0					"tex/hospital/door/door_0.png"
+# define DOOR_TEX_1					"tex/hospital/door/door_1.png"
+# define DOOR_TEX_2					"tex/hospital/door/door_2.png"
+# define DOOR_TEX_3					"tex/hospital/door/door_3.png"
+# define DOOR_TEX_4					"tex/hospital/door/door_4.png"
 
 /* ************************************************************************** */
 /*                                   Game                                     */
@@ -216,7 +218,7 @@
 # define ERR_MAP_DOOR		KO "Map has an invalid door placement\n"
 
 // Texture/Color Errors
-# define ERR_TEX_INVALID 	KO "Invalid texture file or path\n"
+# define ERR_TEX_INVALID 	KO "Invalid texture file or path: %s\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
 # define ERR_TXTR_SIZE		KO "Texture is not %d x %d pixels\n"

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 19:13:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:45:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool	is_inside_map(t_map *map, int x, int y)
 		return (FALSE);
 	if (is_wall(map->map_grid[y][x]))
 		return (FALSE);
-	if (is_door(map->map_grid[y][x]))
+	if (is_door_close(map->map_grid[y][x]))
 		return (FALSE);
 	return (TRUE);
 }

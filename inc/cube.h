@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:07:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:35:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_opt(t_data *data);
 void	init_minimap(t_mm *minimap);
+void	init_transparent_hit(t_ray *ray);
 void	init_cores(t_data *data, t_opt *vars);
 void	init_lightmap(t_data *data, t_map *map);
 void	init_door(t_data *data, int x, int y, char type);
@@ -74,8 +75,9 @@ void	game_render(void *param);
 void	render_raycast(t_data *data);
 void	render_lightmap(t_data	*data);
 void	perform_dda(t_map *map, t_ray *ray);
+void	render_transparent_hits(t_data *data, t_ray *ray, int x);
 void	calculate_wall_height(t_data *data, t_ray *ray);
-void	calculate_total_perp_distance(t_plyr *player, t_ray *ray);
+void	calculate_perp_distance(t_plyr *player, t_ray *ray);
 void	calculate_wall_texture_y(t_ray *ray, t_txtr *texture);
 void	calculate_wall_texture_x(t_data *data, t_ray *ray);
 void	calculate_impact_in_wall_x(t_plyr *player, t_ray *ray);
@@ -134,14 +136,20 @@ bool	is_enemy(char c);
 bool	is_door(char c);
 bool	is_wall(char c);
 bool	is_light(char c);
+bool	is_door_close(char c);
 void	move_x_side(t_ray *ray);
 void	move_y_side(t_ray *ray);
+bool	is_visible_pixel(uint32_t color);
 int		is_one_or_two_letters(int type);
-bool	is_hit_wall(t_map *map, t_ray *ray);
+bool	is_ray_door(t_door *door, t_ray *ray);
+bool	is_out_of_the_map(t_map *map, int *pos);
+bool	is_hit_wall_or_door(t_map *map, t_ray *ray);
 double	get_brightness(t_map *map, int x, int y);
 bool	is_valid_door(t_map *map, int x, int y);
 bool	is_inside_map_cells(t_map *map, int *cell);
+bool	is_transparent_door(t_map *map, t_ray *ray);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
+bool	is_player_inside_door(t_plyr *player, t_door *door);
 void	is_valid_texture(t_data *data, t_txtr *texture);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);

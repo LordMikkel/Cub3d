@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:54:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 21:39:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 19:00:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_door	*get_nearest_door(t_data *data, t_map *map)
 
 	i = 0;
 	nearest = NULL;
-	min_dist_sq = DOOR_INTERACT_DIST * DOOR_INTERACT_DIST;
+	min_dist_sq = data->vars.initial_min_dist_sq;
 	while (i < map->n_doors)
 	{
 		dist_sq = get_door_dist_sq(&data->player, &map->doors[i], min_dist_sq);
@@ -51,12 +51,16 @@ t_door	*get_nearest_door(t_data *data, t_map *map)
 
 void	open_close_door(t_data *data, t_map *map, bool *key_held)
 {
-	t_door *door;
+	t_door	*door;
 
 	if (*key_held)
-		return;
+		return ;
 	door = get_nearest_door(data, map);
-	if (door)
+	if (!door)
+		return ;
+	if (is_player_inside_door(&data->player, door))
+		door->is_open = TRUE;
+	else
 		door->is_open = !door->is_open;
 	*key_held = TRUE;
 }

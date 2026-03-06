@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:27:18 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:21:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:06:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
  * @param ray  The current ray containing the (X, Y) grid position.
  * @return     TRUE if a collision happened, FALSE if the path is clear.
  */
-bool	is_hit_wall(t_map *map, t_ray *ray)
+bool	is_hit_wall_or_door(t_map *map, t_ray *ray)
 {
 	if (ray->pos[Y] < 0 || ray->pos[Y] >= map->map_limit[Y])
 		return (TRUE);
 	if (ray->pos[X] < 0 || ray->pos[X] >= map->map_limit[X])
 		return (TRUE);
-	if (map->map_grid[ray->pos[Y]][ray->pos[X]] == '1')
+	if (is_wall(map->map_grid[ray->pos[Y]][ray->pos[X]]))
+		return (TRUE);
+	if (is_door(map->map_grid[ray->pos[Y]][ray->pos[X]]))
 		return (TRUE);
 	return (FALSE);
 }
@@ -102,7 +104,12 @@ void	perform_dda(t_map *map, t_ray *ray)
 			move_x_side(ray);
 		else
 			move_y_side(ray);
-		if (is_hit_wall(map, ray))
-			hit = TRUE;
+		if (is_hit_wall_or_door(map, ray))
+		{
+			if (is_transparent_door(map, ray))
+				init_transparent_hit(ray);
+			else
+				hit = TRUE;
+		}
 	}
 }

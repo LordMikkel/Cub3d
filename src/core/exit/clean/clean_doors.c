@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:57:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 23:14:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 19:00:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
 {
 	int	i;
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < map->n_doors)
@@ -35,7 +35,6 @@ static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
 
 void	clean_doors(t_data *data, t_map *map)
 {
-
 	if (!map || !data)
 		return ;
 	if (map->doors->sprites->txtr)

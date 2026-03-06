@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:59:52 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 21:29:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:32:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int	get_door_frame(double percent)
 {
-	if (percent == 0)
-		return (0);
-	if (percent >= 25)
-		return (1);
-	if (percent >= 50)
-		return (2);
-	if (percent >= 75)
-		return (3);
-	if (percent >= 100)
+	if (percent >= 0.80)
 		return (4);
-	else
-		return (0);
+	if (percent >= 0.60)
+		return (3);
+	if (percent >= 0.40)
+		return (2);
+	if (percent >= 0.20)
+		return (1);
+	return (0);
 }
 
 static t_txtr	*get_door_texture(t_data *data, t_ray *ray)
@@ -75,7 +72,7 @@ void	calculate_wall_texture_x(t_data *data, t_ray *ray)
 	ray->texture = tex;
 	if (ray->texture->format != TEXTURE)
 		return ;
-	ray->tex[X] = (int)(ray->wall[X] * (double)tex->img->width);
+	ray->tex[X] = ray->wall[X] * (double)tex->img->width;
 	if (should_invert_texture(ray))
 		ray->tex[X] = tex->img->width - ray->tex[X] - 1;
 }
