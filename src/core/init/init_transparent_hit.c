@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:07:14 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 17:44:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 21:25:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Logs the state of the ray at the exact moment it passes through a transparent
+ * door. This data (position, side hit, specific wall coordinates) is saved in a
+ * history array so the engine can go back and render this transparent layer
+ * later, once the solid wall behind it has been drawn.
+ *
+ * @param ray  The ray containing the hit state to freeze and save.
+ */
 void	init_transparent_hit(t_ray *ray)
 {
 	int	i;

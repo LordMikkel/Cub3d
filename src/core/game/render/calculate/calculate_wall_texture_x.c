@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:59:52 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 16:32:43 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:05:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_txtr	*get_texture_for_ray(t_data *data, t_ray *ray)
 		return (&data->map.textures[EAST]);
 }
 
-void	calculate_wall_texture_x(t_data *data, t_ray *ray)
+void	calc_wall_texture_x(t_data *data, t_ray *ray)
 {
 	t_txtr	*tex;
 

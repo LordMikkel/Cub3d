@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:52:42 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/20 00:03:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:06:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@
  * @param ray     The ray containing the distance and direction vectors.
  * @return        The exact double-precision global impact coordinate.
  */
-static double	get_impact_coordinate(t_plyr *player, t_ray *ray)
+static double	get_impact_coord(t_plyr *player, t_ray *ray)
 {
+
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
-		return (player->pos[Y] + (ray->perp_dist * ray->dir[Y]));
+		return (player->pos[Y] + ( ray->dir[Y] * ray->perp_dist));
 	else
-		return (player->pos[X] + (ray->perp_dist * ray->dir[X]));
+		return (player->pos[X] + ( ray->dir[X] * ray->perp_dist));
 }
 
 /**
@@ -47,10 +48,10 @@ static double	get_impact_coordinate(t_plyr *player, t_ray *ray)
  * @param player  The player's data structure.
  * @param ray     The ray whose wall impact fraction will be updated.
  */
-void	calculate_impact_in_wall_x(t_plyr *player, t_ray *ray)
+void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray)
 {
 	double	absolute_impact;
 
-	absolute_impact = get_impact_coordinate(player, ray);
+	absolute_impact = get_impact_coord(player, ray);
 	ray->wall[X] = absolute_impact - floor(absolute_impact);
 }

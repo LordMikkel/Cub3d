@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 19:15:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 23:52:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 21:13:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+/**
+ * Fills the minimap area with a base background color.
+ * Iterates through the entire square bounding box of the minimap UI,
+ * but only colors pixels that fall inside the circular radius.
+ *
+ * @param data     Main data struct containing the image buffer.
+ * @param minimap  Minimap struct containing offset and size data.
+ */
 void	draw_minimap_circle_background(t_data *data, t_mm *minimap)
 {
 	int	x;

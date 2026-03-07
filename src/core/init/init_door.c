@@ -6,12 +6,18 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 03:20:45 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 15:39:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:33:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Retrieves the hardcoded file path for a specific door animation frame.
+ *
+ * @param i  The frame index of the animation sequence.
+ * @return   The string path to the corresponding texture file.
+ */
 static char	*get_door_tex_path(int i)
 {
 	if (i == 0)
@@ -27,6 +33,16 @@ static char	*get_door_tex_path(int i)
 	return (NULL);
 }
 
+/**
+ * Loads the sequence of images required for a door's opening animation.
+ * Iterates through the predefined number of animation frames, loading each
+ * PNG into the mlx graphics environment. It validates both the texture
+ * load and the image conversion, acting as a security checkpoint before
+ * rendering begins.
+ *
+ * @param data     Main program structure containing the mlx instance.
+ * @param sprites  The array of texture structures to populate with frames.
+ */
 void	init_door_textures(t_data *data, t_txtr *sprites)
 {
 	int	i;
@@ -50,6 +66,18 @@ void	init_door_textures(t_data *data, t_txtr *sprites)
 	}
 }
 
+/**
+ * Registers a new door entity into the game's internal logic map.
+ * Converts the 2D grid coordinates (integers) into precise floating-point
+ * world coordinates by adding an offset to center the door in the cell.
+ * Initializes it as completely closed and triggers the texture loading.
+ * Uses a static index to track the current door across multiple calls.
+ *
+ * @param data  Main program structure holding the map data.
+ * @param x     The X grid coordinate where the door is located.
+ * @param y     The Y grid coordinate where the door is located.
+ * @param type  The character identifier from the map file (unused here).
+ */
 void	init_door(t_data *data, int x, int y, char type)
 {
 	static int	i = 0;
@@ -59,7 +87,7 @@ void	init_door(t_data *data, int x, int y, char type)
 		data->map.doors = alloc(data, data->map.n_doors, sizeof(t_door));
 	data->map.doors[i].pos[X] = (double)x + PRECISE_CENTER_CELL;
 	data->map.doors[i].pos[Y] = (double)y + PRECISE_CENTER_CELL;
-	data->map.doors[i].is_open = FALSE;
+	data->map.doors[i].needs_to_open = FALSE;
 	data->map.doors[i].open_percent = 0.0;
 	init_door_textures(data, data->map.doors[i].sprites);
 	i++;

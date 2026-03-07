@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:12:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 15:58:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:06:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param ray      The ray containing line height and drawing boundaries.
  * @param texture  The texture structure to get the true image height.
  */
-void	calculate_wall_texture_y(t_ray *ray, t_txtr *texture)
+void	calc_wall_texture_y(t_ray *ray, t_txtr *texture)
 {
 	double	theoretical_wall_top_y;
 	double	clipped_screen_pixels;

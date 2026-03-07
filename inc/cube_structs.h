@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 00:17:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:33:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_txtr		t_txtr;
 typedef struct s_thread		t_thread;
 typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
+typedef struct s_gun		t_gun;
 typedef struct s_plyr		t_plyr;
 typedef struct s_mm			t_mm;
 typedef struct s_map		t_map;
@@ -124,6 +125,22 @@ typedef enum e_mov
 	LEFT,
 }	t_mov;
 
+typedef enum e_state
+{
+	GUN_IDLE,
+	GUN_AIM,
+	GUN_SHOOT,
+	GUN_MELEE,
+	GUN_RELOAD,
+	TOTAL_GUN_STATES,
+}	t_state;
+
+typedef enum e_hit
+{
+	NO_HIT,
+	HIT,
+}	t_hit;
+
 typedef struct s_p2d
 {
 	int				x;
@@ -140,6 +157,24 @@ typedef struct s_enemy
 	t_txtr			*sprite;
 }	t_enemy;
 
+typedef struct	s_gun
+{
+	t_state		state;
+	t_state		prev_state;
+	int			ammo;
+	int			max_ammo;
+	int			current_frame;
+	double		frame_timer;
+	double		frame_duration;
+	bool		anim_done;
+	t_hit		last_hit;
+	t_txtr		idle_frames[3];
+	t_txtr		aim_frames[2];
+	t_txtr		shoot_frames[4];
+	t_txtr		melee_frames[4];
+	t_txtr		reload_frames[4];
+}	t_gun;
+
 typedef struct s_plyr
 {
 	t_dir			spawn_dir;
@@ -152,7 +187,7 @@ typedef struct s_plyr
 	double			fov[AXIS];
 	double			head[ATRIBUTES];
 	bool			moving;
-	t_txtr			*sprite;
+	t_gun 			gun;
 }	t_plyr;
 
 typedef struct s_txtr
@@ -181,7 +216,7 @@ typedef struct s_light
 typedef struct s_door
 {
 	double	pos[AXIS];
-	bool	is_open;
+	bool	needs_to_open;
 	double	open_percent;
 	t_txtr	sprites[DOOR_ANIMATIONS];
 }	t_door;

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 17:15:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 21:24:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,18 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 }
 
 /**
- * Draws a vertical strip of the wall by mapping pixels from an image.
+ * Draws a vertical strip of a wall or transparent texture mapping.
  * 1. Secures the X coordinate using modulo to prevent out-of-bounds access.
- * 2. Loops from the top visible pixel to the bottom visible pixel of the wall.
+ * 2. Loops from the top visible pixel to the bottom visible pixel of the strip.
  * 3. Maps the mathematical texture Y coordinate to a real integer pixel index.
- * 4. Extracts the color and draws it, then steps down the exact texture.
+ * 4. Checks visibility: Only draws the pixel if `is_visible_pixel` is TRUE.
+ * This ensures that the "empty" or "glass" parts of a door texture do not
+ * overwrite the background walls already drawn behind them.
  *
- * @param data     Main program structure.
- * @param ray      The ray struct containing texture coordinates and steps.
- * @param texture  The texture struct containing the loaded image data.
- * @param x        The current vertical strip of the screen (pixel column).
+ * @param data  Main program structure.
+ * @param ray   The ray struct containing texture coordinates and steps.
+ * @param tex   The texture struct containing the loaded image data.
+ * @param x     The current vertical screen coordinate (pixel column).
  */
 static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 {
@@ -137,7 +139,7 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
  * @param texture  The linked texture or color data for the wall hit.
  * @param x        The current screen column being rendered.
  */
-void	draw_wall(t_data *data, t_ray *ray, t_txtr *texture, int x)
+void	draw_wall_or_door(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
 	if (texture->format == COLOR)
 		draw_solid_column(data, ray, texture, x);

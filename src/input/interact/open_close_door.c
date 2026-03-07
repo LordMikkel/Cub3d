@@ -6,12 +6,24 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:54:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 19:00:31 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:33:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Calculates the squared distance between the player and a door.
+ * Applies an AABB optimization (Axis-Aligned Bounding Box) check first.
+ * If the absolute distance on either the X or Y axis is strictly greater
+ * than the interaction limit, it immediately aborts the calculation,
+ * returning an "out of bounds" value.
+ *
+ * @param player        The player struct.
+ * @param door          The door to check.
+ * @param out_of_bound  The fallback value to return if the door is too far.
+ * @return              The squared distance, or (out_of_bound + 1) if too far.
+ */
 static double	get_door_dist_sq(t_plyr *player, t_door *door, int out_of_bound)
 {
 	double	dx;
@@ -26,6 +38,15 @@ static double	get_door_dist_sq(t_plyr *player, t_door *door, int out_of_bound)
 	return ((dx * dx) + (dy * dy));
 }
 
+/**
+ * Scans the map to find the closest interactable door to the player.
+ * Iterates through all doors, calculating their squared distances,
+ * and tracks the one with the minimum distance.
+ *
+ * @param data  Main program struct.
+ * @param map   The map containing the doors array.
+ * @return      A pointer to the nearest door, or NULL if none are in range.
+ */
 t_door	*get_nearest_door(t_data *data, t_map *map)
 {
 	t_door	*nearest;
@@ -49,6 +70,17 @@ t_door	*get_nearest_door(t_data *data, t_map *map)
 	return (nearest);
 }
 
+/**
+ * Processes the player's interaction with the nearest door.
+ * Uses a debounce mechanism (`key_held`) to prevent rapid-fire toggling.
+ * Includes anti-clipping logic. If the player is currently standing inside
+ * the door's map cell, it forces the door to stay open, preventing the player
+ * from getting physically trapped inside a wall block.
+ *
+ * @param data      Main program struct.
+ * @param map       The map containing the doors.
+ * @param key_held  Pointer to the debounce boolean flag.
+ */
 void	open_close_door(t_data *data, t_map *map, bool *key_held)
 {
 	t_door	*door;
@@ -59,8 +91,8 @@ void	open_close_door(t_data *data, t_map *map, bool *key_held)
 	if (!door)
 		return ;
 	if (is_player_inside_door(&data->player, door))
-		door->is_open = TRUE;
+		door->needs_to_open = TRUE;
 	else
-		door->is_open = !door->is_open;
+		door->needs_to_open = !door->needs_to_open;
 	*key_held = TRUE;
 }

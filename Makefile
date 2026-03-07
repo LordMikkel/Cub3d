@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/06 18:55:09 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/06 23:46:32 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,7 @@ SRCS =				core/main.c \
 					core/game/render/calculate/calculate_wall_texture_x.c \
 					core/game/render/calculate/calculate_wall_texture_y.c \
 					core/game/draw/game/draw_vertical_line.c \
-					core/game/draw/game/draw_wall.c \
+					core/game/draw/game/draw_wall_or_door.c \
 					core/game/draw/game/draw_ceiling.c \
 					core/game/draw/game/draw_floor.c \
 					core/game/draw/game/color/get_pixel_color.c \

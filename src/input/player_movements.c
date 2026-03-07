@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 15:45:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 19:07:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,8 @@ void	input_player_movement(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		move_player(&data->map, &data->player, data->player.dir[Y] * pace,
 			-data->player.dir[X] * pace);
+	// if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
+	// 	jump_player(&data->map, &data->player, data->player.dir[Y] * pace,
+	// 		-data->player.dir[X] * pace);
 	apply_head_bounce(&data->player);
 }

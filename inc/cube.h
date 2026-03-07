@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 17:35:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:25:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ void	render_raycast(t_data *data);
 void	render_lightmap(t_data	*data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	render_transparent_hits(t_data *data, t_ray *ray, int x);
-void	calculate_wall_height(t_data *data, t_ray *ray);
-void	calculate_perp_distance(t_plyr *player, t_ray *ray);
-void	calculate_wall_texture_y(t_ray *ray, t_txtr *texture);
-void	calculate_wall_texture_x(t_data *data, t_ray *ray);
-void	calculate_impact_in_wall_x(t_plyr *player, t_ray *ray);
+void	calc_wall_height(t_data *data, t_ray *ray);
+void	calc_perp_distance(t_plyr *player, t_ray *ray);
+void	calc_wall_texture_y(t_ray *ray, t_txtr *texture);
+void	calc_wall_texture_x(t_data *data, t_ray *ray);
+void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	draw_vertical_line(t_data *data, t_ray *ray, int x);
-void	draw_wall(t_data *data, t_ray *ray, t_txtr *textures, int x);
+void	draw_wall_or_door(t_data *data, t_ray *ray, t_txtr *textures, int x);
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
 void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
-void	draw_minimap(t_data *data, t_mm *minimap);
+void	render_minimap(t_data *data, t_mm *minimap);
 void	draw_minimap_circle_background(t_data *data, t_mm *minimap);
 void	draw_minimap_cells(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
@@ -153,6 +153,7 @@ bool	is_player_inside_door(t_plyr *player, t_door *door);
 void	is_valid_texture(t_data *data, t_txtr *texture);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);
+void	save_ray_hit_mm(t_mm *minimap, t_plyr *player, t_ray *ray, int col);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 

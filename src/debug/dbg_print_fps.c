@@ -6,12 +6,20 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 22:51:22 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 22:56:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:35:20 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
+/**
+ * Converts POSIX timespec structures into a floating-point second value.
+ * Combines seconds and nanoseconds into a single double.
+ *
+ * @param past     The previous recorded time snapshot.
+ * @param present  The current time snapshot.
+ * @return         The precise elapsed time in seconds.
+ */
 static double	get_time_elapsed(struct timespec past, struct timespec present)
 {
 	double	seconds;
@@ -22,6 +30,14 @@ static double	get_time_elapsed(struct timespec past, struct timespec present)
 	return (seconds + nanoseconds);
 }
 
+/**
+ * Calculates and prints the application's Frames Per Second (FPS).
+ * Uses CLOCK_MONOTONIC to get unaffected system hardware time.
+ * Accumulates frames over a 1-second interval before printing to the
+ * specified file descriptor, ensuring the output is readable and accurate.
+ *
+ * @param fd  The file descriptor to print the FPS to (e.g., standard output).
+ */
 void	dbg_print_fps(int fd)
 {
 	static struct timespec	last_print_time;

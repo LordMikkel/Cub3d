@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 15:39:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:36:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
 
 /**
  * Configuration dispatcher.
- * Identifies the identifier (NO, SO, WE, EA, F, C) and routes the line
+ * Identifies the identifier (NO, SO, WE, EA, F, C, L) and routes the line
  * to manage_color_or_texture, which decides whether to parse a color
  * or load a PNG based on the presence of commas in the line.
  *

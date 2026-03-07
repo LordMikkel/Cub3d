@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:00:59 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 19:11:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 21:23:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@
 void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 {
 	draw_ceiling(data, ray, &data->map.textures[CEILING], x);
-	draw_wall(data, ray, ray->texture, x);
+	draw_wall_or_door(data, ray, ray->texture, x);
 	draw_floor(data, ray, &data->map.textures[FLOOR], x);
 }

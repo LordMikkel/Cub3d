@@ -6,12 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 21:48:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 21:11:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+/**
+ * Prevents out-of-bounds memory access during rendering.
+ * Modifies the start and end coordinates to ensure they do not exceed
+ * the boundaries of the main application window (image buffer).
+ *
+ * @param img    The main mlx_image_t buffer.
+ * @param start  The top-left [X, Y] coordinate to be clamped.
+ * @param end    The bottom-right [X, Y] coordinate to be clamped.
+ */
 static void	clamp_bounds(mlx_image_t *img, int *start, int *end)
 {
 	if (start[X] < 0)
@@ -24,6 +33,16 @@ static void	clamp_bounds(mlx_image_t *img, int *start, int *end)
 		end[Y] = (int)img->height;
 }
 
+/**
+ * Safely draws a filled rectangle on the screen.
+ * Applies coordinate clamping before executing the pixel loop to guarantee
+ * no segmentation faults occur if UI elements overlap screen edges.
+ *
+ * @param data   Main data struct for the image buffer.
+ * @param start  Top-left [X, Y] coordinate.
+ * @param end    Bottom-right [X, Y] coordinate.
+ * @param color  Hex color for the rectangle.
+ */
 static void	fill_rect(t_data *data, int *start, int *end, uint32_t color)
 {
 	int	x;
@@ -43,6 +62,14 @@ static void	fill_rect(t_data *data, int *start, int *end, uint32_t color)
 	}
 }
 
+/**
+ * Draws the outer bounding box and backdrop for the minimap UI.
+ * Creates a slightly larger rectangle for a border effect, followed by
+ * the inner background layer.
+ *
+ * @param data     Main data struct.
+ * @param minimap  Minimap struct for position and sizing.
+ */
 void	draw_minimap_background(t_data *data, t_mm *minimap)
 {
 	int	start[AXIS];

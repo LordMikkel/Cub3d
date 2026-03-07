@@ -6,12 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:57:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 19:00:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:22:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
+/**
+ * Safely iterates through all loaded door animation frames and frees them.
+ * Specifically interacts with the MLX library to delete the texture buffers
+ * and image instances from memory, preventing memory leaks.
+ *
+ * @param data  Main program struct for the MLX context.
+ * @param map   The map struct containing the door array.
+ * @param doors The specific door array to clean up.
+ */
 static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
 {
 	int	i;
@@ -33,6 +42,14 @@ static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
 	}
 }
 
+/**
+ * Master cleanup function for door entities.
+ * Triggers the sprites memory releases and then frees the dynamically
+ * allocated array holding the door objects themselves.
+ *
+ * @param data  Main program struct.
+ * @param map   The map struct to be cleaned.
+ */
 void	clean_doors(t_data *data, t_map *map)
 {
 	if (!map || !data)

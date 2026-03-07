@@ -6,12 +6,39 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:58:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:19 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:08:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
+/**
+ * Records the precise world coordinates of a ray's impact for the minimap.
+ * Calculates the exact hit point using vector mathematics:
+ * Impact Point = Origin + (Direction * Distance).
+ * This data is cached in an array indexed by the screen column, allowing
+ * the engine to later draw the Field of View (FOV) cone on the 2D minimap
+ * quickly, without needing to run the expensive DDA raycasting algorithm again.
+ *
+ * @param minimap  The minimap struct where the hit coordinates are saved.
+ * @param player   The player struct acting as the origin point (P0).
+ * @param ray      The current ray containing direction vector and distance.
+ * @param col      The current vertical screen column index (ray index).
+ */
+void	save_ray_hit_mm(t_mm *minimap, t_plyr *player, t_ray *ray, int col)
+{
+	minimap->ray_hits[col][X] = player->pos[X] + (ray->dir[X] * ray->perp_dist);
+	minimap->ray_hits[col][Y] = player->pos[Y] + (ray->dir[Y] * ray->perp_dist);
+}
+
+/**
+ * Initializes the structural and spatial properties of the minimap.
+ * Defines the radius and calculates the total diameter. Crucially, it sets
+ * the position of the minimap on the screen (top-right corner) and establishes
+ * the absolute center point where the player will be fixed.
+ *
+ * @param minimap  The minimap struct to be initialized.
+ */
 void	init_minimap(t_mm *minimap)
 {
 	int	diameter;

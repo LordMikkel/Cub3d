@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 20:26:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:03:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	protect_image_limits(t_data *data, t_ray *ray)
  * @param data  Main program data structure.
  * @param ray   The current ray being processed.
  */
-void	calculate_wall_height(t_data *data, t_ray *ray)
+void	calc_wall_height(t_data *data, t_ray *ray)
 {
 	protect_zero_distance(ray);
 	ray->wall_height = (int)(data->img->height / ray->perp_dist);
