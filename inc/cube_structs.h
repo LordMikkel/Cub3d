@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:33:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:10:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ typedef struct s_enemy
 	t_txtr			*sprite;
 }	t_enemy;
 
-typedef struct	s_gun
+typedef struct s_gun
 {
 	t_state		state;
 	t_state		prev_state;
@@ -187,7 +187,7 @@ typedef struct s_plyr
 	double			fov[AXIS];
 	double			head[ATRIBUTES];
 	bool			moving;
-	t_gun 			gun;
+	t_gun			gun;
 }	t_plyr;
 
 typedef struct s_txtr

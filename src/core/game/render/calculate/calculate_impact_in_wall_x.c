@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:52:42 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:06:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:11:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
  */
 static double	get_impact_coord(t_plyr *player, t_ray *ray)
 {
-
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
-		return (player->pos[Y] + ( ray->dir[Y] * ray->perp_dist));
+		return (player->pos[Y] + (ray->dir[Y] * ray->perp_dist));
 	else
-		return (player->pos[X] + ( ray->dir[X] * ray->perp_dist));
+		return (player->pos[X] + (ray->dir[X] * ray->perp_dist));
 }
 
 /**
