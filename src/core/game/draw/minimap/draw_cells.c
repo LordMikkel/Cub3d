@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 19:25:15 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:06:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_square(t_data *data, int *pixel, int size, uint32_t color)
 		while (x < size)
 		{
 			if (is_inside_circle(&data->minimap, pixel[X] + x, pixel[Y] + y))
-				mlx_put_pixel(data->img, pixel[X] + x, pixel[Y] + y, color);
+				fast_put_pixel(data->img, pixel[X] + x, pixel[Y] + y, color);
 			x++;
 		}
 		y++;

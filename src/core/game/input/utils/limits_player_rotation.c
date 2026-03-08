@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:57:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/19 02:45:07 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:52:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 /**
  * Checks if the mouse is near the right edge of the window.

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_brightness.c                                   :+:      :+:    :+:   */
+/*   cursor_menu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/22 23:47:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:49:09 by migarrid         ###   ########.fr       */
+/*   Created: 2025/12/25 18:34:07 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/08 14:51:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
-double	get_brightness(t_map *map, int x, int y)
+void	handle_cursor_menu(double xpos, double ypos, void *param)
 {
-	int	max_light_x;
-	int	max_light_y;
+	t_data	*data;
 
-	max_light_x = map->lightmap_limit[X];
-	max_light_y = map->lightmap_limit[Y];
-	if (x < 0 || y < 0 || x >= max_light_x || y >= max_light_y)
-		return (AMBIENT_LIGHT);
-	return (map->lightmap[y][x]);
+	(void)xpos;
+	(void)ypos;
+	data = (t_data *)param;
+	if (data->mode != MENU)
+		return ;
 }

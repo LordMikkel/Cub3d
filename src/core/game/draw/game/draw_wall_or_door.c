@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*   draw_wall_or_door.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:24:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 	color = apply_light(data, texture->hex_color, brightness);
 	while (y <= ray->wall_end)
 	{
-		mlx_put_pixel(data->img, x, y, color);
+		fast_put_pixel(data->img, x, y, color);
 		y++;
 	}
 }
@@ -122,7 +122,7 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 		if (is_visible_pixel(color))
 		{
 			color = apply_light(data, color, brightness);
-			mlx_put_pixel(data->img, x, ray->wall_start, color);
+			fast_put_pixel(data->img, x, ray->wall_start, color);
 		}
 		ray->tex[Y] += ray->tex_step;
 		ray->wall_start++;

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 21:48:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:11:00 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	fill_rect(t_data *data, int *start, int *end, uint32_t color)
 		x = start[X];
 		while (x < end[X])
 		{
-			mlx_put_pixel(data->img, x, y, color);
+			fast_put_pixel(data->img, x, y, color);
 			x++;
 		}
 		y++;

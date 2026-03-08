@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_input.c                                   :+:      :+:    :+:   */
+/*   aim_gun.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 18:24:10 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/05 19:31:08 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/07 19:20:33 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/08 14:51:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
-void	handle_keyboard_menu(mlx_key_data_t keydata, void *param)
+void	aim_gun(t_gun *gun)
 {
-	t_data	*data;
+	if (gun->state == GUN_IDLE)
+	{
+		gun->state = GUN_AIM;
+		gun->current_frame = 0;
+	}
+}
 
-	data = (t_data *)param;
-	if (close_esc(keydata))
-		exit_success(data, MSG_EXIT, EXIT_SUCCESS);
+void	unaim_gun(t_gun *gun)
+{
+	if (gun->state == GUN_AIM)
+	{
+		gun->state = GUN_IDLE;
+		gun->current_frame = 0;
+	}
 }

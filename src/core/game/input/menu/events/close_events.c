@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:42:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 01:57:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:52:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 /**
  * Callback for the window close button (X).

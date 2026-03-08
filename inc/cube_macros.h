@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 18:15:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 15:54:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 /* ************************************************************************** */
 # define PI							3.14159265358979323846
 # define TWO_PI						6.28318530717958647692
+# define ZERO						0.0
 
 /* ************************************************************************** */
 /*                               Map Elements                                 */
@@ -60,7 +61,7 @@
 # define MIN_DISTANCE				0.001
 # define PRECISE_CENTER_CELL		0.5
 # define MIN_MAP_FEATURES			5
-# define TXTR_MAX_SIZE				128
+# define MAP_TXTR_OPT_SIZE			128
 # define TEXTURE_MODULE				127
 
 // Minimap
@@ -93,7 +94,7 @@
 # define LIGHT_RADIUS				6.0
 # define AMBIENT_LIGHT				0.1
 # define LIGHT_RESOLUTION			8
-# define L_RES						8
+# define GUN_MIN_BRIGHTNESS			0.3
 
 // Doors
 # define MAX_TRANSPARENT_HITS		3
@@ -106,12 +107,47 @@
 # define DOOR_TEX_3					"tex/hospital/door/door_3.png"
 # define DOOR_TEX_4					"tex/hospital/door/door_4.png"
 
+// Gun
+# define GUN_TXTR_WIDTH_FHD			400
+# define GUN_TXTR_HEIGH_FHD			600
+# define GUN_MAX_AMMO				3
+# define FRAME_GUN_DURATION			0.15
+# define MAX_DISTANCE_SHOT			15.0
+# define MAX_DISTANCE_MELEE			2
+# define HIT_DAMAGE_FRAME			2
+# define HIT_NONE_FRAME				3
+# define SHOT_FRAMES				1
+# define TOTAL_GUN_IDLE_FRAMES		6
+# define TOTAL_GUN_AIM_FRAMES		2
+# define TOTAL_GUN_SHOOT_FRAMES		4
+# define TOTAL_GUN_MELEE_FRAMES		4
+# define TOTAL_GUN_RELOAD_FRAMES	4
+# define GUN_IDLE_0					"tex/hospital/gun/idle/idle_0.png"
+# define GUN_IDLE_1					"tex/hospital/gun/idle/idle_1.png"
+# define GUN_IDLE_2					"tex/hospital/gun/idle/idle_2.png"
+# define GUN_IDLE_3					"tex/hospital/gun/idle/idle_3.png"
+# define GUN_AIM_0					"tex/hospital/gun/aim/aim_0.png"
+# define GUN_AIM_1					"tex/hospital/gun/aim/aim_1.png"
+# define GUN_SHOOT_0				"tex/hospital/gun/shoot/shoot_0.png"
+# define GUN_SHOOT_1				"tex/hospital/gun/shoot/shoot_1.png"
+# define GUN_SHOOT_2				"tex/hospital/gun/shoot/shoot_blood.png"
+# define GUN_SHOOT_3				"tex/hospital/gun/shoot/shoot_no_blood.png"
+# define GUN_MELEE_0				"tex/hospital/gun/melee/melee_0.png"
+# define GUN_MELEE_1				"tex/hospital/gun/melee/melee_1.png"
+# define GUN_MELEE_2				"tex/hospital/gun/melee/melee_blood.png"
+# define GUN_MELEE_3				"tex/hospital/gun/melee/melee_no_blood.png"
+# define GUN_RELOAD_0				"tex/hospital/gun/reload/reload_0.png"
+# define GUN_RELOAD_1				"tex/hospital/gun/reload/reload_1.png"
+# define GUN_RELOAD_2				"tex/hospital/gun/reload/reload_2.png"
+# define GUN_RELOAD_3				"tex/hospital/gun/reload/reload_3.png"
+
 /* ************************************************************************** */
 /*                                   Game                                     */
 /* ************************************************************************** */
 # define MAX_PLAYER_HEALTH			150
 # define INIT_PLAYER_HEALTH			70
 # define INIT_PLAYER_DAMAGE			20
+# define INIT_CROSSBOW_DAMAGE		100
 
 /* ************************************************************************** */
 /*                                Keyboard keys                               */
@@ -223,6 +259,9 @@
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
 # define ERR_TXTR_SIZE		KO "Texture is not %d x %d pixels\n"
 # define WARN_TXTR_FORM		KO "Texture is not square\n"
+
+// Gun
+# define ERR_GUN_INVAL_STATE KO "Invalid gun state\n"
 
 // MLX Errors
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"

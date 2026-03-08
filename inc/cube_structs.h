@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 17:10:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 05:06:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,13 @@ typedef enum e_limits
 	LIMITS,
 }	t_limits;
 
+typedef enum e_limit
+{
+	MIN,
+	MAX,
+	LIMIT,
+}	t_limit;
+
 typedef enum e_mov
 {
 	FRONT,
@@ -135,17 +142,30 @@ typedef enum e_state
 	TOTAL_GUN_STATES,
 }	t_state;
 
-typedef enum e_hit
+typedef enum e_gun_hit
 {
-	NO_HIT,
-	HIT,
-}	t_hit;
+	HIT_NONE,
+	HIT_DAMAGE,
+}	t_gun_hit;
 
 typedef struct s_p2d
 {
 	int				x;
 	int				y;
 }	t_p2d;
+
+typedef struct s_txtr
+{
+	t_type			type;
+	t_form			format;
+	char			*path;
+	int				color[RGB];
+	uint32_t		hex_color;
+	mlx_texture_t	*txtr;
+	mlx_image_t		*img;
+	uint8_t			*original_pixels;
+	bool			extracted;
+}	t_txtr;
 
 typedef struct s_enemy
 {
@@ -157,18 +177,21 @@ typedef struct s_enemy
 	t_txtr			*sprite;
 }	t_enemy;
 
+
 typedef struct s_gun
 {
 	t_state		state;
 	t_state		prev_state;
+	int			shoot_damage;
+	int			melee_damage;
 	int			ammo;
 	int			max_ammo;
 	int			current_frame;
 	double		frame_timer;
 	double		frame_duration;
 	bool		anim_done;
-	t_hit		last_hit;
-	t_txtr		idle_frames[3];
+	bool		last_hit;
+	t_txtr		idle_frames[4];
 	t_txtr		aim_frames[2];
 	t_txtr		shoot_frames[4];
 	t_txtr		melee_frames[4];
@@ -179,7 +202,6 @@ typedef struct s_plyr
 {
 	t_dir			spawn_dir;
 	int				health;
-	int				damage;
 	bool			is_dead;
 	bool			has_won;
 	double			pos[AXIS];
@@ -190,17 +212,6 @@ typedef struct s_plyr
 	t_gun			gun;
 }	t_plyr;
 
-typedef struct s_txtr
-{
-	t_type			type;
-	t_form			format;
-	char			*path;
-	int				color[RGB];
-	uint32_t		hex_color;
-	mlx_texture_t	*txtr;
-	mlx_image_t		*img;
-	bool			extracted;
-}	t_txtr;
 
 typedef struct s_light
 {
@@ -300,6 +311,7 @@ typedef struct s_opt
 	double			initial_min_dist_sq;
 	int				half_img_height;
 	int				half_img_width;
+	int				gun_pos[AXIS];
 	int				n_cores;
 }	t_opt;
 

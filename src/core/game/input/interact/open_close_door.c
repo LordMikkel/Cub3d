@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:54:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 23:33:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:51:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 /**
  * Calculates the squared distance between the player and a door.
@@ -33,7 +33,7 @@ static double	get_door_dist_sq(t_plyr *player, t_door *door, int out_of_bound)
 	if (dx > DOOR_INTERACT_DIST || dx < -DOOR_INTERACT_DIST)
 		return (out_of_bound + 1.0);
 	dy = player->pos[Y] - door->pos[Y];
-	if (dy > DOOR_INTERACT_DIST || dx < -DOOR_INTERACT_DIST)
+	if (dy > DOOR_INTERACT_DIST || dy < -DOOR_INTERACT_DIST)
 		return (out_of_bound + 1.0);
 	return ((dx * dx) + (dy * dy));
 }

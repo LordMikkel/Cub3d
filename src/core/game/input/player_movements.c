@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 19:07:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:51:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../../inc/cube.h"
 
 /**
  * Checks if the given coordinates are a valid walkable cell.

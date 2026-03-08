@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:25:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:06:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		init_mlx(t_data *data);
 void	init_opt(t_data *data);
 void	init_minimap(t_mm *minimap);
 void	init_transparent_hit(t_ray *ray);
+void	init_gun(t_data *data, t_gun *gun);
 void	init_cores(t_data *data, t_opt *vars);
 void	init_lightmap(t_data *data, t_map *map);
 void	init_door(t_data *data, int x, int y, char type);
@@ -74,26 +75,47 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 void	game_render(void *param);
 void	render_raycast(t_data *data);
 void	render_lightmap(t_data	*data);
-void	perform_dda(t_map *map, t_ray *ray);
+void	render_gun(t_data *data, t_gun *gun);
+void	render_minimap(t_data *data, t_mm *minimap);
 void	render_transparent_hits(t_data *data, t_ray *ray, int x);
+void	perform_dda(t_map *map, t_ray *ray);
 void	calc_wall_height(t_data *data, t_ray *ray);
 void	calc_perp_distance(t_plyr *player, t_ray *ray);
 void	calc_wall_texture_y(t_ray *ray, t_txtr *texture);
 void	calc_wall_texture_x(t_data *data, t_ray *ray);
 void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
+double	calc_player_brightness(t_map *map, t_plyr *player);
+void	apply_light_to_gun(mlx_image_t *img, uint8_t *original, double light);
+void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
+void	open_close_door(t_data *data, t_map *map, bool *key_held);
+void	check_reload_gun_finish(t_gun *gun);
+void	shot_gun(t_data *data, t_gun *gun);
+void	reload_gun(t_gun *gun);
+void	unaim_gun(t_gun *gun);
+void	aim_gun(t_gun *gun);
+
+/* ************************************************************************** */
+/*                                  Draw                                      */
+/* ************************************************************************** */
 void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 void	draw_wall_or_door(t_data *data, t_ray *ray, t_txtr *textures, int x);
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x);
 void	draw_floor(t_data *data, t_ray *ray, t_txtr *texture, int x);
-void	render_minimap(t_data *data, t_mm *minimap);
 void	draw_minimap_circle_background(t_data *data, t_mm *minimap);
 void	draw_minimap_cells(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_player(t_data *data, t_mm *minimap);
-void	update_data(t_data *data);
 
 /* ************************************************************************** */
-/*                                 Events                                     */
+/*                                  Update                                    */
+/* ************************************************************************** */
+void	update_data(t_data *data);
+void	update_doors(t_map *map);
+void	update_player(t_plyr *player);
+void	update_gun(t_data *data, t_gun *gun);
+
+/* ************************************************************************** */
+/*                                 Inputs                                     */
 /* ************************************************************************** */
 void	input_player_movement(t_data *data);
 void	input_player_rotation(t_data *data);
@@ -101,7 +123,6 @@ void	input_player_interact(t_data *data);
 void	handle_click_menu(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 void	handle_keyboard_menu(mlx_key_data_t keydata, void *param);
 void	handle_cursor_menu(double xpos, double ypos, void *param);
-void	open_close_door(t_data *data, t_map *map, bool *key_held);
 int		close_esc(mlx_key_data_t keydata);
 void	close_x(void *param);
 
@@ -150,12 +171,27 @@ bool	is_inside_map_cells(t_map *map, int *cell);
 bool	is_transparent_door(t_map *map, t_ray *ray);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
 bool	is_player_inside_door(t_plyr *player, t_door *door);
-void	is_valid_texture(t_data *data, t_txtr *texture);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
+bool	is_valid_texture(t_data *data, t_txtr *texture, int txt_opt_size);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);
 void	save_ray_hit_mm(t_mm *minimap, t_plyr *player, t_ray *ray, int col);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
+
+/* ************************************************************************** */
+/*                             Optimization                                   */
+/* ************************************************************************** */
+static inline void
+	fast_put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
+{
+	uint8_t	*pixel;
+
+	pixel = &img->pixels[(y * (int)img->width + x) * 4];
+	*(pixel++) = (uint8_t)(color >> 24);
+	*(pixel++) = (uint8_t)(color >> 16);
+	*(pixel++) = (uint8_t)(color >> 8);
+	*(pixel) = (uint8_t)(color & 0xFF);
+}
 
 /* ************************************************************************** */
 /*                                  Debug                                     */

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 00:40:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 23:00:29 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 		bright = get_brightness(&data->map, light[X], light[Y]);
 		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
 		color = apply_light(data, color, bright);
-		mlx_put_pixel(data->img, x, y, color);
+		fast_put_pixel(data->img, x, y, color);
 		y++;
 	}
 }
@@ -72,7 +72,7 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 		light[Y] = (int)(ray->ceiling[Y] * LIGHT_RESOLUTION);
 		bright = get_brightness(&data->map, light[X], light[Y]);
 		color = apply_light(data, texture->hex_color, bright);
-		mlx_put_pixel(data->img, x, y, color);
+		fast_put_pixel(data->img, x, y, color);
 		y++;
 	}
 	return ;

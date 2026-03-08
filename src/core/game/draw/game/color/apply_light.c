@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:59:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/01 19:12:15 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:49:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ uint32_t	apply_light(t_data *data, uint32_t color, double brightness)
 
 	if (data->map.n_lights == 0)
 		return (color);
+	if (brightness >= 0.99)
+		return (color);
+	if (brightness <= 0.01)
+		return (color & 0x000000FF);
 	r = (color >> 24) & 0xFF;
 	g = (color >> 16) & 0xFF;
 	b = (color >> 8) & 0xFF;

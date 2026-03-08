@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 04:58:37 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/07 02:31:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 00:02:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	init_player(t_data *data, int x, int y, char spawn_dir)
 {
 	init_dir_and_fov_player(&data->player, spawn_dir);
 	data->player.health = INIT_PLAYER_HEALTH;
-	data->player.damage = INIT_PLAYER_DAMAGE;
 	data->player.pos[X] = (double)x + PRECISE_CENTER_CELL;
 	data->player.pos[Y] = (double)y + PRECISE_CENTER_CELL;
 }

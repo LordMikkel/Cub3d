@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/06 23:46:32 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/08 16:07:00 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,6 +114,7 @@ SRCS =				core/main.c \
 					core/init/allocator.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
+					core/init/init_gun.c \
 					core/init/init_light_ray.c \
 					core/init/init_player_ray.c \
 					core/init/init_transparent_hit.c \
@@ -129,6 +130,9 @@ SRCS =				core/main.c \
 					core/game/game_render.c \
 					core/game/render/render_raycast.c \
 					core/game/render/render_lightmap.c \
+					core/game/render/render_minimap.c \
+					core/game/render/render_gun.c \
+					core/game/render/render_light_player.c \
 					core/game/render/render_transparent_hits.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_perp_distance.c \
@@ -143,13 +147,29 @@ SRCS =				core/main.c \
 					core/game/draw/game/color/get_pixel_color.c \
 					core/game/draw/game/color/get_brightness.c \
 					core/game/draw/game/color/apply_light.c \
-					core/game/draw/minimap/draw_minimap.c \
 					core/game/draw/minimap/draw_cells.c \
 					core/game/draw/minimap/draw_fov.c \
 					core/game/draw/minimap/draw_player.c \
 					core/game/draw/minimap/draw_circle_background.c \
 					core/game/draw/minimap/draw_square_background.c \
+					core/game/input/player_movements.c \
+					core/game/input/player_rotations.c \
+					core/game/input/player_interact.c \
+					core/game/input/interact/open_close_door.c \
+					core/game/input/interact/aim_gun.c \
+					core/game/input/interact/gun_apply_hit.c \
+					core/game/input/interact/reload_gun.c \
+					core/game/input/interact/shot_gun.c \
+					core/game/input/menu/keyboard_menu.c \
+					core/game/input/menu/cursor_menu.c \
+					core/game/input/menu/click_menu.c \
+					core/game/input/menu/events/close_events.c \
+					core/game/input/utils/limits_player_rotation.c \
 					core/game/update/update_data.c \
+					core/game/update/update_player.c \
+					core/game/update/update_door.c \
+					core/game/update/update_gun.c \
+					core/game/update/update_enemies.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
@@ -177,15 +197,6 @@ SRCS =				core/main.c \
 					parse/utils/is_inside_circle.c \
 					parse/utils/is_one_or_two_letters.c \
 					parse/utils/manage_color_or_texture.c \
-					input/player_movements.c \
-					input/player_rotations.c \
-					input/player_interact.c \
-					input/interact/open_close_door.c \
-					input/menu/keyboard_menu.c \
-					input/menu/cursor_menu.c \
-					input/menu/click_menu.c \
-					input/events/close_events.c \
-					input/utils/limits_player_rotation.c \
 					debug/dbg_print_fps.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \

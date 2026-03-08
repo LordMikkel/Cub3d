@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 19:55:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:09:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	draw_bresenham_ray(t_data *data, t_mm *mm, int *current, int *end)
 	while (42)
 	{
 		if (is_inside_circle(mm, current[X], current[Y]))
-			mlx_put_pixel(data->img, current[X], current[Y], MINIMAP_RAY_COLOR);
+			fast_put_pixel(data->img, current[X], current[Y], MINIMAP_RAY_COLOR);
 		if (current[X] == end[X] && current[Y] == end[Y])
 			break ;
 		update_pos(current, delta, step, &error);

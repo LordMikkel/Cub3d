@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 01:28:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 19:18:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:51:25 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cube.h"
+#include "../../../../inc/cube.h"
 
 /**
  * Rotates the player's direction and FOV plane horizontally.
