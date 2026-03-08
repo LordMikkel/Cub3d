@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:21:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 18:45:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:36:54 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	load_gun_txtr(t_data *data, t_txtr *txtr, char *path)
 	if (!txtr->img)
 		exit_error(data, ERR_MLX_IMG, EXIT_FAILURE);
 	size = txtr->img->width * txtr->img->height * 4;
-	txtr->original_pixels = malloc(size);
+	txtr->original_pixels = ft_alloc(1, size);
 	if (!txtr->original_pixels)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	ft_memcpy(txtr->original_pixels, txtr->img->pixels, size);

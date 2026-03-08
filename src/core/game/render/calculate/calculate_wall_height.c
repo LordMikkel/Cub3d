@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:03:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 19:13:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	protect_zero_distance(t_ray *ray)
  * @param player  Player structure containing head movement offsets.
  * @param ray     The ray structure to store the drawing boundaries.
  */
-static void	get_start_end_pixel_wall(t_data *data, t_ray *ray)
+static void	get_start_end_pixel_wall(t_plyr *player, t_opt *vars, t_ray *ray)
 {
 	int		half_line_height;
 
-	ray->screen_center[Y] = (double)data->img->height / 2.0;
-	ray->screen_center[Y] = ray->screen_center[Y] + data->player.head[POS];
+	ray->screen_center[X] = vars->half_img_width + (int)player->head[SWAY];
+	ray->screen_center[Y] = vars->half_img_height + player->head[POS];
 	half_line_height = ray->wall_height / 2;
 	ray->wall_start = (int)ray->screen_center[Y] - half_line_height;
 	ray->wall_end = (int)ray->screen_center[Y] + half_line_height;
@@ -86,6 +86,6 @@ void	calc_wall_height(t_data *data, t_ray *ray)
 {
 	protect_zero_distance(ray);
 	ray->wall_height = (int)(data->img->height / ray->perp_dist);
-	get_start_end_pixel_wall(data, ray);
+	get_start_end_pixel_wall(&data->player, &data->vars, ray);
 	protect_image_limits(data, ray);
 }

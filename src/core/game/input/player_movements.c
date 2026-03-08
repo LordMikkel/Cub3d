@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:51:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:53:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static bool	is_inside_map(t_map *map, int x, int y)
 }
 
 /**
- * Applies a sinusoidal head bobbing effect while the player is moving.
- * Simulates the natural up-and-down motion of a walking person by
- * updating the bounce offset using a sine function. When the player
- * stops, the bounce gradually returns to zero.
+ * Applies a sinusoidal head bobbing and swaying effect.
+ * Simulates the natural up-and-down (bounce) and side-to-side (sway)
+ * motion of a walking person. When the player stops moving, it
+ * transitions to a subtler idle breathing animation.
  *
  * @param player  The player struct containing the head bounce state.
  */
@@ -50,15 +50,36 @@ static void	apply_head_bounce(t_plyr *player)
 	if (player->moving)
 	{
 		player->head[STEP] += HEAD_BOUNCE_SPEED;
-		player->head[BOUNCE] = (int)(sin(player->head[STEP]) * HEAD_MOV_AMPLIT);
+		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_MOV_AMPLIT;
+		player->head[SWAY] = sin(player->head[STEP]) * HEAD_X_AMPLIT;
 	}
 	else
 	{
-		player->head[STEP] = 0;
-		if (player->head[BOUNCE] > 0)
-			player->head[BOUNCE]--;
-		else if (player->head[BOUNCE] < 0)
-			player->head[BOUNCE]++;
+		player->head[STEP] += HEAD_IDLE_SPEED;
+		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_IDLE_AMPLIT;
+		player->head[SWAY] = sin(player->head[STEP]) * HEAD_IDLE_AMPLIT;
+	}
+}
+
+/**
+ * Updates the vertical offset of the player during a jump.
+ * Applies gravity to the jump velocity frame by frame. Once the
+ * downward velocity brings the offset back to ground level,
+ * the jump state and variables are reset.
+ *
+ * @param player  The player struct containing the jump state.
+ */
+static void	apply_jump(t_plyr *player)
+{
+	if (!player->jumping)
+		return ;
+	player->jump_vel -= GRAVITY;
+	player->jump_offset += player->jump_vel;
+	if (player->jump_vel < 0.0 && player->jump_offset <= 0.0)
+	{
+		player->jump_offset = 0.0;
+		player->jump_vel = 0.0;
+		player->jumping = FALSE;
 	}
 }
 
@@ -93,7 +114,8 @@ static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
  * Processes keyboard input to move the player in the world.
  * Reads WASD keys to determine the movement direction relative
  * to where the player is facing. Holding Left Shift increases
- * the movement speed to a run. Also triggers the head bob effect.
+ * the movement speed to a run. Handles jump initialization via
+ * the SPACE bar, and applies both jump and head bob effects.
  *
  * @param data  The main data struct containing the player and map.
  */
@@ -118,8 +140,8 @@ void	input_player_movement(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		move_player(&data->map, &data->player, data->player.dir[Y] * pace,
 			-data->player.dir[X] * pace);
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
-	// 	jump_player(&data->map, &data->player, data->player.dir[Y] * pace,
-	// 		-data->player.dir[X] * pace);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE) && !data->player.jumping)
+		init_jump(&data->player);
+	apply_jump(&data->player);
 	apply_head_bounce(&data->player);
 }

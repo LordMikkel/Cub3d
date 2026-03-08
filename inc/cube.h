@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:36:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:50:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	game_loop(t_data *data);
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_opt(t_data *data);
+void	init_jump(t_plyr *player);
 void	init_minimap(t_mm *minimap);
 void	init_transparent_hit(t_ray *ray);
 void	init_gun(t_data *data, t_gun *gun);
@@ -132,6 +133,7 @@ void	close_x(void *param);
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
 void	clean_lights(t_map *map);
+void	clean_gun(t_data *data, t_gun *gun);
 void	clean_doors(t_data *data, t_map *map);
 void	clean_map(t_data *data, t_map *map);
 void	clean_enemies(t_data *data, t_map *map);
@@ -184,6 +186,7 @@ void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 /* ************************************************************************** */
 /*                             Optimization                                   */
 /* ************************************************************************** */
+
 static inline void
 	fast_put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
 {

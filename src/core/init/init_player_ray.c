@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 05:35:11 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 04:26:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 19:33:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,11 @@ static void	init_delta_dist(t_ray *ray)
 void	init_player_ray(t_data *data, t_plyr player, t_ray *ray, int x)
 {
 	double	offset_x;
+	double	swayed_x;
 
 	*ray = (t_ray){0};
-	offset_x = 2 * x / (double)data->img->width - 1.0;
+	swayed_x = (double)x - data->player.head[SWAY];
+	offset_x = (2.0 * swayed_x / (double)data->img->width) - 1.0;
 	ray->dir[X] = player.dir[X] + player.fov[X] * offset_x;
 	ray->dir[Y] = player.dir[Y] + player.fov[Y] * offset_x;
 	ray->pos[X] = (int)player.pos[X];

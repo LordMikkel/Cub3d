@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:09:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:34:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef enum e_head
 	BOUNCE,
 	STEP,
 	POS,
+	SWAY,
 	ATRIBUTES,
 }	t_head;
 
@@ -190,11 +191,11 @@ typedef struct s_gun
 	double		frame_duration;
 	bool		anim_done;
 	bool		last_hit;
-	t_txtr		idle_frames[4];
-	t_txtr		aim_frames[2];
-	t_txtr		shoot_frames[4];
-	t_txtr		melee_frames[4];
-	t_txtr		reload_frames[4];
+	t_txtr		idle_frames[TOTAL_GUN_IDLE_FRAMES];
+	t_txtr		aim_frames[TOTAL_GUN_AIM_FRAMES];
+	t_txtr		shoot_frames[TOTAL_GUN_SHOOT_FRAMES];
+	t_txtr		melee_frames[TOTAL_GUN_MELEE_FRAMES];
+	t_txtr		reload_frames[TOTAL_GUN_RELOAD_FRAMES];
 }	t_gun;
 
 typedef struct s_plyr
@@ -208,6 +209,9 @@ typedef struct s_plyr
 	double			fov[AXIS];
 	double			head[ATRIBUTES];
 	bool			moving;
+	bool			jumping;
+	double			jump_vel;
+	double			jump_offset;
 	t_gun			gun;
 }	t_plyr;
 

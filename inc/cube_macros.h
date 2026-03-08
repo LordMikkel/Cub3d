@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 18:43:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:46:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,16 @@
 # define WALK_SPEED_PLAYER			0.02
 # define TILT_LIMIT					400
 # define TILT_SENSITIVITY			1.0
-# define HEAD_BOUNCE_SPEED			0.15
-# define HEAD_MOV_AMPLIT			5
+# define HEAD_BOUNCE_SPEED			0.10
+# define HEAD_MOV_AMPLIT			5.0
+# define HEAD_X_AMPLIT				3.0
+# define HEAD_IDLE_SPEED			0.01
+# define HEAD_IDLE_AMPLIT			5.0
 # define MOUSE_SENSITIVITY			0.004
 # define MOUSE_DEADZONE				100
 # define ROTATION_ANGLE_KEYBOARD	0.03
+# define JUMP_FORCE					35.0
+# define GRAVITY					2
 
 // Lights
 # define LIGHT_INTENSITY			0.8
@@ -121,10 +126,10 @@
 # define HIT_DAMAGE_FRAME			2
 # define HIT_NONE_FRAME				3
 # define SHOT_FRAMES				1
-# define TOTAL_GUN_IDLE_FRAMES		6
+# define TOTAL_GUN_IDLE_FRAMES		5
 # define TOTAL_GUN_AIM_FRAMES		2
-# define TOTAL_GUN_SHOOT_FRAMES		4
-# define TOTAL_GUN_MELEE_FRAMES		4
+# define TOTAL_GUN_SHOOT_FRAMES		6
+# define TOTAL_GUN_MELEE_FRAMES		6
 # define TOTAL_GUN_RELOAD_FRAMES	4
 # define GUN_IDLE_0					"tex/hospital/gun/idle/idle_0.png"
 # define GUN_IDLE_1					"tex/hospital/gun/idle/idle_1.png"

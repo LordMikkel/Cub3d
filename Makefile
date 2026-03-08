@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/08 16:35:48 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/08 21:31:38 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -207,6 +207,7 @@ SRCS =				core/main.c \
 					core/exit/clean/clean_all.c \
 					core/exit/clean/clean_mlx.c \
 					core/exit/clean/clean_map.c \
+					core/exit/clean/clean_gun.c \
 					core/exit/clean/clean_doors.c \
 					core/exit/clean/clean_enemies.c \
 					core/exit/clean/clean_textures.c \
