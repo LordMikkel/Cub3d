@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 05:06:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:09:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ typedef struct s_enemy
 	t_txtr			*sprite;
 }	t_enemy;
 
-
 typedef struct s_gun
 {
 	t_state		state;
@@ -211,7 +210,6 @@ typedef struct s_plyr
 	bool			moving;
 	t_gun			gun;
 }	t_plyr;
-
 
 typedef struct s_light
 {

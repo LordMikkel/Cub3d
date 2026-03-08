@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:39:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:51:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:29:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static bool	is_in_hit_margin(t_plyr *player, double *dist, double dist_sq)
 	return (FALSE);
 }
 
-static bool	is_valid_target(t_plyr *player, t_enemy *enemy, double max_dist_sq, double *dist_sq)
+static bool	is_valid_target(t_plyr *player, t_enemy *enemy, double max_dist_sq,
+		double *dist_sq)
 {
 	double	dist[AXIS];
 

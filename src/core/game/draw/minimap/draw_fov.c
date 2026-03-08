@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 19:55:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:04:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:28:17 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ static void	update_pos(int *current, int *delta, int *step, int *error)
  * @param current  The starting [X, Y] pixel coordinates (usually the center).
  * @param end      The target [X, Y] pixel coordinates where the ray hit a wall.
  */
-static void	draw_bresenham_ray(t_data *data, t_mm *mm, int *current, int *end)
+static void	draw_bresenham_ray(t_data *data, t_mm *mm, int *curr, int *end)
 {
 	int	delta[AXIS];
 	int	step[AXIS];
 	int	error;
 
-	init_bresenham(delta, step, current, end);
+	init_bresenham(delta, step, curr, end);
 	error = delta[X] + delta[Y];
 	while (42)
 	{
-		if (is_inside_circle(mm, current[X], current[Y]))
-			fast_put_pixel(data->img, current[X], current[Y], MINIMAP_RAY_COLOR);
-		if (current[X] == end[X] && current[Y] == end[Y])
+		if (is_inside_circle(mm, curr[X], curr[Y]))
+			fast_put_pixel(data->img, curr[X], curr[Y], MINIMAP_RAY_COLOR);
+		if (curr[X] == end[X] && curr[Y] == end[Y])
 			break ;
-		update_pos(current, delta, step, &error);
+		update_pos(curr, delta, step, &error);
 	}
 }
 

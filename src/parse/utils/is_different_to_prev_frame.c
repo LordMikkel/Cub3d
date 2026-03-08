@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_data.c                                      :+:      :+:    :+:   */
+/*   is_different_to_prev_frame.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 00:32:56 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 18:35:48 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/08 16:20:12 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/08 16:32:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-void	update_data(t_data *data)
+bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame)
 {
-	update_player(&data->player);
-	update_doors(&data->map);
-	update_gun(data, &data->player.gun);
+	if (prev_frame && prev_frame != frame && prev_frame->img)
+		return (TRUE);
+	return (FALSE);
 }

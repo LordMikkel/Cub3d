@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 15:54:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 18:43:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,14 @@
 # define DOOR_TEX_4					"tex/hospital/door/door_4.png"
 
 // Gun
-# define GUN_TXTR_WIDTH_FHD			400
-# define GUN_TXTR_HEIGH_FHD			600
+# define GUN_TXTR_WIDTH_FHD			600
+# define GUN_TXTR_HEIGH_FHD			850
 # define GUN_MAX_AMMO				3
-# define FRAME_GUN_DURATION			0.15
+# define FRAME_GUN_IDLE_DURATION	0.12
+# define FRAME_GUN_AIM_DURATION		0.05
+# define FRAME_GUN_SHOOT_DURATION	0.04
+# define FRAME_GUN_MELEE_DURATION	0.05
+# define FRAME_GUN_RELOAD_DURATION	0.08
 # define MAX_DISTANCE_SHOT			15.0
 # define MAX_DISTANCE_MELEE			2
 # define HIT_DAMAGE_FRAME			2

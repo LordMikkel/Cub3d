@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 18:02:15 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 15:40:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 18:42:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-static int	get_max_frames(t_data *data,t_gun *gun)
+static int	get_max_frames(t_data *data, t_gun *gun)
 {
 	if (gun->state == GUN_IDLE)
 		return (TOTAL_GUN_IDLE_FRAMES);
@@ -27,7 +27,22 @@ static int	get_max_frames(t_data *data,t_gun *gun)
 	return (exit_error(data, ERR_GUN_INVAL_STATE, EXIT_FAIL), ERROR);
 }
 
-static bool is_infinite_gun_animation(t_state state)
+static double	get_frame_duration(t_gun *gun)
+{
+	if (gun->state == GUN_IDLE)
+		return (FRAME_GUN_IDLE_DURATION);
+	if (gun->state == GUN_AIM)
+		return (FRAME_GUN_AIM_DURATION);
+	if (gun->state == GUN_SHOOT)
+		return (FRAME_GUN_SHOOT_DURATION);
+	if (gun->state == GUN_MELEE)
+		return (FRAME_GUN_MELEE_DURATION);
+	if (gun->state == GUN_RELOAD)
+		return (FRAME_GUN_RELOAD_DURATION);
+	return (FRAME_GUN_SHOOT_DURATION);
+}
+
+static bool	is_infinite_gun_animation(t_state state)
 {
 	if (state == GUN_IDLE || state == GUN_AIM)
 		return (TRUE);
@@ -61,9 +76,10 @@ void	update_gun(t_data *data, t_gun *gun)
 	double	now;
 
 	now = mlx_get_time();
-	if (now - gun->frame_timer < gun->frame_duration)
+	gun->frame_duration = get_frame_duration(gun);
+	if (is_frame_not_finished(gun, now))
 		return ;
-	if (gun->state == GUN_IDLE && !data->player.moving)
+	if (is_player_not_moving(&data->player, gun))
 	{
 		gun->current_frame = 0;
 		return ;

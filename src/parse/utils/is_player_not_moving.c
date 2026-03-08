@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_data.c                                      :+:      :+:    :+:   */
+/*   is_player_not_moving.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 00:32:56 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 18:35:48 by migarrid         ###   ########.fr       */
+/*   Created: 2026/03/08 16:12:12 by migarrid          #+#    #+#             */
+/*   Updated: 2026/03/08 16:34:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../inc/cube.h"
 
-void	update_data(t_data *data)
+bool	is_player_not_moving(t_plyr *player, t_gun *gun)
 {
-	update_player(&data->player);
-	update_doors(&data->map);
-	update_gun(data, &data->player.gun);
+	if (gun->state == GUN_IDLE && !player->moving)
+		return (TRUE);
+	return (FALSE);
 }

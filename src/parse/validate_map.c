@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 18:41:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:10:53 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
  * Crucially, we work on a COPY of the map grid. This allows us to "paint"
  * the path with 'V' characters to check for leaks without corrupting the
  * actual game map that will be used for rendering and for debuging purpose.
+ * debug option:
+ * dbg_print_map_grid(map->map_copy, STDOUT);
  *
  * @param data  The main struct.
  * @param map   The map struct to validate.
@@ -124,7 +126,6 @@ void	validate_map(t_data *data, t_map *map)
 	start = (t_p2d){data->player.pos[X], data->player.pos[Y]};
 	limits = (t_p2d){map->map_limit[X], map->map_limit[Y]};
 	close_bounds(data, map->map_copy, limits, start, &reachable_enemies);
-	// dbg_print_map_grid(map->map_copy, STDOUT);
 	if (reachable_enemies != map->n_enemies)
 		exit_error(data, ERR_MAP_REACHABLE, EXIT_USE);
 }

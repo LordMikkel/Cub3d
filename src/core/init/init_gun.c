@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:21:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 02:02:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 18:45:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_gun(t_data *data, t_gun *gun)
 	gun->melee_damage = INIT_CROSSBOW_DAMAGE / 2;
 	gun->current_frame = 0;
 	gun->frame_timer = mlx_get_time();
-	gun->frame_duration = FRAME_GUN_DURATION;
+	gun->frame_duration = FRAME_GUN_IDLE_DURATION;
 	gun->anim_done = FALSE;
 	gun->last_hit = HIT_NONE;
 	init_gun_frames(data, gun);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 01:28:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:51:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:30:49 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ static void	keyboard_rotation(t_data *data)
  * Reads the current mouse position and delegates to both keyboard
  * and mouse rotation handlers. Uses a static center reference point
  * initialized to the middle of the window to track relative mouse movement.
- *
+ * debug options:
+ * dbg_print_player_pos(&data->player, mouse, STDOUT);
  * @param data  The main data struct containing the player and mlx instance.
  */
 void	input_player_rotation(t_data *data)
@@ -119,6 +120,5 @@ void	input_player_rotation(t_data *data)
 
 	keyboard_rotation(data);
 	mlx_get_mouse_pos(data->mlx, &mouse[X], &mouse[Y]);
-	// dbg_print_player_pos(&data->player, mouse, STDOUT);
 	mouse_rotation(data, mouse, center);
 }

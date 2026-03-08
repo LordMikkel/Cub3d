@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:06:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:36:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,14 @@ bool	is_out_of_the_map(t_map *map, int *pos);
 bool	is_hit_wall_or_door(t_map *map, t_ray *ray);
 double	get_brightness(t_map *map, int x, int y);
 bool	is_valid_door(t_map *map, int x, int y);
+bool	is_frame_not_finished(t_gun *gun, double now);
 bool	is_inside_map_cells(t_map *map, int *cell);
 bool	is_transparent_door(t_map *map, t_ray *ray);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
+bool	is_player_not_moving(t_plyr *player, t_gun *gun);
 bool	is_player_inside_door(t_plyr *player, t_door *door);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
+bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame);
 bool	is_valid_texture(t_data *data, t_txtr *texture, int txt_opt_size);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);
 void	save_ray_hit_mm(t_mm *minimap, t_plyr *player, t_ray *ray, int col);

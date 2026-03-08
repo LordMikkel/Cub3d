@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/08 16:07:00 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/08 16:35:48 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -186,9 +186,12 @@ SRCS =				core/main.c \
 					parse/utils/is_file_info.c \
 					parse/utils/is_ray_door.c \
 					parse/utils/is_door_close.c \
+					parse/utils/is_player_not_moving.c \
 					parse/utils/is_visible_pixel.c \
 					parse/utils/is_transparent_door.c \
 					parse/utils/is_valid_door.c \
+					parse/utils/is_frame_not_finished.c \
+					parse/utils/is_different_to_prev_frame.c \
 					parse/utils/is_valid_element.c \
 					parse/utils/is_valid_texture.c \
 					parse/utils/is_ray_hit_the_door.c \

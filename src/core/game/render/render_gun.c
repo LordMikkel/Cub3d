@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:16:03 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 15:50:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:22:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_gun(t_data *data, t_gun *gun)
 	frame = select_frame(gun);
 	if (!frame || !frame->img)
 		return ;
-	if (prev_frame && prev_frame != frame && prev_frame->img)
+	if (is_different_to_prev_frame(prev_frame, frame))
 		prev_frame->img->instances[0].enabled = FALSE;
 	brightness = calc_player_brightness(&data->map, &data->player);
 	coord[X] = data->vars.gun_pos[X];
