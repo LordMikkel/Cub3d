@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/08 21:31:38 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/08 23:05:54 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ SRCS =				core/main.c \
 					core/init/init_player.c \
 					core/init/init_enemy.c \
 					core/init/init_gun.c \
+					core/init/init_jump.c \
 					core/init/init_light_ray.c \
 					core/init/init_player_ray.c \
 					core/init/init_transparent_hit.c \
@@ -147,6 +148,7 @@ SRCS =				core/main.c \
 					core/game/draw/game/color/get_pixel_color.c \
 					core/game/draw/game/color/get_brightness.c \
 					core/game/draw/game/color/apply_light.c \
+					core/game/draw/game/color/blend_pixel.c \
 					core/game/draw/minimap/draw_cells.c \
 					core/game/draw/minimap/draw_fov.c \
 					core/game/draw/minimap/draw_player.c \

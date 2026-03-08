@@ -6,12 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 20:04:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 23:04:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+uint32_t		blend_pixel(t_data *data, int *bg, uint32_t src);
 uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
 uint32_t		apply_light(t_data *data, uint32_t color, double brightness);
 
@@ -110,9 +111,11 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 {
 	int			mapped_tex[AXIS];
+	int			bg[AXIS];
 	double		brightness;
 	uint32_t	color;
 
+	bg[X] = x;
 	mapped_tex[X] = (int)ray->tex[X] & TEXTURE_MODULE;
 	brightness = get_wall_brightness(data, ray);
 	while (ray->wall_start <= ray->wall_end)
@@ -121,7 +124,9 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
 		if (is_visible_pixel(color))
 		{
+			bg[Y] = ray->wall_start;
 			color = apply_light(data, color, brightness);
+			color = blend_pixel(data, bg, color);
 			fast_put_pixel(data->img, x, ray->wall_start, color);
 		}
 		ray->tex[Y] += ray->tex_step;

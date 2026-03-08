@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 21:34:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 22:02:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,15 @@ typedef enum e_state
 	TOTAL_GUN_STATES,
 }	t_state;
 
+
+typedef enum e_mood
+{
+	ENEMY_IDLE,
+	ENEMY_ALERT,
+	ENEMY_CHASE,
+	ENEMY_ATTACK,
+}	t_mood;
+
 typedef enum e_gun_hit
 {
 	HIT_NONE,
@@ -175,7 +184,11 @@ typedef struct s_enemy
 	int				health;
 	bool			is_dead;
 	double			pos[AXIS];
-	t_txtr			*sprite;
+	double			dir[AXIS];
+	t_mood			mood;
+	double			mood_timer;
+	double			last_known_pos[AXIS];
+	t_txtr			*sprites;
 }	t_enemy;
 
 typedef struct s_gun

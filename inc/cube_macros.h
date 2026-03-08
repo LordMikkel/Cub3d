@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 21:46:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/08 22:20:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,13 @@
 # define JUMP_FORCE					35.0
 # define GRAVITY					2
 
+// Enemy
+# define ENEMY_SIGHT_RANGE			8.0
+# define ENEMY_HEAR_RANGE			15.0
+# define ENEMY_FOV_COS				0.5
+# define ENEMY_SPEED				2.0
+# define ENEMY_ATTACK_RANGE			1.5
+
 // Lights
 # define LIGHT_INTENSITY			0.8
 # define LIGHT_RADIUS				6.0
@@ -110,7 +117,7 @@
 # define DOOR_TEX_1					"tex/hospital/door/door_1.png"
 # define DOOR_TEX_2					"tex/hospital/door/door_2.png"
 # define DOOR_TEX_3					"tex/hospital/door/door_3.png"
-# define DOOR_TEX_4					"tex/hospital/door/door_4.png"
+# define DOOR_TEX_4					"tex/hospital/door/door_3.png"
 
 // Gun
 # define GUN_TXTR_WIDTH_FHD			600
