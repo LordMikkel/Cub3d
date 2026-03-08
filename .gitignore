@@ -4,6 +4,7 @@
 *.swp
 *.DS_Store
 *.mp4
+*perf.data*
 cub3d
 example
 
