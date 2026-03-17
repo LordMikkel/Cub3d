@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 21:50:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 20:20:05 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,9 @@ void	calc_perp_distance(t_plyr *player, t_ray *ray);
 void	calc_wall_texture_y(t_ray *ray, t_txtr *texture);
 void	calc_wall_texture_x(t_data *data, t_ray *ray);
 void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
-double	calc_player_brightness(t_map *map, t_plyr *player);
-void	apply_light_to_gun(mlx_image_t *img, uint8_t *original, double light);
 void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
 void	open_close_door(t_data *data, t_map *map, bool *key_held);
+double	get_brightness(t_map *map, int x, int y);
 void	check_reload_gun_finish(t_gun *gun);
 void	shot_gun(t_data *data, t_gun *gun);
 void	reload_gun(t_gun *gun);
@@ -106,6 +105,7 @@ void	draw_minimap_circle_background(t_data *data, t_mm *minimap);
 void	draw_minimap_cells(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_player(t_data *data, t_mm *minimap);
+void	draw_gun(t_data *data, mlx_texture_t *texture);
 
 /* ************************************************************************** */
 /*                                  Update                                    */
@@ -114,6 +114,7 @@ void	update_data(t_data *data);
 void	update_doors(t_map *map);
 void	update_player(t_plyr *player);
 void	update_gun(t_data *data, t_gun *gun);
+void	update_enemies(t_data *data, t_enemy *enemies);
 
 /* ************************************************************************** */
 /*                                 Inputs                                     */
@@ -132,8 +133,8 @@ void	close_x(void *param);
 /* ************************************************************************** */
 void	clean_all(t_data *data);
 void	clean_mlx(t_data *data);
+void	clean_gun(t_gun *gun);
 void	clean_lights(t_map *map);
-void	clean_gun(t_data *data, t_gun *gun);
 void	clean_doors(t_data *data, t_map *map);
 void	clean_map(t_data *data, t_map *map);
 void	clean_enemies(t_data *data, t_map *map);
@@ -148,40 +149,43 @@ int		exit_error(t_data *data, const char *error, int exit_code, ...);
 /* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
-void	*alloc(t_data *data, size_t nmemb, size_t size);
-bool	is_duplicated_or_initialized_texture(t_txtr *texture);
-int		safe_open(t_data *data, t_map *map, char *map_path);
-bool	is_not_an_empty_line(char *line);
-bool	is_valid_element(char c);
-bool	is_map_line(char *line);
-bool	is_player(char c);
-bool	is_enemy(char c);
 bool	is_door(char c);
 bool	is_wall(char c);
 bool	is_light(char c);
+bool	is_enemy(char c);
+bool	is_player(char c);
 bool	is_door_close(char c);
-void	move_x_side(t_ray *ray);
-void	move_y_side(t_ray *ray);
-bool	is_visible_pixel(uint32_t color);
-int		is_one_or_two_letters(int type);
-bool	is_ray_door(t_door *door, t_ray *ray);
-bool	is_out_of_the_map(t_map *map, int *pos);
-bool	is_hit_wall_or_door(t_map *map, t_ray *ray);
-double	get_brightness(t_map *map, int x, int y);
-bool	is_valid_door(t_map *map, int x, int y);
-bool	is_frame_not_finished(t_gun *gun, double now);
-bool	is_inside_map_cells(t_map *map, int *cell);
-bool	is_transparent_door(t_map *map, t_ray *ray);
-bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
-bool	is_player_not_moving(t_plyr *player, t_gun *gun);
-bool	is_player_inside_door(t_plyr *player, t_door *door);
-bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
-bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame);
-bool	is_valid_texture(t_data *data, t_txtr *texture, int txt_opt_size);
+bool	is_map_line(char *line);
+bool	is_valid_element(char c);
+bool	is_last_aim_frame(t_gun *gun);
+bool	is_infinite_gun_animation(t_gun *gun);
+void	*alloc(t_data *data, size_t nmemb, size_t size);
+bool	is_duplicated_or_initialized_texture(t_txtr *texture);
+int		safe_open(t_data *data, t_map *map, char *map_path);
 void	draw_square(t_data *data, int *screen, int size, uint32_t color);
 void	save_ray_hit_mm(t_mm *minimap, t_plyr *player, t_ray *ray, int col);
 void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type);
 void	limits_player_rotation(t_data *data, int *prev, int *mouse);
+bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
+void	check_valid_texture(t_data *d, t_txtr *txtr, int opt_w, int opt_h);
+bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame);
+bool	is_player_not_moving(t_plyr *player, t_gun *gun);
+bool	is_player_inside_door(t_plyr *player, t_door *door);
+bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
+bool	is_ray_door(t_door *door, t_ray *ray);
+bool	is_out_of_the_map(t_map *map, int *pos);
+bool	is_hit_wall_or_door(t_map *map, t_ray *ray);
+bool	is_valid_door(t_map *map, int x, int y);
+bool	is_frame_not_finished(t_gun *gun, double now);
+bool	is_inside_map_cells(t_map *map, int *cell);
+bool	is_transparent_door(t_map *map, t_ray *ray);
+int		get_max_frames(t_data *data, t_gun *gun);
+bool	is_not_an_empty_line(char *line);
+bool	is_visible_pixel(uint32_t color);
+int		is_one_or_two_letters(int type);
+double	get_frame_duration(t_gun *gun);
+void	move_x_side(t_ray *ray);
+void	move_y_side(t_ray *ray);
 
 /* ************************************************************************** */
 /*                             Optimization                                   */
@@ -205,6 +209,7 @@ static inline void
 void	dbg_print_fps(int fd);
 void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
+void	dbg_print_gun_state(t_gun *gun, int fd);
 void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);
 
 #endif

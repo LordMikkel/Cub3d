@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 03:20:45 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 22:20:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:24:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_door_textures(t_data *data, t_txtr *sprites)
 		sprites[i].img = mlx_texture_to_image(data->mlx, sprites[i].txtr);
 		if (!sprites[i].img)
 			exit_error(data, ERR_MLX_TXT_IMG, EXIT_FAILURE);
-		is_valid_texture(data, &sprites[i], MAP_TXTR_OPT_SIZE);
+		check_valid_texture(data, &sprites[i], MAP_TXTR_SIZE, MAP_TXTR_SIZE);
 		sprites[i].extracted = TRUE;
 		sprites[i].format = TEXTURE;
 		i++;

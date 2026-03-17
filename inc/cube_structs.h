@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 22:02:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 01:23:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ typedef enum e_kind
 	ENEMY_THREE,
 	TOTAL_ENEMIES,
 }	t_kind;
+
+typedef enum e_model
+{
+	CROSSBOW,
+	REVOLVER,
+	KATANA,
+	TOTAL_GUN_MODELS,
+}	t_model;
 
 typedef enum e_rgb
 {
@@ -135,14 +143,15 @@ typedef enum e_mov
 
 typedef enum e_state
 {
-	GUN_IDLE,
+	GUN_IDLE_A,
+	GUN_IDLE_E,
 	GUN_AIM,
+	GUN_UNAIM,
 	GUN_SHOOT,
 	GUN_MELEE,
 	GUN_RELOAD,
 	TOTAL_GUN_STATES,
 }	t_state;
-
 
 typedef enum e_mood
 {
@@ -193,6 +202,7 @@ typedef struct s_enemy
 
 typedef struct s_gun
 {
+	t_model		model;
 	t_state		state;
 	t_state		prev_state;
 	int			shoot_damage;
@@ -328,6 +338,7 @@ typedef struct s_opt
 	int				half_img_width;
 	int				gun_pos[AXIS];
 	int				n_cores;
+	uint32_t		gun_max_pixels;
 }	t_opt;
 
 typedef struct s_data

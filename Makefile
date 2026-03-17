@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/08 23:05:54 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/17 19:54:53 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,6 @@ SRCS =				core/main.c \
 					core/game/render/render_lightmap.c \
 					core/game/render/render_minimap.c \
 					core/game/render/render_gun.c \
-					core/game/render/render_light_player.c \
 					core/game/render/render_transparent_hits.c \
 					core/game/render/perform_dda.c \
 					core/game/render/calculate/calculate_perp_distance.c \
@@ -145,16 +144,18 @@ SRCS =				core/main.c \
 					core/game/draw/game/draw_wall_or_door.c \
 					core/game/draw/game/draw_ceiling.c \
 					core/game/draw/game/draw_floor.c \
-					core/game/draw/game/color/get_pixel_color.c \
-					core/game/draw/game/color/get_brightness.c \
-					core/game/draw/game/color/apply_light.c \
-					core/game/draw/game/color/blend_pixel.c \
+					core/game/draw/color/get_pixel_color.c \
+					core/game/draw/color/get_brightness.c \
+					core/game/draw/color/apply_light.c \
+					core/game/draw/color/blend_pixel.c \
 					core/game/draw/minimap/draw_cells.c \
 					core/game/draw/minimap/draw_fov.c \
 					core/game/draw/minimap/draw_player.c \
 					core/game/draw/minimap/draw_circle_background.c \
 					core/game/draw/minimap/draw_square_background.c \
-					core/game/input/player_movements.c \
+					core/game/draw/gun/draw_gun.c \
+					core/game/input/player_movements_i.c \
+					core/game/input/player_movements_ii.c \
 					core/game/input/player_rotations.c \
 					core/game/input/player_interact.c \
 					core/game/input/interact/open_close_door.c \
@@ -166,12 +167,13 @@ SRCS =				core/main.c \
 					core/game/input/menu/cursor_menu.c \
 					core/game/input/menu/click_menu.c \
 					core/game/input/menu/events/close_events.c \
-					core/game/input/utils/limits_player_rotation.c \
 					core/game/update/update_data.c \
 					core/game/update/update_player.c \
 					core/game/update/update_door.c \
-					core/game/update/update_gun.c \
-					core/game/update/update_enemies.c \
+					core/game/update/update_gun_i.c \
+					core/game/update/update_gun_ii.c \
+					core/game/update/update_enemies_i.c \
+					core/game/update/update_enemies_ii.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
@@ -180,31 +182,34 @@ SRCS =				core/main.c \
 					parse/parse_texture.c \
 					parse/parse_map.c \
 					parse/validate_map.c \
-					parse/utils/is_door.c \
-					parse/utils/is_wall.c \
-					parse/utils/is_light.c \
-					parse/utils/is_enemy.c \
-					parse/utils/is_player.c \
-					parse/utils/is_file_info.c \
-					parse/utils/is_ray_door.c \
-					parse/utils/is_door_close.c \
-					parse/utils/is_player_not_moving.c \
-					parse/utils/is_visible_pixel.c \
-					parse/utils/is_transparent_door.c \
-					parse/utils/is_valid_door.c \
-					parse/utils/is_frame_not_finished.c \
-					parse/utils/is_different_to_prev_frame.c \
-					parse/utils/is_valid_element.c \
-					parse/utils/is_valid_texture.c \
-					parse/utils/is_ray_hit_the_door.c \
-					parse/utils/is_inside_map_cells.c \
-					parse/utils/is_player_inside_door.c \
-					parse/utils/is_inside_circle.c \
-					parse/utils/is_one_or_two_letters.c \
-					parse/utils/manage_color_or_texture.c \
+					utils/is_door.c \
+					utils/is_wall.c \
+					utils/is_light.c \
+					utils/is_enemy.c \
+					utils/is_player.c \
+					utils/is_file_info.c \
+					utils/is_ray_door.c \
+					utils/is_last_aim_frame.c \
+					utils/is_door_close.c \
+					utils/is_player_not_moving.c \
+					utils/is_visible_pixel.c \
+					utils/is_transparent_door.c \
+					utils/is_valid_door.c \
+					utils/is_frame_not_finished.c \
+					utils/is_infinite_gun_animation.c \
+					utils/is_different_to_prev_frame.c \
+					utils/is_valid_element.c \
+					utils/is_ray_hit_the_door.c \
+					utils/is_inside_map_cells.c \
+					utils/is_player_inside_door.c \
+					utils/is_inside_circle.c \
+					utils/is_one_or_two_letters.c \
+					utils/check_valid_texture.c \
+					utils/manage_color_or_texture.c \
 					debug/dbg_print_fps.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
+					debug/dbg_print_gun_state.c \
 					debug/dbg_print_player_pos.c \
 					core/exit/clean/clean_all.c \
 					core/exit/clean/clean_mlx.c \
@@ -284,13 +289,13 @@ fast:
 	@LD_PRELOAD="" ./$(NAME) $(MAP)
 
 # test sanitize leaks in cub3d
-test-leaks:
+leaks:
 	@clear
 	@$(MAKE) --no-print-directory MODE=asan all
 	@LD_PRELOAD="" LSAN_OPTIONS=suppressions=$(SANL_SUPP) ./$(NAME) $(MAP)
 
 # test sanitize threads in cub3d
-test-races:
+races:
 	@clear
 	@$(MAKE) --no-print-directory MODE=tsan all
 	@LD_PRELOAD="" TSAN_OPTIONS="suppressions=$(SANT_SUPP) ignore_noninstrumented_modules=1" ./$(NAME) $(MAP)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dbg_print_player_info.c                            :+:      :+:    :+:   */
+/*   dbg_print_player_pos.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:40:19 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/21 20:54:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 00:14:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd)
 	ft_printf_fd(fd, "Fov: %f, %f", player->fov[X], player->fov[Y]);
 	ft_putstr_fd(" | ", fd);
 	ft_printf_fd(fd, "Pos: %f, %f", player->pos[X], player->pos[Y]);
-	ft_putstr_fd("\n", fd);
+	ft_putstr_fd("\r", fd);
 }

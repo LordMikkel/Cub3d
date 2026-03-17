@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 22:51:22 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 23:35:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 00:13:29 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	dbg_print_fps(int fd)
 	time_elapsed = get_time_elapsed(last_print_time, current_time);
 	if (time_elapsed >= 1.0)
 	{
-		ft_printf_fd(fd, "FPS: %.1f\n", (double)frame_count / time_elapsed);
+		ft_printf_fd(fd, "FPS: %.1f\r", (double)frame_count / time_elapsed);
 		last_print_time = current_time;
 		frame_count = 0;
 	}

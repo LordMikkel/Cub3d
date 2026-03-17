@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 18:01:36 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 20:15:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 20:22:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 void	update_player(t_plyr *player)
 {
 	player->head[POS] = player->head[TILT]
-	+ player->head[BOUNCE]
-	+ player->jump_offset;
+		+ player->head[BOUNCE]
+		+ player->jump_offset;
 }

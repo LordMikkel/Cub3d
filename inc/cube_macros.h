@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 22:20:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:32:56 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 # define MIN_DISTANCE				0.001
 # define PRECISE_CENTER_CELL		0.5
 # define MIN_MAP_FEATURES			5
-# define MAP_TXTR_OPT_SIZE			128
+# define MAP_TXTR_SIZE				128
 # define TEXTURE_MODULE				127
 
 // Minimap
@@ -120,11 +120,12 @@
 # define DOOR_TEX_4					"tex/hospital/door/door_3.png"
 
 // Gun
-# define GUN_TXTR_WIDTH_FHD			600
-# define GUN_TXTR_HEIGH_FHD			850
+# define GUN_TXTR_WIDTH_FHD			1920
+# define GUN_TXTR_HEIGH_FHD			1050
 # define GUN_MAX_AMMO				3
 # define FRAME_GUN_IDLE_DURATION	0.12
-# define FRAME_GUN_AIM_DURATION		0.05
+# define FRAME_GUN_AIM_DURATION		0.03
+# define FRAME_GUN_UNAIM_DURATION	0.02
 # define FRAME_GUN_SHOOT_DURATION	0.04
 # define FRAME_GUN_MELEE_DURATION	0.05
 # define FRAME_GUN_RELOAD_DURATION	0.08
@@ -134,7 +135,8 @@
 # define HIT_NONE_FRAME				3
 # define SHOT_FRAMES				1
 # define TOTAL_GUN_IDLE_FRAMES		5
-# define TOTAL_GUN_AIM_FRAMES		2
+# define TOTAL_GUN_AIM_FRAMES		14
+# define TOTAL_GUN_UNAIM_FRAMES		14
 # define TOTAL_GUN_SHOOT_FRAMES		6
 # define TOTAL_GUN_MELEE_FRAMES		6
 # define TOTAL_GUN_RELOAD_FRAMES	4
@@ -144,6 +146,18 @@
 # define GUN_IDLE_3					"tex/hospital/gun/idle/idle_3.png"
 # define GUN_AIM_0					"tex/hospital/gun/aim/aim_0.png"
 # define GUN_AIM_1					"tex/hospital/gun/aim/aim_1.png"
+# define GUN_AIM_2					"tex/hospital/gun/aim/aim_2.png"
+# define GUN_AIM_3					"tex/hospital/gun/aim/aim_3.png"
+# define GUN_AIM_4					"tex/hospital/gun/aim/aim_4.png"
+# define GUN_AIM_5					"tex/hospital/gun/aim/aim_5.png"
+# define GUN_AIM_6					"tex/hospital/gun/aim/aim_6.png"
+# define GUN_AIM_7					"tex/hospital/gun/aim/aim_7.png"
+# define GUN_AIM_8					"tex/hospital/gun/aim/aim_8.png"
+# define GUN_AIM_9					"tex/hospital/gun/aim/aim_9.png"
+# define GUN_AIM_10					"tex/hospital/gun/aim/aim_10.png"
+# define GUN_AIM_11					"tex/hospital/gun/aim/aim_11.png"
+# define GUN_AIM_12					"tex/hospital/gun/aim/aim_12.png"
+# define GUN_AIM_13					"tex/hospital/gun/aim/aim_13.png"
 # define GUN_SHOOT_0				"tex/hospital/gun/shoot/shoot_0.png"
 # define GUN_SHOOT_1				"tex/hospital/gun/shoot/shoot_1.png"
 # define GUN_SHOOT_2				"tex/hospital/gun/shoot/shoot_blood.png"
@@ -273,8 +287,7 @@
 # define ERR_TEX_INVALID 	KO "Invalid texture file or path: %s\n"
 # define ERR_COLOR_FMT		KO "Invalid color format. Expected R,G,B (0-255)\n"
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
-# define ERR_TXTR_SIZE		KO "Texture is not %d x %d pixels\n"
-# define WARN_TXTR_FORM		KO "Texture is not square\n"
+# define ERR_TXTR_SIZE		KO "Texture %s is not %d x %d pixels\n"
 
 // Gun
 # define ERR_GUN_INVAL_STATE KO "Invalid gun state\n"
