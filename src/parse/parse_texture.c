@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:11:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:27:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
 	if (!texture->txtr)
 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE, texture->path);
 	check_valid_texture(data, texture, MAP_TXTR_SIZE, MAP_TXTR_SIZE);
-	texture->extracted = TRUE;
 	texture->format = TEXTURE;
 }
 

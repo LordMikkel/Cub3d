@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 03:20:45 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:24:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:27:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	init_door_textures(t_data *data, t_txtr *sprites)
 		if (!sprites[i].txtr)
 			exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE, sprites[i].path);
 		check_valid_texture(data, &sprites[i], MAP_TXTR_SIZE, MAP_TXTR_SIZE);
-		sprites[i].extracted = TRUE;
 		sprites[i].format = TEXTURE;
 		i++;
 	}

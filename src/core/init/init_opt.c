@@ -6,27 +6,27 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 19:40:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 23:18:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:27:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/cube.h"
 
-static void	load_enemy_txtr(t_data *data, t_txtr *txtr, char *path)
-{
-	txtr->path = path;
-	txtr->txtr = mlx_load_png(path);
-	if (!txtr->txtr)
-		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
-	check_valid_texture(data, txtr, ENEMY_TXTR_HEIGH_FHD, ENEMY_TXTR_HEIGH_FHD + 30);
-}
+// static void	load_enemy_txtr(t_data *data, t_txtr *txtr, char *path)
+// {
+// 	txtr->path = path;
+// 	txtr->txtr = mlx_load_png(path);
+// 	if (!txtr->txtr)
+// 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
+// 	check_valid_texture(data, txtr, ENEMY_TXTR_HEIGH_FHD, ENEMY_TXTR_HEIGH_FHD + 30);
+// }
 
-static void	init_enemy_frames(t_data *data, t_opt *vars)
-{
-	load_enemy_txtr(data, &vars->enemy_idle[0], ENEMY_IDLE_0);
-	load_enemy_txtr(data, &vars->enemy_idle[1], ENEMY_IDLE_1);
-	load_enemy_txtr(data, &vars->enemy_idle[2], ENEMY_IDLE_2);
-}
+// static void	init_enemy_frames(t_data *data, t_opt *vars)
+// {
+// 	load_enemy_txtr(data, &vars->enemy_idle[0], ENEMY_IDLE_0);
+// 	load_enemy_txtr(data, &vars->enemy_idle[1], ENEMY_IDLE_1);
+// 	load_enemy_txtr(data, &vars->enemy_idle[2], ENEMY_IDLE_2);
+// }
 
 void	init_opt(t_data *data, t_opt *vars)
 {

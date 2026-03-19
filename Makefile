@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/20 00:14:14 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/20 00:27:31 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -175,7 +175,7 @@ SRCS =				core/main.c \
 					core/game/update/update_enemies_i.c \
 					core/game/update/update_enemies_ii.c \
 					core/game/update/update_enemies_iii.c \
-					core/game/update/update_enemies_iV.c \
+					core/game/update/update_enemies_iv.c \
 					parse/check_args.c \
 					parse/parse_file.c \
 					parse/get_file_info.c \
