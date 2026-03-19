@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:59:52 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:05:57 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:10:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	calc_wall_texture_x(t_data *data, t_ray *ray)
 	ray->texture = tex;
 	if (ray->texture->format != TEXTURE)
 		return ;
-	ray->tex[X] = ray->wall[X] * (double)tex->img->width;
+	ray->tex[X] = ray->wall[X] * (double)tex->txtr->width;
 	if (should_invert_texture(ray))
-		ray->tex[X] = tex->img->width - ray->tex[X] - 1;
+		ray->tex[X] = tex->txtr->width - ray->tex[X] - 1;
 }

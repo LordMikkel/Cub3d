@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 23:15:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:12:18 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,6 @@ typedef struct s_txtr
 	int				color[RGB];
 	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
-	mlx_image_t		*img;
 	uint8_t			*original_pixels;
 	bool			extracted;
 }	t_txtr;
@@ -348,9 +347,9 @@ typedef struct s_opt
 	int				n_cores;
 	uint32_t		gun_max_pixels;
 	t_txtr			enemy_idle[TOTAL_ENEMY_IDLE_FRAMES];
-    t_txtr			enemy_chase[TOTAL_ENEMY_CHASE_FRAMES];
-    t_txtr			enemy_attack[TOTAL_ENEMY_ATTACK_FRAMES];
-    t_txtr			enemy_death[TOTAL_ENEMY_DEATH_FRAMES];
+	t_txtr			enemy_chase[TOTAL_ENEMY_CHASE_FRAMES];
+	t_txtr			enemy_attack[TOTAL_ENEMY_ATTACK_FRAMES];
+	t_txtr			enemy_death[TOTAL_ENEMY_DEATH_FRAMES];
 }	t_opt;
 
 typedef struct s_data

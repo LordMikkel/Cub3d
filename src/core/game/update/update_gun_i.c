@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 18:02:15 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 22:06:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:13:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	handle_animation_end(t_gun *gun)
 
 static void	handle_rollback_animation(t_gun *gun)
 {
-	int skip_frames;
+	int	skip_frames;
 
 	skip_frames = 4;
 	if (gun->current_frame >= TOTAL_GUN_AIM_FRAMES - 1)

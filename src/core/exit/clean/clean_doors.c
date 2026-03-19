@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:57:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 00:27:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:26:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param map   The map struct containing the door array.
  * @param doors The specific door array to clean up.
  */
-static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
+static void	clean_doors_sprites(t_map *map, t_door *doors)
 {
 	int	i;
 	int	y;
@@ -34,8 +34,6 @@ static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
 		{
 			if (doors[y].sprites[i].txtr)
 				mlx_delete_texture(doors[y].sprites[i].txtr);
-			if (doors[y].sprites[i].img)
-				mlx_delete_image(data->mlx, doors[y].sprites[i].img);
 			i++;
 		}
 		y++;
@@ -50,12 +48,12 @@ static void	clean_doors_sprites(t_data *data, t_map *map, t_door *doors)
  * @param data  Main program struct.
  * @param map   The map struct to be cleaned.
  */
-void	clean_doors(t_data *data, t_map *map)
+void	clean_doors(t_map *map)
 {
-	if (!map || !data || !map->doors)
+	if (!map || !map->doors)
 		return ;
 	if (map->doors->sprites->txtr)
-		clean_doors_sprites(data, map, map->doors);
+		clean_doors_sprites(map, map->doors);
 	if (map->doors)
 		ft_free((void **)&map->doors);
 }

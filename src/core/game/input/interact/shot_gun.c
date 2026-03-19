@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:28:51 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:01:28 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:14:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	is_already_doing_a_damage_gun_action(t_gun *gun)
 	return (FALSE);
 }
 
-static bool is_gun_charged_but_not_aiming(t_gun *gun)
+static bool	is_gun_charged_but_not_aiming(t_gun *gun)
 {
 	if ((gun->state != GUN_AIM || !is_last_aim_frame(gun)) && gun->ammo)
 		return (TRUE);

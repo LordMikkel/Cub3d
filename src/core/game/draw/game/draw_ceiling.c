@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 00:40:44 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 20:04:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:25:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
 uint32_t	apply_light(t_data *data, uint32_t color, double brightness);
 
-static void	get_ceiling_tex_coord(t_data *data, t_ray *ray, int y)
+static void	get_ceiling_coord(t_data *data, t_ray *ray, int y)
 {
 	double	row_dist;
 
@@ -24,40 +24,40 @@ static void	get_ceiling_tex_coord(t_data *data, t_ray *ray, int y)
 	ray->ceiling[Y] = data->player.pos[Y] + row_dist * ray->dir[Y];
 }
 
-static void	get_mapped_tex_coord(t_ray *ray, int *mapped_tex, mlx_image_t *txtr)
+static void	get_tex_coord(t_ray *ray, int *tex_coord, mlx_texture_t *txtr)
 {
-	mapped_tex[X] = (int)(ray->ceiling[X] * txtr->width) & TEXTURE_MODULE;
-	mapped_tex[Y] = (int)(ray->ceiling[Y] * txtr->height) & TEXTURE_MODULE;
-	if (mapped_tex[X] < 0)
-		mapped_tex[X] += txtr->width;
-	if (mapped_tex[Y] < 0)
-		mapped_tex[Y] += txtr->height;
+	tex_coord[X] = (int)(ray->ceiling[X] * txtr->width) & TEXTURE_MODULE;
+	tex_coord[Y] = (int)(ray->ceiling[Y] * txtr->height) & TEXTURE_MODULE;
+	if (tex_coord[X] < 0)
+		tex_coord[X] += txtr->width;
+	if (tex_coord[Y] < 0)
+		tex_coord[Y] += txtr->height;
 }
 
-static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
+static void	draw_txtr_col(t_data *data, t_ray *ray, mlx_texture_t *txtr, int x)
 {
 	int			y;
 	uint32_t	color;
 	double		bright;
 	int			light[AXIS];
-	int			mapped_tex[AXIS];
+	int			tex_coord[AXIS];
 
 	y = 0;
 	while (y < ray->wall_start)
 	{
-		get_ceiling_tex_coord(data, ray, y);
-		get_mapped_tex_coord(ray, mapped_tex, tex->img);
+		get_ceiling_coord(data, ray, y);
+		get_tex_coord(ray, tex_coord, txtr);
 		light[X] = (int)(ray->ceiling[X] * LIGHT_RESOLUTION);
 		light[Y] = (int)(ray->ceiling[Y] * LIGHT_RESOLUTION);
 		bright = get_brightness(&data->map, light[X], light[Y]);
-		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
+		color = get_pixel_color(txtr->pixels, tex_coord, txtr->width);
 		color = apply_light(data, color, bright);
 		fast_put_pixel(data->img, x, y, color);
 		y++;
 	}
 }
 
-static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
+static void	draw_solid_col(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
 	int			y;
 	double		bright;
@@ -67,7 +67,7 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 	y = 0;
 	while (y < ray->wall_start)
 	{
-		get_ceiling_tex_coord(data, ray, y);
+		get_ceiling_coord(data, ray, y);
 		light[X] = (int)(ray->ceiling[X] * LIGHT_RESOLUTION);
 		light[Y] = (int)(ray->ceiling[Y] * LIGHT_RESOLUTION);
 		bright = get_brightness(&data->map, light[X], light[Y]);
@@ -81,7 +81,7 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
 void	draw_ceiling(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
 	if (texture->format == COLOR)
-		draw_solid_column(data, ray, texture, x);
+		draw_solid_col(data, ray, texture, x);
 	else if (texture->format == TEXTURE)
-		draw_txtr_column(data, ray, texture, x);
+		draw_txtr_col(data, ray, texture->txtr, x);
 }

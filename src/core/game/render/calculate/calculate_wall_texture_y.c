@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:12:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 19:08:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:24:32 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	calc_wall_texture_y(t_ray *ray, t_txtr *texture)
 
 	if (ray->texture->format != TEXTURE)
 		return ;
-	ray->tex_step = (double)texture->img->height / ray->wall_height;
+	ray->tex_step = (double)texture->txtr->height / ray->wall_height;
 	theoretical_wall_top_y = ray->screen_center[Y] - (ray->wall_height / 2.0);
 	clipped_screen_pixels = ray->wall_start - theoretical_wall_top_y;
 	ray->tex[Y] = clipped_screen_pixels * ray->tex_step;

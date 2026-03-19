@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/18 22:44:36 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/19 21:26:14 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -197,7 +197,6 @@ SRCS =				core/main.c \
 					utils/is_valid_door.c \
 					utils/is_frame_not_finished.c \
 					utils/is_infinite_gun_animation.c \
-					utils/is_different_to_prev_frame.c \
 					utils/is_valid_element.c \
 					utils/is_ray_hit_the_door.c \
 					utils/is_inside_map_cells.c \

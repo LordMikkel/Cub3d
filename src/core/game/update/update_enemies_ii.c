@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 23:13:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 01:10:33 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:13:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-void attack_player(t_data *data, t_plyr *player, t_enemy *enemy)
+void	attack_player(t_data *data, t_plyr *player, t_enemy *enemy)
 {
 	enemy->mood = ENEMY_ATTACK;
 	enemy->cooldown += data->mlx->delta_time;

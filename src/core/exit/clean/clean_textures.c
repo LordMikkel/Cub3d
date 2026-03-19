@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 00:39:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:58:20 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:27:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
  * @param data  The main struct containing the mlx.
  * @param map   The map struct containing the texture array.
  */
-void	clean_textures(t_data *data, t_map *map)
+void	clean_textures(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	if (!data || !map)
+	if (!map)
 		return ;
 	while (i < TOTAL_TEXTURE)
 	{
@@ -33,8 +33,6 @@ void	clean_textures(t_data *data, t_map *map)
 			ft_free((void **)&map->textures[i].path);
 		if (map->textures[i].txtr)
 			mlx_delete_texture(map->textures[i].txtr);
-		if (map->textures[i].img)
-			mlx_delete_image(data->mlx, map->textures[i].img);
 		i++;
 	}
 }

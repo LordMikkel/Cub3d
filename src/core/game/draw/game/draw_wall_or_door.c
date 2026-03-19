@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 23:04:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:25:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static double	get_wall_brightness(t_data *data, t_ray *ray)
  * @param texture  The struct containing the parsed hex color.
  * @param x        The current vertical strip of the screen (pixel column).
  */
-static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
+static void	draw_solid_col(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
 	int			y;
 	double		brightness;
@@ -108,7 +108,7 @@ static void	draw_solid_column(t_data *data, t_ray *ray, t_txtr *texture, int x)
  * @param tex   The texture struct containing the loaded image data.
  * @param x     The current vertical screen coordinate (pixel column).
  */
-static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
+static void	draw_txtr_col(t_data *data, t_ray *ray, mlx_texture_t *txtr, int x)
 {
 	int			mapped_tex[AXIS];
 	int			bg[AXIS];
@@ -121,7 +121,7 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 	while (ray->wall_start <= ray->wall_end)
 	{
 		mapped_tex[Y] = (int)ray->tex[Y] & TEXTURE_MODULE;
-		color = get_pixel_color(tex->img->pixels, mapped_tex, tex->img->width);
+		color = get_pixel_color(txtr->pixels, mapped_tex, txtr->width);
 		if (is_visible_pixel(color))
 		{
 			bg[Y] = ray->wall_start;
@@ -147,7 +147,7 @@ static void	draw_txtr_column(t_data *data, t_ray *ray, t_txtr *tex, int x)
 void	draw_wall_or_door(t_data *data, t_ray *ray, t_txtr *texture, int x)
 {
 	if (texture->format == COLOR)
-		draw_solid_column(data, ray, texture, x);
+		draw_solid_col(data, ray, texture, x);
 	else if (texture->format == TEXTURE)
-		draw_txtr_column(data, ray, texture, x);
+		draw_txtr_col(data, ray, texture->txtr, x);
 }

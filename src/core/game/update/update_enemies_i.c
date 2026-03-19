@@ -6,24 +6,24 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 00:11:18 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 21:52:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:14:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-static void move_enemy_towards(t_data *data, t_enemy *enemy, double *target)
+static void	move_enemy_towards(t_data *data, t_enemy *enemy, double *target)
 {
 	double	dist[AXIS];
 	double	dist_total;
 	double	step;
 	double	next_pos[AXIS];
 
-	dist_total= ft_distance(enemy->pos[X], enemy->pos[Y], target[X], target[Y]);
+	dist_total = ft_distance(enemy->pos[X], enemy->pos[Y], target[X], target[Y]);
 	if (dist_total < ENEMY_ATTACK_RANGE)
 	{
 		attack_player(data, &data->player, enemy);
-		return;
+		return ;
 	}
 	enemy->cooldown = 0.0;
 	dist[X] = target[X] - enemy->pos[X];
@@ -39,7 +39,7 @@ static void move_enemy_towards(t_data *data, t_enemy *enemy, double *target)
 		enemy->pos[Y] = next_pos[Y];
 }
 
-bool is_inside_enemy_hear_range(double *delta, double enemy_hear_range_sq)
+bool	is_inside_enemy_hear_range(double *delta, double enemy_hear_range_sq)
 {
 	double	delta_dist_sq;
 
