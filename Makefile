@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/17 19:54:53 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/18 22:44:36 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ ifeq ($(MODE), release)
 else ifeq ($(MODE), debug)
 	CFLAGS = $(DFLAGS)
 else ifeq ($(MODE), asan)
-	CFLAGS = $(SFLAGS)
+	CFLAGS = $(DFLAGS) $(SFLAGS)
 else ifeq ($(MODE), tsan)
-	CFLAGS = $(TFLAGS)
+	CFLAGS = $(DFLAGS) $(TFLAGS)
 else
 	$(error "Unknown build mode: $(MODE)")
 endif
@@ -134,7 +134,7 @@ SRCS =				core/main.c \
 					core/game/render/render_minimap.c \
 					core/game/render/render_gun.c \
 					core/game/render/render_transparent_hits.c \
-					core/game/render/perform_dda.c \
+					core/game/render/calculate/perform_dda.c \
 					core/game/render/calculate/calculate_perp_distance.c \
 					core/game/render/calculate/calculate_impact_in_wall_x.c \
 					core/game/render/calculate/calculate_wall_height.c \

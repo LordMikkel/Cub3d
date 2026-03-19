@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 19:40:26 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 01:07:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	cast_single_ray(t_data *data, int x)
 	init_player_ray(data, data->player, &ray, x);
 	perform_dda(&data->map, &ray);
 	calc_perp_distance(&data->player, &ray);
+	save_z_buffer(data, &ray, x);
 	calc_impact_in_wall_x(&data->player, &ray);
 	calc_wall_texture_x(data, &ray);
 	calc_wall_height(data, &ray);

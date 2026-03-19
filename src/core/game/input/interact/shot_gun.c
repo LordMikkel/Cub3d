@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:28:51 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:29:23 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 21:01:28 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,25 @@ static void	shoot_melee(t_data *data, t_gun *gun)
 	gun_apply_hit(data, gun, gun->melee_damage, MAX_DISTANCE_MELEE);
 }
 
-static bool	is_already_doing_a_damage_gun_action(t_state state)
+static bool	is_already_doing_a_damage_gun_action(t_gun *gun)
 {
-	if (state == GUN_SHOOT || state == GUN_MELEE)
+	if (gun->state == GUN_SHOOT || gun->state == GUN_MELEE)
+		return (TRUE);
+	return (FALSE);
+}
+
+static bool is_gun_charged_but_not_aiming(t_gun *gun)
+{
+	if ((gun->state != GUN_AIM || !is_last_aim_frame(gun)) && gun->ammo)
 		return (TRUE);
 	return (FALSE);
 }
 
 void	shot_gun(t_data *data, t_gun *gun)
 {
-	if (is_already_doing_a_damage_gun_action(gun->state))
+	if (is_gun_charged_but_not_aiming(gun))
+		return ;
+	if (is_already_doing_a_damage_gun_action(gun))
 		return ;
 	if (gun->ammo > 0)
 		shoot_ammo(data, gun);

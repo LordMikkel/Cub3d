@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:54:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:51:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 21:50:39 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@
  */
 static double	get_door_dist_sq(t_plyr *player, t_door *door, int out_of_bound)
 {
-	double	dx;
-	double	dy;
+	double	dist[AXIS];
 
-	dx = player->pos[X] - door->pos[X];
-	if (dx > DOOR_INTERACT_DIST || dx < -DOOR_INTERACT_DIST)
+	dist[X] = player->pos[X] - door->pos[X];
+	if (dist[X] > DOOR_INTERACT_DIST || dist[X] < -DOOR_INTERACT_DIST)
 		return (out_of_bound + 1.0);
-	dy = player->pos[Y] - door->pos[Y];
-	if (dy > DOOR_INTERACT_DIST || dy < -DOOR_INTERACT_DIST)
+	dist[Y] = player->pos[Y] - door->pos[Y];
+	if (dist[Y] > DOOR_INTERACT_DIST || dist[Y] < -DOOR_INTERACT_DIST)
 		return (out_of_bound + 1.0);
-	return ((dx * dx) + (dy * dy));
+	return ((dist[X] * dist[X]) + (dist[Y] * dist[Y]));
 }
 
 /**

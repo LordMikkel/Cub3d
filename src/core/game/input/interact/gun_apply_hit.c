@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:39:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:29:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 00:51:51 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist)
 		return ;
 	}
 	enemy->health -= damage;
+	enemy->mood = ENEMY_CHASE;
 	gun->last_hit = HIT_DAMAGE;
 }

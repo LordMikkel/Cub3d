@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 20:20:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 20:52:13 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	game_loop(t_data *data);
 /* ************************************************************************** */
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
-void	init_opt(t_data *data);
 void	init_jump(t_plyr *player);
 void	init_minimap(t_mm *minimap);
+void	init_opt(t_data *data, t_opt *vars);
 void	init_transparent_hit(t_ray *ray);
 void	init_gun(t_data *data, t_gun *gun);
 void	init_cores(t_data *data, t_opt *vars);
@@ -87,6 +87,7 @@ void	calc_wall_texture_x(t_data *data, t_ray *ray);
 void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
 void	open_close_door(t_data *data, t_map *map, bool *key_held);
+void 	attack_player(t_data *data, t_plyr *player, t_enemy *enemy);
 double	get_brightness(t_map *map, int x, int y);
 void	check_reload_gun_finish(t_gun *gun);
 void	shot_gun(t_data *data, t_gun *gun);
@@ -129,24 +130,6 @@ int		close_esc(mlx_key_data_t keydata);
 void	close_x(void *param);
 
 /* ************************************************************************** */
-/*                                 Clean                                      */
-/* ************************************************************************** */
-void	clean_all(t_data *data);
-void	clean_mlx(t_data *data);
-void	clean_gun(t_gun *gun);
-void	clean_lights(t_map *map);
-void	clean_doors(t_data *data, t_map *map);
-void	clean_map(t_data *data, t_map *map);
-void	clean_enemies(t_data *data, t_map *map);
-void	clean_textures(t_data *data, t_map *map);
-
-/* ************************************************************************** */
-/*                                 Exits                                      */
-/* ************************************************************************** */
-int		exit_success(t_data *data, const char *msg, int exit_code);
-int		exit_error(t_data *data, const char *error, int exit_code, ...);
-
-/* ************************************************************************** */
 /*                                 utils                                      */
 /* ************************************************************************** */
 bool	is_door(char c);
@@ -171,6 +154,7 @@ void	check_valid_texture(t_data *d, t_txtr *txtr, int opt_w, int opt_h);
 bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame);
 bool	is_player_not_moving(t_plyr *player, t_gun *gun);
 bool	is_player_inside_door(t_plyr *player, t_door *door);
+void	save_z_buffer(t_data *data, t_ray *ray, int x);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
 bool	is_ray_door(t_door *door, t_ray *ray);
 bool	is_out_of_the_map(t_map *map, int *pos);
@@ -184,6 +168,7 @@ bool	is_not_an_empty_line(char *line);
 bool	is_visible_pixel(uint32_t color);
 int		is_one_or_two_letters(int type);
 double	get_frame_duration(t_gun *gun);
+void 	set_last_aim_frame(t_gun *gun);
 void	move_x_side(t_ray *ray);
 void	move_y_side(t_ray *ray);
 
@@ -211,5 +196,23 @@ void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
 void	dbg_print_gun_state(t_gun *gun, int fd);
 void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);
+
+/* ************************************************************************** */
+/*                                 Clean                                      */
+/* ************************************************************************** */
+void	clean_all(t_data *data);
+void	clean_mlx(t_data *data);
+void	clean_gun(t_gun *gun);
+void	clean_lights(t_map *map);
+void	clean_doors(t_data *data, t_map *map);
+void	clean_map(t_data *data, t_map *map);
+void	clean_enemies(t_data *data, t_map *map, t_opt *vars);
+void	clean_textures(t_data *data, t_map *map);
+
+/* ************************************************************************** */
+/*                                 Exits                                      */
+/* ************************************************************************** */
+int		exit_success(t_data *data, const char *msg, int exit_code);
+int		exit_error(t_data *data, const char *error, int exit_code, ...);
 
 #endif

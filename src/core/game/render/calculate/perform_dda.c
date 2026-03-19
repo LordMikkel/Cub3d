@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:27:18 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:23:27 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 01:08:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 /**
  * Evaluates if the ray has hit a solid wall, door or left the map boundaries.

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 19:32:56 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 20:59:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,20 @@
 # define ENEMY_FOV_COS				0.5
 # define ENEMY_SPEED				2.0
 # define ENEMY_ATTACK_RANGE			1.5
+# define ENEMY_SEG_FREC_DAMAGE		1.0
+# define ENEMY_X_DAMAGE				25
+# define ENEMY_X_HEALTH				100
+# define ENEMY_Y_DAMAGE				50
+# define ENEMY_Y_HEALTH				150
+# define ENEMY_Z_DAMAGE				90
+# define ENEMY_Z_HEALTH				350
+# define TOTAL_ENEMY_IDLE_FRAMES	3
+# define TOTAL_ENEMY_CHASE_FRAMES	3
+# define TOTAL_ENEMY_ATTACK_FRAMES	3
+# define TOTAL_ENEMY_DEATH_FRAMES	3
+# define ENEMY_IDLE_0				"tex/hospital/enemy/x/idle/idle_0.png"
+# define ENEMY_IDLE_1				"tex/hospital/enemy/x/idle/idle_1.png"
+# define ENEMY_IDLE_2				"tex/hospital/enemy/x/idle/idle_2.png"
 
 // Lights
 # define LIGHT_INTENSITY			0.8
@@ -122,28 +136,24 @@
 // Gun
 # define GUN_TXTR_WIDTH_FHD			1920
 # define GUN_TXTR_HEIGH_FHD			1050
-# define GUN_MAX_AMMO				3
+# define GUN_CROSSBOW_MAX_AMMO		3
+# define MAX_DISTANCE_MELEE			2.0
+# define MAX_DISTANCE_SHOT			15.0
 # define FRAME_GUN_IDLE_DURATION	0.12
 # define FRAME_GUN_AIM_DURATION		0.03
-# define FRAME_GUN_UNAIM_DURATION	0.02
-# define FRAME_GUN_SHOOT_DURATION	0.04
-# define FRAME_GUN_MELEE_DURATION	0.05
+# define FRAME_GUN_UNAIM_DURATION	0.04
+# define FRAME_GUN_SHOOT_DURATION	0.03
+# define FRAME_GUN_MELEE_DURATION	0.025
 # define FRAME_GUN_RELOAD_DURATION	0.08
-# define MAX_DISTANCE_SHOT			15.0
-# define MAX_DISTANCE_MELEE			2
-# define HIT_DAMAGE_FRAME			2
-# define HIT_NONE_FRAME				3
-# define SHOT_FRAMES				1
 # define TOTAL_GUN_IDLE_FRAMES		5
-# define TOTAL_GUN_AIM_FRAMES		14
+# define TOTAL_GUN_AIM_FRAMES		10
 # define TOTAL_GUN_UNAIM_FRAMES		14
-# define TOTAL_GUN_SHOOT_FRAMES		6
-# define TOTAL_GUN_MELEE_FRAMES		6
-# define TOTAL_GUN_RELOAD_FRAMES	4
+# define TOTAL_GUN_SHOOT_FRAMES		10
+# define TOTAL_GUN_MELEE_FRAMES		24
+# define TOTAL_GUN_RELOAD_FRAMES	26
 # define GUN_IDLE_0					"tex/hospital/gun/idle/idle_0.png"
 # define GUN_IDLE_1					"tex/hospital/gun/idle/idle_1.png"
 # define GUN_IDLE_2					"tex/hospital/gun/idle/idle_2.png"
-# define GUN_IDLE_3					"tex/hospital/gun/idle/idle_3.png"
 # define GUN_AIM_0					"tex/hospital/gun/aim/aim_0.png"
 # define GUN_AIM_1					"tex/hospital/gun/aim/aim_1.png"
 # define GUN_AIM_2					"tex/hospital/gun/aim/aim_2.png"
@@ -154,18 +164,43 @@
 # define GUN_AIM_7					"tex/hospital/gun/aim/aim_7.png"
 # define GUN_AIM_8					"tex/hospital/gun/aim/aim_8.png"
 # define GUN_AIM_9					"tex/hospital/gun/aim/aim_9.png"
-# define GUN_AIM_10					"tex/hospital/gun/aim/aim_10.png"
-# define GUN_AIM_11					"tex/hospital/gun/aim/aim_11.png"
-# define GUN_AIM_12					"tex/hospital/gun/aim/aim_12.png"
-# define GUN_AIM_13					"tex/hospital/gun/aim/aim_13.png"
 # define GUN_SHOOT_0				"tex/hospital/gun/shoot/shoot_0.png"
 # define GUN_SHOOT_1				"tex/hospital/gun/shoot/shoot_1.png"
-# define GUN_SHOOT_2				"tex/hospital/gun/shoot/shoot_blood.png"
-# define GUN_SHOOT_3				"tex/hospital/gun/shoot/shoot_no_blood.png"
+# define GUN_SHOOT_2				"tex/hospital/gun/shoot/shoot_2.png"
+# define GUN_SHOOT_3				"tex/hospital/gun/shoot/shoot_3.png"
+# define GUN_SHOOT_4				"tex/hospital/gun/shoot/shoot_4.png"
+# define GUN_SHOOT_5				"tex/hospital/gun/shoot/shoot_5.png"
+# define GUN_SHOOT_6				"tex/hospital/gun/shoot/shoot_6.png"
+# define GUN_SHOOT_7				"tex/hospital/gun/shoot/shoot_7.png"
+# define GUN_SHOOT_8				"tex/hospital/gun/shoot/shoot_8.png"
+# define GUN_SHOOT_9				"tex/hospital/gun/shoot/shoot_9.png"
+# define GUN_EMPTY_0				"tex/hospital/gun/empty/empty_0.png"
+# define GUN_EMPTY_1				"tex/hospital/gun/empty/empty_1.png"
+# define GUN_EMPTY_2				"tex/hospital/gun/empty/empty_2.png"
 # define GUN_MELEE_0				"tex/hospital/gun/melee/melee_0.png"
 # define GUN_MELEE_1				"tex/hospital/gun/melee/melee_1.png"
-# define GUN_MELEE_2				"tex/hospital/gun/melee/melee_blood.png"
-# define GUN_MELEE_3				"tex/hospital/gun/melee/melee_no_blood.png"
+# define GUN_MELEE_2				"tex/hospital/gun/melee/melee_2.png"
+# define GUN_MELEE_3				"tex/hospital/gun/melee/melee_3.png"
+# define GUN_MELEE_4				"tex/hospital/gun/melee/melee_4.png"
+# define GUN_MELEE_5				"tex/hospital/gun/melee/melee_5.png"
+# define GUN_MELEE_6				"tex/hospital/gun/melee/melee_6.png"
+# define GUN_MELEE_7				"tex/hospital/gun/melee/melee_7.png"
+# define GUN_MELEE_8				"tex/hospital/gun/melee/melee_8.png"
+# define GUN_MELEE_9				"tex/hospital/gun/melee/melee_9.png"
+# define GUN_MELEE_10				"tex/hospital/gun/melee/melee_10.png"
+# define GUN_MELEE_11				"tex/hospital/gun/melee/melee_11.png"
+# define GUN_MELEE_12				"tex/hospital/gun/melee/melee_12.png"
+# define GUN_MELEE_13				"tex/hospital/gun/melee/melee_13.png"
+# define GUN_MELEE_14				"tex/hospital/gun/melee/melee_14.png"
+# define GUN_MELEE_15				"tex/hospital/gun/melee/melee_15.png"
+# define GUN_MELEE_16				"tex/hospital/gun/melee/melee_16.png"
+# define GUN_MELEE_17				"tex/hospital/gun/melee/melee_17.png"
+# define GUN_MELEE_18				"tex/hospital/gun/melee/melee_18.png"
+# define GUN_MELEE_19				"tex/hospital/gun/melee/melee_19.png"
+# define GUN_MELEE_20				"tex/hospital/gun/melee/melee_20.png"
+# define GUN_MELEE_21				"tex/hospital/gun/melee/melee_21.png"
+# define GUN_MELEE_22				"tex/hospital/gun/melee/melee_22.png"
+# define GUN_MELEE_23				"tex/hospital/gun/melee/melee_23.png"
 # define GUN_RELOAD_0				"tex/hospital/gun/reload/reload_0.png"
 # define GUN_RELOAD_1				"tex/hospital/gun/reload/reload_1.png"
 # define GUN_RELOAD_2				"tex/hospital/gun/reload/reload_2.png"
@@ -175,9 +210,9 @@
 /*                                   Game                                     */
 /* ************************************************************************** */
 # define MAX_PLAYER_HEALTH			150
-# define INIT_PLAYER_HEALTH			70
-# define INIT_PLAYER_DAMAGE			20
+# define INIT_PLAYER_HEALTH			100
 # define INIT_CROSSBOW_DAMAGE		100
+# define INIT_CROSSBOW_MELEE_DAMAGE	200
 
 /* ************************************************************************** */
 /*                                Keyboard keys                               */

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 18:02:15 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 20:22:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 22:06:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	handle_animation_end(t_gun *gun)
 	gun->current_frame = 0;
 	gun->anim_done = TRUE;
 	gun->prev_state = gun->state;
+	if (gun->state == GUN_SHOOT)
+		set_last_aim_frame(gun);
 	if (!is_infinite_gun_animation(gun))
 		decide_idle_state(gun);
 	check_reload_gun_finish(gun);
@@ -32,6 +34,11 @@ static void	handle_animation_end(t_gun *gun)
 
 static void	handle_rollback_animation(t_gun *gun)
 {
+	int skip_frames;
+
+	skip_frames = 4;
+	if (gun->current_frame >= TOTAL_GUN_AIM_FRAMES - 1)
+		gun->current_frame -= skip_frames;
 	if (gun->current_frame > 0)
 		gun->current_frame--;
 	else

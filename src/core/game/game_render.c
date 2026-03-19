@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 05:48:38 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 15:57:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 00:45:09 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	game_render(void *param)
 	data->mode = GAME;
 	dbg_print_fps(STDOUT);
 	render_raycast(data);
+	// render_enemies(data);
 	render_minimap(data, &data->minimap);
 	render_gun(data, &data->player.gun);
 	input_player_movement(data);

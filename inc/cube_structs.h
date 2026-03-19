@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 01:23:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/18 23:15:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,9 +195,14 @@ typedef struct s_enemy
 	double			pos[AXIS];
 	double			dir[AXIS];
 	t_mood			mood;
-	double			mood_timer;
+	double			cooldown;
 	double			last_known_pos[AXIS];
-	t_txtr			*sprites;
+	int				current_frame;
+	double			frame_timer;
+	double			frame_duration;
+	bool			anim_done;
+	bool			hurt_flag;
+	t_txtr			*current_tex;
 }	t_enemy;
 
 typedef struct s_gun
@@ -209,12 +214,14 @@ typedef struct s_gun
 	int			melee_damage;
 	int			ammo;
 	int			max_ammo;
+	int			picked_ammo;
 	int			current_frame;
 	double		frame_timer;
 	double		frame_duration;
 	bool		anim_done;
 	bool		last_hit;
 	t_txtr		idle_frames[TOTAL_GUN_IDLE_FRAMES];
+	t_txtr		empty_frames[TOTAL_GUN_IDLE_FRAMES];
 	t_txtr		aim_frames[TOTAL_GUN_AIM_FRAMES];
 	t_txtr		shoot_frames[TOTAL_GUN_SHOOT_FRAMES];
 	t_txtr		melee_frames[TOTAL_GUN_MELEE_FRAMES];
@@ -334,11 +341,16 @@ typedef struct s_map
 typedef struct s_opt
 {
 	double			initial_min_dist_sq;
+	double			enemy_hear_range_sq;
 	int				half_img_height;
 	int				half_img_width;
 	int				gun_pos[AXIS];
 	int				n_cores;
 	uint32_t		gun_max_pixels;
+	t_txtr			enemy_idle[TOTAL_ENEMY_IDLE_FRAMES];
+    t_txtr			enemy_chase[TOTAL_ENEMY_CHASE_FRAMES];
+    t_txtr			enemy_attack[TOTAL_ENEMY_ATTACK_FRAMES];
+    t_txtr			enemy_death[TOTAL_ENEMY_DEATH_FRAMES];
 }	t_opt;
 
 typedef struct s_data
@@ -351,6 +363,7 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	t_opt			vars;
+	double			z_buffer[WIN_WIDTH];
 	int				status;
 }	t_data;
 
