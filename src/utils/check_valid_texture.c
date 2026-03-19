@@ -6,13 +6,14 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:04:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:13:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:25:14 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube.h"
 
-void	check_valid_texture(t_data *data, t_txtr *txtr, int opt_width, int opt_height)
+void	check_valid_texture(t_data *data, t_txtr *txtr,
+		int opt_width, int opt_height)
 {
 	char	*path;
 

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 20:59:30 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:06:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@
 # define GRAVITY					2
 
 // Enemy
+# define ENEMY_RAY_STEP				0.2
+# define ENEMY_TXTR_WIDTH_FHD		1920
+# define ENEMY_TXTR_HEIGH_FHD		1050
 # define ENEMY_SIGHT_RANGE			8.0
 # define ENEMY_HEAR_RANGE			15.0
 # define ENEMY_FOV_COS				0.5
@@ -111,6 +114,7 @@
 # define TOTAL_ENEMY_CHASE_FRAMES	3
 # define TOTAL_ENEMY_ATTACK_FRAMES	3
 # define TOTAL_ENEMY_DEATH_FRAMES	3
+# define FRAME_ENEMY__DURATION		0.04
 # define ENEMY_IDLE_0				"tex/hospital/enemy/x/idle/idle_0.png"
 # define ENEMY_IDLE_1				"tex/hospital/enemy/x/idle/idle_1.png"
 # define ENEMY_IDLE_2				"tex/hospital/enemy/x/idle/idle_2.png"
@@ -324,8 +328,9 @@
 # define ERR_DUPLICATE		KO "Duplicate texture found in map file\n"
 # define ERR_TXTR_SIZE		KO "Texture %s is not %d x %d pixels\n"
 
-// Gun
-# define ERR_GUN_INVAL_STATE KO "Invalid gun state\n"
+// Player, Gun, Enemies
+# define ERR_GUN_STATE		KO "Invalid gun state\n"
+# define ERR_ENEMY_STATE	KO "Invalid enemy state\n"
 
 // MLX Errors
 # define ERR_MLX_INIT		KO "MiniLibX initialization failed\n"

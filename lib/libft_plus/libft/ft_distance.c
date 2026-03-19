@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 21:15:55 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/23 18:37:47 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:20:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param y2  The Y coordinate of the second point.
  * @return    The straight-line distance between the two points as a double.
  */
-double	ft_distance(double x1, double y1, double x2, double y2)
+double	ft_dist(double x1, double y1, double x2, double y2)
 {
 	double	dx;
 	double	dy;

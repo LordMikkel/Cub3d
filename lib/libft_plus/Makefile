@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/02 00:14:38 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/20 00:20:52 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_square.c \
 		libft/ft_max.c \
 		libft/ft_distance.c \
+		libft/ft_dot_product.c \
 		libft/ft_alloc.c \
 		libft/ft_calloc.c \
 		libft/ft_realloc.c \

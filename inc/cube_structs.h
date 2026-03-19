@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:12:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 23:19:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef enum e_mood
 	ENEMY_ALERT,
 	ENEMY_CHASE,
 	ENEMY_ATTACK,
+	ENEMY_DEATH,
 }	t_mood;
 
 typedef enum e_gun_hit
@@ -182,7 +183,6 @@ typedef struct s_txtr
 	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
 	uint8_t			*original_pixels;
-	bool			extracted;
 }	t_txtr;
 
 typedef struct s_enemy
@@ -341,6 +341,7 @@ typedef struct s_opt
 {
 	double			initial_min_dist_sq;
 	double			enemy_hear_range_sq;
+	double			enemy_sight_range_sq;
 	int				half_img_height;
 	int				half_img_width;
 	int				gun_pos[AXIS];

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:39:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 00:51:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:22:23 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	is_in_hit_margin(t_plyr *player, double *dist, double dist_sq)
 {
 	double	dot;
 
-	dot = dist[X] * player->dir[X] + dist[Y] * player->dir[Y];
+	dot = ft_dot_product(dist[X], dist[Y], player->dir[X], player->dir[Y]);
 	if (dot > 0.0 && (dot * dot) > (0.9025 * dist_sq))
 		return (TRUE);
 	return (FALSE);
@@ -75,6 +75,8 @@ void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist)
 		return ;
 	}
 	enemy->health -= damage;
+	if (enemy->health < 0)
+		enemy->is_dead = TRUE;
 	enemy->mood = ENEMY_CHASE;
 	gun->last_hit = HIT_DAMAGE;
 }

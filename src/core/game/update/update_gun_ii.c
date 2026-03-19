@@ -6,13 +6,13 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 23:43:07 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 22:27:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:24:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-void set_last_aim_frame(t_gun *gun)
+void	set_last_aim_frame(t_gun *gun)
 {
 	if (gun->ammo)
 	{
@@ -39,7 +39,7 @@ int	get_max_frames(t_data *data, t_gun *gun)
 		return (TOTAL_GUN_MELEE_FRAMES);
 	if (gun->state == GUN_RELOAD)
 		return (TOTAL_GUN_RELOAD_FRAMES);
-	return (exit_error(data, ERR_GUN_INVAL_STATE, EXIT_FAIL), ERROR);
+	return (exit_error(data, ERR_GUN_STATE, EXIT_FAIL), ERROR);
 }
 
 double	get_frame_duration(t_gun *gun)

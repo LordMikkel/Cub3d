@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:41:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 23:53:54 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:20:16 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static void	calc_light_to_cell(t_map *map, t_light *light, double x, double y)
 		return ;
 	target[X] = x + (1.0 / (LIGHT_RESOLUTION * 2.0));
 	target[Y] = y + (1.0 / (LIGHT_RESOLUTION * 2.0));
-	dist = ft_distance(light->pos[X], light->pos[Y], target[X], target[Y]);
+	dist = ft_dist(light->pos[X], light->pos[Y], target[X], target[Y]);
 	if (dist > light->radius)
 		return ;
 	if (is_light_path_blocked(map, light, target))

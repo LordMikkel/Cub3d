@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:21:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 20:50:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/19 22:45:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	load_gun_txtr(t_data *data, t_txtr *txtr, char *path)
 	if (!txtr->txtr)
 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
 	check_valid_texture(data, txtr, GUN_TXTR_WIDTH_FHD, GUN_TXTR_HEIGH_FHD + 30);
-	txtr->extracted = TRUE;
 }
 
 static void	init_gun_frames(t_data *data, t_gun *gun)

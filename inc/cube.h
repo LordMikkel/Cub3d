@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:28:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:17:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	calc_wall_texture_x(t_data *data, t_ray *ray);
 void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
 void	open_close_door(t_data *data, t_map *map, bool *key_held);
-void	attack_player(t_data *data, t_plyr *player, t_enemy *enemy);
 double	get_brightness(t_map *map, int x, int y);
 void	check_reload_gun_finish(t_gun *gun);
 void	shot_gun(t_data *data, t_gun *gun);
@@ -116,6 +115,8 @@ void	update_doors(t_map *map);
 void	update_player(t_plyr *player);
 void	update_gun(t_data *data, t_gun *gun);
 void	update_enemies(t_data *data, t_enemy *enemies);
+void	update_enemy_animation(t_data *data, t_enemy *enemy);
+void	update_enemy_state(t_data *data, t_plyr *player, t_enemy *enemy);
 
 /* ************************************************************************** */
 /*                                 Inputs                                     */
@@ -152,8 +153,10 @@ void	limits_player_rotation(t_data *data, int *prev, int *mouse);
 bool	is_inside_circle(t_mm *minimap, int point_x, int point_y);
 void	check_valid_texture(t_data *d, t_txtr *txtr, int opt_w, int opt_h);
 bool	is_different_to_prev_frame(t_txtr *prev_frame, t_txtr *frame);
+bool	can_enemy_see_player(t_data *data, t_plyr *player, t_enemy *enemy);
 bool	is_player_not_moving(t_plyr *player, t_gun *gun);
 bool	is_player_inside_door(t_plyr *player, t_door *door);
+bool	can_enemy_hear_player(t_data *data, t_enemy *enemy);
 void	save_z_buffer(t_data *data, t_ray *ray, int x);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);
 bool	is_ray_door(t_door *door, t_ray *ray);

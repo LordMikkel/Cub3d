@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/02 00:11:18 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 00:21:10 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ long	ft_strtol(const char *nptr, int base);
 float	ft_strtof(const char *nptr);
 float	ft_square(float x);
 int		ft_max(int a, int b);
-double	ft_distance(double x1, double y1, double x2, double y2);
+double	ft_dist(double x1, double y1, double x2, double y2);
+double	ft_dot_product(double x1, double y1, double x2, double y2);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strmatch_cmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
