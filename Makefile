@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/22 18:44:25 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/22 20:58:33 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ WATCH				= watch
 CMAKE				= cmake
 MV					= mv
 CD					= cd
+GIT					= git
 
 # **************************************************************************** #
 #                              Directories                                     #
@@ -70,6 +71,7 @@ MAP_DIR				= map
 EXT_DIR				= ext
 LIBFT_DIR			= $(LIB_DIR)/libft_plus
 MLX_DIR				= $(LIB_DIR)/mlx42
+MLX42_REPO			= https://github.com/codam-coding-college/MLX42.git
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -270,8 +272,13 @@ $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
 $(LIBFT_A): FORCE $(LIBFT_MAKEFILE) $(LIBFT_H)
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
+# Download MLX library
+$(MLX_DIR):
+	@$(PRINT) "Downloading $(BLUE)mlx library$(DEFAULT)...\n"
+	@$(GIT) clone $(MLX42_REPO) $(MLX_DIR) > /dev/null 2>&1
+
 # Compile MLX library
-$(MLX_A):
+$(MLX_A): $(MLX_DIR)
 	@$(PRINT) "Compiling $(BLUE)mlx library$(DEFAULT)...\n"
 	@$(CD) $(MLX_DIR) && $(CMAKE) -B build > /dev/null 2>&1 && $(CMAKE) --build build -j4 > /dev/null 2>&1
 

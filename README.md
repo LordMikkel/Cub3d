@@ -92,10 +92,10 @@ void	calc_perp_distance(t_plyr *player, t_ray *ray)
 		calculate_distance(player, ray, Y);
 }
 
-static voidcalculate_distance(t_plyr *player, t_ray *ray, t_pos axis)
+static void	calculate_distance(t_plyr *player, t_ray *ray, t_pos axis)
 {
-	doubleaxis_dist;
-	doublewall_pos;
+	double	axis_dist;
+	double	wall_pos;
 
 	wall_pos = calculate_real_coord_wall(ray, axis);
 	axis_dist = wall_pos - player->pos[axis];
@@ -104,9 +104,9 @@ static voidcalculate_distance(t_plyr *player, t_ray *ray, t_pos axis)
 	ray->perp_dist = axis_dist / ray->dir[axis];
 }
 
-static voidget_start_end_pixel_wall(t_plyr *player, t_opt *vars, t_ray *ray)
+static void	get_start_end_pixel_wall(t_plyr *player, t_opt *vars, t_ray *ray)
 {
-	intehalf_line_height;
+	int	half_line_height;
 
 	// Calculate the current viewing center point
 	ray->screen_center[X] = vars->half_img_width + (int)player->head[SWAY];
