@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:19:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 14:51:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 18:47:55 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	input_player_interact(t_data *data)
 		reload_gun(&data->player.gun);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_E))
 		open_close_door(data, &data->map, &key_held);
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_Q))
-	// 	// take_item_in_the_ground();
 	else
 		key_held = FALSE;
 }

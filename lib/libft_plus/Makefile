@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/20 00:20:52 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/21 01:56:13 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,8 @@ NAME = libft_plus.a
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wpedantic -g -lm -Ofast -march=native -flto
-OFLAGS = -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
-VFLAGS = -Ofast -march=native -flto
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -lm
+VFLAGS = -Ofast -march=native -flto -funroll-loops -fno-strict-aliasing
 
 # Colors
 DEFAULT = \033[0;39m
@@ -69,6 +68,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_max.c \
 		libft/ft_distance.c \
 		libft/ft_dot_product.c \
+		libft/ft_cross_product.c \
 		libft/ft_alloc.c \
 		libft/ft_calloc.c \
 		libft/ft_realloc.c \
@@ -160,7 +160,7 @@ $(NAME): $(OBJS)
 %.o: %.c libft_plus.h Makefile
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) $(VFLAGS) $(OFLAGS) -I. -MMD -MP -c -o $@ $<
+	@$(CC) $(CFLAGS) $(VFLAGS) -I. -MMD -MP -c -o $@ $<
 
 # Include dependency files
 -include $(DEPS)

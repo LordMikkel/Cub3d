@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 00:32:56 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 00:45:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 17:07:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	update_data(t_data *data)
 {
-	update_player(&data->player);
+	update_player(data, &data->player);
 	update_doors(&data->map);
 	update_gun(data, &data->player.gun);
-	// update_enemies(data, data->enemies);
+	update_enemies(data, data->enemies);
+	update_game_over(data);
 }

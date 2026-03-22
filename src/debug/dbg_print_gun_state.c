@@ -6,12 +6,21 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 00:09:02 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 00:15:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 17:52:42 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube.h"
 
+/**
+ * A debugging utility that prints the current state and frame of the weapon.
+ * Translates internal integer states into human-readable strings and prints
+ * the output to the specified file descriptor. Essential for tracing the
+ * state machine during animation transitions.
+ *
+ * @param gun  The weapon structure to inspect.
+ * @param fd   The file descriptor to print to (usually STDOUT or STDERR).
+ */
 void	dbg_print_gun_state(t_gun *gun, int fd)
 {
 	char	*state_str;

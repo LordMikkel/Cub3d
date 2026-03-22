@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:57:59 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:27:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 17:14:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
  */
 void	clean_all(t_data *data)
 {
+	clean_opt(&data->vars);
 	clean_gun(&data->player.gun);
 	clean_lights(&data->map);
 	clean_doors(&data->map);

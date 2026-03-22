@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/20 00:27:31 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/22 18:44:25 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,10 +129,11 @@ SRCS =				core/main.c \
 					core/init/init_map_grid.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
-					core/game/render/render_raycast.c \
+					core/game/render/render_map.c \
 					core/game/render/render_lightmap.c \
 					core/game/render/render_minimap.c \
 					core/game/render/render_gun.c \
+					core/game/render/render_enemies.c \
 					core/game/render/render_transparent_hits.c \
 					core/game/render/calculate/perform_dda.c \
 					core/game/render/calculate/calculate_perp_distance.c \
@@ -148,11 +149,15 @@ SRCS =				core/main.c \
 					core/game/draw/color/get_brightness.c \
 					core/game/draw/color/apply_light.c \
 					core/game/draw/color/blend_pixel.c \
-					core/game/draw/minimap/draw_cells.c \
-					core/game/draw/minimap/draw_fov.c \
-					core/game/draw/minimap/draw_player.c \
-					core/game/draw/minimap/draw_circle_background.c \
-					core/game/draw/minimap/draw_square_background.c \
+					core/game/draw/enemy/draw_enemy.c \
+					core/game/draw/enemy/calc_draw_enemy.c \
+					core/game/draw/minimap/draw_mm_cells.c \
+					core/game/draw/minimap/draw_mm_fov.c \
+					core/game/draw/minimap/draw_mm_player.c \
+					core/game/draw/minimap/draw_mm_health.c \
+					core/game/draw/minimap/draw_mm_enemies.c \
+					core/game/draw/minimap/draw_mm_circle_background.c \
+					core/game/draw/minimap/draw_mm_square_background.c \
 					core/game/draw/gun/draw_gun.c \
 					core/game/input/player_movements_i.c \
 					core/game/input/player_movements_ii.c \
@@ -169,6 +174,7 @@ SRCS =				core/main.c \
 					core/game/input/menu/events/close_events.c \
 					core/game/update/update_data.c \
 					core/game/update/update_player.c \
+					core/game/update/update_game_over.c \
 					core/game/update/update_door.c \
 					core/game/update/update_gun_i.c \
 					core/game/update/update_gun_ii.c \
@@ -190,7 +196,8 @@ SRCS =				core/main.c \
 					utils/is_enemy.c \
 					utils/is_player.c \
 					utils/is_file_info.c \
-					utils/is_ray_door.c \
+					utils/is_sprite_visible.c \
+					utils/is_behind_player.c \
 					utils/is_last_aim_frame.c \
 					utils/is_door_close.c \
 					utils/is_player_not_moving.c \
@@ -199,6 +206,7 @@ SRCS =				core/main.c \
 					utils/is_valid_door.c \
 					utils/is_frame_not_finished.c \
 					utils/is_infinite_gun_animation.c \
+					utils/is_enemy_in_the_same_cell.c \
 					utils/is_valid_element.c \
 					utils/is_ray_hit_the_door.c \
 					utils/is_inside_map_cells.c \
@@ -206,6 +214,7 @@ SRCS =				core/main.c \
 					utils/is_inside_circle.c \
 					utils/is_one_or_two_letters.c \
 					utils/check_valid_texture.c \
+					utils/save_buffers_map.c \
 					utils/manage_color_or_texture.c \
 					debug/dbg_print_fps.c \
 					debug/dbg_print_textures.c \
@@ -214,6 +223,7 @@ SRCS =				core/main.c \
 					debug/dbg_print_player_pos.c \
 					core/exit/clean/clean_all.c \
 					core/exit/clean/clean_mlx.c \
+					core/exit/clean/clean_opt.c \
 					core/exit/clean/clean_map.c \
 					core/exit/clean/clean_gun.c \
 					core/exit/clean/clean_doors.c \

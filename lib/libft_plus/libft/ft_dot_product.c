@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 23:25:28 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 23:29:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/21 01:54:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param y2  The Y component of the second vector.
  * @return    The scalar dot product of the two vectors as a double.
  */
-double	ft_dot_product(double x1, double y1, double x2, double y2)
+double	ft_dot(double x1, double y1, double x2, double y2)
 {
 	double	product_x;
 	double	product_y;

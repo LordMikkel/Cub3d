@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:02:00 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 00:06:58 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:13:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	render_transparent_hits(t_data *data, t_ray *ray, int x)
 	{
 		recover_transparent_hits(ray, &ray->transparent_hits[i]);
 		calc_perp_distance(&data->player, ray);
+		save_t_buffer(&data->map, ray, x);
 		calc_impact_in_wall_x(&data->player, ray);
 		calc_wall_texture_x(data, ray);
 		calc_wall_height(data, ray);

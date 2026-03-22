@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 23:05:29 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/20 00:24:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 18:26:11 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ bool	can_enemy_hear_player(t_data *data, t_enemy *enemy)
 {
 	double	delta[AXIS];
 
-	if (!data->player.moving || data->player.gun.model == CROSSBOW)
+	if (!data->player.moving)
 		return (FALSE);
 	delta[X] = data->player.pos[X] - enemy->pos[X];
 	delta[Y] = data->player.pos[Y] - enemy->pos[Y];
 	return (is_inside_enemy_hear_range(delta, data->vars.enemy_hear_range_sq));
 }
 
-static bool	is_line_of_sight_clear(t_data *data, double dist,
+bool	is_line_of_sight_clear(t_data *data, double dist,
 		double *start, double *end)
 {
 	int		i;
@@ -70,7 +70,7 @@ static bool	is_player_in_fov(t_enemy *enemy, double *delta, double distance)
 
 	dir_to_player[X] = delta[X] / distance;
 	dir_to_player[Y] = delta[Y] / distance;
-	dot = ft_dot_product(enemy->dir[X], enemy->dir[Y], dir_to_player[X],
+	dot = ft_dot(enemy->dir[X], enemy->dir[Y], dir_to_player[X],
 			dir_to_player[Y]);
 	if (dot >= ENEMY_FOV_COS)
 		return (TRUE);

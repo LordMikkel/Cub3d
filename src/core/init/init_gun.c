@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:21:01 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 22:45:10 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 17:05:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,32 @@ static void	init_gun_frames(t_data *data, t_gun *gun)
 	load_gun_txtr(data, &gun->melee_frames[21], GUN_MELEE_21);
 	load_gun_txtr(data, &gun->melee_frames[22], GUN_MELEE_22);
 	load_gun_txtr(data, &gun->melee_frames[23], GUN_MELEE_23);
-	// load_gun_txtr(data, &gun->reload_frames[0], GUN_RELOAD_0);
-	// load_gun_txtr(data, &gun->reload_frames[1], GUN_RELOAD_1);
-	// load_gun_txtr(data, &gun->reload_frames[2], GUN_RELOAD_2);
-	// load_gun_txtr(data, &gun->reload_frames[3], GUN_RELOAD_3);
+
+	load_gun_txtr(data, &gun->reload_frames[0], GUN_RELOAD_0);
+	load_gun_txtr(data, &gun->reload_frames[1], GUN_RELOAD_1);
+	load_gun_txtr(data, &gun->reload_frames[2], GUN_RELOAD_2);
+	load_gun_txtr(data, &gun->reload_frames[3], GUN_RELOAD_3);
+	load_gun_txtr(data, &gun->reload_frames[4], GUN_RELOAD_4);
+	load_gun_txtr(data, &gun->reload_frames[5], GUN_RELOAD_5);
+	load_gun_txtr(data, &gun->reload_frames[6], GUN_RELOAD_6);
+	load_gun_txtr(data, &gun->reload_frames[7], GUN_RELOAD_7);
+	load_gun_txtr(data, &gun->reload_frames[8], GUN_RELOAD_8);
+	load_gun_txtr(data, &gun->reload_frames[9], GUN_RELOAD_9);
+	load_gun_txtr(data, &gun->reload_frames[10], GUN_RELOAD_10);
+	load_gun_txtr(data, &gun->reload_frames[11], GUN_RELOAD_11);
+	load_gun_txtr(data, &gun->reload_frames[12], GUN_RELOAD_12);
+	load_gun_txtr(data, &gun->reload_frames[13], GUN_RELOAD_13);
+	load_gun_txtr(data, &gun->reload_frames[14], GUN_RELOAD_14);
+	load_gun_txtr(data, &gun->reload_frames[15], GUN_RELOAD_15);
+	load_gun_txtr(data, &gun->reload_frames[16], GUN_RELOAD_16);
+	load_gun_txtr(data, &gun->reload_frames[17], GUN_RELOAD_17);
+	load_gun_txtr(data, &gun->reload_frames[18], GUN_RELOAD_18);
+	load_gun_txtr(data, &gun->reload_frames[19], GUN_RELOAD_19);
+	load_gun_txtr(data, &gun->reload_frames[20], GUN_RELOAD_20);
+	load_gun_txtr(data, &gun->reload_frames[21], GUN_RELOAD_21);
+	load_gun_txtr(data, &gun->reload_frames[22], GUN_RELOAD_22);
+	load_gun_txtr(data, &gun->reload_frames[23], GUN_RELOAD_23);
+	load_gun_txtr(data, &gun->reload_frames[24], GUN_RELOAD_24);
 }
 
 void	init_gun(t_data *data, t_gun *gun)
@@ -93,8 +115,8 @@ void	init_gun(t_data *data, t_gun *gun)
 	gun->prev_state = GUN_IDLE_A;
 	gun->ammo =  GUN_CROSSBOW_MAX_AMMO;
 	gun->max_ammo =  GUN_CROSSBOW_MAX_AMMO;
-	gun->shoot_damage = INIT_CROSSBOW_DAMAGE;
-	gun->melee_damage = INIT_CROSSBOW_MELEE_DAMAGE;
+	gun->shoot_damage = CROSSBOW_DAMAGE;
+	gun->melee_damage = CROSSBOW_MELEE_DAMAGE;
 	gun->current_frame = 0;
 	gun->frame_timer = mlx_get_time();
 	gun->frame_duration = FRAME_GUN_IDLE_DURATION;

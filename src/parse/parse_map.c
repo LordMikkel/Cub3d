@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:07:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/05 03:29:05 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/21 01:26:50 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	parse_map(t_data *data, t_map *map, char *line)
 {
 	static int	i = 0;
 
-	if ((strncmp("1", line, 1) == EQUAL) || (strncmp("0", line, 1) == EQUAL))
+	if ((ft_strncmp("1", line, 1) == EQUAL)
+		|| (ft_strncmp("0", line, 1) == EQUAL))
 	{
 		if (!is_valid_grid_chrs(line, map))
 			exit_error(data, ERR_MAP_INVALID, EXIT_USE);

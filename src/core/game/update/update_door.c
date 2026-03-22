@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 18:01:49 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 00:07:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 16:18:21 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	update_single_door(t_map *map, t_door *door)
 	if (door->open_percent < 0.0)
 		door->open_percent = 0.0;
 	if (door->open_percent >= 1.0)
-		map->map_grid[(int)door->pos[Y]][(int)door->pos[X]] = 'O';
+		map->map_grid[(int)door->pos[Y]][(int)door->pos[X]] = '0';
 	else
 		map->map_grid[(int)door->pos[Y]][(int)door->pos[X]] = 'D';
 }

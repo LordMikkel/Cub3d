@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 23:19:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 18:33:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,13 @@ typedef enum e_range
 	RANGE,
 }	t_range;
 
+typedef enum e_pace
+{
+	WALK,
+	CHASE,
+	PACE,
+}	t_pace;
+
 typedef enum e_pos
 {
 	X,
@@ -155,8 +162,7 @@ typedef enum e_state
 
 typedef enum e_mood
 {
-	ENEMY_IDLE,
-	ENEMY_ALERT,
+	ENEMY_WALK,
 	ENEMY_CHASE,
 	ENEMY_ATTACK,
 	ENEMY_DEATH,
@@ -185,14 +191,30 @@ typedef struct s_txtr
 	uint8_t			*original_pixels;
 }	t_txtr;
 
+typedef struct s_sprtren
+{
+	int				size;
+	int				half_size;
+	int				screen_x;
+	double			step;
+	double			coord[AXIS];
+	double			dist[AXIS];
+	double			transform[AXIS];
+	int				start[AXIS];
+	int				end[AXIS];
+	double			brightness;
+}	t_sprtren;
+
 typedef struct s_enemy
 {
 	t_kind			type;
 	int				damage;
 	int				health;
 	bool			is_dead;
+	double			distance;
 	double			pos[AXIS];
 	double			dir[AXIS];
+	double			step[PACE];
 	t_mood			mood;
 	double			cooldown;
 	double			last_known_pos[AXIS];
@@ -231,6 +253,7 @@ typedef struct s_plyr
 {
 	t_dir			spawn_dir;
 	int				health;
+	double			heal_cooldown;
 	bool			is_dead;
 	bool			has_won;
 	double			pos[AXIS];
@@ -327,6 +350,7 @@ typedef struct s_map
 	int				map_limit[AXIS];
 	int				n_players;
 	int				n_enemies;
+	int				n_dead_enemies;
 	int				n_doors;
 	int				n_lights;
 	int				n_features;
@@ -334,6 +358,8 @@ typedef struct s_map
 	t_light			*lights;
 	double			**lightmap;
 	int				lightmap_limit[AXIS];
+	double			z_buffer[WIN_WIDTH];
+	double			t_buffer[WIN_WIDTH];
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 
@@ -342,15 +368,20 @@ typedef struct s_opt
 	double			initial_min_dist_sq;
 	double			enemy_hear_range_sq;
 	double			enemy_sight_range_sq;
+	double			shoot_dist_sq;
 	int				half_img_height;
 	int				half_img_width;
 	int				gun_pos[AXIS];
 	int				n_cores;
+	int				health_bar_width;
+	int				health_bar_pos[AXIS];
 	uint32_t		gun_max_pixels;
-	t_txtr			enemy_idle[TOTAL_ENEMY_IDLE_FRAMES];
-	t_txtr			enemy_chase[TOTAL_ENEMY_CHASE_FRAMES];
-	t_txtr			enemy_attack[TOTAL_ENEMY_ATTACK_FRAMES];
-	t_txtr			enemy_death[TOTAL_ENEMY_DEATH_FRAMES];
+	t_txtr			enemy_x_front[TOTAL_ENEMY_FRONT_FRAMES];
+	t_txtr			enemy_x_left[TOTAL_ENEMY_LEFT_FRAMES];
+	t_txtr			enemy_x_back[TOTAL_ENEMY_BACK_FRAMES];
+	t_txtr			enemy_x_right[TOTAL_ENEMY_RIGHT_FRAMES];
+	t_txtr			enemy_x_attack[TOTAL_ENEMY_ATTACK_FRAMES];
+	t_txtr			enemy_x_death[TOTAL_ENEMY_DEATH_FRAMES];
 }	t_opt;
 
 typedef struct s_data
@@ -363,7 +394,6 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	t_opt			vars;
-	double			z_buffer[WIN_WIDTH];
 	int				status;
 }	t_data;
 

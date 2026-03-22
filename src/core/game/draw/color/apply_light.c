@@ -6,12 +6,26 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:59:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/17 19:59:04 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 18:07:37 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+/**
+ * Modulates a 32-bit RGBA color based on a floating-point light multiplier.
+ * Uses bitwise operations to isolate each color channel:
+ * -Shifts right (>>) and masks (& 0xFF) to extract Red, Green, Blue, and Alpha.
+ * -Multiplies the RGB channels by the brightness (0.0 = black, 1.0 = original).
+ * -Repacks the modified channels back into a single 32-bit integer using
+ * left shifts (<<) and bitwise OR (|).
+ * Includes early-return optimizations for fully lit or completely unlit states.
+ *
+ * @param data        Main program struct containing light settings.
+ * @param color       The original 32-bit RGBA pixel color.
+ * @param brightness  The multiplier (0.0 to 1.0) to apply.
+ * @return            The dynamically darkened 32-bit pixel color.
+ */
 uint32_t	apply_light(t_data *data, uint32_t color, double brightness)
 {
 	uint32_t	r;

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:10:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/16 23:32:03 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 17:38:39 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
  * preventing ghost fringe artifacts on transparent texture edges.
  *
  * @param color  32-bit RGBA value (bits [7:0] = alpha channel).
- * @return       TRUE if (color & 0xFF) > 20, FALSE otherwise.
+ * @return       TRUE if (color & 0xFF) > 125, FALSE otherwise.
  */
 bool	is_visible_pixel(uint32_t color)
 {
-	if ((color & 0x000000FF) > 20)
+	if ((color & 0x000000FF) > 125)
 		return (TRUE);
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:21:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 22:41:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/20 02:06:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	check_reload_gun_finish(t_gun *gun)
 {
-	if (gun->state == GUN_IDLE_A && gun->prev_state == GUN_RELOAD
-		&& gun->anim_done)
+	if (gun->prev_state == GUN_RELOAD && gun->anim_done)
 	{
+		gun->ammo++;
 		gun->ammo += gun->picked_ammo;
 		if (gun->ammo >= gun->max_ammo)
 			gun->ammo = gun->max_ammo;
