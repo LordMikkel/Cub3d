@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:52:42 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/07 17:11:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:13:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray)
 	double	absolute_impact;
 
 	absolute_impact = get_impact_coord(player, ray);
-	ray->wall[X] = absolute_impact - floor(absolute_impact);
+	ray->wall[X] = absolute_impact - (int)absolute_impact;
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:46:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:02:22 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -469,8 +469,8 @@
 /* ************************************************************************** */
 /*                             Debug Messages                                 */
 /* ************************************************************************** */
-# define MSG_WON			OK "Game Over: You have survive the game!\n"
 # define MSG_LOST			KO "Game Over: You have been eaten by a walker!\n"
+# define MSG_WON			OK "Game Over: You have survive the game!\n"
 # define MSG_VALID			OK "Args validated\n"
 # define MSG_INIT			OK "Initialized cub3D\n"
 # define MSG_PARSING		OK "Map file parsed\n"

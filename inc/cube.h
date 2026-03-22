@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:44:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:36:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	calc_col_mappd(t_data *d, mlx_texture_t *txtr, t_sprtren *ren, int x);
 void	calc_matrix_inverse(t_plyr *player, t_enemy *enemy, t_sprtren *ren);
 void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
 void	open_close_door(t_data *data, t_map *map, bool *key_held);
-double	get_brightness(t_map *map, int x, int y);
 void	check_reload_gun_finish(t_gun *gun);
 void	shot_gun(t_data *data, t_gun *gun);
 void	reload_gun(t_gun *gun);

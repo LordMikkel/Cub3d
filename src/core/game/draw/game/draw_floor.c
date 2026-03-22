@@ -6,14 +6,15 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 00:44:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:25:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:44:26 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+uint32_t	get_brightness(t_map *map, int x, int y);
 uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
-uint32_t	apply_light(t_data *data, uint32_t color, double brightness);
+uint32_t	apply_light(t_data *data, uint32_t color, uint32_t brightness);
 
 static void	get_floor_coord(t_data *data, t_ray *ray, int y)
 {

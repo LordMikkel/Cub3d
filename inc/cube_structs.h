@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:33:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:39:38 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ typedef enum e_form
 	COLOR,
 	TEXTURE,
 }	t_form;
+
+typedef enum e_time
+{
+	PREV,
+	NEW,
+	STATUS,
+}	e_time;
 
 typedef enum e_kind
 {
@@ -228,25 +235,25 @@ typedef struct s_enemy
 
 typedef struct s_gun
 {
-	t_model		model;
-	t_state		state;
-	t_state		prev_state;
-	int			shoot_damage;
-	int			melee_damage;
-	int			ammo;
-	int			max_ammo;
-	int			picked_ammo;
-	int			current_frame;
-	double		frame_timer;
-	double		frame_duration;
-	bool		anim_done;
-	bool		last_hit;
-	t_txtr		idle_frames[TOTAL_GUN_IDLE_FRAMES];
-	t_txtr		empty_frames[TOTAL_GUN_IDLE_FRAMES];
-	t_txtr		aim_frames[TOTAL_GUN_AIM_FRAMES];
-	t_txtr		shoot_frames[TOTAL_GUN_SHOOT_FRAMES];
-	t_txtr		melee_frames[TOTAL_GUN_MELEE_FRAMES];
-	t_txtr		reload_frames[TOTAL_GUN_RELOAD_FRAMES];
+	t_model			model;
+	t_state			state;
+	t_state			prev_state;
+	int				shoot_damage;
+	int				melee_damage;
+	int				ammo;
+	int				max_ammo;
+	int				picked_ammo;
+	int				current_frame;
+	double			frame_timer;
+	double			frame_duration;
+	bool			anim_done;
+	bool			last_hit;
+	t_txtr			idle_frames[TOTAL_GUN_IDLE_FRAMES];
+	t_txtr			empty_frames[TOTAL_GUN_IDLE_FRAMES];
+	t_txtr			aim_frames[TOTAL_GUN_AIM_FRAMES];
+	t_txtr			shoot_frames[TOTAL_GUN_SHOOT_FRAMES];
+	t_txtr			melee_frames[TOTAL_GUN_MELEE_FRAMES];
+	t_txtr			reload_frames[TOTAL_GUN_RELOAD_FRAMES];
 }	t_gun;
 
 typedef struct s_plyr
@@ -280,25 +287,25 @@ typedef struct s_light
 
 typedef struct s_door
 {
-	double	pos[AXIS];
-	bool	needs_to_open;
-	double	open_percent;
-	t_txtr	sprites[DOOR_ANIMATIONS];
+	double			pos[AXIS];
+	bool			needs_to_open;
+	double			open_percent;
+	t_txtr			sprites[DOOR_ANIMATIONS];
 }	t_door;
 
 typedef struct s_thread
 {
-	t_data		*data;
-	pthread_t	thread;
-	int			x[RANGE];
+	t_data			*data;
+	pthread_t		thread;
+	int				x[RANGE];
 }	t_thread;
 
 typedef struct s_hit
 {
-	int		pos[AXIS];
-	t_type	wall_side;
-	double	perp_dist;
-	double	wall[AXIS];
+	int				pos[AXIS];
+	t_type			wall_side;
+	double			perp_dist;
+	double			wall[AXIS];
 }	t_hit;
 
 typedef struct s_ray
@@ -356,7 +363,7 @@ typedef struct s_map
 	int				n_features;
 	t_door			*doors;
 	t_light			*lights;
-	double			**lightmap;
+	uint8_t			**lightmap;
 	int				lightmap_limit[AXIS];
 	double			z_buffer[WIN_WIDTH];
 	double			t_buffer[WIN_WIDTH];

@@ -6,14 +6,15 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 19:41:28 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:04:50 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:45:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+uint32_t	get_brightness(t_map *map, int x, int y);
 uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
-uint32_t	apply_light(t_data *data, uint32_t color, double brightness);
+uint32_t	apply_light(t_data *data, uint32_t color, uint32_t brightness);
 
 /**
  * Safely validates if a calculated pixel coordinate falls within the screen
@@ -72,7 +73,7 @@ static void	draw_gun_pixel(t_data *data, mlx_texture_t *tex, int *tex_coord,
  * @param player  The player structure to extract coordinates from.
  * @return        A float representing the brightness multiplier.
  */
-static double	get_player_brightness(t_map *map, t_plyr *player)
+static uint32_t	get_player_brightness(t_map *map, t_plyr *player)
 {
 	double	brightness;
 	int		light[AXIS];

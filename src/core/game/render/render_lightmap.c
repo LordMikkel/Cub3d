@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:41:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/20 00:20:16 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:35:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ static bool	is_light_path_blocked(t_map *map, t_light *light, double *target)
 static void	calc_light_to_cell(t_map *map, t_light *light, double x, double y)
 {
 	double	dist;
-	double	intensity_received;
 	double	target[AXIS];
 	int		sub_cell[AXIS];
+	double	intensity[STATUS];
 
 	if (is_wall(map->map_grid[(int)y][(int)x]))
 		return ;
@@ -120,12 +120,14 @@ static void	calc_light_to_cell(t_map *map, t_light *light, double x, double y)
 		return ;
 	if (is_light_path_blocked(map, light, target))
 		return ;
-	intensity_received = light->intensity / (1.0 + dist * dist * 0.5);
+	intensity[NEW] = light->intensity / (1.0 + dist * dist * 0.5);
 	sub_cell[X] = (int)(x * LIGHT_RESOLUTION);
 	sub_cell[Y] = (int)(y * LIGHT_RESOLUTION);
-	map->lightmap[sub_cell[Y]][sub_cell[X]] += intensity_received;
-	if (map->lightmap[sub_cell[Y]][sub_cell[X]] > 1.0)
-		map->lightmap[sub_cell[Y]][sub_cell[X]] = 1.0;
+	intensity[PREV] = map->lightmap[sub_cell[Y]][sub_cell[X]] / 255.0;
+	intensity[NEW] = intensity[PREV] + intensity[NEW];
+	if (intensity[NEW] > 1.0)
+		intensity[NEW] = 1.0;
+	map->lightmap[sub_cell[Y]][sub_cell[X]] = (uint8_t)(intensity[NEW] * 255.0);
 }
 
 /**

@@ -6,15 +6,16 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 03:09:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:25:07 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:47:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+uint32_t		get_brightness(t_map *map, int x, int y);
 uint32_t		blend_pixel(t_data *data, int *bg, uint32_t src);
 uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
-uint32_t		apply_light(t_data *data, uint32_t color, double brightness);
+uint32_t		apply_light(t_data *data, uint32_t color, uint32_t brightness);
 
 /**
  * Calculates the exact decimal coordinate to sample the light from.
@@ -57,7 +58,7 @@ static void	set_exact_light_coord(t_ray *ray, double *exact_wall)
  * @param ray   The current ray being cast.
  * @return      The brightness multiplier (e.g., 0.0 to 1.0).
  */
-static double	get_wall_brightness(t_data *data, t_ray *ray)
+static uint32_t	get_wall_brightness(t_data *data, t_ray *ray)
 {
 	double	exact_wall[AXIS];
 	int		light[AXIS];

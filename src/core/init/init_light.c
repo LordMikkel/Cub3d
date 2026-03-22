@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 02:42:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 23:47:01 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:40:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	init_lightmap(t_data *data, t_map *map)
 	y = 0;
 	map->lightmap_limit[X] = map->map_max_len * LIGHT_RESOLUTION;
 	map->lightmap_limit[Y] = map->grid_size * LIGHT_RESOLUTION;
-	map->lightmap = alloc(data, map->lightmap_limit[Y], sizeof(double *));
+	map->lightmap = alloc(data, map->lightmap_limit[Y], sizeof(uint8_t *));
 	while (y < map->lightmap_limit[Y])
 	{
 		x = 0;
-		map->lightmap[y] = alloc(data, map->lightmap_limit[X], sizeof(double));
+		map->lightmap[y] = alloc(data, map->lightmap_limit[X], sizeof(uint8_t));
 		while (x < map->lightmap_limit[X])
 		{
-			map->lightmap[y][x] = AMBIENT_LIGHT;
+			map->lightmap[y][x] = (uint8_t)(AMBIENT_LIGHT * 255.0);
 			x++;
 		}
 		y++;

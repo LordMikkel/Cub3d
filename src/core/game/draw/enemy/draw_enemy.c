@@ -6,14 +6,15 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 13:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 00:40:02 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:47:48 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../../inc/cube.h"
 
+uint32_t		get_brightness(t_map *map, int x, int y);
 uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
-uint32_t		apply_light(t_data *data, uint32_t color, double brightness);
+uint32_t		apply_light(t_data *data, uint32_t color, uint32_t brightness);
 
 void	draw_enemy_col(t_data *data, mlx_texture_t *txtr, t_sprtren *ren, int x)
 {

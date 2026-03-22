@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:24:23 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 23:54:13 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:37:57 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	clean_lights(t_map *map)
 {
 	if (!map)
 		return ;
-	if (map->lightmap)
-		ft_free_double_matrix(&map->lightmap, map->lightmap_limit[Y]);
+	// if (map->lightmap)
+		// ft_free_double_matrix(&map->lightmap, map->lightmap_limit[Y]);
 	if (map->lights)
 		ft_free((void **)&map->lights);
 }
