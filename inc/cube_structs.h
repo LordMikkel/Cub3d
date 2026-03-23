@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 21:39:38 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/22 21:53:24 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef enum e_time
 	PREV,
 	NEW,
 	STATUS,
-}	e_time;
+}	t_time;
 
 typedef enum e_kind
 {

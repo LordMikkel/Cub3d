@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 21:36:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 01:36:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	calc_wall_texture_y(t_ray *ray, t_txtr *texture);
 void	calc_wall_texture_x(t_data *data, t_ray *ray);
 void	calc_impact_in_wall_x(t_plyr *player, t_ray *ray);
 void	calc_sprite_bounds(t_data *data, t_opt *vars, t_sprtren *ren);
-void	calc_col_mappd(t_data *d, mlx_texture_t *txtr, t_sprtren *ren, int x);
+void	calc_col_mapped(t_data *d, mlx_texture_t *txtr, t_sprtren *ren, int x);
 void	calc_matrix_inverse(t_plyr *player, t_enemy *enemy, t_sprtren *ren);
 void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist);
 void	open_close_door(t_data *data, t_map *map, bool *key_held);
@@ -211,6 +211,7 @@ void	dbg_print_fps(int fd);
 void	dbg_print_texture(t_map *map, int fd);
 void	dbg_print_map_grid(t_map *map, int fd);
 void	dbg_print_gun_state(t_gun *gun, int fd);
+void	dbg_print_enemy_state(t_enemy *enemy, int fd);
 void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);
 
 /* ************************************************************************** */

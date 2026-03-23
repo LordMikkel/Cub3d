@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:39:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:48:08 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 01:58:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ void	gun_apply_hit(t_data *data, t_gun *gun, int damage, double max_dist)
 	}
 	enemy->health -= damage;
 	if (enemy->health < 0)
-		enemy_death(&data->map, &data->player, enemy);
+	{
+		enemy->is_dead = TRUE;
+		data->map.n_dead_enemies++;
+	}
 	enemy->mood = ENEMY_CHASE;
 	gun->last_hit = HIT_DAMAGE;
 }

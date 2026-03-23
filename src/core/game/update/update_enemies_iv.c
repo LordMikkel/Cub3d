@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 00:13:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:48:49 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:02:40 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,15 @@ static t_txtr	*get_enemy_current_texture(t_data *data, t_enemy *enemy)
 		return (&data->vars.enemy_x_death[enemy->current_frame]);
 	return (exit_error(data, ERR_ENEMY_STATE, EXIT_FAIL), NULL);
 }
+/*
+ * debug options:
+ * dbg_print_enemy_state(enemy, STDOUT);
+*/
 
 void	update_enemy_animation(t_data *data, t_enemy *enemy)
 {
 	int	max_frames;
 
-	if (enemy->is_dead)
-		return ;
 	enemy->frame_timer += data->mlx->delta_time;
 	if (enemy->frame_timer >= FRAME_ENEMY_DURATION)
 	{
@@ -101,7 +103,15 @@ void	update_enemy_animation(t_data *data, t_enemy *enemy)
 		enemy->current_frame++;
 		max_frames = get_enemy_max_frames(data, enemy);
 		if (enemy->current_frame >= max_frames)
-			enemy->current_frame = 0;
+		{
+			if (enemy->mood == ENEMY_DEATH)
+			{
+				enemy->current_frame = max_frames - 1;
+				enemy->anim_done = TRUE;
+			}
+			else
+				enemy->current_frame = 0;
+		}
 	}
 	enemy->current_tex = get_enemy_current_texture(data, enemy);
 }

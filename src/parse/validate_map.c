@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 16:10:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:02:44 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
  * Crucially, we work on a COPY of the map grid. This allows us to "paint"
  * the path with 'V' characters to check for leaks without corrupting the
  * actual game map that will be used for rendering and for debuging purpose.
- * debug option:
+ * debug options:
  * dbg_print_map_grid(map->map_copy, STDOUT);
  *
  * @param data  The main struct.

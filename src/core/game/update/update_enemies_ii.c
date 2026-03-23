@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 23:13:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:49:45 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 01:57:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	enemy_death(t_map *map, t_plyr *player, t_enemy *enemy)
 {
 	enemy->mood = ENEMY_DEATH;
 	enemy->is_dead = TRUE;
-	map->n_dead_enemies++;
-	if (map->n_dead_enemies >= map->n_enemies)
+	if (enemy->anim_done && map->n_dead_enemies >= map->n_enemies)
 		player->has_won = TRUE;
 }
 
@@ -90,7 +89,10 @@ static void	move_enemy_towards(t_data *data, t_enemy *enemy, double *target)
 void	update_enemy_state(t_data *data, t_plyr *player, t_enemy *enemy)
 {
 	if (enemy->is_dead)
-		return ;
+	{
+		enemy_death(&data->map, player, enemy);
+		return;
+	}
 	enemy->step[CHASE] = ENEMY_SPEED_CHASE * data->mlx->delta_time;
 	enemy->step[WALK] = ENEMY_SPEED_WALK * data->mlx->delta_time;
 	if (can_enemy_see_player(data, player, enemy))

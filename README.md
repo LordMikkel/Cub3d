@@ -292,4 +292,4 @@ Launch the binary by passing it the map model file:
 - [Why Wolfenstein Was Way Ahead of It’s Time](https://www.youtube.com/watch?v=rPn_LKUJ7II) - Informative analysis of the famous video game that inspired these mathematical techniques (id Software's Wolfenstein 3D).
 - [Wolfenstein 3D Source Code](https://github.com/id-Software/wolf3d) - Original C source code repository for 1995 Wolfenstein.
 - [MLX42 Documentation](https://github.com/codam-coding-college/MLX42) - The comprehensive documentation on the cross-platform graphics library for drawing pixels.
-- Generative Artificial Intelligence models were used as support to polish the mathematical explanations making them understandable for system documentation.
+- [Generative Artificial](https://gemini.google.com) Intelligence models were used as tool to generate visuals and textures as well to optimize mathematical functions in order to optimized the performance of this game. It has been consulted also to polish the mathematical explanations for these documentation.

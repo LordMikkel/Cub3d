@@ -81,4 +81,8 @@
 		}
 	},
 	"debugVisualizer.useChromeKioskMode": true,
+	"cSpell.words": [
+		"hitbox",
+		"unaiming"
+	],
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 13:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 21:47:48 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 01:16:59 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_enemy_col(t_data *data, mlx_texture_t *txtr, t_sprtren *ren, int x)
 	int			tex[AXIS];
 	uint32_t	color;
 
-	calc_col_mappd(data, txtr, ren, x);
+	calc_col_mapped(data, txtr, ren, x);
 	tex[X] = ren->coord[X];
 	y = ren->start[Y];
 	while (y < ren->end[Y])
@@ -57,7 +57,7 @@ void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy)
 	t_sprtren	ren;
 	int			light[AXIS];
 
-	if (enemy->is_dead || !enemy->current_tex || !enemy->current_tex->txtr)
+	if (!enemy->current_tex || !enemy->current_tex->txtr)
 		return ;
 	calc_matrix_inverse(&data->player, enemy, &ren);
 	if (is_behind_player(&ren))

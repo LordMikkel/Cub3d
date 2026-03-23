@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 01:27:30 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 01:23:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 01:10:43 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	calc_sprite_bounds(t_data *data, t_opt *vars, t_sprtren *ren)
 		ren->end[Y] = data->img->height - 1;
 }
 
-void	calc_col_mappd(t_data *data, mlx_texture_t *txtr, t_sprtren *ren, int x)
+void	calc_col_mapped(t_data *data, mlx_texture_t *tex, t_sprtren *ren, int x)
 {
 	int		sprite_left_edge;
 	int		dist_from_edge;
@@ -63,9 +63,9 @@ void	calc_col_mappd(t_data *data, mlx_texture_t *txtr, t_sprtren *ren, int x)
 
 	sprite_left_edge = ren->screen_x - (ren->size / 2);
 	dist_from_edge = x - sprite_left_edge;
-	ratio_x = (double)txtr->width / ren->size;
+	ratio_x = (double)tex->width / ren->size;
 	ren->coord[X] = (int)(dist_from_edge * ratio_x);
-	ren->step = 1.0 * txtr->height / ren->size;
+	ren->step = 1.0 * tex->height / ren->size;
 	center_y = data->vars.half_img_height + data->player.head[POS];
 	top_edge = center_y - (ren->size / 2.0);
 	ren->coord[Y] = (ren->start[Y] - top_edge) * ren->step;

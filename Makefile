@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/22 20:58:33 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/23 01:36:05 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -222,6 +222,7 @@ SRCS =				core/main.c \
 					debug/dbg_print_textures.c \
 					debug/dbg_print_map_grid.c \
 					debug/dbg_print_gun_state.c \
+					debug/dbg_print_enemy_state.c \
 					debug/dbg_print_player_pos.c \
 					core/exit/clean/clean_all.c \
 					core/exit/clean/clean_mlx.c \
@@ -344,6 +345,7 @@ clean:
 # Full clean
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT_DIR)
+	@$(RM) $(MLX_DIR)
 	@$(RM) $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: Project cleaned ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
