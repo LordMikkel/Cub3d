@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:21:13 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 23:16:53 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:34:01 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 void	check_reload_gun_finish(t_gun *gun)
 {

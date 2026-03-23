@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:28:51 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:14:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:34:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 static void	shoot_ammo(t_data *data, t_gun *gun)
 {

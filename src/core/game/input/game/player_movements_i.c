@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movements.c                                 :+:      :+:    :+:   */
+/*   player_movements_i.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 02:26:20 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 21:53:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:33:32 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 /**
  * Checks if the given coordinates are a valid walkable cell.

@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:54:50 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/18 21:50:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:33:58 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 /**
  * Calculates the squared distance between the player and a door.

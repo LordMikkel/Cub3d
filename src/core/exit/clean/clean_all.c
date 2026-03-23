@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:57:59 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 17:14:36 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:39:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	clean_all(t_data *data)
 	clean_gun(&data->player.gun);
 	clean_lights(&data->map);
 	clean_doors(&data->map);
-	clean_enemies(data, &data->map, &data->vars);
-	clean_map(data, &data->map);
+	clean_enemies(data);
+	clean_map(&data->map);
 	clean_mlx(data);
 	ft_memnuke(data, sizeof(t_data));
 }

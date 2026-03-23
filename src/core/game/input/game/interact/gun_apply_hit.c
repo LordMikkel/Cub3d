@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:39:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/23 01:58:07 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:45:35 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 static double	get_dist_sq(t_plyr *player, t_enemy *enemy, double *dist)
 {

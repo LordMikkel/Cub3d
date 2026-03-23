@@ -6,16 +6,15 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:41:26 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/19 21:28:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:36:34 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
-void	clean_map(t_data *data, t_map *map)
+void	clean_map(t_map *map)
 {
-	(void)data;
-	if (!data || !map)
+	if (!map)
 		return ;
 	if (map->map_file)
 		ft_free_str_array(&map->map_file);

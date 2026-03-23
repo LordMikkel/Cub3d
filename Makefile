@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/23 01:36:05 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/23 02:33:14 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,15 +161,15 @@ SRCS =				core/main.c \
 					core/game/draw/minimap/draw_mm_circle_background.c \
 					core/game/draw/minimap/draw_mm_square_background.c \
 					core/game/draw/gun/draw_gun.c \
-					core/game/input/player_movements_i.c \
-					core/game/input/player_movements_ii.c \
-					core/game/input/player_rotations.c \
-					core/game/input/player_interact.c \
-					core/game/input/interact/open_close_door.c \
-					core/game/input/interact/aim_gun.c \
-					core/game/input/interact/gun_apply_hit.c \
-					core/game/input/interact/reload_gun.c \
-					core/game/input/interact/shot_gun.c \
+					core/game/input/game/player_movements_i.c \
+					core/game/input/game/player_movements_ii.c \
+					core/game/input/game/player_rotations.c \
+					core/game/input/game/player_interact.c \
+					core/game/input/game/interact/open_close_door.c \
+					core/game/input/game/interact/aim_gun.c \
+					core/game/input/game/interact/gun_apply_hit.c \
+					core/game/input/game/interact/reload_gun.c \
+					core/game/input/game/interact/shot_gun.c \
 					core/game/input/menu/keyboard_menu.c \
 					core/game/input/menu/cursor_menu.c \
 					core/game/input/menu/click_menu.c \

@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 19:20:33 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 17:54:51 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:33:47 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../inc/cube.h"
+#include "../../../../../../inc/cube.h"
 
 /**
  * Initiates the Aim Down Sights transition.

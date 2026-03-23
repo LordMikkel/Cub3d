@@ -6,11 +6,11 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:19:47 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:47:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/23 02:33:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../inc/cube.h"
+#include "../../../../../inc/cube.h"
 
 void	input_player_interact(t_data *data)
 {
