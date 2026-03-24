@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/23 02:28:55 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:17:04 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@
 # define MAX_THREADS 				32
 
 // Map
-# define MAX_MAP_SIZE				2000
-# define MAX_ENEMIES				500
+# define MAX_MAP_SIZE				2147483646
+# define MAX_ENEMIES				2147483646
 # define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
 # define MIN_DISTANCE				0.001
@@ -257,7 +257,7 @@
 # define GUN_TXTR_HEIGH_FHD			1050
 # define GUN_CROSSBOW_MAX_AMMO		3
 # define MAX_DISTANCE_MELEE			1.25
-# define MAX_DISTANCE_SHOT			10.0
+# define MAX_DISTANCE_SHOT			15.0
 # define FRAME_GUN_IDLE_DURATION	0.12
 # define FRAME_GUN_AIM_DURATION		0.03
 # define FRAME_GUN_UNAIM_DURATION	0.04
