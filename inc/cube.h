@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/23 02:39:25 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:44:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	enemy_death(t_map *map, t_plyr *player, t_enemy *enemy);
 bool	is_player_not_moving(t_plyr *player, t_gun *gun);
 bool	is_player_inside_door(t_plyr *player, t_door *door);
 bool	can_enemy_hear_player(t_data *data, t_enemy *enemy);
+bool	is_unblocked_light_path(t_ray *ray, double *target);
 void	save_t_buffer(t_map *map, t_ray *ray, int x);
 void	save_z_buffer(t_map *map, t_ray *ray, int x);
 bool	is_ray_hit_the_door(t_door *door, t_ray *ray);

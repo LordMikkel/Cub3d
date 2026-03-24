@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 23:13:12 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/23 01:57:34 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:38:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	update_enemy_state(t_data *data, t_plyr *player, t_enemy *enemy)
 	if (enemy->is_dead)
 	{
 		enemy_death(&data->map, player, enemy);
-		return;
+		return ;
 	}
 	enemy->step[CHASE] = ENEMY_SPEED_CHASE * data->mlx->delta_time;
 	enemy->step[WALK] = ENEMY_SPEED_WALK * data->mlx->delta_time;

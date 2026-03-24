@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:51:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/24 16:26:11 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:40:07 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,6 +357,7 @@ typedef struct s_map
 	int				map_limit[AXIS];
 	int				n_players;
 	int				n_enemies;
+	int				n_reachable_enemies;
 	int				n_dead_enemies;
 	int				n_doors;
 	int				n_lights;

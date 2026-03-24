@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 23:56:27 by migarrid          #+#    #+#             */
-/*   Updated: 2026/02/22 19:17:14 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:43:30 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	parse_info(t_data *data, t_map *map)
 		parse_map(data, map, map->map_file[i]);
 		i++;
 	}
+	ft_printf_fd(STDOUT, MSG_TEXTURES);
 }

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 17:09:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 18:08:35 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:51:31 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void	clean_opt(t_opt *vars)
 	clean_txtr_frames(vars->enemy_x_left, TOTAL_ENEMY_LEFT_FRAMES);
 	clean_txtr_frames(vars->enemy_x_right, TOTAL_ENEMY_RIGHT_FRAMES);
 	clean_txtr_frames(vars->enemy_x_attack, TOTAL_ENEMY_ATTACK_FRAMES);
+	clean_txtr_frames(vars->enemy_x_death, TOTAL_ENEMY_DEATH_FRAMES);
 }

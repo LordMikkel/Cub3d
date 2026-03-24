@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/20 00:27:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:39:02 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,14 @@ void	get_texture(t_data *data, t_txtr *texture, char *line, int type)
  * @param line  The raw config line.
  * @param type  The identifier type.
  */
-void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
-{
-	if (ft_strchr(line, ','))
-		get_color(data, &map->textures[type], line, type);
-	else
-		get_texture(data, &map->textures[type], line, type);
-	map->n_features++;
-}
+// void	manage_color_or_texture(t_data *data, t_map *map, char *line, int type)
+// {
+// 	if (ft_strchr(line, ','))
+// 		get_color(data, &map->textures[type], line, type);
+// 	else
+// 		get_texture(data, &map->textures[type], line, type);
+// 	map->n_features++;
+// }
 
 /**
  * Configuration dispatcher.

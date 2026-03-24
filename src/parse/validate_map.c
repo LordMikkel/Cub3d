@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 22:06:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/23 02:02:44 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:41:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	get_elements(t_data *data, t_map *map)
  * @param pos   Current position in the recursion.
  * @param n     Pointer to count reachable enemies.
  */
-static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
+static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos)
 {
 	if (pos.x < 0 || pos.y < 0 || pos.x > max.x || pos.y > max.y)
 		exit_error(data, ERR_MAP_WALLS, EXIT_USE);
@@ -87,12 +87,12 @@ static void	close_bounds(t_data *data, char **map, t_p2d max, t_p2d pos, int *n)
 	if (map[pos.y][pos.x] == '1' || map[pos.y][pos.x] == 'V')
 		return ;
 	if (is_enemy(map[pos.y][pos.x]))
-		(*n)++;
+		data->map.n_reachable_enemies++;
 	map[pos.y][pos.x] = 'V';
-	close_bounds(data, map, max, (t_p2d){pos.x + 1, pos.y}, n);
-	close_bounds(data, map, max, (t_p2d){pos.x - 1, pos.y}, n);
-	close_bounds(data, map, max, (t_p2d){pos.x, pos.y + 1}, n);
-	close_bounds(data, map, max, (t_p2d){pos.x, pos.y - 1}, n);
+	close_bounds(data, map, max, (t_p2d){pos.x + 1, pos.y});
+	close_bounds(data, map, max, (t_p2d){pos.x - 1, pos.y});
+	close_bounds(data, map, max, (t_p2d){pos.x, pos.y + 1});
+	close_bounds(data, map, max, (t_p2d){pos.x, pos.y - 1});
 }
 
 /**
@@ -111,7 +111,6 @@ void	validate_map(t_data *data, t_map *map)
 {
 	t_p2d	start;
 	t_p2d	limits;
-	int		reachable_enemies;
 
 	if (map->n_players != 1)
 		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
@@ -119,13 +118,12 @@ void	validate_map(t_data *data, t_map *map)
 		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
 	get_limits_map(map);
 	get_elements(data, map);
-	reachable_enemies = 0;
 	map->map_copy = ft_arraydup(map->map_grid);
 	if (!map->map_copy)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	start = (t_p2d){data->player.pos[X], data->player.pos[Y]};
 	limits = (t_p2d){map->map_limit[X], map->map_limit[Y]};
-	close_bounds(data, map->map_copy, limits, start, &reachable_enemies);
-	if (reachable_enemies != map->n_enemies)
+	close_bounds(data, map->map_copy, limits, start);
+	if (map->n_reachable_enemies != map->n_enemies)
 		exit_error(data, ERR_MAP_REACHABLE, EXIT_USE);
 }

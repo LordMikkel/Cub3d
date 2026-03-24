@@ -235,6 +235,8 @@ Shooting almost 2,000 rays and painting them every second you walk costs a lot o
 However, since ray number `1` on the left of the screen does not mathematically depend on ray `10` or ray `500`; we can ask the computer to draw them all simultaneously.
 This is called parallelism. The program counts how many "cores" your CPU has. If you have 4 cores, it divides the screen width into 4 piles, and draws them all at the same time using `pthreads`.
 
+Disclaimer: Some bonus features we needed to use functions that weren't listed in the allowed functions of the subject. These functions, in any case, were used to facilitate the mandatory part or any other part of the project where it was necessary to implement some bonus features.
+
 **Implementation:**
 ```c
 void render_map(t_data *data)

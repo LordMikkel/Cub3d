@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/23 02:33:14 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/24 17:02:08 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ MLX_H				= $(MLX_DIR)/include/include/MLX42/MLX42.h
 SANL_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
 SANT_SUPP			= $(EXT_DIR)/sanitize_threads.supp
 VAL_SUPP			= $(EXT_DIR)/valgrind_leaks.supp
-MAP					= $(MAP_DIR)/hospital.cub
+MAP					= $(MAP_DIR)/hell.cub
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #
@@ -214,6 +214,7 @@ SRCS =				core/main.c \
 					utils/is_inside_map_cells.c \
 					utils/is_player_inside_door.c \
 					utils/is_inside_circle.c \
+					utils/is_unblocked_light_path.c \
 					utils/is_one_or_two_letters.c \
 					utils/check_valid_texture.c \
 					utils/save_buffers_map.c \
