@@ -108,6 +108,9 @@ static void	get_start_end_pixel_wall(t_plyr *player, t_opt *vars, t_ray *ray)
 {
 	int	half_line_height;
 
+	// Calculate the wall height trough similar triangles
+	ray->wall_height = (int)(data->img->height / ray->perp_dist);
+
 	// Calculate the current viewing center point
 	ray->screen_center[X] = vars->half_img_width + (int)player->head[SWAY];
 	ray->screen_center[Y] = vars->half_img_height + player->head[POS];

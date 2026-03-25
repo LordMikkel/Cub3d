@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 00:32:45 by migarrid          #+#    #+#             */
-/*   Updated: 2025/08/27 22:09:40 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:23:03 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,11 @@ int	ft_var_printf_fd(int fd, char const *str, va_list args)
 			count = count + result;
 		}
 		else
-			count = count + write(fd, str, 1);
+		{
+			if (write(fd, str, 1) == -1)
+				return (-1);
+			count++;
+		}
 		str++;
 	}
 	return (count);

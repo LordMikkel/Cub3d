@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 01:48:09 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/08 19:13:37 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:05:12 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,16 @@ static void	get_start_end_pixel_wall(t_plyr *player, t_opt *vars, t_ray *ray)
  * @param data  Main structure containing the image buffer height.
  * @param ray   The ray whose drawing boundaries will be clamped.
  */
-static void	protect_image_limits(t_data *data, t_ray *ray)
+static void protect_image_limits(t_data *data, t_ray *ray)
 {
 	if (ray->wall_start < 0)
 		ray->wall_start = 0;
+	else if (ray->wall_start > (int)data->img->height)
+		ray->wall_start = data->img->height;
 	if (ray->wall_end >= (int)data->img->height)
 		ray->wall_end = data->img->height - 1;
+	else if (ray->wall_end < 0)
+		ray->wall_end = 0;
 }
 
 /**

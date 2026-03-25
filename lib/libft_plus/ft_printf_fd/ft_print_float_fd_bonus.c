@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:30:00 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 22:57:24 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:24:45 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int	ft_print_float_fd(double f, t_format *fmt, int fd)
 		return (-1);
 	ft_apply_flags(&str, fmt);
 	len = ft_strlen(str);
-	write(fd, str, len);
+	if (write(fd, str, len) == -1)
+		return (-1);
 	ft_free((void **)&str);
 	return (len);
 }

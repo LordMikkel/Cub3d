@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:10:39 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/21 01:55:39 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:30:36 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t cpy_size);
 size_t	ft_strlen(const char *s);
 size_t	ft_arraylen(char **str_array);
 size_t	ft_count_char(const char *str, int c);
+size_t	ft_putchar_fd(char c, int fd);
+size_t	ft_putstr_fd(char *s, int fd);
+size_t	ft_putendl_fd(char *s, int fd);
 void	ft_bzero(void *s, size_t n);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_print_str_array(char **array, int fd);
 void	ft_print_int_matrix(int **matrix, size_t rows, size_t cols, int fd);
