@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/24 17:02:08 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/25 02:37:49 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ MLX_H				= $(MLX_DIR)/include/include/MLX42/MLX42.h
 SANL_SUPP			= $(EXT_DIR)/sanitize_leaks.supp
 SANT_SUPP			= $(EXT_DIR)/sanitize_threads.supp
 VAL_SUPP			= $(EXT_DIR)/valgrind_leaks.supp
-MAP					= $(MAP_DIR)/hell.cub
+MAP					= $(MAP_DIR)/hospital.cub
 DEPS				= $(HEADER) $(MAKEFILE) $(LIBFT_H) $(LIBFT_MAKEFILE)
 
 # **************************************************************************** #

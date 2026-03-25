@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:41:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/24 16:38:12 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:41:19 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ bool	is_blocked_by_wall_or_door(t_map *map, t_ray *ray)
  * @param target  The [X, Y] coordinates of the cell being evaluated for light.
  * @return        TRUE if the target is reached (lit), FALSE otherwise.
  */
-// bool	is_unblocked_light_path(t_ray *ray, double *target)
-// {
-// 	if (ray->pos[X] == (int)target[X] && ray->pos[Y] == (int)target[Y])
-// 		return (TRUE);
-// 	return (FALSE);
-// }
+bool	is_unblocked_light_path(t_ray *ray, double *target)
+{
+	if (ray->pos[X] == (int)target[X] && ray->pos[Y] == (int)target[Y])
+		return (TRUE);
+	return (FALSE);
+}
 
 /**
  * Traces a line  from a light source to a target cell to check for shadows.

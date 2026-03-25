@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 02:10:58 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/24 16:39:17 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/25 02:38:46 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static char	**get_lines(t_data *data, t_map *map)
 	}
 	map->map_file[i] = NULL;
 	get_next_line(RESET);
-	return (close(map->fd), map->map_file);
+	close(map->fd);
+	return (map->map_file);
 }
 
 /**
