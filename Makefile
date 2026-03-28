@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/25 02:37:49 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/28 04:38:25 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRCS =				core/main.c \
 					core/init/init_thread.c \
 					core/init/init_door.c \
 					core/init/init_light.c \
+					core/init/init_textures.c \
 					core/init/init_minimap.c \
 					core/init/init_bresenham.c \
 					core/init/init_map_grid.c \

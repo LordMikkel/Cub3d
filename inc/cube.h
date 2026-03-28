@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/24 16:44:41 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/28 04:38:06 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	game_loop(t_data *data);
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_jump(t_plyr *player);
+void	init_textures(t_map *map);
 void	init_minimap(t_mm *minimap);
 void	init_opt(t_data *data, t_opt *vars);
 void	init_transparent_hit(t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:16:51 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/06 21:34:21 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/28 04:53:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ static void	validate_min_feature(t_data *data, t_map *map)
 		else if (ft_strncmp(map->map_file[i], "F", 1) == EQUAL)
 			map->n_features++;
 		else if (ft_strncmp(map->map_file[i], "C", 1) == EQUAL)
-			map->n_features++;
-		else if (ft_strncmp(map->map_file[i], "D", 1) == EQUAL)
-			map->n_features++;
-		else if (ft_strncmp(map->map_file[i], "L", 1) == EQUAL)
 			map->n_features++;
 		i++;
 	}

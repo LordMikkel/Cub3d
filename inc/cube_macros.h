@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:32:21 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/24 16:41:52 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/03/28 04:53:27 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,17 @@
 # define MAX_THREADS 				32
 
 // Map
-# define MAX_MAP_SIZE				2147483646
-# define MAX_ENEMIES				2147483646
+# define MAX_MAP_SIZE				500
+# define MAX_ENEMIES				500
 # define MAX_PLAYERS				1
 # define MIN_MAP_SIZE				10
 # define MIN_DISTANCE				0.001
 # define PRECISE_CENTER_CELL		0.5
-# define MIN_MAP_FEATURES			5
+# define MIN_MAP_FEATURES			6
 # define MAP_TXTR_SIZE				128
 # define TEXTURE_MODULE				127
+# define DEFAULT_COLOR_WALL			0xFFFFFFFF
+# define DEFAULT_COLOR_CF			0x000000FF
 
 // Minimap
 # define MINIMAP_CELL_SIZE			28
