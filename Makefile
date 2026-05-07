@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/28 04:38:25 by migarrid         ###   ########.fr        #
+#    Updated: 2026/03/29 04:53:47 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,17 @@ NAME				= cub3d
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= gcc
-WFLAGS				= -Wall -Wextra -Werror -Wpedantic
+WFLAGS				= -Wall -Wextra -Werror -Wformat -Wpedantic -pipe
 DMODE				= -D MAIN
 DEPFLAGS			= -MMD -MP
-LIBFLAGS			= -ldl -lglfw -pthread -lm
-VFLAGS				= -Ofast -march=native -flto -funroll-loops -fno-strict-aliasing
+LIBFLAGS			= -pie -ldl -lglfw -pthread -lm
+VFLAGS				= -Ofast -march=native -flto -funroll-loops
 OFLAGS				= -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
+HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE
 DFLAGS				= -g -O0
 SFLAGS				= $(DFLAGS) -fsanitize=address,undefined
 TFLAGS				= $(DFLAGS) -fsanitize=thread,undefined
+CFLAGS				= $(WFLAGS) $(HFLAGS)
 
 # **************************************************************************** #
 #                               Build Modes                                    #
@@ -35,13 +37,13 @@ TFLAGS				= $(DFLAGS) -fsanitize=thread,undefined
 MODE				?= release
 
 ifeq ($(MODE), release)
-	CFLAGS = $(VFLAGS)
+	CFLAGS += $(VFLAGS)
 else ifeq ($(MODE), debug)
-	CFLAGS = $(DFLAGS)
+	CFLAGS += $(DFLAGS)
 else ifeq ($(MODE), asan)
-	CFLAGS = $(DFLAGS) $(SFLAGS)
+	CFLAGS += $(SFLAGS)
 else ifeq ($(MODE), tsan)
-	CFLAGS = $(DFLAGS) $(TFLAGS)
+	CFLAGS += $(TFLAGS)
 else
 	$(error "Unknown build mode: $(MODE)")
 endif
@@ -268,7 +270,7 @@ all: $(MLX_A) $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
-	@$(CC) $(DMODE) $(WFLAGS) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) -o $(NAME)
+	@$(CC) $(DMODE) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a
@@ -290,11 +292,11 @@ $(MLX_A): $(MLX_DIR)
 # **************************************************************************** #
 
 # Rule to compile archive .c to ,o with progress bars
-${OBJ_DIR}/%.o: ${SRC_DIR}/%.c $(DEPS) $(LIBFT_A) | $(OBJ_DIR)
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.c | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINT) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)...\n" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(MKDIR) $(dir $@)
-	@$(CC) $(DMODE) $(WFLAGS) $(CFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
+	@$(CC) $(DMODE) $(CFLAGS) -I$(INC_DIR) $(DEPFLAGS) -c -o $@ $<
 
 # Include .deps files
 -include $(DEPS_FILES)
@@ -358,5 +360,5 @@ re: fclean all
 FORCE:
 
 # Phony targets
-.PHONY: all clean fclean re test-leaks test-races debug fast norm check
+.PHONY: all clean fclean re leaks races debug fast norm check
 .DEFAULT_GOAL := all
