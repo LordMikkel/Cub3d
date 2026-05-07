@@ -159,17 +159,17 @@ To prevent the enemy from looking like a frozen image sliding around, the game n
 *   **Cross Product:** Tells us the lateral turning direction. It reveals if the enemy is facing toward our left or our right side.
 
 ```text
-                                        Blind Spot
-                                ..........................
-                                :                        :
-                                :         [ENEMY]        :
-                                :          / | \         :
-                                 .       /   |   \      .
-                                   .   /     |     \  .
-                                     /       |       \
-                                   /   120° FOV Cone   \
-                                 /           |           \
-                                           [PLAYER]
+                                            Blind Spot
+                                    ..........................
+                                    :                        :
+                                    :         [ENEMY]        :
+                                    :          / | \         :
+                                     .       /   |   \      .
+                                       .   /     |     \  .
+                                         /       |       \
+                                       /   120° FOV Cone   \
+                                     /           |           \
+                                               [PLAYER]
 ```
 
 
