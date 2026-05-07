@@ -24,17 +24,17 @@ In this world, the player can't just be defined by a single point or `(X, Y)` co
 - **Camera (or Projection) Plane ($C$)**: `(Cx, Cy)`. A horizontal line perpendicular to our Direction, which limits our "Field of View" (FOV). A wider FOV gives more peripheral vision; a narrower one is more focused.
 
 ```text
-                                 Camera Plane (C)
-                                 +--------+--------+
-                                  \       |       /
-                                   \      |      /
-                                    \     |     /   Ray(x)
-                                     \    |    /
-                                      \   |   /  Direction (D)
-                                       \  |  /
-                                        \ | /
-                                         \|/
-                                       Player (P)
+                                    Camera Plane (C)
+                                    +--------+--------+
+                                     \       |       /
+                                      \      |      /
+                                       \     |     /   Ray(x)
+                                        \    |    /
+                                         \   |   /  Direction (D)
+                                          \  |  /
+                                           \ | /
+                                            \|/
+                                          Player (P)
 ```
 
 When you move your mouse side to side, the 3D environment doesn't actually move. What we are doing is "rotating" the 2D camera. But spinning both vectors (the Direction $\vec{D}$ and the Plane $\vec{C}$) isn't as simple as just adding a number; it requires trigonometry.
@@ -59,14 +59,14 @@ If each ray moved slowly forward "millimeter by millimeter" looking for a solid 
 The algorithm takes a shortcut by asking: *"From where the ray is right now, which grid line is closer to cross: a vertical one (X-axis) or a horizontal one (Y-axis)?"* It moves freely through empty spaces until it hits a solid obstacle.
 
 ```text
-                                 +---+---+---+---+
-                                 |   |   |   |[X]| <-- Wall hit!
-                                 +---+---+---/---+
-                                 |   |   | / |   |
-                                 +---+---/---+---+
-                                 |   | / |   |   |
-                                 +---/---+---+---+
-                                   P(Player)
+                                     +---+---+---+---+
+                                     |   |   |   |[X]| <-- Wall hit!
+                                     +---+---+---/---+
+                                     |   |   | / |   |
+                                     +---+---/---+---+
+                                     |   | / |   |   |
+                                     +---/---+---+---+
+                                       P(Player)
 ```
 
 #### Distortion and Perpendicular Distance
@@ -78,16 +78,16 @@ However, rays shot toward the edges of the screen travel an obviously longer dia
 We fix this by using "perpendicular distance." This means we only calculate the straight, shortest distance from our camera's horizontal plane forward to the wall.
 
 ```text
-                  [Wall]===================================
-                              \               |
-                   Euclidean   \              | Perpendicular
-                    Distance    \             |   Distance
-                     (Warped)    \            |  (Correct)
-                                  \           |
-                                   \          |
-                                    \         |
-                                     \        |
-                                   (P) [Player Camera]
+                     [Wall]===================================
+                                 \               |
+                      Euclidean   \              | Perpendicular
+                       Distance    \             |   Distance
+                        (Warped)    \            |  (Correct)
+                                     \           |
+                                      \          |
+                                       \         |
+                                        \        |
+                                      (P) [Player Camera]
 ```
 
 Once we have the exact perpendicular distance, we project how tall (in pixels) the vertical strip of the wall should be. Using basic perspective rules, height is inversely proportional:
@@ -159,17 +159,17 @@ To prevent the enemy from looking like a frozen image sliding around, the game n
 *   **Cross Product:** Tells us the lateral turning direction. It reveals if the enemy is facing toward our left or our right side.
 
 ```text
-                                    Blind Spot
-                            ..........................
-                            :                        :
-                            :         [ENEMY]        :
-                            :          / | \         :
-                             .       /   |   \      .
-                               .   /     |     \  .
-                                 /       |       \
-                               /   120° FOV Cone   \
-                             /           |           \
-                                       [PLAYER]
+                                        Blind Spot
+                                ..........................
+                                :                        :
+                                :         [ENEMY]        :
+                                :          / | \         :
+                                 .       /   |   \      .
+                                   .   /     |     \  .
+                                     /       |       \
+                                   /   120° FOV Cone   \
+                                 /           |           \
+                                           [PLAYER]
 ```
 
 
@@ -205,14 +205,14 @@ Shooting nearly 2,000 rays and painting them every frame forces the CPU to run m
 It's fairly straightforward: The program counts how many "cores" your CPU has. If you have 4 cores, it divides the screen width into 4 equal vertical sections, and draws them all at the exact same time using C `pthreads`. Since none of these screen segments need to share information with each other, the isolated threads run happily without slow mutex locks to complicate everything.
 
 ``` text
-                 +-------------------------------------------------------+
-                 |                        SCREEN                         |
-                 +-------------+-------------+-------------+-------------+
-                 |  Thread 0   |  Thread 1   |  Thread 2   |  Thread 3   |
-                 |  (Core 1)   |  (Core 2)   |  (Core 3)   |  (Core 4)   |
-                 |             |             |             |             |
-                 |  0px-480px  | 480px-960px | 960px-1440px| 1440px-1920 |
-                 +-------------+-------------+-------------+-------------+
+                   +-------------------------------------------------------+
+                   |                        SCREEN                         |
+                   +-------------+-------------+-------------+-------------+
+                   |  Thread 0   |  Thread 1   |  Thread 2   |  Thread 3   |
+                   |  (Core 1)   |  (Core 2)   |  (Core 3)   |  (Core 4)   |
+                   |             |             |             |             |
+                   |  0px-480px  | 480px-960px | 960px-1440px| 1440px-1920 |
+                   +-------------+-------------+-------------+-------------+
 ```
 
 ---
