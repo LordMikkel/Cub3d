@@ -101,10 +101,14 @@ Knowing the vertical column's exact height (for example, about 400 pixels tall) 
 #### Advanced Texture Mapping
 To paint the wall, we go down that vertical strip pixel by pixel, taking the exact matching color from our 2D image file (`.png`) and embedding it onto the window:
 
+![wall](img/wall1.png)
+
 1. **Horizontal (X) Texture Point**:
 When the ray hits a wall, we find the exact impact point. By using the mathematical modulo (or remainder) operation, we figure out which vertical slice of our original 2D image matches that hit location. This tells us what pixel column of the original texture we need.
 
 2. **Vertical (Y) Position**: As we draw the wall top-to-bottom on the screen, we progress pixel-by-pixel smoothly through the original image. If the wall is very far away (drawn small), we take larger "skips" in the original texture to compress it; if it's very close (drawn huge), we step forward very slowly, sometimes repeating pixels, to stretch the image exactly right.
+
+![wall](img/wall2.png)
 
 ---
 
@@ -112,10 +116,12 @@ When the ray hits a wall, we find the exact impact point. By using the mathemati
 
 To make the environment look less artificial, we set up a pre-calculated lighting system. Based on where the map's light sources are, it generates a grid showing how much light reaches every sub-cell of the map. This lets us have lighting without heavily hurting game performance.
 
+![lightmap](img/light1.png)
+
 #### The Inverse-Square Law of Light
 In real life, imagine lighting a match. Its light initially expands like an invisible balloon around the flame. As that sphere of light gets larger, the light has to cover much more space, so its brightness heavily decreases.
 
-![light area](img/light_area.jpeg)
+![light area](img/light2.jpeg)
 
 In physics, this dictates that light intensity drops off aggressively, proportional to the "inverse square of the distance". If you move twice as far away, the light you see will be four times less bright.
 
@@ -129,6 +135,8 @@ $$
 #### LightMap
 To store the lighting data, we create a matrix (grid) similar to the map itself but with much higher definition (more subdivisions per cell). For every light source, we use DDA rays again to track obstructions. We also add up the intensities in areas where multiple lights shine on the same spot.
 
+![lightmap](img/light3.png)
+
 ---
 
 ### 👾 3. Artificial Intelligence and Sprites
@@ -138,7 +146,7 @@ Weapons, collectibles, and enemies are not fully 3D models; they are flat 2D ima
 #### Inverse Transformation (Relative Position)
 The goal here is to answer a key question: *"Where on the 2D screen, and how big, should I draw this image so it looks like it belongs in the 3D world?"*.
 
-We break this calculation down into steps:
+We break this calculation down into steps:[text](about:blank#blocked)
 
 1. **Relative Distance:** First, we calculate the vector aiming from the player to the enemy (by subtracting their coordinates).
 2. **Camera Translation:** That vector tells us the enemy's global position relative to the player, but we need to know where it is from the perspective of the player's *gaze*. To "translate" these global coordinates into the camera's view, we multiply the vector by the **inverse camera matrix**:
@@ -147,10 +155,13 @@ $$
 \begin{bmatrix} EntityC_X \\ EntityC_Y \end{bmatrix} = \frac{1}{Det(Cam)} \begin{bmatrix} Dir_Y & -Dir_X \\ -Plane_Y & Plane_X \end{bmatrix} \begin{bmatrix} Ene_X - Plyr_X \\ Ene_Y - Plyr_Y \end{bmatrix}
 $$
 
+![matrix](img/matrix1.png)
 
 3. **Perspective Division (Depth):** With this relative coordinate in hand, the final step is to divide it by its "depth" value (how far away the enemy is from the camera plane). This does two vital things:
     * It figures out the specific horizontal pixel (X-axis) where the center of the sprite should be drawn.
     * It lets us scale the image: the higher the depth (the farther away it is), the smaller the enemy will be drawn, giving a realistic sense of distance.
+
+![matrix](img/matrix2.png)
 
 #### Directional Sprite Animation
 To prevent the enemy from looking like a frozen image sliding around, the game needs to know which exact drawing to show (front, back, left profile, right profile) based on how the enemy is turned relative to us. We figure this out using two core vector math operations:
@@ -204,16 +215,7 @@ Shooting nearly 2,000 rays and painting them every frame forces the CPU to run m
 
 It's fairly straightforward: The program counts how many "cores" your CPU has. If you have 4 cores, it divides the screen width into 4 equal vertical sections, and draws them all at the exact same time using C `pthreads`. Since none of these screen segments need to share information with each other, the isolated threads run happily without slow mutex locks to complicate everything.
 
-``` text
-                   +-------------------------------------------------------+
-                   |                        SCREEN                         |
-                   +-------------+-------------+-------------+-------------+
-                   |  Thread 0   |  Thread 1   |  Thread 2   |  Thread 3   |
-                   |  (Core 1)   |  (Core 2)   |  (Core 3)   |  (Core 4)   |
-                   |             |             |             |             |
-                   |  0px-480px  | 480px-960px | 960px-1440px| 1440px-1920 |
-                   +-------------+-------------+-------------+-------------+
-```
+![matrix](img/threads.png)
 
 ---
 
