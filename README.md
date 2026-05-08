@@ -198,6 +198,8 @@ If every enemy on the map was always shooting precision tracking beams (RayCasti
 3. **Line of Sight (DDA RayCast):** If you are close and standing right in front of the enemy, the final, most expensive check runs: an invisible ray is fired from the enemy out to you. If it hits a wall or closed door, the AI assumes you are hiding and skips the attack sequence.
 4. **Attack:** If the enemy gets close enough, it triggers its attack animation in an attempt to hit you and reduce your health. Whether it succeeds depends on how close and aligned it is with you.
 
+![Enemy AI](img/enemy.png)
+
 #### HitScan
 Bullets aren't treated as a single strict point on impact; the logic bends mechanically.
 
@@ -205,7 +207,7 @@ To figure out if you hit your shot, the game uses an "impact funnel". It works l
 *   **Close Range:** The hit cone is tight. If you are extremely close, you have to aim precisely.
 *   **Long Range:** As the enemy gets further away (and its sprite shape becomes tiny on screen), the game gets more forgiving and opens the angle of the cone wider.
 
-This flexibility is calculated with a formula loosely based on: $Impact > Limit \times Distance^{2}$. This completely balances out the lack of precision you usually have in a grid-based 3D environment.
+This flexibility is calculated with a formula loosely based on: $Impact > Limit \times Distance^{2}$. This completely balances out the lack of precision you usually have in a grid-based 3D environment.[text](about:blank#blocked)
 
 ---
 
