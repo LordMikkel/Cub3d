@@ -1,6 +1,6 @@
 # 🎮 Cub3d: Raycasting Rendering Engine
 
-<video src="img/cub3d.mp4" autoplay loop muted playsinline width="100%"></video>
+<video src="https://github.com/LordMikkel/Cub3d/blob/main/img/cub3d.mp4" autoplay loop muted playsinline width="100%"></video>
 
 ## 📖 Description
 
