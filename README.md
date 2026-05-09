@@ -1,5 +1,7 @@
 # 🎮 Cub3d: Raycasting Rendering Engine
 
+<video src="img/cub3d.mp4" autoplay loop muted playsinline width="100%"></video>
+
 ## 📖 Description
 
 Cub3d is a first-person maze exploration engine built from scratch and inspired by the classic 1992 game Wolfenstein 3D. More than just moving a character across a screen, this project is a deep dive into the mathematical foundations of computer graphics, linear algebra (vectors and matrices), and C optimization using multithreading.
