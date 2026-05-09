@@ -1,6 +1,6 @@
 # 🎮 Cub3d: Raycasting Rendering Engine
 
-![Trailer](img/cube3d.gif)
+![Trailer](img/cub3d.gif)
 
 ## 📖 Description
 
