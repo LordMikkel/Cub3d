@@ -4,6 +4,12 @@
   <img src="img/cub3d.gif" alt="Cub3d" />
 </p>
 
+<p align="center">
+  <a href="https://youtube.com/shorts/mFSVPARuHaU" target="_blank" rel="noopener noreferrer">
+    Original + Epic music
+  </a>
+</p>
+
 ## 📖 Description
 
 Cub3d is a first-person maze exploration engine built from scratch and inspired by the classic 1992 game Wolfenstein 3D. More than just moving a character across a screen, this project is a deep dive into the mathematical foundations of computer graphics, linear algebra (vectors and matrices), and C optimization using multithreading.
