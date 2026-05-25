@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 01:27:17 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/28 04:38:06 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:45:08 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parse_info(t_data *data, t_map *map);
 void	parse_file(t_data *data, char *map_path);
 void	get_file_info(t_data *data, t_map *map, char *map_path);
 void	parse_texture(t_data *data, t_map *map, char *line);
-void	parse_map(t_data *data, t_map *map, char *line);
+int		parse_map(t_data *data, t_map *map, char *line);
 void	validate_map(t_data *data, t_map *map);
 void	get_texture(t_data *data, t_txtr *texture, char *line, int type);
 void	get_color(t_data *data, t_txtr *texture, char *line, int type);

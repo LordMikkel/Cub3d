@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 02:07:16 by migarrid          #+#    #+#             */
-/*   Updated: 2026/05/25 02:22:42 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:47:52 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,19 @@ static bool	is_valid_grid_chrs(char *s, t_map *map)
  * @param map   The map struct to fill.
  * @param line  The current line to process.
  */
-void	parse_map(t_data *data, t_map *map, char *line)
+int	parse_map(t_data *data, t_map *map, char *line)
 {
 	static int	i = 0;
 
-	if ((ft_strncmp("1", line, 1) == EQUAL)
-		|| (ft_strncmp("0", line, 1) == EQUAL))
+	if ((ft_strncmp("1", line, 1) == EQUAL) || (ft_strncmp("0", line, 1) == EQUAL))
 	{
 		if (!is_valid_grid_chrs(line, map))
-			exit_error(data, ERR_MAP_INVALID, EXIT_USE);
+			return (exit_error(data, ERR_MAP_INVALID, EXIT_USE));
 		map->map_grid[i] = ft_strndup(line, map->map_max_len);
 		if (!map->map_grid[i])
-			exit_error(data, ERR_MALLOC, EXIT_FAILURE);
+			return (exit_error(data, ERR_MALLOC, EXIT_FAILURE));
 		put_spaces_in_line_void(map, map->map_grid[i]);
 		i++;
 	}
+	return (SUCCESS);
 }

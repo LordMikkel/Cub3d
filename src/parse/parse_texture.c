@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 01:59:54 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/25 02:38:59 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 04:39:41 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,17 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type)
 	if (!texture->path)
 		exit_error(data, ERR_MALLOC, EXIT_FAILURE);
 	rgb_split = ft_split(texture->path, ',');
-	if (!rgb_split || ft_arraylen(rgb_split) != 3)
+	if (!rgb_split)
+	{
 		exit_error(data, ERR_COLOR_FMT, EXIT_FAILURE);
+		return;
+	}
+	if (ft_arraylen(rgb_split) != 3)
+	{
+		ft_free_str_array(&rgb_split);
+		exit_error(data, ERR_COLOR_FMT, EXIT_FAILURE);
+		return;
+	}
 	texture->color[R] = parse_rgb_value(data, rgb_split[0]);
 	texture->color[G] = parse_rgb_value(data, rgb_split[1]);
 	texture->color[B] = parse_rgb_value(data, rgb_split[2]);
