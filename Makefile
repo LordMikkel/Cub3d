@@ -6,7 +6,7 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 00:54:42 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/29 04:53:47 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/25 02:53:53 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,19 @@ NAME				= cub3d
 #                            Compiler and Flags                                #
 # **************************************************************************** #
 CC					= gcc
-WFLAGS				= -Wall -Wextra -Werror -Wformat -Wpedantic -pipe
+WFLAGS				= -Wall -Wextra -Werror -Wpedantic -Wformat -Wshadow -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -Wdouble-promotion -Wcast-align -pipe
 DMODE				= -D MAIN
 DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -pie -ldl -lglfw -pthread -lm
+AFLAGS				= -fprofile-arcs -ftest-coverage
 VFLAGS				= -Ofast -march=native -flto -funroll-loops
-OFLAGS				= -Os -ffunction-sections -fdata-sections -Wl,--gc-sections
-HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE
-DFLAGS				= -g -O0
+OFLAGS				= -D_FORTIFY_SOURCE=3 -ffunction-sections -fdata-sections -Wl,--gc-sections
+HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE -fcf-protection=full
+LDFLAGS				= -Wl,-z,relro,-z,now $(HFLAGS)
+DFLAGS				= -g3 -O1 $(AFLAGS)
+TFLAGS				= -g3 -O1 -fsanitize=thread,undefined
 SFLAGS				= $(DFLAGS) -fsanitize=address,undefined
-TFLAGS				= $(DFLAGS) -fsanitize=thread,undefined
-CFLAGS				= $(WFLAGS) $(HFLAGS)
+CFLAGS				= $(WFLAGS) $(HFLAGS) $(OFLAGS)
 
 # **************************************************************************** #
 #                               Build Modes                                    #
@@ -270,7 +272,7 @@ all: $(MLX_A) $(LIBFT_A) $(NAME)
 
 # Build executable
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
-	@$(CC) $(DMODE) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) -o $(NAME)
+	@$(CC) $(DMODE) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -I$(INC_DIR) $(LIBFLAGS) $(LDFLAGS) -o $(NAME)
 	@$(PRINT) "${CLEAR}${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}${GREEN}»${RESET} [${PURPLE}${BOLD}${NAME}${RESET}]: ${RED}${BOLD}${NAME} ${RESET}compiled ${GREEN}successfully${RESET}.${GREY}\n${RESET}${GREY}────────────────────────────────────────────────────────────────────────────\n${RESET}"
 
 # Rebuild libft.a

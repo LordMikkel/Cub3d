@@ -6,17 +6,19 @@
 #    By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/28 19:51:37 by migarrid          #+#    #+#              #
-#    Updated: 2026/03/21 01:56:13 by migarrid         ###   ########.fr        #
+#    Updated: 2026/05/25 02:46:48 by migarrid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Library name
-NAME = libft_plus.a
+NAME	= libft_plus.a
 
 # Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wpedantic -lm
-VFLAGS = -Ofast -march=native -flto -funroll-loops -fno-strict-aliasing
+CC 		= gcc
+AR 		= gcc-ar
+CFLAGS	= -Wall -Wextra -Werror -Wpedantic -Wformat -Wshadow -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wcast-align -Wdouble-promotion -Wcast-align -pipe -lm
+VFLAGS	= -Ofast -march=native -flto -funroll-loops -fno-strict-aliasing
+HFLAGS	= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE -D_FORTIFY_SOURCE=3 -fcf-protection=full
 
 # Colors
 DEFAULT = \033[0;39m
@@ -154,13 +156,13 @@ SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
+	@$(AR) rcs $(NAME) $(OBJS)
 
 # Rule to compile .c to .o files with progress bar
 %.o: %.c libft_plus.h Makefile
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) $(VFLAGS) -I. -MMD -MP -c -o $@ $<
+	@$(CC) $(CFLAGS) $(VFLAGS) $(HFLAGS) -I. -MMD -MP -c -o $@ $<
 
 # Include dependency files
 -include $(DEPS)

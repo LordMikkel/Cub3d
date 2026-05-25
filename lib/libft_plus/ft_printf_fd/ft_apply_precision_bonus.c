@@ -45,6 +45,8 @@ void	ft_apply_precision(char **str, t_format *fmt)
 	int		len;
 	int		is_neg;
 
+	if (!str || !*str || !fmt)
+		return ;
 	if (fmt->precision < 0 || ft_strncmp(*str, "(nil)", 5) == 0)
 		return ;
 	len = ft_strlen(*str);

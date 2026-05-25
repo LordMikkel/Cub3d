@@ -6,7 +6,7 @@
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 00:04:45 by migarrid          #+#    #+#             */
-/*   Updated: 2026/01/11 22:55:09 by migarrid         ###   ########.fr       */
+/*   Updated: 2026/05/25 02:30:15 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static char	*precision_str(char *str, t_format *fmt)
 	{
 		new_str = ft_substr(str, 0, fmt->precision);
 		if (!new_str)
+		{
+			ft_free((void **)&str);
 			return (NULL);
+		}
 		ft_free((void **)&str);
 		return (new_str);
 	}
@@ -61,27 +64,15 @@ static int	apply_flags(char **str, t_format *fmt)
 
 void	ft_apply_flags(char **str, t_format *fmt)
 {
-	char	*original;
-
-	original = *str;
 	if (fmt->specifier == 's')
 	{
 		*str = precision_str(*str, fmt);
 		if (!*str)
-		{
-			ft_free((void **)&original);
 			return ;
-		}
 		ft_apply_min_width(str, fmt);
 		if (!*str)
-		{
-			ft_free((void **)&original);
 			return ;
-		}
 	}
 	else if (!apply_flags(str, fmt))
-	{
-		ft_free((void **)&original);
 		return ;
-	}
 }

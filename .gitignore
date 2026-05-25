@@ -2,6 +2,8 @@
 *.txt
 *.py
 *.swp
+*.gcda
+*.gcno
 *.DS_Store
 *perf.data*
 cub3d
