@@ -56,7 +56,7 @@ void	init_player_ray(t_data *data, t_plyr *player, t_ray *ray, int x);
 void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
 void	init_light(t_data *data, int x, int y, char type);
 void	init_map_grid(t_data *data, t_map *map);
-void	init_visible_bounds(t_txtr *txtr);
+void	init_visible_bounds(t_data *data, t_txtr *txtr);
 
 /* ************************************************************************** */
 /*                                  Parse                                     */
@@ -76,12 +76,14 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 /*                                 Engine                                     */
 /* ************************************************************************** */
 void	game_render(void *param);
-void	render_map(t_data *data);
+void	render_scene(t_data *data);
+void	render_map(t_thread *thread);
 void	render_lightmap(t_data	*data);
-void	render_gun(t_data *data, t_gun *gun);
-void	render_minimap(t_data *data, t_mm *minimap);
+void	render_gun(t_data *data, t_gun *gun, int *area);
+void	render_hud(t_data *data, t_mm *minimap);
 void	render_transparent_hits(t_data *data, t_ray *ray, int x);
-void	render_enemies(t_data *data, t_plyr *player, t_enemy *enemies);
+void	render_enemies(t_data *data, t_enemy *enemies, int *cols);
+void	sort_enemies_by_distance(t_data *data);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calc_wall_height(t_data *data, t_ray *ray);
 void	calc_row_distances(t_data *data);
@@ -111,10 +113,10 @@ void	draw_minimap_circle_background(t_data *data, t_mm *minimap);
 void	draw_minimap_cells(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_enemies(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
-void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy);
+void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy, int *cols);
 void	draw_minimap_health(t_data *data, t_plyr *player);
 void	draw_minimap_player(t_data *data, t_mm *minimap);
-void	draw_gun(t_data *data, t_txtr *frame);
+void	draw_gun(t_data *data, t_txtr *frame, int *area);
 
 /* ************************************************************************** */
 /*                                  Update                                    */

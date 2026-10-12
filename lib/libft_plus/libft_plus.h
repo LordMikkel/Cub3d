@@ -51,6 +51,7 @@ long	ft_strtol(const char *nptr, int base);
 float	ft_strtof(const char *nptr);
 float	ft_square(float x);
 int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 double	ft_dist(double x1, double y1, double x2, double y2);
 double	ft_dot(double x1, double y1, double x2, double y2);
 double	ft_cross(double x1, double y1, double x2, double y2);

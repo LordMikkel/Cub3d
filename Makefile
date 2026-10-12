@@ -137,9 +137,10 @@ SRCS =				core/main.c \
 					core/init/init_visible_bounds.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
+					core/game/render/render_scene.c \
 					core/game/render/render_map.c \
 					core/game/render/render_lightmap.c \
-					core/game/render/render_minimap.c \
+					core/game/render/render_hud.c \
 					core/game/render/render_gun.c \
 					core/game/render/render_enemies.c \
 					core/game/render/render_transparent_hits.c \

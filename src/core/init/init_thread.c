@@ -19,6 +19,9 @@
  * vertical screen columns it should paint. If it's the last thread,
  * it forces the end point to the screen width to catch any remainder
  * pixels not perfectly divisible by the core count.
+ * It also stores the screen area owned by the thread (its columns, full
+ * height) as [MIN_X, MAX_X, MIN_Y, MAX_Y] inclusive, used to clip the gun
+ * so each thread only draws on its own columns.
  *
  * @param data             Main program structure.
  * @param threads          Array storing all thread structures.
@@ -33,4 +36,8 @@ void	init_thread(t_data *data, t_thread *threads, int i, int cols_per_thread)
 		threads[i].x[END] = data->img->width;
 	else
 		threads[i].x[END] = (i + 1) * cols_per_thread;
+	threads[i].area[MIN_X] = threads[i].x[START];
+	threads[i].area[MAX_X] = threads[i].x[END] - 1;
+	threads[i].area[MIN_Y] = 0;
+	threads[i].area[MAX_Y] = (int)data->img->height - 1;
 }

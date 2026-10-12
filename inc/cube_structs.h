@@ -196,6 +196,7 @@ typedef struct s_txtr
 	mlx_texture_t	*txtr;
 	uint8_t			*original_pixels;
 	int				bounds[LIMITS];
+	int				(*row_span)[RANGE];
 }	t_txtr;
 
 typedef struct s_sprtren
@@ -298,6 +299,7 @@ typedef struct s_thread
 	t_data			*data;
 	pthread_t		thread;
 	int				x[RANGE];
+	int				area[LIMITS];
 }	t_thread;
 
 typedef struct s_hit

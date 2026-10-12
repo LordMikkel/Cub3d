@@ -41,16 +41,19 @@ static t_txtr	*select_frame(t_gun *gun)
  * Orchestrates the rendering of the weapon on the screen.
  * Fetches the correct texture for the current animation frame
  * and passes it to the underlying drawing function.
+ * Only the pixels inside the area are drawn, so every render thread can
+ * draw the gun on its own columns.
  *
  * @param data  Main program struct.
  * @param gun   The weapon structure to be rendered.
+ * @param area  [MIN_X, MAX_X, MIN_Y, MAX_Y] screen area allowed to draw.
  */
-void	render_gun(t_data *data, t_gun *gun)
+void	render_gun(t_data *data, t_gun *gun, int *area)
 {
 	t_txtr	*frame;
 
 	frame = select_frame(gun);
 	if (!frame || !frame->txtr)
 		return ;
-	draw_gun(data, frame);
+	draw_gun(data, frame, area);
 }

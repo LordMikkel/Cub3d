@@ -5,13 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 03:47:05 by migarrid          #+#    #+#             */
-/*   Updated: 2026/03/22 16:16:30 by migarrid         ###   ########.fr       */
+/*   Created: 2026/10/12 12:00:00 by migarrid          #+#    #+#             */
+/*   Updated: 2026/10/12 12:00:00 by migarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../inc/cube.h"
 
+/**
+ * Casts the ray of one screen column and draws everything it hits.
+ * 1. Initializes the ray and runs the DDA until it hits a wall or a door.
+ * 2. Calculates the distance (saved in the z-buffer for the sprites),
+ * the texture coordinates and the height of the wall on screen.
+ * 3. Draws the ceiling, the wall and the floor of the column, saves the
+ * hit for the minimap and draws the transparent doors on top.
+ *
+ * @param data  Main program structure.
+ * @param x     The screen column to render.
+ */
 static void	cast_single_ray(t_data *data, int x)
 {
 	t_ray	ray;
@@ -30,82 +41,20 @@ static void	cast_single_ray(t_data *data, int x)
 }
 
 /**
- * The routine executed by each individual thread ("worker").
+ * Renders the map (walls, doors, floor and ceiling) of a thread.
+ * Casts one ray per column, only for the [START, END) columns of the
+ * thread, which also fills the z-buffer of those columns for the sprites.
  *
- * 1. Receives its assigned start and end X coordinates.
- * 2. Loops through its assigned vertical slice of the screen,
- * casting rays and drawing the walls ONLY for those specific columns.
- * By doing this, multiple parts of the screen are drawn simultaneously
- * by different CPU cores.
- *
- * @param arg  A void pointer to the thread's specific data structure.
- * @return     NULL (as required by the pthread standard signature).
+ * @param thread  The thread with its range of columns.
  */
-static void	*render_section(void *arg)
+void	render_map(t_thread *thread)
 {
-	t_thread	*thread;
-	int			x;
+	int	x;
 
-	thread = (t_thread *)arg;
 	x = thread->x[START];
 	while (x < thread->x[END])
 	{
 		cast_single_ray(thread->data, x);
 		x++;
-	}
-	return (NULL);
-}
-
-/**
- * Prepares and launches a single thread to render its portion of the screen.
- *
- * 1. Divides the total screen width by the number of CPU cores
- * to figure out exactly how many vertical columns this thread needs to paint.
- * 2. Initializes the thread's specific boundaries (where to start and stop).
- * 3. Spawns the thread and send them to to work on `render_section`.
- *
- * @param data     Main program structure containing screen and core info.
- * @param threads  The array storing all our thread structures.
- * @param i        The index (ID) of the current thread being launched.
- */
-static void	render_threads(t_data *data, t_thread *threads, int i)
-{
-	int	cols_per_thread;
-
-	cols_per_thread = data->img->width / data->vars.n_cores;
-	init_thread(data, threads, i, cols_per_thread);
-	pthread_create(&threads[i].thread, NULL, render_section, &threads[i]);
-}
-
-/**
- * Main multithreading orchestrator for the raycasting engine.
- * Instead of drawing the screen column by column on a single processor,
- * it splits the screen into vertical chunks for massive performance gains.
- *
- * 1. The first loop dispatches a thread for each available CPU core.
- * 2. The second loop uses `pthread_join` to force the main program
- * to stop and wait until ALL threads have finished painting their slices.
- * Without this wait, the engine might try to display a half-drawn frame.
- * Before that, the per row floor/ceiling distances are precalculated.
- *
- * @param data  Main program structure.
- */
-void	render_map(t_data *data)
-{
-	t_thread	threads[MAX_THREADS];
-	int			i;
-
-	calc_row_distances(data);
-	i = 0;
-	while (i < data->vars.n_cores)
-	{
-		render_threads(data, threads, i);
-		i++;
-	}
-	i = 0;
-	while (i < data->vars.n_cores)
-	{
-		pthread_join(threads[i].thread, NULL);
-		i++;
 	}
 }

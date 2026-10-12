@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_minimap.c                                   :+:      :+:    :+:   */
+/*   render_hud.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarrid <migarrid@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,14 +13,16 @@
 #include "../../../../inc/cube.h"
 
 /**
- * Master function that orchestrates the rendering of the minimap.
- * Draws layers sequentially from bottom to top: background, floor/walls,
- * field of view rays, and finally the player marker on top.
+ * Master function that orchestrates the rendering of the HUD.
+ * Drawn by the main thread after the 3D scene, so it is always on top.
+ * Draws layers sequentially from bottom to top: minimap background,
+ * floor/walls, field of view rays, enemies, the player marker and
+ * finally the health bar.
  *
  * @param data     Main data struct.
  * @param minimap  Minimap struct containing all UI data.
  */
-void	render_minimap(t_data *data, t_mm *minimap)
+void	render_hud(t_data *data, t_mm *minimap)
 {
 	draw_minimap_circle_background(data, minimap);
 	draw_minimap_cells(data, &data->player, minimap);

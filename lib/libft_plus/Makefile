@@ -68,6 +68,7 @@ SRCS =	libft/ft_isalpha.c \
 		libft/ft_strtof.c \
 		libft/ft_square.c \
 		libft/ft_max.c \
+		libft/ft_min.c \
 		libft/ft_distance.c \
 		libft/ft_dot_product.c \
 		libft/ft_cross_product.c \

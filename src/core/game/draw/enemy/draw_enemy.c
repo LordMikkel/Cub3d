@@ -39,12 +39,16 @@ void	draw_enemy_col(t_data *data, mlx_texture_t *txtr, t_sprtren *ren, int x)
 	}
 }
 
-static void	draw_enemies_cols(t_data *data, t_enemy *enemy, t_sprtren *ren)
+static void	draw_enemies_cols(t_data *data, t_enemy *enemy, t_sprtren *ren, int *cols)
 {
 	int	x;
+	int	end;
 
-	x = ren->start[X];
-	while (x < ren->end[X])
+	x = ft_max(ren->start[X], cols[START]);
+	end = ren->end[X];
+	if (end > cols[END])
+		end = cols[END];
+	while (x < end)
 	{
 		if (is_sprite_visible(&data->map, ren, x))
 			draw_enemy_col(data, enemy->current_tex->txtr, ren, x);
@@ -52,7 +56,7 @@ static void	draw_enemies_cols(t_data *data, t_enemy *enemy, t_sprtren *ren)
 	}
 }
 
-void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy)
+void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy, int *cols)
 {
 	t_sprtren	ren;
 	int			light[AXIS];
@@ -66,5 +70,5 @@ void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy)
 	light[Y] = (int)(enemy->pos[Y] * LIGHT_RESOLUTION);
 	ren.brightness = get_brightness(&data->map, light[X], light[Y]);
 	calc_sprite_bounds(data, vars, &ren);
-	draw_enemies_cols(data, enemy, &ren);
+	draw_enemies_cols(data, enemy, &ren, cols);
 }

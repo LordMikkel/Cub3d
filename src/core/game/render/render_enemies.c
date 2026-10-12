@@ -53,24 +53,43 @@ static void	calc_dist_enemies(t_map *map, t_plyr *player, t_enemy *enemies)
 	i = 0;
 	while (i < map->n_enemies)
 	{
-		enemies[i].distance = ft_dist(player->pos[X], player->pos[Y],
-				enemies[i].pos[X], enemies[i].pos[Y]);
+		enemies[i].distance = ft_dist(player->pos[X], player->pos[Y], enemies[i].pos[X], enemies[i].pos[Y]);
 		i++;
 	}
 }
 
-void	render_enemies(t_data *data, t_plyr *player, t_enemy *enemies)
+/**
+ * Sorts the enemies from the furthest to the closest (Painter's Algorithm).
+ * Called once per frame by the main thread before launching the render
+ * threads, which only read the sorted array.
+ *
+ * @param data  Main program struct containing the enemies.
+ */
+void	sort_enemies_by_distance(t_data *data)
+{
+	if (data->map.n_enemies <= 0)
+		return ;
+	calc_dist_enemies(&data->map, &data->player, data->enemies);
+	sort_enemies(data->enemies, data->map.n_enemies);
+}
+
+/**
+ * Draws every enemy (already sorted) on the columns of a render thread.
+ * Sprites are drawn column by column against the z-buffer, so each thread
+ * can draw its own columns right after its walls without any lock.
+ *
+ * @param data     Main program struct.
+ * @param enemies  The enemies sorted by sort_enemies_by_distance.
+ * @param cols     [START, END) range of screen columns to draw.
+ */
+void	render_enemies(t_data *data, t_enemy *enemies, int *cols)
 {
 	int	i;
 
-	if (data->map.n_enemies <= 0)
-		return ;
-	calc_dist_enemies(&data->map, player, enemies);
-	sort_enemies(enemies, data->map.n_enemies);
 	i = 0;
 	while (i < data->map.n_enemies)
 	{
-		draw_enemy(data, &data->vars, &enemies[i]);
+		draw_enemy(data, &data->vars, &enemies[i], cols);
 		i++;
 	}
 }

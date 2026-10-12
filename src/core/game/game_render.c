@@ -20,10 +20,8 @@ void	game_render(void *param)
 	data->mode = GAME;
 	update_frame_time(data);
 	dbg_print_fps(STDOUT);
-	render_map(data);
-	render_enemies(data, &data->player, data->enemies);
-	render_minimap(data, &data->minimap);
-	render_gun(data, &data->player.gun);
+	render_scene(data);
+	render_hud(data, &data->minimap);
 	input_player_movement(data);
 	input_player_rotation(data);
 	input_player_interact(data);

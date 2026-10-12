@@ -17,6 +17,7 @@
  * Crucial for preventing memory leaks during program exit or map reloading.
  * Only attempts to delete the texture if the pointer is not NULL, setting
  * it back to NULL afterwards to prevent dangling pointers.
+ * Also frees the visible row spans precalculated by init_visible_bounds.
  *
  * @param frames  The array of texture structures.
  * @param count   The number of elements to process in the array.
@@ -33,6 +34,8 @@ static void	clean_txtr_frames(t_txtr *frames, int count)
 			mlx_delete_texture(frames[i].txtr);
 			frames[i].txtr = NULL;
 		}
+		if (frames[i].row_span)
+			ft_free((void **)&frames[i].row_span);
 		i++;
 	}
 }
