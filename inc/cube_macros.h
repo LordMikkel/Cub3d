@@ -92,6 +92,8 @@
 # define HEALTH_BAR_Y_OFFSET		20
 
 // Player
+# define REFERENCE_FPS				60.0
+# define MAX_DELTA_TIME				0.05
 # define RUN_SPEED_PLAYER			0.045
 # define WALK_SPEED_PLAYER			0.02
 # define TILT_LIMIT					400

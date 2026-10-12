@@ -43,19 +43,20 @@ static bool	is_inside_map(t_map *map, int x, int y)
  * motion of a walking person. When the player stops moving, it
  * transitions to a subtler idle breathing animation.
  *
- * @param player  The player struct containing the head bounce state.
+ * @param player       The player struct containing the head bounce state.
+ * @param time_factor  Time factor to make the animation frame rate independent.
  */
-static void	apply_head_bounce(t_plyr *player)
+static void	apply_head_bounce(t_plyr *player, double time_factor)
 {
 	if (player->moving)
 	{
-		player->head[STEP] += HEAD_BOUNCE_SPEED;
+		player->head[STEP] += HEAD_BOUNCE_SPEED * time_factor;
 		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_MOV_AMPLIT;
 		player->head[SWAY] = sin(player->head[STEP]) * HEAD_X_AMPLIT;
 	}
 	else
 	{
-		player->head[STEP] += HEAD_IDLE_SPEED;
+		player->head[STEP] += HEAD_IDLE_SPEED * time_factor;
 		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_IDLE_AMPLIT;
 		player->head[SWAY] = sin(player->head[STEP]) * HEAD_IDLE_AMPLIT;
 	}
@@ -67,14 +68,15 @@ static void	apply_head_bounce(t_plyr *player)
  * downward velocity brings the offset back to ground level,
  * the jump state and variables are reset.
  *
- * @param player  The player struct containing the jump state.
+ * @param player       The player struct containing the jump state.
+ * @param time_factor  Time factor to make the jump frame rate independent.
  */
-static void	apply_jump(t_plyr *player)
+static void	apply_jump(t_plyr *player, double time_factor)
 {
 	if (!player->jumping)
 		return ;
-	player->jump_vel -= GRAVITY;
-	player->jump_offset += player->jump_vel;
+	player->jump_vel -= GRAVITY * time_factor;
+	player->jump_offset += player->jump_vel * time_factor;
 	if (player->jump_vel < 0.0 && player->jump_offset <= 0.0)
 	{
 		player->jump_offset = 0.0;
@@ -116,6 +118,7 @@ static void	move_player(t_map *map, t_plyr *player, double mov_x, double mov_y)
  * to where the player is facing. Holding Left Shift increases
  * the movement speed to a run. Handles jump initialization via
  * the SPACE bar, and applies both jump and head bob effects.
+ * Every step is scaled by the frame time so speed doesn't depend on FPS.
  *
  * @param data  The main data struct containing the player and map.
  */
@@ -125,9 +128,9 @@ void	input_player_movement(t_data *data)
 
 	data->player.moving = FALSE;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-		pace = RUN_SPEED_PLAYER;
+		pace = RUN_SPEED_PLAYER * data->vars.time_factor;
 	else
-		pace = WALK_SPEED_PLAYER;
+		pace = WALK_SPEED_PLAYER * data->vars.time_factor;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move_player(&data->map, &data->player, data->player.dir[X] * pace,
 			data->player.dir[Y] * pace);
@@ -142,6 +145,6 @@ void	input_player_movement(t_data *data)
 			-data->player.dir[X] * pace);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE) && !data->player.jumping)
 		init_jump(&data->player);
-	apply_jump(&data->player);
-	apply_head_bounce(&data->player);
+	apply_jump(&data->player, data->vars.time_factor);
+	apply_head_bounce(&data->player, data->vars.time_factor);
 }

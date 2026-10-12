@@ -182,6 +182,7 @@ SRCS =				core/main.c \
 					core/game/update/update_data.c \
 					core/game/update/update_player.c \
 					core/game/update/update_game_over.c \
+					core/game/update/update_frame_time.c \
 					core/game/update/update_door.c \
 					core/game/update/update_gun_i.c \
 					core/game/update/update_gun_ii.c \

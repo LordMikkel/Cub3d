@@ -88,6 +88,9 @@ static t_txtr	*get_enemy_current_texture(t_data *data, t_enemy *enemy)
 	return (exit_error(data, ERR_ENEMY_STATE, EXIT_FAIL), NULL);
 }
 /*
+ * The frame range is checked every frame, not only when the timer ticks:
+ * the animation can change (side, mood) with a frame index that doesn't
+ * exist in the new one (e.g. frame 8 of LEFT -> FRONT only has 7 frames).
  * debug options:
  * dbg_print_enemy_state(enemy, STDOUT);
 */
@@ -101,17 +104,17 @@ void	update_enemy_animation(t_data *data, t_enemy *enemy)
 	{
 		enemy->frame_timer = 0.0;
 		enemy->current_frame++;
-		max_frames = get_enemy_max_frames(data, enemy);
-		if (enemy->current_frame >= max_frames)
+	}
+	max_frames = get_enemy_max_frames(data, enemy);
+	if (enemy->current_frame >= max_frames)
+	{
+		if (enemy->mood == ENEMY_DEATH)
 		{
-			if (enemy->mood == ENEMY_DEATH)
-			{
-				enemy->current_frame = max_frames - 1;
-				enemy->anim_done = TRUE;
-			}
-			else
-				enemy->current_frame = 0;
+			enemy->current_frame = max_frames - 1;
+			enemy->anim_done = TRUE;
 		}
+		else
+			enemy->current_frame = 0;
 	}
 	enemy->current_tex = get_enemy_current_texture(data, enemy);
 }

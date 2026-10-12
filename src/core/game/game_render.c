@@ -18,6 +18,7 @@ void	game_render(void *param)
 
 	data = param;
 	data->mode = GAME;
+	update_frame_time(data);
 	dbg_print_fps(STDOUT);
 	render_map(data);
 	render_enemies(data, &data->player, data->enemies);

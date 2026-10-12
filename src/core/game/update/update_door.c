@@ -19,15 +19,16 @@
  * 3. Logic: Once fully open (1.0), it updates the map grid to 'O' so the
  * Raycaster treats it as empty space. Otherwise, it remains 'D' (obstacle).
  *
- * @param map   The map struct for grid manipulation.
- * @param door  The specific door to update.
+ * @param map          The map struct for grid manipulation.
+ * @param door         The specific door to update.
+ * @param time_factor  Time factor to make the animation frame rate independent.
  */
-static void	update_single_door(t_map *map, t_door *door)
+static void	update_single_door(t_map *map, t_door *door, double time_factor)
 {
 	if (door->needs_to_open)
-		door->open_percent += DOOR_ANIM_SPEED;
+		door->open_percent += DOOR_ANIM_SPEED * time_factor;
 	else
-		door->open_percent -= DOOR_ANIM_SPEED;
+		door->open_percent -= DOOR_ANIM_SPEED * time_factor;
 	if (door->open_percent > 1.0)
 		door->open_percent = 1.0;
 	if (door->open_percent < 0.0)
@@ -45,16 +46,17 @@ static void	update_single_door(t_map *map, t_door *door)
  * background, maintaining a persistent game world even if the doors are
  * currently outside the player's field of view.
  *
- * @param map  The map structure containing the array of doors.
+ * @param map          The map structure containing the array of doors.
+ * @param time_factor  Time factor of the current frame (vars.time_factor).
  */
-void	update_doors(t_map *map)
+void	update_doors(t_map *map, double time_factor)
 {
 	int	i;
 
 	i = 0;
 	while (i < map->n_doors)
 	{
-		update_single_door(map, &map->doors[i]);
+		update_single_door(map, &map->doors[i], time_factor);
 		i++;
 	}
 }

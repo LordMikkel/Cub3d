@@ -46,7 +46,7 @@ static void	apply_x_rotation(t_plyr *player, double angle)
  */
 static void	apply_y_rotation(t_plyr *player, double angle)
 {
-	player->head[TILT] -= (int)(angle);
+	player->head[TILT] -= angle;
 	if (player->head[TILT] > TILT_LIMIT)
 		player->head[TILT] = TILT_LIMIT;
 	if (player->head[TILT] < -TILT_LIMIT)
@@ -88,20 +88,24 @@ static void	mouse_rotation(t_data *data, int *mouse, int *prev)
  * Handles player rotation based on arrow key input.
  * LEFT and RIGHT arrow keys rotate the player horizontally.
  * UP and DOWN arrow keys tilt the camera vertically.
- * Each key applies a fixed rotation step defined by its respective constant.
+ * Each key applies a fixed rotation step defined by its respective constant,
+ * scaled by the frame time so the rotation speed doesn't depend on FPS.
  *
  * @param data  The main data struct containing the player and mlx instance.
  */
 static void	keyboard_rotation(t_data *data)
 {
+	double	time_factor;
+
+	time_factor = data->vars.time_factor;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		apply_x_rotation(&data->player, -ROTATION_ANGLE_KEYBOARD);
+		apply_x_rotation(&data->player, -ROTATION_ANGLE_KEYBOARD * time_factor);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		apply_x_rotation(&data->player, ROTATION_ANGLE_KEYBOARD);
+		apply_x_rotation(&data->player, ROTATION_ANGLE_KEYBOARD * time_factor);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
-		apply_y_rotation(&data->player, -TILT_SENSITIVITY * 5);
+		apply_y_rotation(&data->player, -TILT_SENSITIVITY * 5 * time_factor);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-		apply_y_rotation(&data->player, TILT_SENSITIVITY * 5);
+		apply_y_rotation(&data->player, TILT_SENSITIVITY * 5 * time_factor);
 }
 
 /**

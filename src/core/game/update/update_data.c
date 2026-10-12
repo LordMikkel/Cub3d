@@ -15,7 +15,7 @@
 void	update_data(t_data *data)
 {
 	update_player(data, &data->player);
-	update_doors(&data->map);
+	update_doors(&data->map, data->vars.time_factor);
 	update_gun(data, &data->player.gun);
 	update_enemies(data, data->enemies);
 	update_game_over(data);

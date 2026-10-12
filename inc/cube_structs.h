@@ -382,6 +382,7 @@ typedef struct s_opt
 	int				n_cores;
 	int				health_bar_width;
 	int				health_bar_pos[AXIS];
+	double			time_factor;
 	uint32_t		gun_max_pixels;
 	t_txtr			enemy_x_front[TOTAL_ENEMY_FRONT_FRAMES];
 	t_txtr			enemy_x_left[TOTAL_ENEMY_LEFT_FRAMES];
