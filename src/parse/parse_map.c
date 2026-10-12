@@ -84,7 +84,7 @@ int	parse_map(t_data *data, t_map *map, char *line)
 {
 	static int	i = 0;
 
-	if ((ft_strncmp("1", line, 1) == EQUAL) || (ft_strncmp("0", line, 1) == EQUAL))
+	if (is_map_line(line))
 	{
 		if (!is_valid_grid_chrs(line, map))
 			return (exit_error(data, ERR_MAP_INVALID, EXIT_USE));

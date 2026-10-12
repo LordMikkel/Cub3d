@@ -447,7 +447,7 @@
 # define ERR_MAP_INVALID 	KO "Map contains invalid characters\n"
 # define ERR_MAP_WALLS		KO "Map is not enclosed by walls\n"
 # define ERR_MAP_PLAYER		KO "Map must have only one player start position\n"
-# define ERR_MAP_ENEMY		KO "Map is limit to 100 enemies at start position\n"
+# define ERR_MAP_ENEMY		KO "Map is limited to %d enemies\n"
 # define ERR_MAP_REACHABLE	KO "Map contains unreachable enemies\n"
 # define ERR_MAP_MISSING 	KO "Map information is missing or incomplete\n"
 # define ERR_MAP_DOOR		KO "Map has an invalid door placement\n"

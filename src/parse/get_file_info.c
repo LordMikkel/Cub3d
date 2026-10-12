@@ -34,6 +34,26 @@ static void	get_largest_line_map_len(t_data *data, t_map *map, char *line)
 }
 
 /**
+ * Trims a raw line from the file.
+ * Config lines are trimmed on both sides, but map lines only on the right:
+ * their leading spaces are part of the grid, removing them would shift
+ * the row to the left and change the shape of the map.
+ *
+ * @param line  The raw line read by GNL.
+ * @return      The new trimmed string or NULL on malloc error.
+ */
+static char	*trim_line(char *line)
+{
+	char	*trimmed;
+
+	trimmed = ft_strtrim(line, " \t\n\r\v\f");
+	if (!trimmed || !is_map_line(trimmed))
+		return (trimmed);
+	ft_free((void **)&trimmed);
+	return (ft_strightrim(line, " \t\n\r\v\f"));
+}
+
+/**
  * Reads and stores the file content.
  * We trim whitespace immediately to make parsing easier later.
  * Crucially, this function handles the file closure and resets GNL
@@ -54,7 +74,7 @@ static char	**get_lines(t_data *data, t_map *map)
 	{
 		if (is_not_an_empty_line(line))
 		{
-			map->map_file[i] = ft_strtrim(line, " \t\n\r\v\f");
+			map->map_file[i] = trim_line(line);
 			if (!map->map_file[i])
 			{
 				ft_free((void **)&line);

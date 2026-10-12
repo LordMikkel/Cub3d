@@ -14,7 +14,8 @@
 
 /**
  * Verifies coordinates are within the grid bounds.
- * Prevents segmentation faults by ensuring X and Y are valid indices.
+ * Prevents segmentation faults by ensuring the door and its four
+ * neighbours (x - 1, x + 1, y - 1, y + 1) are valid indices.
  *
  * @param map  The map struct with dimensions.
  * @param x    X coordinate.
@@ -22,7 +23,7 @@
  */
 static bool	is_inside_limits(t_map *map, int x, int y)
 {
-	if (x < map->map_limit[X] && y < map->map_limit[Y])
+	if (x > 0 && y > 0 && x < map->map_limit[X] && y < map->map_limit[Y])
 		return (TRUE);
 	return (FALSE);
 }

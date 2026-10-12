@@ -34,14 +34,23 @@ bool	is_map_line(char *line)
 /**
  * Filters out empty or whitespace-only lines.
  * Useful to skip gaps in the configuration file.
+ * We look for any non-whitespace char instead of checking the length,
+ * so a last line without '\n' (e.g. a single "1") is not discarded.
  *
  * @param line  The line to check.
  * @return      TRUE if the line contains data.
  */
 bool	is_not_an_empty_line(char *line)
 {
-	if (ft_strlen(line) > 1)
-		return (TRUE);
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_isspace(line[i]))
+			return (TRUE);
+		i++;
+	}
 	return (FALSE);
 }
 
@@ -49,13 +58,15 @@ bool	is_not_an_empty_line(char *line)
  * Checks if a texture slot is already assigned.
  * Prevents the parser from overwriting an existing configuration
  * if the file has duplicate identifiers.
+ * We check the path because it is only set while parsing: type can't be
+ * used (NORTH is 0) and format is preset to COLOR by init_textures.
  *
  * @param texture  The texture struct to check.
  * @return         TRUE if the slot is already in use.
  */
 bool	is_duplicated_or_initialized_texture(t_txtr *texture)
 {
-	if (texture->type != 0)
+	if (texture->path != NULL)
 		return (TRUE);
 	return (FALSE);
 }

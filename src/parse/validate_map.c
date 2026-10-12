@@ -115,7 +115,7 @@ void	validate_map(t_data *data, t_map *map)
 	if (map->n_players != 1)
 		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
 	if (map->n_enemies > MAX_ENEMIES)
-		exit_error(data, ERR_MAP_PLAYER, EXIT_USE);
+		exit_error(data, ERR_MAP_ENEMY, EXIT_USE, MAX_ENEMIES);
 	get_limits_map(map);
 	get_elements(data, map);
 	map->map_copy = ft_arraydup(map->map_grid);
