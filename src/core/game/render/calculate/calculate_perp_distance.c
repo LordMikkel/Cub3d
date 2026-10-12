@@ -33,7 +33,6 @@ static double	calculate_real_coord_wall(t_ray *ray, t_pos axis)
 		return ((double)ray->pos[axis] + 1.0);
 }
 
-// estudiar mas esta función y su matemática
 /**
  * Calculates the perpendicular distance to the wall to prevent fisheye.
  *

@@ -16,7 +16,7 @@ static void	cast_single_ray(t_data *data, int x)
 {
 	t_ray	ray;
 
-	init_player_ray(data, data->player, &ray, x);
+	init_player_ray(data, &data->player, &ray, x);
 	perform_dda(&data->map, &ray);
 	calc_perp_distance(&data->player, &ray);
 	save_z_buffer(&data->map, &ray, x);
@@ -86,6 +86,7 @@ static void	render_threads(t_data *data, t_thread *threads, int i)
  * 2. The second loop uses `pthread_join` to force the main program
  * to stop and wait until ALL threads have finished painting their slices.
  * Without this wait, the engine might try to display a half-drawn frame.
+ * Before that, the per row floor/ceiling distances are precalculated.
  *
  * @param data  Main program structure.
  */
@@ -94,6 +95,7 @@ void	render_map(t_data *data)
 	t_thread	threads[MAX_THREADS];
 	int			i;
 
+	calc_row_distances(data);
 	i = 0;
 	while (i < data->vars.n_cores)
 	{

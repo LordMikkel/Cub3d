@@ -52,10 +52,11 @@ void	init_player(t_data *data, int x, int y, char spawn_dir);
 void	init_enemy(t_data *data, int x, int y, char type);
 void	init_bresenham(int *delta, int *step, int *origin, int *end);
 void	init_light_ray(t_ray *ray, t_light *light, double *target);
-void	init_player_ray(t_data *data, t_plyr player, t_ray *ray, int x);
+void	init_player_ray(t_data *data, t_plyr *player, t_ray *ray, int x);
 void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
 void	init_light(t_data *data, int x, int y, char type);
 void	init_map_grid(t_data *data, t_map *map);
+void	init_visible_bounds(t_txtr *txtr);
 
 /* ************************************************************************** */
 /*                                  Parse                                     */
@@ -83,6 +84,7 @@ void	render_transparent_hits(t_data *data, t_ray *ray, int x);
 void	render_enemies(t_data *data, t_plyr *player, t_enemy *enemies);
 void	perform_dda(t_map *map, t_ray *ray);
 void	calc_wall_height(t_data *data, t_ray *ray);
+void	calc_row_distances(t_data *data);
 void	calc_perp_distance(t_plyr *player, t_ray *ray);
 void	calc_wall_texture_y(t_ray *ray, t_txtr *texture);
 void	calc_wall_texture_x(t_data *data, t_ray *ray);
@@ -112,7 +114,7 @@ void	draw_minimap_fov(t_data *data, t_plyr *player, t_mm *minimap);
 void	draw_enemy(t_data *data, t_opt *vars, t_enemy *enemy);
 void	draw_minimap_health(t_data *data, t_plyr *player);
 void	draw_minimap_player(t_data *data, t_mm *minimap);
-void	draw_gun(t_data *data, mlx_texture_t *texture);
+void	draw_gun(t_data *data, t_txtr *frame);
 
 /* ************************************************************************** */
 /*                                  Update                                    */

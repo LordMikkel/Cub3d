@@ -17,7 +17,7 @@ uint32_t		get_pixel_color(uint8_t *pixels, int *tex, int width);
 /**
  * Blends a source color over the background pixel already painted
  * at screen coordinates bg[X], bg[Y] in the screen buffer.
- * If src is almost fully opaque (alpha == 240), returns src directly
+ * If src is fully opaque (alpha == 255), returns src directly
  * without reading or compositing the background.
  * Otherwise applies standard alpha compositing:
  * result = (src * alpha + dst * (255 - alpha)) / 255
@@ -36,7 +36,7 @@ uint32_t	blend_pixel(t_data *data, int *bg, uint32_t src)
 	uint32_t	b;
 
 	alpha = src & 0xFF;
-	if (alpha == 240)
+	if (alpha == 255)
 		return (src);
 	dst = get_pixel_color(data->img->pixels, bg, data->img->width);
 	r = ((src >> 24 & 0xFF) * alpha + (dst >> 24 & 0xFF) * (255 - alpha)) / 255;

@@ -12,22 +12,22 @@
 
 #include "../../../../inc/cube.h"
 
-int	get_enemy_facing_side_vectors(t_plyr player, t_enemy enemy)
+int	get_enemy_facing_side_vectors(t_plyr *player, t_enemy *enemy)
 {
 	double	dot;
 	double	dist;
 	double	cross;
 	double	to_player[AXIS];
 
-	to_player[X] = player.pos[X] - enemy.pos[X];
-	to_player[Y] = player.pos[Y] - enemy.pos[Y];
-	dist = ft_dist(enemy.pos[X], enemy.pos[Y], player.pos[X], player.pos[Y]);
+	to_player[X] = player->pos[X] - enemy->pos[X];
+	to_player[Y] = player->pos[Y] - enemy->pos[Y];
+	dist = ft_dist(enemy->pos[X], enemy->pos[Y], player->pos[X], player->pos[Y]);
 	if (dist == 0.0)
 		return (ENEMY_SIDE_FRONT);
 	to_player[X] /= dist;
 	to_player[Y] /= dist;
-	dot = ft_dot(enemy.dir[X], enemy.dir[Y], to_player[X], to_player[Y]);
-	cross = ft_cross(enemy.dir[X], enemy.dir[Y], to_player[X], to_player[Y]);
+	dot = ft_dot(enemy->dir[X], enemy->dir[Y], to_player[X], to_player[Y]);
+	cross = ft_cross(enemy->dir[X], enemy->dir[Y], to_player[X], to_player[Y]);
 	if (dot > COS_45_DEG)
 		return (ENEMY_SIDE_FRONT);
 	else if (dot < COS_135_DEG)
@@ -44,7 +44,7 @@ static int	get_enemy_max_frames(t_data *data, t_enemy *enemy)
 
 	if (enemy->mood == ENEMY_WALK)
 	{
-		side = get_enemy_facing_side_vectors(data->player, *enemy);
+		side = get_enemy_facing_side_vectors(&data->player, enemy);
 		if (side == ENEMY_SIDE_FRONT)
 			return (TOTAL_ENEMY_FRONT_FRAMES);
 		else if (side == ENEMY_SIDE_LEFT)
@@ -69,7 +69,7 @@ static t_txtr	*get_enemy_current_texture(t_data *data, t_enemy *enemy)
 
 	if (enemy->mood == ENEMY_WALK)
 	{
-		side = get_enemy_facing_side_vectors(data->player, *enemy);
+		side = get_enemy_facing_side_vectors(&data->player, enemy);
 		if (side == ENEMY_SIDE_FRONT)
 			return (&data->vars.enemy_x_front[enemy->current_frame]);
 		else if (side == ENEMY_SIDE_LEFT)

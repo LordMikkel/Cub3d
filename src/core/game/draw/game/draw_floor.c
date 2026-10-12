@@ -20,7 +20,7 @@ static void	get_floor_coord(t_data *data, t_ray *ray, int y)
 {
 	double	row_dist;
 
-	row_dist = data->vars.half_img_height / (y - ray->screen_center[Y]);
+	row_dist = data->map.row_dist[y];
 	ray->floor[X] = data->player.pos[X] + row_dist * ray->dir[X];
 	ray->floor[Y] = data->player.pos[Y] + row_dist * ray->dir[Y];
 }

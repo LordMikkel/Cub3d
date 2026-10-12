@@ -195,6 +195,7 @@ typedef struct s_txtr
 	uint32_t		hex_color;
 	mlx_texture_t	*txtr;
 	uint8_t			*original_pixels;
+	int				bounds[LIMITS];
 }	t_txtr;
 
 typedef struct s_sprtren
@@ -367,6 +368,7 @@ typedef struct s_map
 	int				lightmap_limit[AXIS];
 	double			z_buffer[WIN_WIDTH];
 	double			t_buffer[WIN_WIDTH];
+	double			row_dist[WIN_HEIGHT];
 	t_txtr			textures[TOTAL_TEXTURE];
 }	t_map;
 
@@ -380,9 +382,9 @@ typedef struct s_opt
 	int				half_img_width;
 	int				gun_pos[AXIS];
 	int				n_cores;
+	double			time_factor;
 	int				health_bar_width;
 	int				health_bar_pos[AXIS];
-	double			time_factor;
 	uint32_t		gun_max_pixels;
 	t_txtr			enemy_x_front[TOTAL_ENEMY_FRONT_FRAMES];
 	t_txtr			enemy_x_left[TOTAL_ENEMY_LEFT_FRAMES];

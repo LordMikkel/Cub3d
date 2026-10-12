@@ -20,6 +20,7 @@ static void	load_gun_txtr(t_data *data, t_txtr *txtr, char *path)
 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
 	check_valid_texture(data, txtr, GUN_TXTR_WIDTH_FHD, GUN_TXTR_HEIGH_FHD
 		+ 30);
+	init_visible_bounds(txtr);
 }
 
 static void	load_frames(t_data *data, t_txtr *frames, char **paths, int count)

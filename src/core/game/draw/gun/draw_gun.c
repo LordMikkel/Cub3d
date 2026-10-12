@@ -17,28 +17,36 @@ uint32_t	get_pixel_color(uint8_t *pixels, int *tex, int width);
 uint32_t	apply_light(t_data *data, uint32_t color, uint32_t brightness);
 
 /**
- * Safely validates if a calculated pixel coordinate falls within the screen
- * boundaries. Prevents writing out of bounds on the MLX image buffer, which
- * would cause a segmentation fault.
+ * Clips the visible bounds of the gun frame to the screen boundaries.
+ * Done once per frame instead of checking every pixel, it prevents writing
+ * out of bounds on the MLX image buffer, which would cause a segfault.
  *
  * @param data    Main program struct containing the target image buffer.
- * @param screen  The [X, Y] coordinates on the screen to validate.
- * @return        TRUE if strictly inside the screen, FALSE otherwise.
+ * @param frame   The gun frame with its precalculated visible bounds.
+ * @param limits  Output [MIN_X, MAX_X, MIN_Y, MAX_Y] in texture coordinates.
  */
-static bool	is_pixel_on_screen(t_data *data, int *screen)
+static void	clip_bounds_to_screen(t_data *data, t_txtr *frame, int *limits)
 {
-	if (screen[X] < 0 || screen[X] >= (int)data->img->width)
-		return (FALSE);
-	if (screen[Y] < 0 || screen[Y] >= (int)data->img->height)
-		return (FALSE);
-	return (TRUE);
+	int	max_screen[AXIS];
+
+	max_screen[X] = (int)data->img->width - 1 - data->vars.gun_pos[X];
+	max_screen[Y] = (int)data->img->height - 1 - data->vars.gun_pos[Y];
+	limits[MIN_X] = ft_max(frame->bounds[MIN_X], -data->vars.gun_pos[X]);
+	limits[MIN_Y] = ft_max(frame->bounds[MIN_Y], -data->vars.gun_pos[Y]);
+	limits[MAX_X] = frame->bounds[MAX_X];
+	if (limits[MAX_X] > max_screen[X])
+		limits[MAX_X] = max_screen[X];
+	limits[MAX_Y] = frame->bounds[MAX_Y];
+	if (limits[MAX_Y] > max_screen[Y])
+		limits[MAX_Y] = max_screen[Y];
 }
 
 /**
  * Renders a single pixel of the weapon texture onto the screen.
  * Translates the texture coordinate to a screen coordinate based on the gun's
- * fixed screen position. If the pixel is visible (alpha channel check) and
- * on-screen, it applies the dynamic lighting multiplier before drawing.
+ * fixed screen position. If the pixel is visible (alpha channel check),
+ * it applies the dynamic lighting multiplier before drawing.
+ * The caller guarantees the pixel is on-screen (see clip_bounds_to_screen).
  *
  * @param data       Main program struct.
  * @param tex        The MLX texture of the current gun frame.
@@ -53,8 +61,6 @@ static void	draw_gun_pixel(t_data *data, mlx_texture_t *tex, int *tex_coord,
 
 	screen[X] = data->vars.gun_pos[X] + tex_coord[X];
 	screen[Y] = data->vars.gun_pos[Y] + tex_coord[Y];
-	if (!is_pixel_on_screen(data, screen))
-		return ;
 	color = get_pixel_color(tex->pixels, tex_coord, tex->width);
 	if (is_visible_pixel(color))
 	{
@@ -89,25 +95,28 @@ static uint32_t	get_player_brightness(t_map *map, t_plyr *player)
 /**
  * Orchestrates the drawing of the active weapon frame.
  * Fetches the dynamic brightness for the player's current position once,
- * then iterates through every pixel of the current weapon texture frame,
- * delegating the actual rendering and light application to draw_gun_pixel.
+ * then iterates only through the visible box of the current weapon frame
+ * (precalculated at load time and clipped to the screen), delegating the
+ * actual rendering and light application to draw_gun_pixel.
  *
- * @param data     Main program struct.
- * @param texture  The fully loaded MLX texture of the current frame to draw.
+ * @param data   Main program struct.
+ * @param frame  The current gun frame with its loaded texture and bounds.
  */
-void	draw_gun(t_data *data, mlx_texture_t *texture)
+void	draw_gun(t_data *data, t_txtr *frame)
 {
 	double	brightness;
+	int		limits[LIMITS];
 	int		tex_coord[AXIS];
 
-	tex_coord[Y] = 0;
 	brightness = get_player_brightness(&data->map, &data->player);
-	while (tex_coord[Y] < (int)texture->height)
+	clip_bounds_to_screen(data, frame, limits);
+	tex_coord[Y] = limits[MIN_Y];
+	while (tex_coord[Y] <= limits[MAX_Y])
 	{
-		tex_coord[X] = 0;
-		while (tex_coord[X] < (int)texture->width)
+		tex_coord[X] = limits[MIN_X];
+		while (tex_coord[X] <= limits[MAX_X])
 		{
-			draw_gun_pixel(data, texture, tex_coord, brightness);
+			draw_gun_pixel(data, frame->txtr, tex_coord, brightness);
 			tex_coord[X]++;
 		}
 		tex_coord[Y]++;

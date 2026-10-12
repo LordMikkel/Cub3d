@@ -134,6 +134,7 @@ SRCS =				core/main.c \
 					core/init/init_minimap.c \
 					core/init/init_bresenham.c \
 					core/init/init_map_grid.c \
+					core/init/init_visible_bounds.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/render_map.c \
@@ -148,6 +149,7 @@ SRCS =				core/main.c \
 					core/game/render/calculate/calculate_wall_height.c \
 					core/game/render/calculate/calculate_wall_texture_x.c \
 					core/game/render/calculate/calculate_wall_texture_y.c \
+					core/game/render/calculate/calculate_row_distances.c \
 					core/game/draw/game/draw_vertical_line.c \
 					core/game/draw/game/draw_wall_or_door.c \
 					core/game/draw/game/draw_ceiling.c \
@@ -180,9 +182,9 @@ SRCS =				core/main.c \
 					core/game/input/menu/click_menu.c \
 					core/game/input/menu/events/close_events.c \
 					core/game/update/update_data.c \
+					core/game/update/update_frame_time.c \
 					core/game/update/update_player.c \
 					core/game/update/update_game_over.c \
-					core/game/update/update_frame_time.c \
 					core/game/update/update_door.c \
 					core/game/update/update_gun_i.c \
 					core/game/update/update_gun_ii.c \

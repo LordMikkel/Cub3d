@@ -52,5 +52,5 @@ void	render_gun(t_data *data, t_gun *gun)
 	frame = select_frame(gun);
 	if (!frame || !frame->txtr)
 		return ;
-	draw_gun(data, frame->txtr);
+	draw_gun(data, frame);
 }

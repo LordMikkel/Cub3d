@@ -12,7 +12,6 @@
 
 #include "../../../../../inc/cube.h"
 
-// estudiar mas esta función y su matemática
 /**
  * Calculates the exact global coordinate where the ray hit the wall.
  *

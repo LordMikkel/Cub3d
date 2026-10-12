@@ -35,6 +35,8 @@ static void	recover_transparent_hits(t_ray *ray, t_hit *hit)
  * (from the furthest door to the closest door). By drawing back-to-front,
  * transparent pixels will correctly overlay the solid walls and other
  * deeper objects without breaking the depth illusion.
+ * Only the door strip is drawn: a closer door is always taller, so its
+ * ceiling and floor are already painted by the main ray.
  *
  * @param data  Main data structure.
  * @param ray   The ray containing the array of transparent hits.
@@ -54,7 +56,7 @@ void	render_transparent_hits(t_data *data, t_ray *ray, int x)
 		calc_wall_texture_x(data, ray);
 		calc_wall_height(data, ray);
 		calc_wall_texture_y(ray, ray->texture);
-		draw_vertical_line(data, ray, x);
+		draw_wall_or_door(data, ray, ray->texture, x);
 		i--;
 	}
 }

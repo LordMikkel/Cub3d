@@ -20,7 +20,7 @@ static void	get_ceiling_coord(t_data *data, t_ray *ray, int y)
 {
 	double	row_dist;
 
-	row_dist = data->vars.half_img_height / (ray->screen_center[Y] - y);
+	row_dist = data->map.row_dist[y];
 	ray->ceiling[X] = data->player.pos[X] + row_dist * ray->dir[X];
 	ray->ceiling[Y] = data->player.pos[Y] + row_dist * ray->dir[Y];
 }
