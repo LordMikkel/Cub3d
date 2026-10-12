@@ -18,8 +18,7 @@ static void	load_gun_txtr(t_data *data, t_txtr *txtr, char *path)
 	txtr->txtr = mlx_load_png(path);
 	if (!txtr->txtr)
 		exit_error(data, ERR_TEX_INVALID, EXIT_FAILURE);
-	check_valid_texture(data, txtr, GUN_TXTR_WIDTH_FHD, GUN_TXTR_HEIGH_FHD
-		+ 30);
+	check_valid_texture(data, txtr, GUN_TXTR_WIDTH_FHD, GUN_TXTR_HEIGHT_FHD);
 	init_visible_bounds(txtr);
 }
 

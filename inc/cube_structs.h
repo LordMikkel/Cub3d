@@ -385,7 +385,6 @@ typedef struct s_opt
 	double			frames_elapsed;
 	int				health_bar_width;
 	int				health_bar_pos[AXIS];
-	uint32_t		gun_max_pixels;
 	t_txtr			enemy_x_front[TOTAL_ENEMY_FRONT_FRAMES];
 	t_txtr			enemy_x_left[TOTAL_ENEMY_LEFT_FRAMES];
 	t_txtr			enemy_x_back[TOTAL_ENEMY_BACK_FRAMES];

@@ -90,7 +90,6 @@ void	init_opt(t_data *data, t_opt *vars)
 	init_cores(data, &data->vars);
 	vars->half_img_height = data->img->height / 2;
 	vars->half_img_width = data->img->width / 2;
-	vars->gun_max_pixels = GUN_TXTR_WIDTH_FHD * GUN_TXTR_HEIGH_FHD * 4;
 	vars->initial_min_dist_sq = DOOR_INTERACT_DIST * DOOR_INTERACT_DIST;
 	vars->enemy_hear_range_sq = ENEMY_HEAR_RANGE * ENEMY_HEAR_RANGE;
 	if (data->player.gun.model == CROSSBOW)
@@ -98,7 +97,7 @@ void	init_opt(t_data *data, t_opt *vars)
 	vars->shoot_dist_sq = MAX_DISTANCE_SHOT * MAX_DISTANCE_SHOT;
 	vars->enemy_sight_range_sq = ENEMY_SIGHT_RANGE * ENEMY_SIGHT_RANGE;
 	vars->gun_pos[X] = (data->img->width - GUN_TXTR_WIDTH_FHD) / 2;
-	vars->gun_pos[Y] = data->img->height - GUN_TXTR_HEIGH_FHD;
+	vars->gun_pos[Y] = data->img->height - GUN_TXTR_HEIGHT_FHD + GUN_Y_OFFSET;
 	vars->health_bar_width = (int)(data->minimap.size[X] * 0.8);
 	mm_center_offset = (data->minimap.size[X] - vars->health_bar_width) / 2;
 	mm_bottom_offset = data->minimap.size[Y] + HEALTH_BAR_Y_OFFSET;
