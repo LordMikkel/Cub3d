@@ -55,6 +55,9 @@
 # define MAX_NUMBER					1e30
 # define FOV_FACTOR					0.8
 # define MAX_THREADS 				32
+# define SECTIONS_PER_THREAD		5
+# define CACHE_LINE_PIXELS			16
+# define MAX_RENDER_SECTIONS		(WIN_WIDTH / CACHE_LINE_PIXELS + 1)
 
 // Map
 # define MAX_MAP_SIZE				500
@@ -443,6 +446,7 @@
 # define ERR_FILE_EXT		KO "Invalid file extension. Expected .cub\n"
 # define ERR_FILE_OPEN		KO "Could not open file: %s\n"
 # define ERR_CORES			KO "could not determine the number of cores\n"
+# define ERR_THREADS			KO "could not create the render threads\n"
 
 // Map Parsing Errors
 # define ERR_MAP_EMPTY		KO "Map file is empty\n"

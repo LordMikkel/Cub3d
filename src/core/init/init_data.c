@@ -29,5 +29,6 @@ void	init_data(t_data *data)
 	init_minimap(&data->minimap);
 	init_opt(data, &data->vars);
 	init_gun(data, &data->player.gun);
+	init_pool(data, &data->pool);
 	ft_printf_fd(STDOUT, MSG_INIT);
 }

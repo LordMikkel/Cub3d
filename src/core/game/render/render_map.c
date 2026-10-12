@@ -41,20 +41,21 @@ static void	cast_single_ray(t_data *data, int x)
 }
 
 /**
- * Renders the map (walls, doors, floor and ceiling) of a thread.
- * Casts one ray per column, only for the [START, END) columns of the
- * thread, which also fills the z-buffer of those columns for the sprites.
+ * Renders the map (walls, doors, floor and ceiling) of a section.
+ * Casts one ray per column, only for the [START, END) columns, which
+ * also fills the z-buffer of those columns for the sprites.
  *
- * @param thread  The thread with its range of columns.
+ * @param data  Main program structure.
+ * @param cols  The [START, END) range of screen columns to render.
  */
-void	render_map(t_thread *thread)
+void	render_map(t_data *data, int *cols)
 {
 	int	x;
 
-	x = thread->x[START];
-	while (x < thread->x[END])
+	x = cols[START];
+	while (x < cols[END])
 	{
-		cast_single_ray(thread->data, x);
+		cast_single_ray(data, x);
 		x++;
 	}
 }

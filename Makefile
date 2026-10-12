@@ -127,7 +127,7 @@ SRCS =				core/main.c \
 					core/init/init_transparent_hit.c \
 					core/init/init_opt.c \
 					core/init/init_cores.c \
-					core/init/init_thread.c \
+					core/init/init_pool.c \
 					core/init/init_door.c \
 					core/init/init_light.c \
 					core/init/init_textures.c \
@@ -138,6 +138,8 @@ SRCS =				core/main.c \
 					core/game/game_loop.c \
 					core/game/game_render.c \
 					core/game/render/render_scene.c \
+					core/game/render/render_pool.c \
+					core/game/render/render_thread.c \
 					core/game/render/render_map.c \
 					core/game/render/render_lightmap.c \
 					core/game/render/render_hud.c \
@@ -235,6 +237,7 @@ SRCS =				core/main.c \
 					debug/dbg_print_enemy_state.c \
 					debug/dbg_print_player_pos.c \
 					core/exit/clean/clean_all.c \
+					core/exit/clean/clean_pool.c \
 					core/exit/clean/clean_mlx.c \
 					core/exit/clean/clean_opt.c \
 					core/exit/clean/clean_map.c \

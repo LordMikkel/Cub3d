@@ -17,7 +17,8 @@
 # include "cube_macros.h"
 
 typedef struct s_txtr		t_txtr;
-typedef struct s_thread		t_thread;
+typedef struct s_section	t_section;
+typedef struct s_pool		t_pool;
 typedef struct s_ray		t_ray;
 typedef struct s_enemy		t_enemy;
 typedef struct s_gun		t_gun;
@@ -294,13 +295,24 @@ typedef struct s_door
 	t_txtr			sprites[DOOR_ANIMATIONS];
 }	t_door;
 
-typedef struct s_thread
+typedef struct s_section
 {
-	t_data			*data;
-	pthread_t		thread;
-	int				x[RANGE];
-	int				area[LIMITS];
-}	t_thread;
+	int					cols[RANGE];
+	int					area[LIMITS];
+}	t_section;
+
+typedef struct s_pool
+{
+	pthread_t			workers[MAX_THREADS];
+	int					n_workers;
+	pthread_barrier_t	frame_start;
+	pthread_barrier_t	frame_end;
+	t_section			sections[MAX_RENDER_SECTIONS];
+	int					n_sections;
+	atomic_int			next_section;
+	bool				quit;
+	bool				is_running;
+}	t_pool;
 
 typedef struct s_hit
 {
@@ -405,6 +417,7 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	t_opt			vars;
+	t_pool			pool;
 	int				status;
 }	t_data;
 

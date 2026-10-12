@@ -23,6 +23,7 @@
  */
 void	clean_all(t_data *data)
 {
+	clean_pool(&data->pool);
 	clean_opt(&data->vars);
 	clean_gun(&data->player.gun);
 	clean_lights(&data->map);

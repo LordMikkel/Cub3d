@@ -19,15 +19,16 @@
 /* ************************************************************************** */
 # include "../lib/mlx42/include/MLX42/MLX42.h"
 # include "../lib/libft_plus/libft_plus.h"
-# include "cube_structs.h"
-# include "cube_macros.h"
 # include <sys/types.h>
+# include <stdatomic.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <string.h>
 # include <errno.h>
 # include <time.h>
 # include <math.h>
+# include "cube_structs.h"
+# include "cube_macros.h"
 
 /* ************************************************************************** */
 /*                                  Core                                      */
@@ -53,7 +54,7 @@ void	init_enemy(t_data *data, int x, int y, char type);
 void	init_bresenham(int *delta, int *step, int *origin, int *end);
 void	init_light_ray(t_ray *ray, t_light *light, double *target);
 void	init_player_ray(t_data *data, t_plyr *player, t_ray *ray, int x);
-void	init_thread(t_data *data, t_thread *threads, int i, int cols_x_thread);
+void	init_pool(t_data *data, t_pool *pool);
 void	init_light(t_data *data, int x, int y, char type);
 void	init_map_grid(t_data *data, t_map *map);
 void	init_visible_bounds(t_data *data, t_txtr *txtr);
@@ -77,7 +78,10 @@ void	get_color(t_data *data, t_txtr *texture, char *line, int type);
 /* ************************************************************************** */
 void	game_render(void *param);
 void	render_scene(t_data *data);
-void	render_map(t_thread *thread);
+void	render_map(t_data *data, int *cols);
+void	render_thread_sections(t_data *data, t_pool *pool);
+void	pool_render_frame(t_data *data, t_pool *pool);
+void	*pool_worker(void *arg);
 void	render_lightmap(t_data	*data);
 void	render_gun(t_data *data, t_gun *gun, int *area);
 void	render_hud(t_data *data, t_mm *minimap);
@@ -225,6 +229,7 @@ void	dbg_print_player_pos(t_plyr *player, int *mouse, int fd);
 /*                                 Clean                                      */
 /* ************************************************************************** */
 void	clean_all(t_data *data);
+void	clean_pool(t_pool *pool);
 void	clean_mlx(t_data *data);
 void	clean_gun(t_gun *gun);
 void	clean_opt(t_opt *vars);
