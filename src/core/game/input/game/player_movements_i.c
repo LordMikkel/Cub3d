@@ -43,20 +43,20 @@ static bool	is_inside_map(t_map *map, int x, int y)
  * motion of a walking person. When the player stops moving, it
  * transitions to a subtler idle breathing animation.
  *
- * @param player       The player struct containing the head bounce state.
- * @param time_factor  Time factor to make the animation frame rate independent.
+ * @param player          The player struct containing the head bounce state.
+ * @param frames_elapsed  Reference frames elapsed since the last frame.
  */
-static void	apply_head_bounce(t_plyr *player, double time_factor)
+static void	apply_head_bounce(t_plyr *player, double frames_elapsed)
 {
 	if (player->moving)
 	{
-		player->head[STEP] += HEAD_BOUNCE_SPEED * time_factor;
+		player->head[STEP] += HEAD_BOUNCE_SPEED * frames_elapsed;
 		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_MOV_AMPLIT;
 		player->head[SWAY] = sin(player->head[STEP]) * HEAD_X_AMPLIT;
 	}
 	else
 	{
-		player->head[STEP] += HEAD_IDLE_SPEED * time_factor;
+		player->head[STEP] += HEAD_IDLE_SPEED * frames_elapsed;
 		player->head[BOUNCE] = sin(player->head[STEP] * 2.0) * HEAD_IDLE_AMPLIT;
 		player->head[SWAY] = sin(player->head[STEP]) * HEAD_IDLE_AMPLIT;
 	}
@@ -68,15 +68,15 @@ static void	apply_head_bounce(t_plyr *player, double time_factor)
  * downward velocity brings the offset back to ground level,
  * the jump state and variables are reset.
  *
- * @param player       The player struct containing the jump state.
- * @param time_factor  Time factor to make the jump frame rate independent.
+ * @param player          The player struct containing the jump state.
+ * @param frames_elapsed  Reference frames elapsed since the last frame.
  */
-static void	apply_jump(t_plyr *player, double time_factor)
+static void	apply_jump(t_plyr *player, double frames_elapsed)
 {
 	if (!player->jumping)
 		return ;
-	player->jump_vel -= GRAVITY * time_factor;
-	player->jump_offset += player->jump_vel * time_factor;
+	player->jump_vel -= GRAVITY * frames_elapsed;
+	player->jump_offset += player->jump_vel * frames_elapsed;
 	if (player->jump_vel < 0.0 && player->jump_offset <= 0.0)
 	{
 		player->jump_offset = 0.0;
@@ -128,9 +128,9 @@ void	input_player_movement(t_data *data)
 
 	data->player.moving = FALSE;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-		pace = RUN_SPEED_PLAYER * data->vars.time_factor;
+		pace = RUN_SPEED_PLAYER * data->vars.frames_elapsed;
 	else
-		pace = WALK_SPEED_PLAYER * data->vars.time_factor;
+		pace = WALK_SPEED_PLAYER * data->vars.frames_elapsed;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move_player(&data->map, &data->player, data->player.dir[X] * pace,
 			data->player.dir[Y] * pace);
@@ -145,6 +145,6 @@ void	input_player_movement(t_data *data)
 			-data->player.dir[X] * pace);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE) && !data->player.jumping)
 		init_jump(&data->player);
-	apply_jump(&data->player, data->vars.time_factor);
-	apply_head_bounce(&data->player, data->vars.time_factor);
+	apply_jump(&data->player, data->vars.frames_elapsed);
+	apply_head_bounce(&data->player, data->vars.frames_elapsed);
 }

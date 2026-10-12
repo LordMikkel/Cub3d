@@ -382,7 +382,7 @@ typedef struct s_opt
 	int				half_img_width;
 	int				gun_pos[AXIS];
 	int				n_cores;
-	double			time_factor;
+	double			frames_elapsed;
 	int				health_bar_width;
 	int				health_bar_pos[AXIS];
 	uint32_t		gun_max_pixels;

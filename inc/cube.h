@@ -121,7 +121,7 @@ void	draw_gun(t_data *data, t_txtr *frame);
 /* ************************************************************************** */
 void	update_data(t_data *data);
 void	update_frame_time(t_data *data);
-void	update_doors(t_map *map, double time_factor);
+void	update_doors(t_map *map, double frames_elapsed);
 void	update_game_over(t_data *data);
 void	update_gun(t_data *data, t_gun *gun);
 void	update_player(t_data *data, t_plyr *player);

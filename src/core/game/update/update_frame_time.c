@@ -19,7 +19,7 @@
  * and a long frame (window drag...) would do the same. Without this cap,
  * enemies and the player would jump several cells in one step, crossing
  * walls or leaving the map.
- * 2. Stores time_factor: how many reference frames the last frame lasted.
+ * 2. Stores frames_elapsed: how many reference frames the last frame lasted.
  * Movement constants are tuned per frame at REFERENCE_FPS, so they are
  * scaled by this value to make speed independent of the real frame rate
  * (1.0 at REFERENCE_FPS, < 1.0 above it and > 1.0 below it).
@@ -30,5 +30,5 @@ void	update_frame_time(t_data *data)
 {
 	if (data->mlx->delta_time > MAX_DELTA_TIME)
 		data->mlx->delta_time = MAX_DELTA_TIME;
-	data->vars.time_factor = data->mlx->delta_time * REFERENCE_FPS;
+	data->vars.frames_elapsed = data->mlx->delta_time * REFERENCE_FPS;
 }

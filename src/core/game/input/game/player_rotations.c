@@ -95,17 +95,17 @@ static void	mouse_rotation(t_data *data, int *mouse, int *prev)
  */
 static void	keyboard_rotation(t_data *data)
 {
-	double	time_factor;
+	double	frames_elapsed;
 
-	time_factor = data->vars.time_factor;
+	frames_elapsed = data->vars.frames_elapsed;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		apply_x_rotation(&data->player, -ROTATION_ANGLE_KEYBOARD * time_factor);
+		apply_x_rotation(&data->player, -ROTATION_ANGLE_KEYBOARD * frames_elapsed);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		apply_x_rotation(&data->player, ROTATION_ANGLE_KEYBOARD * time_factor);
+		apply_x_rotation(&data->player, ROTATION_ANGLE_KEYBOARD * frames_elapsed);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
-		apply_y_rotation(&data->player, -TILT_SENSITIVITY * 5 * time_factor);
+		apply_y_rotation(&data->player, -TILT_SENSITIVITY * 5 * frames_elapsed);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-		apply_y_rotation(&data->player, TILT_SENSITIVITY * 5 * time_factor);
+		apply_y_rotation(&data->player, TILT_SENSITIVITY * 5 * frames_elapsed);
 }
 
 /**
