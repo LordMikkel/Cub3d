@@ -55,6 +55,7 @@ void	init_bresenham(int *delta, int *step, int *origin, int *end);
 void	init_light_ray(t_ray *ray, t_light *light, double *target);
 void	init_player_ray(t_data *data, t_plyr *player, t_ray *ray, int x);
 void	init_pool(t_data *data, t_pool *pool);
+void	init_sections(t_data *data, t_pool *pool);
 void	init_light(t_data *data, int x, int y, char type);
 void	init_map_grid(t_data *data, t_map *map);
 void	init_visible_bounds(t_data *data, t_txtr *txtr);
@@ -81,7 +82,7 @@ void	render_scene(t_data *data);
 void	render_map(t_data *data, int *cols);
 void	render_thread_sections(t_data *data, t_pool *pool);
 void	pool_render_frame(t_data *data, t_pool *pool);
-void	*pool_worker(void *arg);
+void	*pool_worker_routine(void *arg);
 void	render_lightmap(t_data	*data);
 void	render_gun(t_data *data, t_gun *gun, int *area);
 void	render_hud(t_data *data, t_mm *minimap);
@@ -203,8 +204,7 @@ void	move_y_side(t_ray *ray);
 /*                             Optimization                                   */
 /* ************************************************************************** */
 
-static inline void
-	fast_put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
+static inline void fast_put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
 {
 	uint8_t	*pixel;
 

@@ -128,6 +128,7 @@ SRCS =				core/main.c \
 					core/init/init_opt.c \
 					core/init/init_cores.c \
 					core/init/init_pool.c \
+					core/init/init_sections.c \
 					core/init/init_door.c \
 					core/init/init_light.c \
 					core/init/init_textures.c \

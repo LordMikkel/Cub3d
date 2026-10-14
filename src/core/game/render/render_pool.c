@@ -16,15 +16,14 @@
  * The routine of every worker thread, alive during the whole game.
  * Each loop is one frame:
  * 1. Waits at frame_start until the main thread starts a frame.
- * 2. Renders sections until there are none left (see
- * render_thread_sections).
+ * 2. Renders sections until there are none left (see render_thread_sections).
  * 3. Waits at frame_end so the main thread knows the frame is complete.
  * When clean_pool sets quit and opens frame_start, the worker returns.
  *
  * @param arg  The main program structure (t_data *).
  * @return     NULL (as required by the pthread standard signature).
  */
-void	*pool_worker(void *arg)
+void	*pool_worker_routine(void *arg)
 {
 	t_data	*data;
 
