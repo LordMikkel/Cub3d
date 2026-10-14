@@ -23,14 +23,15 @@ WFLAGS				= -Wall -Wextra -Werror -Wpedantic -Wformat -Wshadow -Wnull-dereferenc
 DMODE				= -D MAIN
 DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -pie -ldl -lglfw -pthread -lm
-AFLAGS				= -fprofile-arcs -ftest-coverage
-VFLAGS				= -Ofast -march=native -flto -funroll-loops
+VFLAGS				= -O3 -ffast-math -march=native -flto -funroll-loops
 OFLAGS				= -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -fno-plt -fdata-sections -ffunction-sections
-HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE -fcf-protection=full
-LDFLAGS				= -Wl,-z,relro,-z,now $(HFLAGS)
-DFLAGS				= -g3 -O1 $(AFLAGS)
-TFLAGS				= -g3 -O1 -fsanitize=thread,undefined
-SFLAGS				= $(DFLAGS) -fsanitize=address,undefined
+HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE -fstack-clash-protection -fcf-protection=full
+LDFLAGS				= -Wl,-z,relro,-z,now -Wl,--gc-sections $(HFLAGS)
+GFLAGS				= -ggdb3 -fno-omit-frame-pointer -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0
+DFLAGS				= $(GFLAGS) -O0
+AFLAGS				= $(GFLAGS) -O0 -fprofile-arcs -ftest-coverage
+SFLAGS				= $(GFLAGS) -O1 -fsanitize=address,undefined
+TFLAGS				= $(GFLAGS) -O1 -fsanitize=thread,undefined
 CFLAGS				= $(WFLAGS) $(HFLAGS) $(OFLAGS)
 
 # **************************************************************************** #
@@ -42,6 +43,8 @@ ifeq ($(MODE), release)
 	CFLAGS += $(VFLAGS)
 else ifeq ($(MODE), debug)
 	CFLAGS += $(DFLAGS)
+else ifeq ($(MODE), cover)
+	CFLAGS += $(AFLAGS)
 else ifeq ($(MODE), asan)
 	CFLAGS += $(SFLAGS)
 else ifeq ($(MODE), tsan)
@@ -55,7 +58,6 @@ endif
 # **************************************************************************** #
 RM					= rm -rf
 PRINT				= printf
-MAKE				= make
 MKDIR				= mkdir -p
 NORM				= norminette
 WATCH				= watch
@@ -76,6 +78,7 @@ EXT_DIR				= ext
 LIBFT_DIR			= $(LIB_DIR)/libft_plus
 MLX_DIR				= $(LIB_DIR)/mlx42
 MLX42_REPO			= https://github.com/codam-coding-college/MLX42.git
+MLX42_COMMIT		= e8013c3f22f355d23c0d14b96542edf9d35031c9
 
 # **************************************************************************** #
 #                      File Paths and Dependencies                             #
@@ -290,12 +293,13 @@ $(LIBFT_A): FORCE $(LIBFT_MAKEFILE) $(LIBFT_H)
 # Download MLX library
 $(MLX_DIR):
 	@$(PRINT) "Downloading $(BLUE)mlx library$(DEFAULT)...\n"
-	@$(GIT) clone $(MLX42_REPO) $(MLX_DIR) > /dev/null 2>&1
+	@$(GIT) clone -q $(MLX42_REPO) $(MLX_DIR)
+	@$(GIT) -C $(MLX_DIR) checkout -q $(MLX42_COMMIT)
 
 # Compile MLX library
 $(MLX_A): $(MLX_DIR)
 	@$(PRINT) "Compiling $(BLUE)mlx library$(DEFAULT)...\n"
-	@$(CD) $(MLX_DIR) && $(CMAKE) -B build > /dev/null 2>&1 && $(CMAKE) --build build -j4 > /dev/null 2>&1
+	@$(CD) $(MLX_DIR) && ($(CMAKE) -B build > /dev/null 2>&1 || $(CMAKE) -B build) && ($(CMAKE) --build build -j4 > /dev/null 2>&1 || $(CMAKE) --build build)
 
 # **************************************************************************** #
 #                            Object Compilation                                #
@@ -332,6 +336,12 @@ races:
 	@clear
 	@$(MAKE) --no-print-directory MODE=tsan all
 	@LD_PRELOAD="" TSAN_OPTIONS="suppressions=$(SANT_SUPP) ignore_noninstrumented_modules=1" ./$(NAME) $(MAP)
+
+# Compilation for coverage analysis
+cover:
+	@clear
+	@$(MAKE) --no-print-directory MODE=cover all
+	@LD_PRELOAD="" ./$(NAME) $(MAP)
 
 # Compilation for debugging
 debug:
@@ -370,5 +380,5 @@ re: fclean all
 FORCE:
 
 # Phony targets
-.PHONY: all clean fclean re leaks races debug fast norm check
+.PHONY: all clean fclean re leaks races debug cover fast norm check
 .DEFAULT_GOAL := all
