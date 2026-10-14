@@ -25,7 +25,7 @@ DEPFLAGS			= -MMD -MP
 LIBFLAGS			= -pie -ldl -lglfw -pthread -lm
 AFLAGS				= -fprofile-arcs -ftest-coverage
 VFLAGS				= -Ofast -march=native -flto -funroll-loops
-OFLAGS				= -D_FORTIFY_SOURCE=3 -ffunction-sections -fdata-sections -Wl,--gc-sections
+OFLAGS				= -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -fno-plt -fdata-sections -ffunction-sections
 HFLAGS				= -fstack-protector-strong --param=ssp-buffer-size=4 -fPIE -fcf-protection=full
 LDFLAGS				= -Wl,-z,relro,-z,now $(HFLAGS)
 DFLAGS				= -g3 -O1 $(AFLAGS)
